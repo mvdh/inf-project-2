@@ -16,31 +16,26 @@ public class Game extends JFrame
 		m = new Matrix();
 		
 		Vector v;
-		Field f;
 		for (int i = 0; i < 7; i++)
 		{
 			v = new Vector();
-			f = new Boom();
-			f.addMouseListener(new GameMouseAdapter());
-			v.add(f);
-			f = new Tower();
-			f.addMouseListener(new GameMouseAdapter());
-			v.add(f);
+			v.add(new Boom());
+			v.add(new Tower());
 			for (int j = 0; j < 15; j++)
 			{
-				f = new Field();
-				f.addMouseListener(new GameMouseAdapter());
-				v.add(f);
+				v.add(new Field());
 			}
 			m.add(v);
 		}
-		
+
+		Field f;
 		for (int i = 0; i < m.size(); i++)
 		{
 			for (int j = 0; j < m.get(i).size(); j++)
 			{
 				f = m.get(i, j);
 				f.setLocation(j * 40, i * 40);
+				f.addMouseListener(new GameMouseAdapter());
 				if (f != null)
 				{
 					add(f);
