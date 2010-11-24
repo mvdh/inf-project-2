@@ -1,4 +1,3 @@
-
 public class Matrix 
 {
 	private Vector[] matrix;
@@ -8,6 +7,10 @@ public class Matrix
 		matrix = new Vector[0];
 	}
 
+	/**
+	 * 
+	 * @param in Vector
+	 */
 	public void add(Vector in)
 	{
 		Vector temp[] = new Vector[size()];
@@ -27,6 +30,10 @@ public class Matrix
 		enhance();
 	}
 	
+	/**
+	 * 
+	 * @param in Field[]
+	 */
 	public void add(Field[] in)
 	{
 		Vector inNew = new Vector();
@@ -52,11 +59,18 @@ public class Matrix
 		enhance();
 	}
 	
+	/**
+	 * 
+	 * @return matrix.length
+	 */
 	public int size()
 	{
 		return matrix.length;
 	}
 	
+	/**
+	 * Enhances the matrix, so all Vector Objects have the same size
+	 */
 	public void enhance()
 	{
 		int longest = getLongest();
@@ -70,6 +84,10 @@ public class Matrix
 		}
 	}
 	
+	/**
+	 * 
+	 * @return The amount of Objects in the Vector Object with the most Objects
+	 */
 	public int getLongest()
 	{
 		int result = 0;
@@ -84,11 +102,22 @@ public class Matrix
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @param i int
+	 * @return matrix[i]
+	 */
 	public Vector get(int i)
 	{
 		return matrix[i];
 	}
 	
+	/**
+	 * 
+	 * @param i int
+	 * @param j int
+	 * @return get(i).get(j)
+	 */
 	public Field get(int i, int j)
 	{
 		return get(i).get(j);

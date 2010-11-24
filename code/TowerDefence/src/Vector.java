@@ -1,4 +1,3 @@
-
 public class Vector 
 {
 	Field[] vector;
@@ -10,6 +9,10 @@ public class Vector
 		empty = 0;
 	}
 	
+	/**
+	 * 
+	 * @param in Field
+	 */
 	public void add(Field in)
 	{
 		if (in != null && empty > 0)
@@ -47,16 +50,29 @@ public class Vector
 		}
 	}
 	
+	/**
+	 * 
+	 * @return vector.length
+	 */
 	public int size()
 	{
 		return vector.length;
 	}
 	
+	/**
+	 * 
+	 * @return empty
+	 */
 	public int getEmpty()
 	{
 		return empty;
 	}
 	
+	/**
+	 * 
+	 * @param i int
+	 * @return vector[i]
+	 */
 	public Field get(int i)
 	{
 		return vector[i];
