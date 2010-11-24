@@ -13,21 +13,37 @@ public class Tower extends Field
 		super();
 	}
 	
+	/**
+	 * 
+	 * @param rangeIn int
+	 */
 	public void setRange(int rangeIn)
 	{
 		range = rangeIn;
 	}
 	
+	/**
+	 * 
+	 * @param hp int
+	 */
 	public void setHitPoints(int hp)
 	{
 		hitPoints = hp;
 	}
 	
+	/**
+	 * 
+	 * @return range
+	 */
 	public int getRange()
 	{
 		return range;
 	}
 	
+	/**
+	 * 
+	 * @return hitpoints
+	 */
 	public int getHitPoints()
 	{
 		return hitPoints;
