@@ -76,6 +76,10 @@ public class Vector
 			{
 				result += "&";
 			}
+			else if (get(i) instanceof Boom)
+			{
+				result += "$";
+			}
 			else
 			{
 				result += "#";
