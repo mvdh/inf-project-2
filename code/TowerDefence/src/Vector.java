@@ -68,13 +68,17 @@ public class Vector
 		
 		for (int i = 0; i < size(); i++)
 		{
-			if (get(i) != null)
+			if (get(i) == null)
 			{
-				result += "#";
+				result += ".";
+			}
+			else if (get(i) instanceof Tower)
+			{
+				result += "&";
 			}
 			else
 			{
-				result += ".";
+				result += "#";
 			}
 		}
 		

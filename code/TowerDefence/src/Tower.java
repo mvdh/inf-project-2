@@ -1,6 +1,5 @@
 import java.awt.Graphics;
 
-
 public class Tower extends Field
 {
 	private int range;
