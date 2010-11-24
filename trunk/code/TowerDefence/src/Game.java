@@ -9,6 +9,7 @@ public class Game
 		for (int i = 0; i < 7; i++)
 		{
 			v = new Vector();
+			v.add(new Tower());
 			for (int j = 0; j < 17; j++)
 			{
 				v.add(new Field());
