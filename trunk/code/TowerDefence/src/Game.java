@@ -17,6 +17,7 @@ public class Game extends JFrame
 			{
 				v.add(new Field());
 			}
+			v.add(new Boom());
 			m.add(v);
 		}
 		
@@ -34,6 +35,7 @@ public class Game extends JFrame
 			}
 		}
 		System.out.println(m.toString());
+		paintAll(getGraphics());
 	}
 	
 	public void init()
