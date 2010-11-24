@@ -61,4 +61,23 @@ public class Vector
 	{
 		return vector[i];
 	}
+	
+	public String toString()
+	{
+		String result = "";
+		
+		for (int i = 0; i < size(); i++)
+		{
+			if (get(i) != null)
+			{
+				result += "#";
+			}
+			else
+			{
+				result += ".";
+			}
+		}
+		
+		return result + "\n";
+	}
 }

@@ -93,4 +93,16 @@ public class Matrix
 	{
 		return get(i).get(j);
 	}
+	
+	public String toString()
+	{
+		String result = "";
+		
+		for (int i = 0; i < size(); i++)
+		{
+			result += get(i).toString();
+		}
+		
+		return result;
+	}
 }
