@@ -12,12 +12,12 @@ public class Game extends JFrame
 		for (int i = 0; i < 7; i++)
 		{
 			v = new Vector();
+			v.add(new Boom());
 			v.add(new Tower());
 			for (int j = 0; j < 15; j++)
 			{
 				v.add(new Field());
 			}
-			v.add(new Boom());
 			m.add(v);
 		}
 		
