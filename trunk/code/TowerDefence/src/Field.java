@@ -24,6 +24,16 @@ public class Field extends Component
 		g2.drawRect(0, 0, size.width, size.height);
 	}
 	
+	/**
+	 * 
+	 * @param f Field
+	 * @return this.equals(f)
+	 */
+	public boolean equals(Field f)
+	{
+		return f.getLocation().equals(getLocation());
+	}
+	
 	class FieldMouseAdapter implements MouseListener
 	{
 		public void mouseClicked(MouseEvent me) 

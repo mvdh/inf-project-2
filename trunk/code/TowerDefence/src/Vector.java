@@ -11,6 +11,25 @@ public class Vector
 	
 	/**
 	 * 
+	 * @param f Field
+	 * @param i int
+	 * @return true if the selected index was empty
+	 */
+	public boolean add(Field f, int i)
+	{
+		boolean result = false;
+		
+		if (get(i) == null)
+		{
+			vector[i] = f;
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
 	 * @param in Field
 	 */
 	public void add(Field in)
@@ -48,6 +67,50 @@ public class Vector
 				empty++;
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @param f Field
+	 * @return The field which is removed from this Vector
+	 */
+	public Field remove(Field f)
+	{
+		Field result = null;
+		
+		if (contains(f))
+		{
+			for (int i = 0; i < size(); i++)
+			{
+				if (get(i) != null && get(i).equals(f))
+				{
+					result = f;
+					vector[i] = null;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param f Field
+	 * @return true if this Vector contains f
+	 */
+	public boolean contains(Field f)
+	{
+		boolean result = false;
+		
+		for (int i = 0; i < size(); i++)
+		{
+			if (get(i) != null)
+			{
+				result |= get(i).equals(f);
+			}
+		}
+		
+		return result;
 	}
 	
 	/**
