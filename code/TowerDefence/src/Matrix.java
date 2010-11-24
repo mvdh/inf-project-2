@@ -9,6 +9,18 @@ public class Matrix
 
 	/**
 	 * 
+	 * @param f Field
+	 * @param i int
+	 * @param j int
+	 * @return true if the selected index was empty
+	 */
+	public boolean add(Field f, int i, int j)
+	{
+		return get(j).add(f, i);
+	}
+	
+	/**
+	 * 
 	 * @param in Vector
 	 */
 	public void add(Vector in)
@@ -57,6 +69,26 @@ public class Matrix
 		
 		matrix[temp.length] = inNew;
 		enhance();
+	}
+	
+	/**
+	 * 
+	 * @param f Field
+	 * @return The field which is removed from this Matrix
+	 */
+	public Field remove(Field f)
+	{
+		Field result = null;
+		
+		for(int i = 0; i < size(); i++)
+		{
+			if (get(i).contains(f))
+			{
+				result = get(i).remove(f);
+			}
+		}
+		
+		return result;
 	}
 	
 	/**
