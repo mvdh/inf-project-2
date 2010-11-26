@@ -157,13 +157,6 @@ public class Game extends JFrame
     áá á * Unit extends Field?
     áá á á ápublic boolean getAviation();
     áá á á áhealth, attack, speed, path? etc...
-    áá á * Field
-    áá á á ápublic void setFlyable();
-    áá á á ápublic boolean getFlyable();
-    áá á á ápublic void setWalkable();
-    áá á á ápublic boolean getWalkable();
-    áá á á ápublic void setBuildable();
-    áá á á ápublic boolean getBuildable();
     áá á * Missle extends Field?
     áá á á áattack, speed
     áá á á ákan ook met final ints die naar plaatjes verwijzen, bijv:
