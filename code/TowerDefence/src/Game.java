@@ -39,7 +39,6 @@ public class Game extends JFrame
 				if (f != null)
 				{
 					add(f);
-					System.out.println(m.get(m.getPoint(f).y, m.getPoint(f).x));
 				}
 			}
 		}
