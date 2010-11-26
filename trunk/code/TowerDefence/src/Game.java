@@ -175,7 +175,7 @@ public class Game extends JFrame
     áá á * Game
     áá á á áAndra's attack-path algoritme? (uitrekenen locatie targeted unit en dan dat field als target doorsturen naar aStar
     áá á */
-        private Field[] aStar(Unit puppet, Field target)
+/*        private Field[] aStar(Unit puppet, Field target)
         {
                 Path path = new Path();
                 Point start = m.getPoint(puppet);
@@ -226,5 +226,5 @@ public class Game extends JFrame
                         fRes[i] = m.get(res[i].getX(), res[i].getY());
                 }
                 return fRes;
-        }
+        }*/
 }
