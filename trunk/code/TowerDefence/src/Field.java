@@ -8,6 +8,40 @@ import java.awt.event.MouseListener;
 
 public class Field extends Component
 {
+        private boolean walkable;
+        private boolean flyable;
+        private boolean buildable;
+
+        public boolean isBuildable()
+        {
+                return buildable;
+        }
+
+        public void setBuildable(boolean buildable)
+        {
+                this.buildable = buildable;
+        }
+
+        public boolean isFlyable()
+        {
+                return flyable;
+        }
+
+        public void setFlyable(boolean flyable)
+        {
+                this.flyable = flyable;
+        }
+
+        public boolean isWalkable()
+        {
+                return walkable;
+        }
+
+        public void setWalkable(boolean walkable)
+        {
+                this.walkable = walkable;
+        }
+        
 	public Field()
 	{
 		setSize(40, 40);
