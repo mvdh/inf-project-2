@@ -30,7 +30,7 @@ public class Boom extends Field
 		URL url = Boom.class.getResource("images/boom.gif");
         try 
         {
-            img =  ImageIO.read(url);
+                img =  ImageIO.read(url);
         } 
         catch (Exception e) {}
 	}

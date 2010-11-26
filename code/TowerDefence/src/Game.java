@@ -175,7 +175,8 @@ public class Game extends JFrame
     áá á * Game
     áá á á áAndra's attack-path algoritme? (uitrekenen locatie targeted unit en dan dat field als target doorsturen naar aStar
     áá á */
-        /*private Field[] aStar(Unit puppet, Field target){
+        private Field[] aStar(Unit puppet, Field target)
+        {
                 Path path = new Path();
                 Point start = m.getPoint(puppet);
                 Point end = m.getPoint(target);
@@ -183,37 +184,47 @@ public class Game extends JFrame
                 path.add(temp);
                 PathNode[] tempL = new PathNode[4];
                 int j = 0;
-                while(!path.contains(end)){
+                while (!path.contains(end))
+                {
                         temp = path.next();
                         tempL[0] = new PathNode(temp.getX() + 1, temp.getY(), temp.getCount() + 1);
                         tempL[1] = new PathNode(temp.getX(), temp.getY() + 1, temp.getCount() + 1);
                         tempL[2] = new PathNode(temp.getX() - 1, temp.getY(), temp.getCount() + 1);
                         tempL[3] = new PathNode(temp.getX(), temp.getY() - 1, temp.getCount() + 1);
-                        for(int k = 0; k < tempL.length; k++){
-                                if(puppet.getAviation())
-                                        if(!m.get(tempL[k].getX(), tempL[k].getY()).getFlyable()){
+                        for (int k = 0; k < tempL.length; k++)
+                        {
+                                if (puppet.getAviation())
+                                {
+                                        if (!m.get(tempL[k].getX(), tempL[k].getY()).isFlyable())
+                                        {
+                                                tempL[k] = null;
+                                        } else if (!m.get(tempL[k].getX(), tempL[k].getY()).isWalkable())
+                                        {
                                                 tempL[k] = null;
                                         }
-                                else
-                                        if(!m.get(tempL[k].getX(), tempL[k].getY()).getWalkable()){
-                                                tempL[k] = null;
-                                        }
-                                if(tempL[k] != null && !path.containsLower(tempL[k])){
+                                }
+                                if (tempL[k] != null && !path.containsLower(tempL[k]))
+                                {
                                         path.add(tempL[k]);
                                 }
                         }
                         j++;
-                        if(j > 150)
+                        if (j > 150)
+                        {
                                 return null;
+                        }
                 }
                 PathNode[] res = new PathNode[temp.getCount() + 2];
                 res[res.length - 1] = new PathNode(end.x, end.y, temp.getCount() + 1);
-                for(int i = res.length - 1; i > 0; i--){
+                for (int i = res.length - 1; i > 0; i--)
+                {
                         res[i - 1] = path.findNext(res[i]);
                 }
                 Field[] fRes = new Field[res.length];
-                for(int i = 0; i < res.length; i++)
+                for (int i = 0; i < res.length; i++)
+                {
                         fRes[i] = m.get(res[i].getX(), res[i].getY());
+                }
                 return fRes;
-        }*/
+        }
 }
