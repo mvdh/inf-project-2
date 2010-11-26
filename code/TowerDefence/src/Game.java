@@ -1,3 +1,7 @@
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -107,6 +111,26 @@ public class Game extends JFrame
 	{
 		public void mouseClicked(MouseEvent me) 
 		{
+			// Do nothing
+		}
+
+		public void mouseEntered(MouseEvent me) 
+		{
+			Graphics2D g2 = (Graphics2D) me.getComponent().getGraphics();
+			Dimension size = getSize();
+			g2.setColor(new Color(0, 0, 255));
+			g2.fillRect(0, 0, size.width, size.height);
+			g2.setColor(new Color(0, 0, 0));
+			g2.drawRect(0, 0, size.width, size.height);
+		}
+
+		public void mouseExited(MouseEvent me) 
+		{
+			me.getComponent().repaint();
+		}
+
+		public void mousePressed(MouseEvent me) 
+		{
 			Field f = m.remove((Field) me.getSource());
 			if (f != null && f.getParent() != null)
 			{
@@ -130,21 +154,6 @@ public class Game extends JFrame
 			}
 			
 			System.out.println(m.toString());
-		}
-
-		public void mouseEntered(MouseEvent me) 
-		{
-			// Do nothing
-		}
-
-		public void mouseExited(MouseEvent me) 
-		{
-			// Do nothing
-		}
-
-		public void mousePressed(MouseEvent me) 
-		{
-			// Do nothing
 		}
 
 		public void mouseReleased(MouseEvent me) 
