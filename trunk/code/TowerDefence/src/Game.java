@@ -73,7 +73,6 @@ public class Game extends JFrame
 			}
 			remove(f);
 			add(t);
-			paintAll(getGraphics());
 		}
 	}
 	
@@ -96,7 +95,6 @@ public class Game extends JFrame
 			}
 			remove(t);
 			add(f);
-			paintAll(getGraphics());
 		}
 	}
 	
