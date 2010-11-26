@@ -168,7 +168,7 @@ public class Matrix
 	{
 		Point result = new Point();
 		
-		for (int i = 0 ; i < size(); i++)
+		/*for (int i = 0 ; i < size(); i++)
 		{
 			if (get(i).contains(f))
 			{
@@ -177,7 +177,10 @@ public class Matrix
 				System.out.println(n + "  -  " + i);
 				break;
 			}
-		}
+		}*/
+
+		Point loc = f.getLocation();
+		result.setLocation(loc.x / 40, loc.y / 40);
 		
 		return result;
 	}

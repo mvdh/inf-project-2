@@ -22,7 +22,14 @@ public class Boom extends Field
 		
 		Graphics2D g2 = (Graphics2D) g;
 		Dimension size = getSize();
+		//upSideDown(g2, size);
 		g2.drawImage(img, 0, 0, size.width, size.height, 0, 0, img.getWidth(null), img.getHeight(null), null);
+	}
+	
+	public void upSideDown(Graphics2D g, Dimension size)
+	{
+		g.rotate(Math.PI);
+		g.translate(-size.width, -size.height);
 	}
 	
 	public void loadImage()
