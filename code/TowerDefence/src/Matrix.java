@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 public class Matrix 
 {
 	private Vector[] matrix;
@@ -118,7 +120,8 @@ public class Matrix
 	
 	/**
 	 * 
-	 * @return The amount of Objects in the Vector Object with the most Objects
+	 * @return 
+	 * The amount of Objects in the Vector Object with the most Objects
 	 */
 	public int getLongest()
 	{
@@ -153,6 +156,30 @@ public class Matrix
 	public Field get(int i, int j)
 	{
 		return get(i).get(j);
+	}
+	
+	/**
+	 * 
+	 * @param f Field
+	 * @return
+	 * Location of f
+	 */
+	public Point getPoint(Field f)
+	{
+		Point result = new Point();
+		
+		for (int i = 0 ; i < size(); i++)
+		{
+			if (get(i).contains(f))
+			{
+				int n = get(i).get(f);
+				result.setLocation(n, i);
+				System.out.println(n + "  -  " + i);
+				break;
+			}
+		}
+		
+		return result;
 	}
 	
 	public String toString()
