@@ -141,6 +141,27 @@ public class Vector
 		return vector[i];
 	}
 	
+	/**
+	 * 
+	 * @param f Field
+	 * @return
+	 * Number in the Vector
+	 */
+	public int get(Field f)
+	{
+		int n = -1;
+		for (int i = 0; i < size(); i++)
+		{
+			if (get(i).equals(f))
+			{
+				n = i;
+				break;
+			}
+		}
+		
+		return n;
+	}
+	
 	public String toString()
 	{
 		String result = "";
