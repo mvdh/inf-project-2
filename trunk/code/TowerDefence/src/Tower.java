@@ -10,6 +10,7 @@ public class Tower extends Field
 	
 	public Tower()
 	{
+		// Just to set the size of the object
 		super();
 	}
 	
@@ -51,10 +52,12 @@ public class Tower extends Field
 	
 	public void paint(Graphics g)
 	{
+		// Execute the paint function as if it was a Field object
 		super.paint(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
 		Dimension size = getSize();
+		// Add a filled rectangle to the graphics
 		g2.setColor(new Color(0, 255, 0));
 		g2.fillRect(size.width / 4, size.height / 4, size.width / 2, size.height / 2);
 	}
