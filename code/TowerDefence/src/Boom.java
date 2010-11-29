@@ -22,10 +22,9 @@ public class Boom extends Field
 	{
 		super.paint(g);
 		
-		Graphics2D g2 = (Graphics2D) g;
 		Dimension size = getSize();
-		//upSideDown(g2, size);
-		g2.drawImage(img, 0, 0, size.width, size.height, 0, 0, img.getWidth(null), img.getHeight(null), null);
+		upSideDown((Graphics2D) g, size);
+		g.drawImage(img, 0, 0, size.width, size.height, 0, 0, img.getWidth(null), img.getHeight(null), null);
 	}
 	
 	/**
