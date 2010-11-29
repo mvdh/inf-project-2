@@ -112,7 +112,7 @@ public class Matrix
 	public void enhance()
 	{
 		// Calculate the biggest Vector object and fill all other Vector
-		// objects with empty Field objects, till all have the same length
+		// objects with empty Field objects, untill all have the same length
 		int longest = getLongest();
 		
 		for (int i = 0; i < size(); i++)
