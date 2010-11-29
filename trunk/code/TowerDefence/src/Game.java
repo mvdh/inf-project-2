@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -123,15 +124,15 @@ public class Game extends JFrame
 		public void mouseEntered(MouseEvent me) 
 		{
 			// Get the Graphics of the hovered Component and it's size
-			Graphics2D g2 = (Graphics2D) me.getComponent().getGraphics();
+			Graphics g = me.getComponent().getGraphics();
 			Dimension size = me.getComponent().getSize();
 			// Set the Color to draw in
-			g2.setColor(new Color(0, 0, 255));
+			g.setColor(new Color(0, 0, 255));
 			// Draw a rectangle and fill it with the set Color
-			g2.fillRect(0, 0, size.width, size.height);
-			g2.setColor(new Color(0, 0, 0));
+			g.fillRect(0, 0, size.width, size.height);
+			g.setColor(new Color(0, 0, 0));
 			// Draw a rectangle, but don't fill it with a Color (border only)
-			g2.drawRect(0, 0, size.width, size.height);
+			g.drawRect(0, 0, size.width, size.height);
 		}
 
 		// OnMouseOut

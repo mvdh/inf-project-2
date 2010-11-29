@@ -74,13 +74,15 @@ public class Field extends Component
 	
 	public void paint(Graphics g)
 	{
-		// Convert the Graphics object to a Graphics2D object
-		Graphics2D g2 = (Graphics2D) g;
+		// Get the size of the Field object
 		Dimension size = getSize();
-		g2.setColor(new Color(255, 0, 0));
-		g2.fillRect(0, 0, size.width, size.height);
-		g2.setColor(new Color(0, 0, 0));
-		g2.drawRect(0, 0, size.width, size.height);
+		// Set the Color to draw in
+		g.setColor(new Color(255, 0, 0));
+		// Draw a rectangle and fill it with the set Color
+		g.fillRect(0, 0, size.width, size.height);
+		g.setColor(new Color(0, 0, 0));
+		// Draw a rectangle, but don't fill it with a Color (border only)
+		g.drawRect(0, 0, size.width, size.height);
 	}
 	
 	/**
