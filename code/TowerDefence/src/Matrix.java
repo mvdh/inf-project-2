@@ -27,6 +27,8 @@ public class Matrix
 	 */
 	public void add(Vector in)
 	{
+		// Create a new array of Vector objects, fill it with the old info 
+		// and add the new Vector object to it
 		Vector temp[] = new Vector[size()];
 		for (int i = 0; i < size(); i++)
 		{
@@ -50,6 +52,8 @@ public class Matrix
 	 */
 	public void add(Field[] in)
 	{
+		// Create a new array of Vector objects, fill it with the old info 
+		// and add the new Vector object to it (after converted)
 		Vector inNew = new Vector();
 		for (int i = 0; i < in.length; i++)
 		{
@@ -107,6 +111,8 @@ public class Matrix
 	 */
 	public void enhance()
 	{
+		// Calculate the biggest Vector object and fill all other Vector
+		// objects with empty Field objects, till all have the same length
 		int longest = getLongest();
 		
 		for (int i = 0; i < size(); i++)
@@ -162,7 +168,7 @@ public class Matrix
 	 * 
 	 * @param f Field
 	 * @return
-	 * Location of f
+	 * Location of f in the Matrix
 	 */
 	public Point getPoint(Field f)
 	{

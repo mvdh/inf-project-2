@@ -11,6 +11,8 @@ public class Vector
 	
 	/**
 	 * 
+	 * Add f to the Vector at the selected index, if that index didn't contain a Field
+	 * object already
 	 * @param f Field
 	 * @param i int
 	 * @return true if the selected index was empty
@@ -30,6 +32,8 @@ public class Vector
 	
 	/**
 	 * 
+	 * Add a Field object to the first position which is equal to null
+	 * or to the end of the Vector object, after it's length is increased
 	 * @param in Field
 	 */
 	public void add(Field in)
@@ -38,7 +42,7 @@ public class Vector
 		{
 			for (int i = 0; i < size(); i++)
 			{
-				if (get(i).equals(""))
+				if (get(i) == null)
 				{
 					vector[i] = in;
 					break;
@@ -124,6 +128,7 @@ public class Vector
 	
 	/**
 	 * 
+	 * Get the amount of empty Field objects in the Vector object
 	 * @return empty
 	 */
 	public int getEmpty()
@@ -133,6 +138,7 @@ public class Vector
 	
 	/**
 	 * 
+	 * Get the Field object at index i
 	 * @param i int
 	 * @return vector[i]
 	 */
@@ -143,6 +149,7 @@ public class Vector
 	
 	/**
 	 * 
+	 * Get the index of f
 	 * @param f Field
 	 * @return
 	 * Number in the Vector

@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -42,6 +41,7 @@ public class Game extends JFrame
 				f.addMouseListener(new GameMouseAdapter());
 				if (f != null)
 				{
+					// Add the Field objects to the JFrame
 					add(f);
 				}
 			}
@@ -50,6 +50,7 @@ public class Game extends JFrame
 		paintAll(getGraphics());
 	}
 	
+	// Properties of the JFrame
 	public void init()
 	{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,6 +76,8 @@ public class Game extends JFrame
 			{
 				JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
 			}
+			
+			// remove the Field from the JFrame and add the Tower to it
 			remove(f);
 			add(t);
 		}
@@ -97,6 +100,8 @@ public class Game extends JFrame
 			{
 				JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
 			}
+
+			// remove the Tower from the JFrame and add the Field to it
 			remove(t);
 			add(f);
 		}
@@ -114,32 +119,44 @@ public class Game extends JFrame
 			// Do nothing
 		}
 
+		// OnMouseOver
 		public void mouseEntered(MouseEvent me) 
 		{
+			// Get the Graphics of the hovered Component and it's size
 			Graphics2D g2 = (Graphics2D) me.getComponent().getGraphics();
-			Dimension size = getSize();
+			Dimension size = me.getComponent().getSize();
+			// Set the Color to draw in
 			g2.setColor(new Color(0, 0, 255));
+			// Draw a rectangle and fill it with the set Color
 			g2.fillRect(0, 0, size.width, size.height);
 			g2.setColor(new Color(0, 0, 0));
+			// Draw a rectangle, but don't fill it with a Color (border only)
 			g2.drawRect(0, 0, size.width, size.height);
 		}
 
+		// OnMouseOut
 		public void mouseExited(MouseEvent me) 
 		{
 			me.getComponent().repaint();
 		}
 
+		// OnClick
 		public void mousePressed(MouseEvent me) 
 		{
+			// Remove the selected Field from the Matrix
 			Field f = m.remove((Field) me.getSource());
+			
+			// Checks if a Field was removed, which also was part of the JFrame
 			if (f != null && f.getParent() != null)
 			{
+				// Checks the Class of f
 				if (f instanceof Tower)
 				{
 					TowerToField(f);
 				}
 				else if (f instanceof Boom)
 				{
+					// If f has Class Boom, add it again (you can't build on Boom objects)
 					Point p = f.getLocation();
 					boolean added = m.add(f, p.x / 40, p.y / 40);
 					if (!added)
