@@ -161,7 +161,14 @@ public class Matrix
 	 */
 	public Field get(int i, int j)
 	{
-		return get(i).get(j);
+		Field result = null;
+		
+		if (i < size() && j < get(i).size())
+		{
+			result = get(i).get(j);
+		}
+		
+		return result;
 	}
 	
 	/**
