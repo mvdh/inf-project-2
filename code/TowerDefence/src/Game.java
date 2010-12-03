@@ -195,15 +195,24 @@ public class Game extends JFrame
     áá á * Game
     áá á á áAndra's attack-path algoritme? (uitrekenen locatie targeted unit en dan dat field als target doorsturen naar aStar
     áá á */
-/*        private Field[] aStar(Unit puppet, Field target)
+
+       /*
+        * @param Unit puppet
+        * @param Field target
+        * @return calculates the path from the puppet to the target
+        * @return null if no path can be found
+        */
+        private Field[] findPath(Unit puppet, Field target)
         {
+                //PathNode queue with some of the structure
                 Path path = new Path();
-                Point start = m.getPoint(puppet);
+                Point start = m.getPoint(puppet.getField());
                 Point end = m.getPoint(target);
+                //PathNode that will be called in the while loop
                 PathNode temp = new PathNode(start.x, start.y, 0);
                 path.add(temp);
                 PathNode[] tempL = new PathNode[4];
-                int j = 0;
+                Field f = null;
                 while (!path.contains(end))
                 {
                         temp = path.next();
@@ -211,40 +220,36 @@ public class Game extends JFrame
                         tempL[1] = new PathNode(temp.getX(), temp.getY() + 1, temp.getCount() + 1);
                         tempL[2] = new PathNode(temp.getX() - 1, temp.getY(), temp.getCount() + 1);
                         tempL[3] = new PathNode(temp.getX(), temp.getY() - 1, temp.getCount() + 1);
-                        for (int k = 0; k < tempL.length; k++)
+                        for (int k = 0; k < 4; k++)
                         {
-                                if (puppet.getAviation())
-                                {
-                                        if (!m.get(tempL[k].getX(), tempL[k].getY()).isFlyable())
-                                        {
-                                                tempL[k] = null;
-                                        } else if (!m.get(tempL[k].getX(), tempL[k].getY()).isWalkable())
+                                f = m.get(tempL[k].getX(), tempL[k].getY());
+                                if(f != null){
+                                        if (puppet.getAviation() && !f.isFlyable())
                                         {
                                                 tempL[k] = null;
                                         }
-                                }
-                                if (tempL[k] != null && !path.containsLower(tempL[k]))
-                                {
-                                        path.add(tempL[k]);
+                                        else if (!f.isWalkable())
+                                        {
+                                                tempL[k] = null;
+                                        }
+                                        if (tempL[k] != null && !path.containsLower(tempL[k]))
+                                        {
+                                                path.add(tempL[k]);
+                                        }
                                 }
                         }
-                        j++;
-                        if (j > 150)
+                        if (!(path.hasNext()))
                         {
                                 return null;
                         }
                 }
-                PathNode[] res = new PathNode[temp.getCount() + 2];
-                res[res.length - 1] = new PathNode(end.x, end.y, temp.getCount() + 1);
-                for (int i = res.length - 1; i > 0; i--)
+                PathNode endNode = new PathNode(end.x, end.y, temp.getCount() + 1);
+                Field[] fieldResultList = new Field[temp.getCount() + 2];
+                for (int i = fieldResultList.length - 1; i > -1; i--)
                 {
-                        res[i - 1] = path.findNext(res[i]);
+                        fieldResultList[i] = m.get(endNode.getX(), endNode.getY());
+                        endNode = path.findNext(endNode);
                 }
-                Field[] fRes = new Field[res.length];
-                for (int i = 0; i < res.length; i++)
-                {
-                        fRes[i] = m.get(res[i].getX(), res[i].getY());
-                }
-                return fRes;
-        }*/
+                return fieldResultList;
+        }
 }
