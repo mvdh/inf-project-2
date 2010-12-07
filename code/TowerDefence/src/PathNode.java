@@ -19,9 +19,10 @@ public class PathNode {
     }
 
     public boolean adjacent(PathNode a){
-        return ((x == a.getX() - 1 || x == a.getX() ||x == a.getX() + 1) && (y == a.getY() - 1 || y == a.getY() ||y == a.getY() + 1) && count == (a.getCount() - 1));
+        return ((x == a.getX() - 1 || x == a.getX() + 1) && y == a.getY()) || ((y == a.getY() - 1 || y == a.getY() + 1) && x == a.getX());
     }
 
+    @Override
     public String toString(){
         return ("(" + x + ", " + y + ", " + count + ")");
     }
