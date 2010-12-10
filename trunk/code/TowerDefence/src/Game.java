@@ -24,7 +24,7 @@ public class Game extends JFrame
         for (int i = 0; i < 7; i++)
         {
             v = new Vector();
-            v.add(new Boom());
+            v.add(new Tree());
             v.add(new Tower());
             for (int j = 0; j < 15; j++)
             {
@@ -156,7 +156,7 @@ public class Game extends JFrame
                 if (f instanceof Tower)
                 {
                     TowerToField(f);
-                } else if (f instanceof Boom)
+                } else if (f instanceof Tree)
                 {
                     // If f has Class Boom, add it again (you can't build on Boom objects)
                     Point p = f.getLocation();
@@ -237,8 +237,10 @@ public class Game extends JFrame
         return fieldResultList;
     }
 
-    /* Tower
-     * getMissle();
+    /* Unit / Sprite
+     * getFieldPercentage();
+     * SpriteList
+     * getPoint(Unit s);
      */
     public Point fireMissle(Tower shooter, Unit target)
     {
@@ -246,7 +248,7 @@ public class Game extends JFrame
         double speedMissle = shooter.getMissleSpeed();
         double speedTarget = target.getSpeed();
         Field[] path = target.getPath();
-        double count = 0.56;
+        double count = 0.56; // = target.getFieldPercentage();
         Point tower = m.getPoint(shooter);
         Point unit;
         for (int i = target.getPathCounter() + 1; i < path.length; i++)

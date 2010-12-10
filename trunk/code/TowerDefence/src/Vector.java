@@ -182,7 +182,7 @@ public class Vector
             } else if (get(i) instanceof Tower)
             {
                 result += "&";
-            } else if (get(i) instanceof Boom)
+            } else if (get(i) instanceof Tree)
             {
                 result += "$";
             } else
