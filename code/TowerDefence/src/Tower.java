@@ -8,6 +8,9 @@ public class Tower extends Field
 
     private int range;
     private int hitPoints;
+    private int caseNumber;
+    private int cost;
+    private int previousCaseNumber;
     //Missle stats
     private int missleSpeed;
     private int missleDamage;
@@ -47,6 +50,37 @@ public class Tower extends Field
     {
         // Just to set the size of the object
         super();
+    }
+
+    public Tower(int tower)
+    {
+        super();
+        setCaseNumber(tower);
+        switch (tower)
+        {
+            case 1:
+            {
+                //setImage(1);
+                setHitPoints(250);
+                setMissleDamage(10);
+                setMissleImage(0);
+                setMissleSpeed(20);
+                setRange(150);
+                setCost(10);
+                setPreviousCaseNumber(0);
+            }
+            case 11:
+            {
+                //setImage(1);
+                setHitPoints(300);
+                setMissleDamage(20);
+                setMissleImage(0);
+                setMissleSpeed(20);
+                setRange(175);
+                setCost(20);
+                setPreviousCaseNumber(1);
+            }
+        }
     }
 
     /**
@@ -94,5 +128,35 @@ public class Tower extends Field
         // Add a filled rectangle to the graphics
         g.setColor(new Color(0, 255, 0));
         g.fillRect(size.width / 4, size.height / 4, size.width / 2, size.height / 2);
+    }
+
+    public int getCaseNumber()
+    {
+        return caseNumber;
+    }
+
+    public void setCaseNumber(int caseNumber)
+    {
+        this.caseNumber = caseNumber;
+    }
+
+    public int getCost()
+    {
+        return cost;
+    }
+
+    public void setCost(int cost)
+    {
+        this.cost = cost;
+    }
+
+    public int getPreviousCaseNumber()
+    {
+        return previousCaseNumber;
+    }
+
+    public void setPreviousCaseNumber(int previousCaseNumber)
+    {
+        this.previousCaseNumber = previousCaseNumber;
     }
 }
