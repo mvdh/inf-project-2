@@ -7,72 +7,90 @@
  *
  * @author Slayer
  */
-public class Unit {
+public class Unit
+{
 
-    private boolean aviation;
-    private Field field;
-    private Field[] path;
-    private int pathCounter;
-    private double speed;
+        private boolean aviation;
+        private Field field;
+        private Field[] path;
+        private int pathCounter;
+        private double speed;
 
-    public double getSpeed() {
-        return speed;
-    }
+        public double getSpeed()
+        {
+                return speed;
+        }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
+        public void setSpeed(double speed)
+        {
+                this.speed = speed;
+        }
 
-    public Field[] getPath() {
-        return path;
-    }
+        public Field[] getPath()
+        {
+                return path;
+        }
 
-    public void setPath(Field[] path) {
-        this.path = path;
-    }
-
-    public boolean pathContains(Field field) {
-        boolean res = false;
-        for (int i = this.getPathCounter(); i < path.length; i++) {
-                if (path[i].equals(field))
+        public void setPath(Field[] path)
+        {
+                if (path != null)
                 {
-                        res = true;
-                        break;
+                        this.path = path;
                 }
         }
-        return res;
-    }
 
-    public Field getNextPath(){
-        pathCounter++;
-        return path[getPathCounter()];
-    }
+        public boolean pathContains(Field field)
+        {
+                boolean res = false;
+                for (int i = this.getPathCounter(); i < path.length; i++)
+                {
+                        if (path[i].equals(field))
+                        {
+                                res = true;
+                                break;
+                        }
+                }
+                return res;
+        }
 
-    public boolean hasNextPath(){
-        return (pathCounter < path.length);
-    }
+        public Field getNextPath()
+        {
+                pathCounter++;
+                return path[getPathCounter()];
+        }
 
-    public int getPathCounter() {
-        return pathCounter;
-    }
+        public boolean hasNextPath()
+        {
+                return (pathCounter < path.length);
+        }
 
-    public void setPathCounter(int pathCounter) {
-        this.pathCounter = pathCounter;
-    }
+        public int getPathCounter()
+        {
+                return pathCounter;
+        }
 
-    public boolean getAviation() {
-        return aviation;
-    }
+        public void setPathCounter(int pathCounter)
+        {
+                this.pathCounter = pathCounter;
+        }
 
-    public void setAviation(boolean aviation) {
-        this.aviation = aviation;
-    }
+        public boolean getAviation()
+        {
+                return aviation;
+        }
 
-    public Field getField() {
-        return field;
-    }
+        public void setAviation(boolean aviation)
+        {
+                this.aviation = aviation;
+        }
 
-    public void setField(Field field) {
-        this.field = field;
-    }
+        public Field getField()
+        {
+                return field;
+        }
+
+        public void setField(Field field)
+        {
+                this.field = field;
+        }
 }

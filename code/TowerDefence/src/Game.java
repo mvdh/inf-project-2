@@ -189,7 +189,7 @@ public class Game extends JFrame
          */
         private Field[] findPath(Unit puppet, Field target)
         {
-                //PathNode queue with some of the structure
+                //PathNode queue with some of the funcionality
                 Path path = new Path();
                 Point start = m.getPoint(puppet.getField());
                 Point end = m.getPoint(target);

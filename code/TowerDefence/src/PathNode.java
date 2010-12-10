@@ -7,47 +7,59 @@
  *
  * @author Administrator
  */
-public class PathNode {
-    private int x;
-    private int y;
-    private int count;
+public class PathNode
+{
 
-    public PathNode(int x, int y, int count){
-        this.x = x;
-        this.y = y;
-        this.count = count;
-    }
+        private int x;
+        private int y;
+        private int count;
 
-    public boolean adjacent(PathNode a){
-        return ((x == a.getX() - 1 || x == a.getX() + 1) && y == a.getY()) || ((y == a.getY() - 1 || y == a.getY() + 1) && x == a.getX());
-    }
+        public PathNode(int x, int y, int count)
+        {
+                this.x = x;
+                this.y = y;
+                this.count = count;
+        }
 
-    @Override
-    public String toString(){
-        return ("(" + x + ", " + y + ", " + count + ")");
-    }
+        public boolean adjacent(PathNode a)
+        {
+                return ((x == a.getX() - 1 || x == a.getX() + 1) && y == a.getY())
+                        || ((y == a.getY() - 1 || y == a.getY() + 1) && x == a.getX());
+        }
 
-    public int getCount() {
-        return count;
-    }
+        @Override
+        public String toString()
+        {
+                return ("(" + x + ", " + y + ", " + count + ")");
+        }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
+        public int getCount()
+        {
+                return count;
+        }
 
-    public int getX() {
-        return x;
-    }
+        public void setCount(int count)
+        {
+                this.count = count;
+        }
 
-    public void setX(int x) {
-        this.x = x;
-    }
+        public int getX()
+        {
+                return x;
+        }
 
-    public int getY() {
-        return y;
-    }
+        public void setX(int x)
+        {
+                this.x = x;
+        }
 
-    public void setY(int y) {
-        this.y = y;
-    }
+        public int getY()
+        {
+                return y;
+        }
+
+        public void setY(int y)
+        {
+                this.y = y;
+        }
 }
