@@ -82,6 +82,7 @@ public class Game extends JFrame
             // remove the Field from the JFrame and add the Tower to it
             remove(f);
             add(t);
+            t.repaint();
         }
     }
 
@@ -106,6 +107,7 @@ public class Game extends JFrame
             // remove the Tower from the JFrame and add the Field to it
             remove(t);
             add(f);
+            f.repaint();
         }
     }
 
