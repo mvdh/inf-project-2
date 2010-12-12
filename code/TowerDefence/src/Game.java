@@ -250,9 +250,9 @@ public class Game extends JFrame
         double speedMissle = shooter.getMissleSpeed();
         double speedTarget = target.getSpeed();
         Field[] path = target.getPath();
-        double count = 0.56; // = target.getFieldPercentage();
+        double count = 0.56; // = target.getFieldPercentage(); // = target.getFieldPixels() / 40;
         Point tower = m.getPoint(shooter);
-        Point unit;
+        Point unit; // = spriteList.getPoint(target);
         for (int i = target.getPathCounter() + 1; i < path.length; i++)
         {
             unit = m.getPoint(path[i]); // = spriteList.getPoint(target);
@@ -265,6 +265,11 @@ public class Game extends JFrame
                 break;
             }
             count++;
+            /*unit = m.getPoint(path[i]);
+            unit.x *= 40;
+            unit.x += 20;
+            unit.y *= 40;
+            unit.y += 20;*/
         }
         return res;
     }
