@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -23,41 +26,59 @@ public class FieldController extends JPanel
         setLayout(null);
         setSize(680, 180);
         
-        FCPanel p = new FCPanel();
+        // Get the full url of the image (C:\Users\...\images\boom.gif)
+        BufferedImage img = null;
+        URL url = Tree.class.getResource("images/boom.png");
+        try
+        {
+            // Load the image at location url
+            img = ImageIO.read(url);
+        }
+        catch (Exception e)
+        {}
+        
+        FCPanel p = new FCPanel(img);
         p.setLocation(20, 20);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
-        
         add(p);
         
-        p = new FCPanel();
+        p = new FCPanel(img);
         p.setLocation(20, 85);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
-        
         add(p);
         
-        p = new FCPanel();
+        p = new FCPanel(img);
         p.setLocation(85, 20);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
-        
         add(p);
         
-        p = new FCPanel();
+        p = new FCPanel(img);
         p.setLocation(85, 85);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
-        
         add(p);
     }
     
     class FCPanel extends JPanel
     {
+        private BufferedImage bf = null;
+        
+        public FCPanel(BufferedImage bfi)
+        {
+            bf = bfi;
+        }
+        
         public void paint(Graphics g) 
-        {        
+        {
             g.setColor(Color.red);
             g.fillRect(0, 0, 60, 60);
+            if (bf != null)
+            {
+                g.drawImage(bf, 0, 0, 60, 60, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
+            }
         }
     }
     
