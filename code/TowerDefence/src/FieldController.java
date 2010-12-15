@@ -121,6 +121,13 @@ public class FieldController extends Container
         public void mouseReleased(MouseEvent me)
         {
             paint(getGraphics());
+            
+            Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
+            float alpha = .5f;
+            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+                    alpha));
+            g.setColor(Color.white);
+            g.fillRect(0, 0, 60, 60);
         }
     }
 }
