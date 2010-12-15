@@ -120,7 +120,7 @@ public class FieldController extends Container
 
         public void mouseReleased(MouseEvent me)
         {
-            // Do nothing
+            paint(getGraphics());
         }
     }
 }
