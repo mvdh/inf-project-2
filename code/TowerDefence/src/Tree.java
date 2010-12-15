@@ -59,7 +59,7 @@ public class Tree extends Field
      */
     public void loadImage()
     {
-        // Get the full url of the image (C:\Users\...\images\boom.gif)
+        // Get the full url of the image (C:\Users\...\images\boom.png)
         URL url = Tree.class.getResource("images/boom.png");
         try
         {
