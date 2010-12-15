@@ -10,8 +10,9 @@ public class TowerController extends Component {
 
     private int caseNumber;
     private boolean[] upgradables;
+    private TowerData towerData;
 
-    public TowerController(Tower t) {
+    public TowerController(TowerData td, Tower t) {
         setLocation(0, 0);
         setSize(680, 180);
         setVisible(true);
@@ -38,6 +39,14 @@ public class TowerController extends Component {
     }
 
     /**
+     * 
+     * @return
+     */
+    public TowerData getTowerData(){
+        return towerData;
+    }
+
+    /**
      * Sets the caseNumber of the tower
      * @param caseNumber the caseNumber to set
      */
@@ -53,17 +62,28 @@ public class TowerController extends Component {
     }
 
     /**
+     * 
+     * @param towerData
+     */
+    public void setTowerData(TowerData towerData){
+        this.towerData = towerData;
+    }
+
+    /**
      * Checks which towers the current tower can upgrade to. The towers can not
      * be downgraded, so the previous cases are excluded
      * @return a list of upgradables in booleans.
      */
     public boolean[] findUpgradables() {
         boolean[] upgr = new boolean[20];
-        int currency = 0;
+        int currentCase = getCaseNumber();
+
+        //selecteer alle upgradables waarbij previous casenumber = the currentcasenumber
+        
 
         //Based on currency
         //Based on current caseNumber (caseNumbers begins with 1 and ends with 20)
-        for (int i = getCaseNumber(); i < currency; i++) {
+        for (int i = getCaseNumber(); i < currentCase; i++) {
             upgr[i] = true;
         }
 

@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Game extends JFrame {
+
     private Matrix m;
+    private TowerData towerData;
 
     public Game() {
 
@@ -48,8 +50,9 @@ public class Game extends JFrame {
 
         }
 
+        setTowerData(towerData);
         Field field = new Field();
-        ControlPanel controlPanel = new ControlPanel(field);
+        ControlPanel controlPanel = new ControlPanel(getTowerData(), field);
         add(controlPanel);
 
         System.out.println(m.toString());
@@ -62,6 +65,14 @@ public class Game extends JFrame {
         setSize(700, 700);
         setVisible(true);
         setLayout(null);
+    }
+
+    public void setTowerData(TowerData towerData) {
+        this.towerData = towerData;
+    }
+
+    public TowerData getTowerData(){
+        return towerData;
     }
 
     /**
@@ -107,13 +118,11 @@ public class Game extends JFrame {
             f.repaint();
         }
     }
-    
-    public void initHeartbeat()
-    {
-        Timer t = new Timer(1000, new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
+
+    public void initHeartbeat() {
+        Timer t = new Timer(1000, new ActionListener() {
+
+            public void actionPerformed(ActionEvent arg0) {
                 // TODO 
             }
         });
