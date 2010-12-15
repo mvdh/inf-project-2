@@ -14,10 +14,9 @@ public class FieldController extends Controller
 
     public void init()
     {
-        setLayout(null);
-        setSize(680, 180);
-
-        // Get the full url of the image (C:\Users\...\images\boom.gif)
+        super.init();
+        
+        // Get the full url of the image (C:\Users\...\images\boom.png)
         BufferedImage img = null;
         BufferedImage img2 = null;
         URL url = Tree.class.getResource("images/boom.png");

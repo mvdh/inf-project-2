@@ -19,7 +19,12 @@ import javax.swing.JLabel;
  */
 public class Controller extends Container
 {
-
+    public void init()
+    {
+        setLayout(null);
+        setSize(680, 180);
+    }
+    
     class CLabel extends JLabel
     {
         private BufferedImage bf = null;
