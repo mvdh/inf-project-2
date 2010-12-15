@@ -10,13 +10,15 @@ import javax.swing.JPanel;
 public class ControlPanel extends JPanel {
 
     private Field field;
+    private TowerData towerData;
 
-    public ControlPanel(Field field) {
+    public ControlPanel(TowerData towerData, Field field) {
         setLocation(0, 281);
         setSize(680, 180);
         setField(field);
         findType(field);
         setVisible(true);
+        setTowerData(towerData);
         this.setLayout(null);
         setBackground(Color.white);
     }
@@ -29,6 +31,9 @@ public class ControlPanel extends JPanel {
         this.field = field;
     }
 
+    public void setTowerData(TowerData towerData){
+        this.towerData = towerData;
+    }
     /**
      * Returns the field on wich the controlpanel is based
      * @return the field field
@@ -37,13 +42,17 @@ public class ControlPanel extends JPanel {
         return this.field;
     }
 
+    public TowerData getTowerData(){
+        return this.towerData;
+    }
+
     /**
      * Determines of what instance the given field is
      * @param field the field the field on wich the controlpanel is based
      */
     public void findType(Field field){
         if(field instanceof Tower){
-            TowerController towerController = new TowerController((Tower) field);
+            TowerController towerController = new TowerController(getTowerData(), (Tower) field);
             add(towerController);
             System.out.println("Tower");
         } else if(field instanceof Field){
@@ -53,11 +62,5 @@ public class ControlPanel extends JPanel {
         } else{
             //DO NOTHING
         }
-    }
-
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-        System.out.println("how many times this one?");
     }
 }
