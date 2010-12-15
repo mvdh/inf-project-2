@@ -8,8 +8,8 @@ public class Sprite extends JLabel {
 
     Point c = new Point();  // Huidige positie
     Point d = new Point(300,200);  // Bestemming
-    Double speed = 6.0;
-    int marge = 7;
+    Double speed = 16.0;
+    int marge = 8;
 
     public Sprite() {
         ImageIcon img = new ImageIcon(getClass().getResource("spriteDefault.png"));
@@ -20,8 +20,7 @@ public class Sprite extends JLabel {
 
     public void step() {
         c = this.getLocation();
-
-        double s = this.speed;                                                // Hou hier rekening met een modifier voor vertragende torens.
+        // Hou hier rekening met een modifier voor vertragende torens.
         double angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
         int newX = (int) (c.getX()+(Math.cos(angle) * speed));
         int newY = (int) (c.getY()+(Math.sin(angle) * speed));
