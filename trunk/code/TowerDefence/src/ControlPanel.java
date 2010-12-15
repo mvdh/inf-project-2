@@ -47,15 +47,8 @@ public class ControlPanel extends JPanel {
             add(towerController);
             System.out.println("Tower");
         } else if(field instanceof Field){
-            FieldController fieldController = new FieldController(new Point(20, 20));
+            FieldController fieldController = new FieldController();
             add(fieldController);
-            fieldController = new FieldController(new Point(20, 85));
-            add(fieldController);
-            fieldController = new FieldController(new Point(85, 20));
-            add(fieldController);
-            fieldController = new FieldController(new Point(85, 85));
-            add(fieldController);
-            
             System.out.println("Field");
         } else{
             //DO NOTHING
