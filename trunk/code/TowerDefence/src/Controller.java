@@ -9,12 +9,11 @@ import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 /**
- *
  * @author Maarten van den Hoek
  */
 public class Controller extends Container
@@ -24,7 +23,7 @@ public class Controller extends Container
         setLayout(null);
         setSize(680, 180);
     }
-    
+
     class CLabel extends JLabel
     {
         private BufferedImage bf = null;
@@ -45,7 +44,7 @@ public class Controller extends Container
             }
         }
     }
-    
+
     class CMouseAdapter implements MouseListener
     {
 
@@ -82,7 +81,7 @@ public class Controller extends Container
         public void mouseReleased(MouseEvent me)
         {
             paint(getGraphics());
-            
+
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
