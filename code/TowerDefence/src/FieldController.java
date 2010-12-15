@@ -1,5 +1,6 @@
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -7,12 +8,12 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  * @author Maarten van den Hoek
  */
-public class FieldController extends JPanel
+public class FieldController extends Container
 {
     public FieldController()
     {
@@ -38,36 +39,36 @@ public class FieldController extends JPanel
         catch (Exception e)
         {}
 
-        FCPanel p = new FCPanel(img);
+        FCLabel p = new FCLabel(img);
         p.setLocation(20, 20);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
         add(p);
 
-        p = new FCPanel(img2);
+        p = new FCLabel(img2);
         p.setLocation(20, 85);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
         add(p);
 
-        p = new FCPanel(img2);
+        p = new FCLabel(img2);
         p.setLocation(85, 20);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
         add(p);
 
-        p = new FCPanel(img);
+        p = new FCLabel(img);
         p.setLocation(85, 85);
         p.setSize(60, 60);
         p.addMouseListener(new FCMouseAdapter());
         add(p);
     }
 
-    class FCPanel extends JPanel
+    class FCLabel extends JLabel
     {
         private BufferedImage bf = null;
 
-        public FCPanel(BufferedImage bfi)
+        public FCLabel(BufferedImage bfi)
         {
             bf = bfi;
         }
