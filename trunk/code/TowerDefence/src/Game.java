@@ -259,7 +259,7 @@ public class Game extends JFrame
      * SpriteList
      * getPoint(Unit s);
      */
-    public Point fireMissle(Tower shooter, Unit target)
+    /*public Point fireMissle(Tower shooter, Unit target)
     {
         Point res = null;
         double speedMissle = shooter.getMissleSpeed();
@@ -285,7 +285,7 @@ public class Game extends JFrame
             unit.x += 20;
             unit.y *= 40;
             unit.y += 20;*/
-        }
+        /*}
         return res;
-    }
+    }*/
 }
