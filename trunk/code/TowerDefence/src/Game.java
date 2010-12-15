@@ -3,20 +3,23 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class Game extends JFrame
 {
-
     private Matrix m;
 
     public Game()
     {
         init();
+        initHeartbeat();
 
         m = new Matrix();
 
@@ -109,6 +112,18 @@ public class Game extends JFrame
             add(f);
             f.repaint();
         }
+    }
+    
+    public void initHeartbeat()
+    {
+        Timer t = new Timer(1000, new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                // TODO 
+            }
+        });
+        t.start();
     }
 
     public static void main(String[] args)
