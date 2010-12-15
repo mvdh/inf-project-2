@@ -1,31 +1,36 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-public class Tower extends Field
-{
+public class Tower extends Field {
 
     private int caseNumber;
 
-    public Tower()
-    {
+    /**
+     *
+     * 
+     */
+    public Tower() {
         // Just to set the size of the object
         super();
+        setCaseNumber(0);
     }
 
-    public Tower(int tower)
-    {
+    /**
+     * 
+     * @param tower
+     */
+    public Tower(int tower) {
         super();
         setCaseNumber(tower);
     }
-
 
     /**
      * 
      * @return
      */
-    public int getCaseNumber()
-    {
+    public int getCaseNumber() {
         return caseNumber;
     }
 
@@ -33,8 +38,7 @@ public class Tower extends Field
      *
      * @param caseNumber
      */
-    public void setCaseNumber(int caseNumber)
-    {
+    public void setCaseNumber(int caseNumber) {
         this.caseNumber = caseNumber;
     }
 
@@ -42,8 +46,7 @@ public class Tower extends Field
      * 
      * @param g
      */
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         // Execute the paint function as if it was a Field object
         super.paint(g);
 
