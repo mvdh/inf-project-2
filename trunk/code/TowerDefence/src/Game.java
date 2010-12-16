@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ public class Game extends JFrame {
 
     private Matrix m;
     private TowerData towerData;
+    private SpriteList spriteList;
 
     public Game() {
 
@@ -51,6 +53,7 @@ public class Game extends JFrame {
         }
 
         setTowerData(towerData);
+        spriteList = new SpriteList();
         Field field = new Field();
         ControlPanel controlPanel = new ControlPanel(getTowerData(), field);
         add(controlPanel);
@@ -271,7 +274,7 @@ public class Game extends JFrame {
         return res;
     }
 
-    /*public void heartbeat()
+    public void heartbeat()
     {
         //step
         spriteList.step();
@@ -285,7 +288,7 @@ public class Game extends JFrame {
         {
             t = (Tower) temp.get(i);
             t.count();
-            if(t.getCounter() == towerData.getSpeed(t.getCaseNumber())){
+            if(t.getCounter() == towerData.getMissleSpeed(t.getCaseNumber())){
                 //range check
                 a = m.getPoint(t);
                 a.x *= 40;
@@ -294,16 +297,16 @@ public class Game extends JFrame {
                 a.y += 20;
 
                 for(Unit u : unitList){
-                    b = u.getPoint();
-                    if (Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow(a.y - b.y)) =< towerDate.getRange(t.getCaseNumber())){
-                        spriteList.add(new Missle( Missle constructor , fireMissle(t, u));
+                    b = u.getLocation();
+                    if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY() , 2.0)) <= towerData.getRange(t.getCaseNumber())){
+                        //spriteList.add(new Missle( Missle constructor , fireMissle(t, u));
                     }
                 }
             }
         }
         //check missle hits
-        ArrayList<Missle> missleList = spriteList.getMissleList();
-        for(Missle m : missleList){
+        ArrayList<Projectile> projectileList = spriteList.getProjectileList();
+        /*for(Missle m : missleList){
             check missle end {
                 for (Unit u : unitList) {
                     check cord {
@@ -312,7 +315,6 @@ public class Game extends JFrame {
                 }
             end missle;
             }
-        }
-         
-    }*/
+        }*/
+    }
 }

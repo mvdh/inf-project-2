@@ -12,18 +12,18 @@ import java.util.ArrayList;
  */
 public class SpriteList {
     private ArrayList<Unit> unitList;
-    private ArrayList<Missle> missleList;
+    private ArrayList<Projectile> projectileList;
 
     public SpriteList(){
         unitList = new ArrayList<Unit>();
-        missleList = new ArrayList<Missle>();
+        projectileList = new ArrayList<Projectile>();
     }
 
     public void step(){
         for(Unit a : unitList){
             a.step();
         }
-        for(Missle a : missleList){
+        for(Projectile a : projectileList){
             a.step();
         }
     }
@@ -32,16 +32,16 @@ public class SpriteList {
         return unitList;
     }
 
-    public ArrayList<Missle> getMissleList(){
-        return missleList;
+    public ArrayList<Projectile> getProjectileList(){
+        return projectileList;
     }
 
     public void add(Sprite a){
         if(a instanceof Unit){
             unitList.add((Unit) a);
         }
-        else if(a instanceof Missle){
-            missleList.add((Missle) a);
+        else if(a instanceof Projectile){
+            projectileList.add((Projectile) a);
         }
     }
 
@@ -56,11 +56,11 @@ public class SpriteList {
                 }
             }
         }
-        if(a instanceof Missle){
-            res = (Missle) a;
-            for(int i = 0; i < missleList.size(); i++){
-                if(res == missleList.get(i)){
-                    missleList.remove(i);
+        if(a instanceof Projectile){
+            res = (Projectile) a;
+            for(int i = 0; i < projectileList.size(); i++){
+                if(res == projectileList.get(i)){
+                    projectileList.remove(i);
                     break;
                 }
             }
