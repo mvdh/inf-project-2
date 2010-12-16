@@ -1,35 +1,47 @@
 
-
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class Sprite extends JLabel {
 
-    Point c = new Point();  // Huidige positie
-    Point d = new Point(300,200);  // Bestemming
-    Double speed = 16.0;
-    int marge = 8;
+    Point c = new Point();          // Start Positie
+    Point d = new Point(300, 200);  // Bestemming
+    double speed = 0.1;
+    int stepCounter = 0;
+    int marge = 2;
 
     public Sprite() {
         ImageIcon img = new ImageIcon(getClass().getResource("spriteDefault.png"));
         setIcon(img);
         setSize(img.getIconWidth(), img.getIconHeight());
-        setLocation(100, 100);
+        int x = (int) (Math.random() * 480);
+        int y = (int) (Math.random() * 280);
+        setLocation(x, y);
+        c = getLocation();
+    }
+
+    public Sprite(double s){
+        this();
+        speed = s;
+        marge = (int)Math.ceil(s)+1;
     }
 
     public void step() {
-        c = this.getLocation();
-        // Hou hier rekening met een modifier voor vertragende torens.
-        double angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
-        int newX = (int) (c.getX()+(Math.cos(angle) * speed));
-        int newY = (int) (c.getY()+(Math.sin(angle) * speed));
 
-        System.out.println(c);
-        System.out.println(d);
-        System.out.println(angle);
-        System.out.println(newX);
-        System.out.println(newY);
+        // Hou hier rekening met een modifier voor vertragende torens.
+
+        Double dis = distance(this.getLocation(),d); // Wordt gebruikt om de te reizen afstand voor deze stap door te geven
+        if (dis > speed){                            // Op deze manier wordt 'overshoot' beperkt
+            dis = speed;                             // en kan de marge hopelijk kleiner
+        }
+
+   
+        double angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
+
+        int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * (dis*stepCounter)));
+        int newY = (int) Math.floor(c.getY() + (Math.sin(angle) * (dis*stepCounter)));
+
 
 
 
@@ -53,12 +65,24 @@ public class Sprite extends JLabel {
             setNewDestination();
         }
 
+        stepCounter++;
+
     }
 
-    private void setNewDestination(){
-        int x = (int)(Math.random()*480);
-        int y = (int)(Math.random()*280);
+    private void setNewDestination() {
+        c = this.getLocation();
+        stepCounter = 0;
+        int x = (int) (Math.random() * 480);
+        int y = (int) (Math.random() * 280);
         d.setLocation(x, y);
+        System.out.println(c);
+        System.out.println(d);
     }
 
+    private double distance(Point p, Point q) {     //Calculates distance between two points
+        double dx = p.x - q.x;                      //horizontal difference
+        double dy = p.y - q.y;                      //vertical difference
+        double dist = Math.sqrt(dx * dx + dy * dy); //distance using Pythagoras theorem
+        return dist;
+    }
 }
