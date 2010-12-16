@@ -3,7 +3,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 /**
- * @author Maarten van den Hoek
+ * @author Tom Nieuwenhuijs
  */
 public class FieldController extends Controller
 {
@@ -16,14 +16,12 @@ public class FieldController extends Controller
     {
         super.init();
         
-        // Get the full url of the image (C:\Users\...\images\boom.png)
         BufferedImage img = null;
         BufferedImage img2 = null;
         URL url = Tree.class.getResource("images/boom.png");
         URL url2 = Tree.class.getResource("spriteDefault.png");
         try
         {
-            // Load the image at location url
             img = ImageIO.read(url);
             img2 = ImageIO.read(url2);
         }
