@@ -69,7 +69,7 @@ public class Sprite extends JLabel {
 
     }
 
-    private void endMove(){
+    public void endMove(){
         setNewDestination();
     }
 
