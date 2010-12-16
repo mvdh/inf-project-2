@@ -5,25 +5,19 @@ import java.awt.Graphics;
 
 public class Tower extends Field {
 
+    private int counter;
     private int caseNumber;
 
-    /**
-     *
-     * 
-     */
-    public Tower() {
+    public Tower()
+    {
         // Just to set the size of the object
         super();
-        setCaseNumber(0);
+        this.setCaseNumber(0);
     }
 
-    /**
-     * 
-     * @param tower
-     */
     public Tower(int tower) {
         super();
-        setCaseNumber(tower);
+        this.setCaseNumber(tower);
     }
 
     /**
@@ -46,6 +40,7 @@ public class Tower extends Field {
      * 
      * @param g
      */
+    @Override
     public void paint(Graphics g) {
         // Execute the paint function as if it was a Field object
         super.paint(g);
@@ -54,5 +49,15 @@ public class Tower extends Field {
         // Add a filled rectangle to the graphics
         g.setColor(new Color(0, 255, 0));
         g.fillRect(size.width / 4, size.height / 4, size.width / 2, size.height / 2);
+    }
+
+    public int getCounter()
+    {
+        return counter;
+    }
+
+    public void count()
+    {
+        this.counter++;
     }
 }

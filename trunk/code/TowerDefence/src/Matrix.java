@@ -211,4 +211,16 @@ public class Matrix
 
         return result;
     }
+
+    public Vector getTowers(){
+        Vector res = new Vector();
+        for(int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < get(i).size(); i++){
+                if(get(i, j) instanceof Tower){
+                    res.add(get(i, j));
+                }
+            }
+        }
+        return res;
+    }
 }

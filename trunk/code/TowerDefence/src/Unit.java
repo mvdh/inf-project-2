@@ -7,7 +7,7 @@
  *
  * @author Slayer
  */
-public class Unit
+public class Unit extends Sprite
 {
 
     private int hitPoints;

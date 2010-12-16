@@ -241,30 +241,78 @@ public class Game extends JFrame {
      * SpriteList
      * getPoint(Unit s);
      */
-//    public Point fireMissle(Tower shooter, Unit target) {
-//        Point res = null;
-//        double speedMissle = shooter.getMissleSpeed();
-//        double speedTarget = target.getSpeed();
-//        Field[] path = target.getPath();
-//        double count = 0.56; // = target.getFieldPercentage(); // = target.getFieldPixels() / 40;
-//        Point tower = m.getPoint(shooter);
-//        Point unit; // = spriteList.getPoint(target);
-//        for (int i = target.getPathCounter() + 1; i < path.length; i++) {
-//            unit = m.getPoint(path[i]); // = spriteList.getPoint(target);
-//            if (speedMissle
-//                    >= (Math.sqrt(Math.pow(Math.abs(tower.getX() - unit.getX()), 2)
-//                    + Math.pow(Math.abs(tower.getY() - unit.getY()), 2))
-//                    / ((1.0 / speedTarget) * count))) {
-//                res = unit;
-//                break;
-//            }
-//            count++;
-//            /*unit = m.getPoint(path[i]);
-//            unit.x *= 40;
-//            unit.x += 20;
-//            unit.y *= 40;
-//            unit.y += 20;*/
-//        }
-//        return res;
-//    }
+    public Point fireMissle(Tower shooter, Unit target)
+    {
+        Point res = null;
+        double speedMissle = towerData.getMissleSpeed(shooter.getCaseNumber());
+        double speedTarget = target.getSpeed();
+        Field[] path = target.getPath();
+        double count = 0.56; // = target.getFieldPercentage(); // = target.getFieldPixels() / 40; // = (delta x + delta y) / 40 ;
+        Point tower = m.getPoint(shooter);
+        Point unit; // = spriteList.getPoint(target);
+        for (int i = target.getPathCounter() + 1; i < path.length; i++)
+        {
+            unit = m.getPoint(path[i]); // = spriteList.getPoint(target);
+            if (speedMissle
+                    >= (Math.sqrt(Math.pow(Math.abs(tower.getX() - unit.getX()), 2)
+                    + Math.pow(Math.abs(tower.getY() - unit.getY()), 2))
+                    / ((1.0 / speedTarget) * count)))
+            {
+                res = unit;
+                break;
+            }
+            count++;
+            /*unit = m.getPoint(path[i]);
+            unit.x *= 40;
+            unit.x += 20;
+            unit.y *= 40;
+            unit.y += 20;*/
+        }
+        return res;
+    }
+
+    /*public void heartbeat()
+    {
+        //step
+        spriteList.step();
+        //ophogen tower counters
+        Vector temp = m.getTowers();
+        ArrayList<Unit> unitList = spriteList.getUnitList();
+        Tower t;
+        Point a;
+        Point b;
+        for (int i = 0; i < temp.size(); i++)
+        {
+            t = (Tower) temp.get(i);
+            t.count();
+            if(t.getCounter() == towerData.getSpeed(t.getCaseNumber())){
+                //range check
+                a = m.getPoint(t);
+                a.x *= 40;
+                a.x += 20;
+                a.y *= 40;
+                a.y += 20;
+
+                for(Unit u : unitList){
+                    b = u.getPoint();
+                    if (Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow(a.y - b.y)) =< towerDate.getRange(t.getCaseNumber())){
+                        spriteList.add(new Missle( Missle constructor , fireMissle(t, u));
+                    }
+                }
+            }
+        }
+        //check missle hits
+        ArrayList<Missle> missleList = spriteList.getMissleList();
+        for(Missle m : missleList){
+            check missle end {
+                for (Unit u : unitList) {
+                    check cord {
+                        deal damage;
+                    }
+                }
+            end missle;
+            }
+        }
+         
+    }*/
 }
