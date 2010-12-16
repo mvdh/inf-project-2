@@ -7,7 +7,7 @@ public class Sprite extends JLabel {
 
     Point c = new Point();          // Start Positie
     Point d = new Point(300, 200);  // Bestemming
-    double speed = 0.1;
+    double speed = 2.1;
     int stepCounter = 0;
     int marge = 2;
 
@@ -62,12 +62,17 @@ public class Sprite extends JLabel {
 //            d.end();                                           // Wat gebeurt er wanneer een beweging voltooid is
 //            this.finalize();                                      // Is opruimen na de beweging nodig?
             System.out.println("Beweging voltooid");
-            setNewDestination();
+            this.endMove();
         }
 
         stepCounter++;
 
     }
+
+    private void endMove(){
+        setNewDestination();
+    }
+
 
     private void setNewDestination() {
         c = this.getLocation();
