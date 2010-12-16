@@ -90,4 +90,8 @@ public class Sprite extends JLabel {
         double dist = Math.sqrt(dx * dx + dy * dy); //distance using Pythagoras theorem
         return dist;
     }
+
+    public Point getEnd(){
+        return d;
+    }
 }

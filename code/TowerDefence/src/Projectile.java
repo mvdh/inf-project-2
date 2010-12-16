@@ -27,4 +27,8 @@ public class Projectile extends Sprite {
         } catch (Throwable ex) {
         }
     }
+
+    public int getDamage(){
+        return damage;
+    }
 }
