@@ -19,8 +19,9 @@ public class Projectile extends Sprite {
         damage = d;
     }
 
-    private void endMove() {
-        System.out.println("BOEM!!!/nIk doe nu " + damage + " schade aan m'n doelwit");
+    @Override
+    public void endMove() {
+        System.out.println("BOEM!!!\nIk doe nu " + damage + " schade aan m'n doelwit");
         try {
             this.finalize();
         } catch (Throwable ex) {

@@ -19,29 +19,29 @@ import javax.swing.JFrame;
  */
 public class TestAndra extends JFrame {
 
-    private Sprite s1;
-    private Sprite s2;
-    private Sprite s3;
-    private Sprite s4;
+    private Projectile s1;
+    private Projectile s2;
+    private Projectile s3;
+    private Projectile s4;
     private Projectile s5;
-    private Sprite s6;
-    private Sprite s7;
-    private Sprite s8;
-    private Sprite s9;
-    private Sprite s10;
+//    private Sprite s6;
+//    private Sprite s7;
+//    private Sprite s8;
+//    private Sprite s9;
+//    private Sprite s10;
     ArrayList<Sprite> spriteList;
 
     public TestAndra(String string) {
         
         init();
-//        s1 = new Sprite(0.1);
-//        add(s1);
-//        s2 = new Sprite(0.2333);
-//        add(s2);
-//        s3 = new Sprite(0.5);
-//        add(s3);
-//        s4 = new Sprite(0.9999999999999);
-//        add(s4);
+        s1 = new Projectile(1);
+        add(s1);
+        s2 = new Projectile(2333);
+        add(s2);
+        s3 = new Projectile(5);
+        add(s3);
+        s4 = new Projectile(9999);
+        add(s4);
         s5 = new Projectile(1);
         add(s5);
 //        s6 = new Sprite(1.0000000000000001);
@@ -55,10 +55,10 @@ public class TestAndra extends JFrame {
 //        s10 = new Sprite(5.0);
 //        add(s10);
         spriteList = new ArrayList<Sprite>();
-//        spriteList.add(s1);
-//        spriteList.add(s2);
-//        spriteList.add(s3);
-//        spriteList.add(s4);
+        spriteList.add(s1);
+        spriteList.add(s2);
+        spriteList.add(s3);
+        spriteList.add(s4);
         spriteList.add(s5);
 //        spriteList.add(s6);
 //        spriteList.add(s7);
