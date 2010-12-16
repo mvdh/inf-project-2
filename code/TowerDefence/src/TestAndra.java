@@ -19,16 +19,52 @@ import javax.swing.JFrame;
  */
 public class TestAndra extends JFrame {
 
-    private Sprite s;
+    private Sprite s1;
+    private Sprite s2;
+    private Sprite s3;
+    private Sprite s4;
+    private Sprite s5;
+    private Sprite s6;
+    private Sprite s7;
+    private Sprite s8;
+    private Sprite s9;
+    private Sprite s10;
     ArrayList<Sprite> spriteList;
 
     public TestAndra(String string) {
         
         init();
-        s = new Sprite();
-        add(s);
+        s1 = new Sprite(0.1);
+        add(s1);
+        s2 = new Sprite(0.2333);
+        add(s2);
+        s3 = new Sprite(0.5);
+        add(s3);
+        s4 = new Sprite(0.9999999999999);
+        add(s4);
+        s5 = new Sprite(1.0);
+        add(s5);
+        s6 = new Sprite(1.0000000000000001);
+        add(s6);
+        s7 = new Sprite(1.5);
+        add(s7);
+        s8 = new Sprite(3.33333333333000000011);
+        add(s8);
+        s9 = new Sprite(4.0);
+        add(s9);
+        s10 = new Sprite(5.0);
+        add(s10);
         spriteList = new ArrayList<Sprite>();
-        spriteList.add(s);
+        spriteList.add(s1);
+        spriteList.add(s2);
+        spriteList.add(s3);
+        spriteList.add(s4);
+        spriteList.add(s5);
+        spriteList.add(s6);
+        spriteList.add(s7);
+        spriteList.add(s8);
+        spriteList.add(s9);
+        spriteList.add(s10);
         init2();
         paintAll(getGraphics());
 
@@ -45,7 +81,7 @@ public class TestAndra extends JFrame {
     }
 
     public void init2(){
-        int delay = 40; //milliseconds
+        int delay = 4; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 for (Sprite s : spriteList){
