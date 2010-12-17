@@ -19,8 +19,8 @@ public class FieldController extends Controller
         
         BufferedImage img = null;
         BufferedImage img2 = null;
-        URL url = Tree.class.getResource("images/boom.png");
-        URL url2 = Tree.class.getResource("spriteDefault.png");
+        URL url = getClass().getResource("images/boom.png");
+        URL url2 = getClass().getResource("spriteDefault.png");
         try
         {
             img = ImageIO.read(url);

@@ -62,7 +62,7 @@ public class ControlPanel extends JPanel {
      */
     public void findType(Field field){
         if(field instanceof Tower){
-//            controller = new TowerController(getTowerData(), (Tower) field);
+            controller = new TowerController(getTowerData(), (Tower) field);
             System.out.println("Tower");
         } else if(field instanceof Field){
             controller = new FieldController();
