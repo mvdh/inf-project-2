@@ -27,21 +27,37 @@ public class Controller extends Container
         setSize(680, 180);
     }
     
+    /**
+     * 
+     * @param in
+     */
     public void setTakeAction(boolean in)
     {
         takeAction = in;
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean getTakeAction()
     {
         return takeAction;
     }
 
+    /**
+     * 
+     * @param typeIn
+     */
     public void setType(int typeIn)
     {
         type = typeIn;
     }
     
+    /**
+     * 
+     * @return
+     */
     public int getType()
     {
         return type;
@@ -52,12 +68,21 @@ public class Controller extends Container
         private BufferedImage bf = null;
         private int type;
 
+        /**
+         * 
+         * @param bfi
+         */
         public CLabel(BufferedImage bfi)
         {
             setSize(60, 60);
             bf = bfi;
         }
         
+        /**
+         * 
+         * @param bfi
+         * @param type
+         */
         public CLabel(BufferedImage bfi, int type)
         {
             setSize(60, 60);
@@ -65,11 +90,19 @@ public class Controller extends Container
             setType(type);
         }
 
+        /**
+         * 
+         * @param typeIn
+         */
         public void setType(int typeIn)
         {
             type = typeIn;
         }
         
+        /**
+         * 
+         * @return
+         */
         public int getType()
         {
             return type;

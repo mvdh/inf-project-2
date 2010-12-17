@@ -112,6 +112,7 @@ public class Game extends JFrame
             remove(f);
             add(t);
             t.repaint();
+            System.out.println(m.toString());
         }
     }
 
@@ -128,6 +129,7 @@ public class Game extends JFrame
             Field f = new Field();
             f.setLocation(p);
             f.addMouseListener(new GameMouseAdapter());
+            m.remove(t);
             boolean added = m.add(f, p.x / 40, p.y / 40);
             if (!added)
             {
@@ -140,6 +142,7 @@ public class Game extends JFrame
             remove(t);
             add(f);
             f.repaint();
+            System.out.println(m.toString());
         }
     }
 
