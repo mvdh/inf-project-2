@@ -17,6 +17,7 @@ public class Game extends JFrame
     private TowerData towerData;
     private SpriteList spriteList;
     private ControlPanel controlPanel;
+    private Field selected = null;
     
     private Timer actionTimer = null;
 
@@ -174,22 +175,13 @@ public class Game extends JFrame
         // OnMouseOver
         public void mouseEntered(MouseEvent me)
         {
-            // Get the Graphics of the hovered Component and it's size
-            Graphics g = me.getComponent().getGraphics();
-            Dimension size = me.getComponent().getSize();
-            // Set the Color to draw in
-            g.setColor(new Color(0, 0, 255));
-            // Draw a rectangle and fill it with the set Color
-            g.fillRect(0, 0, size.width, size.height);
-            g.setColor(new Color(0, 0, 0));
-            // Draw a rectangle, but don't fill it with a Color (border only)
-            g.drawRect(0, 0, size.width, size.height);
+            select((Field) me.getComponent());
         }
 
         // OnMouseOut
         public void mouseExited(MouseEvent me)
         {
-            if (actionTimer == null || !actionTimer.isRunning() || actionTimer.isRunning() && controlPanel.getField() != ((Field) me.getComponent()))
+            if (((Field) me.getComponent()) instanceof Tree || actionTimer == null || !actionTimer.isRunning() || actionTimer.isRunning() && controlPanel.getField() != ((Field) me.getComponent()))
             {
                 me.getComponent().repaint();
             }
@@ -198,66 +190,71 @@ public class Game extends JFrame
         // OnClick
         public void mousePressed(MouseEvent me)
         {
+            if (selected != null)
+            {
+                selected.paint(selected.getGraphics());
+            }
             // Remove the selected Field from the Matrix
             final Field f = (Field) me.getSource();
-
+            selected = f;
             // Checks if a Field was removed, which also was part of the JFrame
-            if (f != null && f.getParent() != null)
+            if (f != null && f.getParent() != null && !(f instanceof Tree))
             {
+                select(f);
                 remove(controlPanel);
                 controlPanel = new ControlPanel(getTowerData(), f);
                 add(controlPanel);
                 controlPanel.repaint();
-                if (actionTimer == null || !actionTimer.isRunning())
+                
+                if (actionTimer != null && actionTimer.isRunning())
                 {
-                    actionTimer = new Timer(100, new ActionListener()
-                    {
-                        public void actionPerformed(ActionEvent ae)
-                        {
-                            if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
-                            {
-                                if (f instanceof Tower)
-                                {
-                                    TowerToField(f);
-                                }
-                                else
-                                {
-                                    FieldToTower(f);
-                                    controlPanel.getController().setTakeAction(false);
-                                    System.out.println(controlPanel.getController().getType());
-                                    remove(controlPanel);
-                                    repaint();
-                                    actionTimer.stop();
-                                }
-                            }
-                        }
-                    });
-                    actionTimer.start();
+                    actionTimer.stop();
                 }
                 
-                // Checks the Class of f
-//                if (f instanceof Tower)
-//                {
-//                    TowerToField(f);
-//                }
-//                else if (f instanceof Tree)
-//                {
-//                    // If f has Class Boom, add it again (you can't build on
-//                    // Boom objects)
-//                    Point p = f.getLocation();
-//                    boolean added = m.add(f, p.x / 40, p.y / 40);
-//                    if (!added)
-//                    {
-//                        JOptionPane.showMessageDialog(new JFrame(),
-//                                "Something went terribly wrong!");
-//                    }
-//                }
+                actionTimer = new Timer(100, new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent ae)
+                    {
+                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
+                        {
+                            selected = null;
+                            if (f instanceof Tower)
+                            {
+                                TowerToField(f);
+                            }
+                            else if (!(f instanceof Tree))
+                            {
+                                FieldToTower(f);
+                                controlPanel.getController().setTakeAction(false);
+                                System.out.println(controlPanel.getController().getType());
+                                remove(controlPanel);
+                                repaint();
+                            }
+                            actionTimer.stop();
+                        }
+                    }
+                });
+                actionTimer.start();
             }
         }
 
         public void mouseReleased(MouseEvent me)
         {
             // Do nothing
+        }
+        
+        public void select(Field f)
+        {
+            // Get the Graphics of the hovered Component and it's size
+            Graphics g = f.getGraphics();
+            Dimension size = f.getSize();
+            // Set the Color to draw in
+            g.setColor(new Color(0, 0, 255));
+            // Draw a rectangle and fill it with the set Color
+            g.fillRect(0, 0, size.width, size.height);
+            g.setColor(new Color(0, 0, 0));
+            // Draw a rectangle, but don't fill it with a Color (border only)
+            g.drawRect(0, 0, size.width, size.height);
         }
     }
 
