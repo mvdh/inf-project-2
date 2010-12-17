@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
 import javax.swing.JPanel;
 
 /**
@@ -11,6 +9,8 @@ public class ControlPanel extends JPanel {
 
     private Field field;
     private TowerData towerData;
+    
+    private Controller controller = null;
 
     public ControlPanel(TowerData towerData, Field field) {
         setLocation(0, 281);
@@ -35,7 +35,7 @@ public class ControlPanel extends JPanel {
         this.towerData = towerData;
     }
     /**
-     * Returns the field on wich the controlpanel is based
+     * Returns the field on which the controlpanel is based
      * @return the field field
      */
     public Field getField(){
@@ -45,22 +45,35 @@ public class ControlPanel extends JPanel {
     public TowerData getTowerData(){
         return this.towerData;
     }
-
+    
+    public Controller getController()
+    {
+        return controller;
+    }
+    
+    public boolean hasController()
+    {
+        return controller != null;
+    }
+    
     /**
      * Determines of what instance the given field is
      * @param field the field the field on wich the controlpanel is based
      */
     public void findType(Field field){
         if(field instanceof Tower){
-            TowerController towerController = new TowerController(getTowerData(), (Tower) field);
-            add(towerController);
+//            controller = new TowerController(getTowerData(), (Tower) field);
             System.out.println("Tower");
         } else if(field instanceof Field){
-            FieldController fieldController = new FieldController();
-            add(fieldController);
+            controller = new FieldController();
             System.out.println("Field");
         } else{
             //DO NOTHING
+        }
+        
+        if (controller != null)
+        {
+            add(controller);
         }
     }
 }
