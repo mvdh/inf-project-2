@@ -13,11 +13,12 @@ import javax.swing.Timer;
 
 public class Game extends JFrame
 {
-
     private Matrix m;
     private TowerData towerData;
     private SpriteList spriteList;
     private ControlPanel controlPanel;
+    
+    private Timer actionTimer = null;
 
     public Game()
     {
@@ -98,6 +99,7 @@ public class Game extends JFrame
             Tower t = new Tower();
             t.setLocation(p);
             t.addMouseListener(new GameMouseAdapter());
+            m.remove(f);
             boolean added = m.add(t, p.x / 40, p.y / 40);
             if (!added)
             {
@@ -143,9 +145,8 @@ public class Game extends JFrame
 
     public void initHeartbeat()
     {
-        Timer t = new Timer(1000, new ActionListener()
+        Timer t = new Timer(40, new ActionListener()
         {
-
             public void actionPerformed(ActionEvent arg0)
             {
                 // TODO
@@ -185,50 +186,67 @@ public class Game extends JFrame
         // OnMouseOut
         public void mouseExited(MouseEvent me)
         {
-            me.getComponent().repaint();
+            if (actionTimer == null || !actionTimer.isRunning() || actionTimer.isRunning() && controlPanel.getField() != ((Field) me.getComponent()))
+            {
+                me.getComponent().repaint();
+            }
         }
 
         // OnClick
         public void mousePressed(MouseEvent me)
         {
             // Remove the selected Field from the Matrix
-            Field f = m.remove((Field) me.getSource());
+            final Field f = (Field) me.getSource();
 
             // Checks if a Field was removed, which also was part of the JFrame
             if (f != null && f.getParent() != null)
             {
-                // Checks the Class of f
-                if (f instanceof Tower)
+                remove(controlPanel);
+                controlPanel = new ControlPanel(getTowerData(), f);
+                add(controlPanel);
+                controlPanel.repaint();
+                actionTimer = new Timer(100, new ActionListener()
                 {
-                    remove(controlPanel);
-                    controlPanel = new ControlPanel(getTowerData(), f);
-                    add(controlPanel);
-                    controlPanel.repaint();
-                    TowerToField(f);
-                }
-                else if (f instanceof Tree)
-                {
-                    // If f has Class Boom, add it again (you can't build on
-                    // Boom objects)
-                    Point p = f.getLocation();
-                    boolean added = m.add(f, p.x / 40, p.y / 40);
-                    if (!added)
+                    public void actionPerformed(ActionEvent ae)
                     {
-                        JOptionPane.showMessageDialog(new JFrame(),
-                                "Something went terribly wrong!");
+                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
+                        {
+                            if (f instanceof Tower)
+                            {
+                                TowerToField(f);
+                            }
+                            else
+                            {
+                                FieldToTower(f);
+                                controlPanel.getController().setTakeAction(false);
+                                System.out.println(controlPanel.getController().getType());
+                                remove(controlPanel);
+                                repaint();
+                                actionTimer.stop();
+                            }
+                        }
                     }
-                }
-                else
-                {
-                    remove(controlPanel);
-                    controlPanel = new ControlPanel(getTowerData(), f);
-                    add(controlPanel);
-                    controlPanel.repaint();
-                    FieldToTower(f);
-                }
+                });
+                actionTimer.start();
+                
+                // Checks the Class of f
+//                if (f instanceof Tower)
+//                {
+//                    TowerToField(f);
+//                }
+//                else if (f instanceof Tree)
+//                {
+//                    // If f has Class Boom, add it again (you can't build on
+//                    // Boom objects)
+//                    Point p = f.getLocation();
+//                    boolean added = m.add(f, p.x / 40, p.y / 40);
+//                    if (!added)
+//                    {
+//                        JOptionPane.showMessageDialog(new JFrame(),
+//                                "Something went terribly wrong!");
+//                    }
+//                }
             }
-
-            System.out.println(m.toString());
         }
 
         public void mouseReleased(MouseEvent me)
