@@ -18,21 +18,63 @@ import javax.swing.JLabel;
  */
 public class Controller extends Container
 {
+    private boolean takeAction = false;
+    private int type = -1;
+    
     public void init()
     {
         setLayout(null);
         setSize(680, 180);
     }
+    
+    public void setTakeAction(boolean in)
+    {
+        takeAction = in;
+    }
+
+    public boolean getTakeAction()
+    {
+        return takeAction;
+    }
+
+    public void setType(int typeIn)
+    {
+        type = typeIn;
+    }
+    
+    public int getType()
+    {
+        return type;
+    }
 
     class CLabel extends JLabel
     {
         private BufferedImage bf = null;
+        private int type;
 
         public CLabel(BufferedImage bfi)
         {
+            setSize(60, 60);
             bf = bfi;
         }
+        
+        public CLabel(BufferedImage bfi, int type)
+        {
+            setSize(60, 60);
+            bf = bfi;
+            setType(type);
+        }
 
+        public void setType(int typeIn)
+        {
+            type = typeIn;
+        }
+        
+        public int getType()
+        {
+            return type;
+        }
+        
         public void paint(Graphics g)
         {
             g.setColor(Color.red);
