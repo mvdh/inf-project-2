@@ -1,7 +1,4 @@
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
@@ -72,17 +69,16 @@ public class TowerController extends Controller {
     public void init() {
         super.init();
         BufferedImage img = null;
-        URL url = Tree.class.getResource("images/boom.png");
+        URL url = getClass().getResource("images/boom.png");
 
         try {
             img = ImageIO.read(url);
         } catch (Exception e) {
         }
 
-        CLabel label = new CLabel(null);
-        label.setSize(60, 60);
+        CLabel label = new CLabel(img);
         label.addMouseListener(new CMouseAdapter());
-        label.setLocation(30, 30);
+        label.setLocation(20, 20);
         add(label);
     }
 }
