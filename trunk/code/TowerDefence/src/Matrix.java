@@ -215,7 +215,7 @@ public class Matrix
     public Vector getTowers(){
         Vector res = new Vector();
         for(int i = 0; i < matrix.length; i++){
-            for (int j = 0; j < get(i).size(); i++){
+            for (int j = 0; j < get(i).size(); j++){
                 if(get(i, j) instanceof Tower){
                     res.add(get(i, j));
                 }
