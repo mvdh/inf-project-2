@@ -1,3 +1,4 @@
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
@@ -28,28 +29,35 @@ public class FieldController extends Controller
         catch (Exception e)
         {}
 
-        CLabel p = new CLabel(img);
-        p.setLocation(20, 20);
-        p.setSize(60, 60);
-        p.addMouseListener(new CMouseAdapter());
-        add(p);
+        CLabel lbl = new CLabel(img, 1);
+        lbl.setLocation(20, 20);
+        lbl.addMouseListener(new FCMouseAdapter());
+        add(lbl);
 
-        p = new CLabel(img2);
-        p.setLocation(20, 85);
-        p.setSize(60, 60);
-        p.addMouseListener(new CMouseAdapter());
-        add(p);
+        lbl = new CLabel(img2, 2);
+        lbl.setLocation(85, 20);
+        lbl.addMouseListener(new FCMouseAdapter());
+        add(lbl);
 
-        p = new CLabel(img2);
-        p.setLocation(85, 20);
-        p.setSize(60, 60);
-        p.addMouseListener(new CMouseAdapter());
-        add(p);
+        lbl = new CLabel(img2, 3);
+        lbl.setLocation(20, 85);
+        lbl.addMouseListener(new FCMouseAdapter());
+        add(lbl);
 
-        p = new CLabel(img);
-        p.setLocation(85, 85);
-        p.setSize(60, 60);
-        p.addMouseListener(new CMouseAdapter());
-        add(p);
+        lbl = new CLabel(img, 4);
+        lbl.setLocation(85, 85);
+        lbl.addMouseListener(new FCMouseAdapter());
+        add(lbl);
+    }
+    
+    class FCMouseAdapter extends CMouseAdapter
+    {
+        public void mousePressed(MouseEvent me)
+        {
+            super.mousePressed(me);
+            
+            setTakeAction(true);
+            setType(((CLabel) me.getComponent()).getType());
+        }
     }
 }
