@@ -1,26 +1,24 @@
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Maarten van den Hoek
  */
-public class TowerController extends Component {
+public class TowerController extends Controller {
 
     private int caseNumber;
-    private boolean[] upgradables;
     private TowerData towerData;
 
     public TowerController(TowerData td, Tower t) {
-        setLocation(0, 0);
-        setSize(680, 180);
-        setVisible(true);
-        //System.out.println("test construct");
-
+        init();
         setCaseNumber(t.getCaseNumber());
-        setUpgradables(findUpgradables());
-        System.out.println(getCaseNumber());
     }
 
     /**
@@ -32,17 +30,10 @@ public class TowerController extends Component {
     }
 
     /**
-     * @return the upGradables
-     */
-    public boolean[] isUpgradables() {
-        return upgradables;
-    }
-
-    /**
      * 
      * @return
      */
-    public TowerData getTowerData(){
+    public TowerData getTowerData() {
         return towerData;
     }
 
@@ -55,60 +46,43 @@ public class TowerController extends Component {
     }
 
     /**
-     * @param upGradables the upGradables to set
-     */
-    public void setUpgradables(boolean[] upgradables) {
-        this.upgradables = upgradables;
-    }
-
-    /**
      * 
      * @param towerData
      */
-    public void setTowerData(TowerData towerData){
+    public void setTowerData(TowerData towerData) {
         this.towerData = towerData;
     }
 
     /**
      * Checks which towers the current tower can upgrade to. The towers can not
      * be downgraded, so the previous cases are excluded
-     * @return a list of upgradables in booleans.
+     * @return The possible upgradables
      */
-    public boolean[] findUpgradables() {
-        boolean[] upgr = new boolean[20];
+    public ArrayList<Integer> findUpgradables() {
         int currentCase = getCaseNumber();
+        int currency = 100;
 
-        //selecteer alle upgradables waarbij previous casenumber = the currentcasenumber
-        
+        //The upgradables based on case number en currency
+        ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(caseNumber, currency);
 
-        //Based on currency
-        //Based on current caseNumber (caseNumbers begins with 1 and ends with 20)
-        for (int i = getCaseNumber(); i < currentCase; i++) {
-            upgr[i] = true;
-        }
-
-        return upgr;
+        return upgradables;
     }
 
-    /**
-     * 
-     * @param g
-     */
     @Override
-    public void paint(Graphics g) {
-        System.out.println("before");
-        for (int i = 0; i < 20; i++) {
-            if(isUpgradables()[i] == true){
-                System.out.println("true");
-                g.setColor(new Color(0, 255, 0));
-            } else {
-                System.out.println("false");
-                g.setColor(Color.red);
-            }
-            g.fillRect(20, 20, 60, 60);
+    public void init() {
+        super.init();
+        BufferedImage img = null;
+        URL url = Tree.class.getResource("images/boom.png");
+
+        try {
+            img = ImageIO.read(url);
+        } catch (Exception e) {
         }
-        
-        g.setColor(Color.red);
-        System.out.println("how many?");
+
+        CLabel label = new CLabel(null);
+        label.setSize(60, 60);
+        label.addMouseListener(new CMouseAdapter());
+        label.setLocation(30, 30);
+        add(label);
     }
 }
