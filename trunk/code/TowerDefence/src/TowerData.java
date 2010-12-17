@@ -40,7 +40,6 @@ public class TowerData {
         towerData[0][8] = 1;        //towerImage
         towerData[0][9] = 20;       //missleRange
 
-
         towerData[1][0] = 1;        //caseNumber
         towerData[1][1] = 250;      //costs
         towerData[1][2] = 100;      //hitPoints
@@ -75,12 +74,12 @@ public class TowerData {
      * @return An ArrayList with the caseNumber of the upgradables. If there is
      * no upgradable, the ArrayList has one value: -1.
      */
-    public ArrayList<Integer> getUpgradables(int caseNumber, int costs) {
+    public ArrayList<Integer> getUpgradables(int caseNumber, int currency) {
         ArrayList<Integer> result = new ArrayList();
         int[][] data = this.getTowerData();
 
         for (int i = 0; i < data.length; i++) {
-            if (data[i][4] == caseNumber) {
+            if (data[i][4] == caseNumber && data[i][1] < currency ) {
                 result.add(data[i][0]);
             }
         }
