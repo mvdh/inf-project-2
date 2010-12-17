@@ -380,9 +380,16 @@ public class Game extends JFrame
                 for (Unit u : unitList)
                 {
                     a = u.getLocation();
-                    if (true)
-                    { // check if unit is on the field of destruction!
+                    b = m.getEnd();
+
+                    // check if unit is on the field of destruction!
+                    if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= towerData.getRange(m.getRange()))
+                    {
                         u.setHitPoints(u.getHitPoints() - m.getDamage());
+                        if(u.getHitPoints() <= 0){
+                            //award reward
+                            spriteList.remove(u);
+                        }
                     }
                 }
                 m.endMove();

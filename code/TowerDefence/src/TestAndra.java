@@ -29,7 +29,7 @@ public class TestAndra extends JFrame {
 //    private Sprite s8;
 //    private Sprite s9;
 //    private Sprite s10;
-    ArrayList<Sprite> spriteList;
+    private SpriteList spriteList;
 
     public TestAndra(String string) {
         
@@ -54,7 +54,7 @@ public class TestAndra extends JFrame {
 //        add(s9);
 //        s10 = new Sprite(5.0);
 //        add(s10);
-        spriteList = new ArrayList<Sprite>();
+        spriteList = new SpriteList();
         spriteList.add(s1);
         spriteList.add(s2);
         spriteList.add(s3);
@@ -81,12 +81,10 @@ public class TestAndra extends JFrame {
     }
 
     public void init2(){
-        int delay = 4; //milliseconds
+        int delay = 40; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                for (Sprite s : spriteList){
-                    s.step();
-                }
+                spriteList.step();
             }
         };
         new Timer(delay, taskPerformer).start();

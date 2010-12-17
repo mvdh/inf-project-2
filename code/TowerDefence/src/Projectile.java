@@ -12,7 +12,8 @@ import java.util.logging.Logger;
  */
 public class Projectile extends Sprite {
 
-    int damage;
+    private int damage;
+    private int range;
 
     Projectile(int d) {
         super();
@@ -30,5 +31,9 @@ public class Projectile extends Sprite {
 
     public int getDamage(){
         return damage;
+    }
+
+    public int getRange(){
+        return range;
     }
 }
