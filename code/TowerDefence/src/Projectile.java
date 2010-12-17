@@ -1,6 +1,6 @@
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Point;
+import javax.swing.ImageIcon;
 
 /*
  * To change this template, choose Tools | Templates
@@ -10,30 +10,53 @@ import java.util.logging.Logger;
  *
  * @author averaart
  */
-public class Projectile extends Sprite {
+public class Projectile extends Sprite
+{
 
     private int damage;
     private int range;
 
-    Projectile(int d) {
-        super();
+    public Projectile(int d, int img, double speed, int range, Point destination, Point start)
+    {
+        super(speed);
         damage = d;
+        this.range = range;
+        this.d = destination;
+        this.c = start;
+        switch (img)
+        {
+            case 0:
+            {
+                this.setIcon(new ImageIcon(getClass().getResource("arrow.png")));
+            }
+            case 1:
+            {
+                this.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
+            }
+        }
+        setSize(this.getIcon().getIconWidth(), this.getIcon().getIconHeight());
     }
 
     @Override
-    public void endMove() {
-        System.out.println("BOEM!!!\nIk doe nu " + damage + " schade aan m'n doelwit");
-        try {
+    public void endMove()
+    {
+        //System.out.println("BOEM!!!\nIk doe nu " + damage + " schade aan m'n doelwit");
+        try
+        {
             this.finalize();
-        } catch (Throwable ex) {
+        } catch (Throwable ex)
+        {
+            ex.printStackTrace();
         }
     }
 
-    public int getDamage(){
+    public int getDamage()
+    {
         return damage;
     }
 
-    public int getRange(){
+    public int getRange()
+    {
         return range;
     }
 }

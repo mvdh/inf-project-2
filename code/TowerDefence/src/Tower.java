@@ -13,11 +13,13 @@ public class Tower extends Field {
         // Just to set the size of the object
         super();
         this.setCaseNumber(0);
+        this.setCounter(0);
     }
 
     public Tower(int tower) {
         super();
         this.setCaseNumber(tower);
+        this.setCounter(0);
     }
 
     /**
@@ -59,5 +61,9 @@ public class Tower extends Field {
     public void count()
     {
         this.counter++;
+    }
+
+    public void setCounter(int counter){
+        this.counter = counter;
     }
 }
