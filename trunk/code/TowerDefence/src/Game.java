@@ -208,29 +208,32 @@ public class Game extends JFrame
                 controlPanel = new ControlPanel(getTowerData(), f);
                 add(controlPanel);
                 controlPanel.repaint();
-                actionTimer = new Timer(100, new ActionListener()
+                if (actionTimer == null || !actionTimer.isRunning())
                 {
-                    public void actionPerformed(ActionEvent ae)
+                    actionTimer = new Timer(100, new ActionListener()
                     {
-                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
+                        public void actionPerformed(ActionEvent ae)
                         {
-                            if (f instanceof Tower)
+                            if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
                             {
-                                TowerToField(f);
-                            }
-                            else
-                            {
-                                FieldToTower(f);
-                                controlPanel.getController().setTakeAction(false);
-                                System.out.println(controlPanel.getController().getType());
-                                remove(controlPanel);
-                                repaint();
-                                actionTimer.stop();
+                                if (f instanceof Tower)
+                                {
+                                    TowerToField(f);
+                                }
+                                else
+                                {
+                                    FieldToTower(f);
+                                    controlPanel.getController().setTakeAction(false);
+                                    System.out.println(controlPanel.getController().getType());
+                                    remove(controlPanel);
+                                    repaint();
+                                    actionTimer.stop();
+                                }
                             }
                         }
-                    }
-                });
-                actionTimer.start();
+                    });
+                    actionTimer.start();
+                }
                 
                 // Checks the Class of f
 //                if (f instanceof Tower)
