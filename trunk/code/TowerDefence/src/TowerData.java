@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+
+
 /**
  *
  * @author Maarten van den Hoek
@@ -23,7 +27,7 @@ public class TowerData {
     /**
      * 
      */
-    public TowerData(){
+    public TowerData() {
         towerData = new int[3][10];
         towerData[0][0] = 0;        //caseNumber
         towerData[0][1] = 200;      //costs
@@ -60,6 +64,34 @@ public class TowerData {
         towerData[2][9] = 20;       //missleRange 
     }
 
+    public int[][] getTowerData() {
+        return this.towerData;
+    }
+
+    /**
+     * Finds the upgradables of the tower that was selected.
+     *
+     * @param caseNumber The case number of the current tower.
+     * @return An ArrayList with the caseNumber of the upgradables. If there is
+     * no upgradable, the ArrayList has one value: -1.
+     */
+    public ArrayList<Integer> getUpgradables(int caseNumber, int costs) {
+        ArrayList<Integer> result = new ArrayList();
+        int[][] data = this.getTowerData();
+
+        for (int i = 0; i < data.length; i++) {
+            if (data[i][4] == caseNumber) {
+                result.add(data[i][0]);
+            }
+        }
+
+        if(result.isEmpty()){
+            result.add(-1);
+        }
+
+        return result;
+    }
+
     /**
      * Returns the hitpoints of the tower where the caseNumber of the tower
      * equals the parameter caseNumber.
@@ -67,7 +99,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the costs of a tower
      */
-    public int getCaseNumber(int caseNumber){
+    public int getCaseNumber(int caseNumber) {
         return towerData[caseNumber][0];
     }
 
@@ -78,7 +110,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the costs of a tower
      */
-    public int getCosts(int caseNumber){
+    public int getCosts(int caseNumber) {
         return towerData[caseNumber][1];
     }
 
@@ -89,7 +121,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the hitpoints of a tower
      */
-    public int getHitpoints(int caseNumber){
+    public int getHitpoints(int caseNumber) {
         return towerData[caseNumber][2];
     }
 
@@ -100,7 +132,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the range of a tower
      */
-    public int getRange(int caseNumber){
+    public int getRange(int caseNumber) {
         return towerData[caseNumber][3];
     }
 
@@ -111,7 +143,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the previous casenumber of a tower
      */
-    public int getPreviousCaseNumber(int caseNumber){
+    public int getPreviousCaseNumber(int caseNumber) {
         return towerData[caseNumber][4];
     }
 
@@ -122,7 +154,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the missle damage of a tower
      */
-    public int getMissleDamage(int caseNumber){
+    public int getMissleDamage(int caseNumber) {
         return towerData[caseNumber][5];
     }
 
@@ -133,7 +165,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the image number of a missle
      */
-    public int getMissleImage(int caseNumber){
+    public int getMissleImage(int caseNumber) {
         return towerData[caseNumber][6];
     }
 
@@ -144,7 +176,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the missle speed of a missle
      */
-    public int getMissleSpeed(int caseNumber){
+    public int getMissleSpeed(int caseNumber) {
         return towerData[caseNumber][7];
     }
 
@@ -155,7 +187,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the towerimage number
      */
-    public int getTowerImage(int caseNumber){
+    public int getTowerImage(int caseNumber) {
         return towerData[caseNumber][8];
     }
 
@@ -166,7 +198,7 @@ public class TowerData {
      * @param caseNumber the caseNumber of the towertype
      * @return the missle range
      */
-    public int getMissleRange(int caseNumber){
+    public int getMissleRange(int caseNumber) {
         return towerData[caseNumber][9];
     }
 }
