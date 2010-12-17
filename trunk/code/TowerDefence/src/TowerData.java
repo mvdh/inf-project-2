@@ -16,6 +16,7 @@ public class TowerData {
      * 6    missleImage
      * 7    missleSpeed
      * 8    towerImage
+     * 9    missleRange
      */
     private int[][] towerData;
 
@@ -23,7 +24,7 @@ public class TowerData {
      * 
      */
     public TowerData(){
-        towerData = new int[3][8];
+        towerData = new int[3][10];
         towerData[0][0] = 0;        //caseNumber
         towerData[0][1] = 200;      //costs
         towerData[0][2] = 100;      //hitPoints
@@ -33,6 +34,8 @@ public class TowerData {
         towerData[0][6] = 1;        //missleImage
         towerData[0][7] = 10;       //missleSpeed
         towerData[0][8] = 1;        //towerImage
+        towerData[0][9] = 20;       //missleRange
+
 
         towerData[1][0] = 1;        //caseNumber
         towerData[1][1] = 250;      //costs
@@ -43,6 +46,7 @@ public class TowerData {
         towerData[1][6] = 1;        //missleImage
         towerData[1][7] = 15;       //missleSpeed
         towerData[1][8] = 1;        //towerImage
+        towerData[1][9] = 20;       //missleRange
 
         towerData[2][0] = 2;        //caseNumber
         towerData[2][1] = 275;      //costs
@@ -53,6 +57,7 @@ public class TowerData {
         towerData[2][6] = 2;        //missleImage
         towerData[2][7] = 20;       //missleSpeed
         towerData[2][8] = 1;        //towerImage
+        towerData[2][9] = 20;       //missleRange 
     }
 
     /**
@@ -152,5 +157,16 @@ public class TowerData {
      */
     public int getTowerImage(int caseNumber){
         return towerData[caseNumber][8];
+    }
+
+    /**
+     * Returns the missle range where the caseNumber of the tower
+     * equals the parameter caseNumber.
+     *
+     * @param caseNumber the caseNumber of the towertype
+     * @return the missle range
+     */
+    public int getMissleRange(int caseNumber){
+        return towerData[caseNumber][9];
     }
 }
