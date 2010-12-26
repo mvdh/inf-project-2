@@ -117,7 +117,7 @@ public class Vector
 
         return result;
     }
-
+    
     /**
      *
      * @return vector.length
@@ -169,6 +169,148 @@ public class Vector
 
         return n;
     }
+    
+    public Vector[] split(Field f)
+    {
+        int n = 1;
+        for (int i = 0; i < size(); i++)
+        {
+            if (get(i).equals(f, 1))
+            {
+                n++;
+            }
+        }
+        
+        Vector[] result = new Vector[n];
+        System.out.println("n = " + n);
+        
+        int x = 0;
+        result[x] = new Vector();
+        for (int i = 0; i < size(); i++)
+        {
+            if (!get(i).equals(f, 1))
+            {
+                System.out.println("x = " + x);
+                result[x].add(get(i));
+            }
+            else
+            {
+                x++;
+                result[x] = new Vector();                
+            }
+        }
+        
+        return result;
+    }
+    
+    public Vector mergeAndCleanUp(Vector v)
+    {
+        Vector result = new Vector();
+        Field node = findNode(v);
+        
+        int n = 0;
+        while (!get(n).equals(node, 1))
+        {
+            result.add(get(n));
+            n++;
+        }
+        
+        n = 0;        
+        while(!v.get(n).equals(node, 1))
+        {
+            n++;
+        }
+        
+        for (int i = n; i < v.size(); i++)
+        {
+            result.add(v.get(i));
+        }
+        
+        return result;
+    }
+    
+   /* public Vector merge(Vector v, Vector base)
+    {
+        Vector result = new Vector();
+        
+        if (size() <= v.size())
+        {
+            for (int i = 0; i < size(); i++)
+            {
+                if (v.get(i).equals(get(i), 1))
+                {
+                    result.add(get(i));
+                }
+                else if (base.contains(get(i)))
+                {
+                    int n = i;
+                    while(!v.get(n).equals(get(i + 1)))
+                    {
+                        result.add(v.get(n));
+                        n++;
+                    }
+                }
+                else if (base.contains(v.get(i)))
+                {
+                    int n = i;
+                    while(!get(n).equals(v.get(i + 1)))
+                    {
+                        result.add(get(n));
+                        n++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < v.size(); i++)
+            {
+                if (v.get(i).equals(get(i), 1))
+                {
+                    result.add(get(i));
+                }
+                else if (base.contains(get(i)))
+                {
+                    int n = i;
+                    while(!v.get(n).equals(get(i + 1)))
+                    {
+                        result.add(v.get(n));
+                        n++;
+                    }
+                }
+                else if (base.contains(v.get(i)))
+                {
+                    int n = i;
+                    while(!get(n).equals(v.get(i + 1)))
+                    {
+                        result.add(get(n));
+                        n++;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }*/
+    
+    public Field findNode(Vector v)
+    {
+        Field result = null;
+        
+        if (v != null)
+        {
+            for (int i = 0; i < size(); i++)
+            {
+                if (v.contains(get(i)))
+                {
+                    result = get(i);
+                    break;
+                }
+            }
+        }
+        
+        return result;
+    }
 
     public String toString()
     {
@@ -192,5 +334,17 @@ public class Vector
         }
 
         return result + "\n";
+    }
+    
+    public String print()
+    {
+        String result = "<Vector:\n";
+        
+        for (int i = 0; i < size(); i++)
+        {
+            result += get(i).toString() + "\n";
+        }
+        
+        return result + ">";
     }
 }
