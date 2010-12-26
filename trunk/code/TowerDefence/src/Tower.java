@@ -66,4 +66,11 @@ public class Tower extends Field {
     public void setCounter(int counter){
         this.counter = counter;
     }
+    
+    public String toString()
+    {
+        String result = "<Tower:\t" + getLocation() + ">";
+        
+        return result;
+    }
 }

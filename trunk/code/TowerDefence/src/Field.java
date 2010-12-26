@@ -93,6 +93,25 @@ public class Field extends Component
      */
     public boolean equals(Field f)
     {
-        return f.getLocation().equals(getLocation()) && f.getParent().equals(getParent());
+        return f != null && f.getLocation().equals(getLocation()) && f.getParent().equals(getParent());
+    }
+    
+    public boolean equals(Field f, int i)
+    {
+        if (i == 1)
+        {
+            return f != null && f.getLocation().equals(getLocation());
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public String toString()
+    {
+        String result = "<Field:\t" + getLocation() + ">";
+        
+        return result;
     }
 }
