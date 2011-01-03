@@ -189,7 +189,6 @@ public class Vector
         {
             if (!get(i).equals(f, 1))
             {
-                System.out.println("x = " + x);
                 result[x].add(get(i));
             }
             else
