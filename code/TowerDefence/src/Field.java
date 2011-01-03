@@ -85,6 +85,15 @@ public class Field extends Component
         // Draw a rectangle, but don't fill it with a Color (border only)
         g.drawRect(0, 0, size.width, size.height);
     }
+    
+    public void paintPath()
+    {
+        Graphics g = getGraphics();
+        Dimension size = getSize();
+        
+        g.setColor(new Color(255, 255, 0));
+        g.fillOval(0, 0, size.width, size.height);
+    }
 
     /**
      *
