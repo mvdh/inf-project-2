@@ -422,6 +422,7 @@ public class Game extends JFrame
         // OnClick
         public void mousePressed(MouseEvent me)
         {
+            // In case a second Field gets selected, the previous Field has to be repainted
             if (selected != null)
             {
                 selected.paint(selected.getGraphics());
@@ -438,15 +439,18 @@ public class Game extends JFrame
                 add(controlPanel);
                 controlPanel.repaint();
 
+                // Checks if the Timer is running, if so, it has to stop
                 if (actionTimer != null && actionTimer.isRunning())
                 {
                     actionTimer.stop();
                 }
 
+                // Create Timer to check if a Tower is selected in the controlPanel
                 actionTimer = new Timer(100, new ActionListener()
                 {
                     public void actionPerformed(ActionEvent ae)
                     {
+                        // If a Tower is selected -> take action
                         if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
                         {
                             selected = null;
@@ -458,7 +462,6 @@ public class Game extends JFrame
                             {
                                 FieldToTower(f);
                                 controlPanel.getController().setTakeAction(false);
-                                System.out.println(controlPanel.getController().getType());
                                 remove(controlPanel);
                                 repaint();
                             }

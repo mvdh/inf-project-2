@@ -182,7 +182,6 @@ public class Vector
         }
         
         Vector[] result = new Vector[n];
-        System.out.println("n = " + n);
         
         int x = 0;
         result[x] = new Vector();
@@ -228,70 +227,6 @@ public class Vector
         
         return result;
     }
-    
-   /* public Vector merge(Vector v, Vector base)
-    {
-        Vector result = new Vector();
-        
-        if (size() <= v.size())
-        {
-            for (int i = 0; i < size(); i++)
-            {
-                if (v.get(i).equals(get(i), 1))
-                {
-                    result.add(get(i));
-                }
-                else if (base.contains(get(i)))
-                {
-                    int n = i;
-                    while(!v.get(n).equals(get(i + 1)))
-                    {
-                        result.add(v.get(n));
-                        n++;
-                    }
-                }
-                else if (base.contains(v.get(i)))
-                {
-                    int n = i;
-                    while(!get(n).equals(v.get(i + 1)))
-                    {
-                        result.add(get(n));
-                        n++;
-                    }
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0; i < v.size(); i++)
-            {
-                if (v.get(i).equals(get(i), 1))
-                {
-                    result.add(get(i));
-                }
-                else if (base.contains(get(i)))
-                {
-                    int n = i;
-                    while(!v.get(n).equals(get(i + 1)))
-                    {
-                        result.add(v.get(n));
-                        n++;
-                    }
-                }
-                else if (base.contains(v.get(i)))
-                {
-                    int n = i;
-                    while(!get(n).equals(v.get(i + 1)))
-                    {
-                        result.add(get(n));
-                        n++;
-                    }
-                }
-            }
-        }
-
-        return result;
-    }*/
     
     public Field findNode(Vector v)
     {
