@@ -78,7 +78,7 @@ public class Field extends Component
         // Get the size of the Field object
         Dimension size = getSize();
         // Set the Color to draw in
-        g.setColor(new Color(255, 0, 0));
+        g.setColor(new Color(200, 100, 0));
         // Draw a rectangle and fill it with the set Color
         g.fillRect(0, 0, size.width, size.height);
         g.setColor(new Color(0, 0, 0));

@@ -118,12 +118,12 @@ public class Game extends JFrame
      * 
      * @param f Field
      */
-    public void FieldToTower(Field f)
+    public void FieldToTower(Field f, int type)
     {
         if (f != null)
         {
             Point p = f.getLocation();
-            Tower t = new Tower();
+            Tower t = new Tower(type);
             t.setLocation(p);
             t.addMouseListener(new GameMouseAdapter());
 
@@ -513,7 +513,8 @@ public class Game extends JFrame
                             }
                             else if (!(f instanceof Tree))
                             {
-                                FieldToTower(f);
+                                int type = controlPanel.getController().getType();
+                                FieldToTower(f, type);
                                 controlPanel.getController().setTakeAction(false);
                                 remove(controlPanel);
                                 repaint();
