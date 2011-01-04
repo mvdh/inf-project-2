@@ -20,15 +20,14 @@ public class Controller extends Container
 {
     private boolean takeAction = false;
     private int type = -1;
-    
+
     public void init()
     {
         setLayout(null);
         setSize(680, 180);
     }
-    
+
     /**
-     * 
      * @param in
      */
     public void setTakeAction(boolean in)
@@ -37,7 +36,6 @@ public class Controller extends Container
     }
 
     /**
-     * 
      * @return
      */
     public boolean getTakeAction()
@@ -46,16 +44,14 @@ public class Controller extends Container
     }
 
     /**
-     * 
      * @param typeIn
      */
     public void setType(int typeIn)
     {
         type = typeIn;
     }
-    
+
     /**
-     * 
      * @return
      */
     public int getType()
@@ -69,7 +65,6 @@ public class Controller extends Container
         private int type;
 
         /**
-         * 
          * @param bfi
          */
         public CLabel(BufferedImage bfi)
@@ -77,9 +72,8 @@ public class Controller extends Container
             setSize(60, 60);
             bf = bfi;
         }
-        
+
         /**
-         * 
          * @param bfi
          * @param type
          */
@@ -91,31 +85,28 @@ public class Controller extends Container
         }
 
         /**
-         * 
          * @param typeIn
          */
         public void setType(int typeIn)
         {
             type = typeIn;
         }
-        
+
         /**
-         * 
          * @return
          */
         public int getType()
         {
             return type;
         }
-        
+
         public void paint(Graphics g)
         {
-            g.setColor(Color.red);
+            g.setColor(new Color(200, 100, 0));
             g.fillRect(0, 0, 60, 60);
             if (bf != null)
             {
-                g.drawImage(bf, 0, 0, 60, 60, 0, 0, bf.getWidth(null), bf
-                        .getHeight(null), null);
+                g.drawImage(bf, 0, 0, 60, 60, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
             }
         }
     }
@@ -132,8 +123,7 @@ public class Controller extends Container
         {
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
-            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-                    alpha));
+            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
             g.setColor(Color.white);
             g.fillRect(0, 0, 60, 60);
         }
@@ -147,8 +137,7 @@ public class Controller extends Container
         {
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
-            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-                    alpha));
+            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
             g.setColor(Color.blue);
             g.fillRect(0, 0, 60, 60);
         }
@@ -159,8 +148,7 @@ public class Controller extends Container
 
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
-            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-                    alpha));
+            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
             g.setColor(Color.white);
             g.fillRect(0, 0, 60, 60);
         }
