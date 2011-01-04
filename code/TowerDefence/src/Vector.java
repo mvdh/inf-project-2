@@ -170,24 +170,34 @@ public class Vector
         return n;
     }
     
+    /**
+     * 
+     * @param f Field
+     * @return
+     * This Vector split up in an x amount of smaller Vector objects, this depends on the amount of times
+     * this Vector contains f (it should be 1 time, which would result in an array with a length of 2)
+     */
     public Vector[] split(Field f)
     {
+        // Check how much times this Vector contains f
         int n = 1;
         for (int i = 0; i < size(); i++)
         {
-            if (get(i).equals(f, 1))
+            if (get(i).equals(f))
             {
                 n++;
             }
         }
         
+        // Create a new array with the amount of times f exists + 1
         Vector[] result = new Vector[n];
         
+        // Split this Vector object in smaller Vector objects, split at Field f
         int x = 0;
         result[x] = new Vector();
         for (int i = 0; i < size(); i++)
         {
-            if (!get(i).equals(f, 1))
+            if (!get(i).equals(f))
             {
                 result[x].add(get(i));
             }
@@ -201,45 +211,67 @@ public class Vector
         return result;
     }
     
+    /**
+     * 
+     * @param v Vector
+     * @return
+     * The combined Vector, without the Field objects which are present a second time
+     */
     public Vector mergeAndCleanUp(Vector v)
     {
-        Vector result = new Vector();
-        Field node = findNode(v);
-        
-        int n = 0;
-        while (!get(n).equals(node, 1))
+        if (v != null)
         {
-            result.add(get(n));
-            n++;
-        }
+            Vector result = new Vector();
+            // Find a node of the 2 Vector objects
+            Field node = findNode(v);
+            
+            // While the node isn't reached, copy this Vector object in result
+            int n = 0;
+            while (!get(n).equals(node))
+            {
+                result.add(get(n));
+                n++;
+            }
+            
+            // Get the first Field object which has to be added, this is the first Field object
+            // after the node in v
+            n = 0;        
+            while(!v.get(n).equals(node))
+            {
+                n++;
+            }
+            
+            // Add all Field objects which are after the node to result
+            for (int i = n; i < v.size(); i++)
+            {
+                result.add(v.get(i));
+            }
         
-        n = 0;        
-        while(!v.get(n).equals(node, 1))
+            return result;
+        }
+        else
         {
-            n++;
+            return this;
         }
-        
-        for (int i = n; i < v.size(); i++)
-        {
-            result.add(v.get(i));
-        }
-        
-        return result;
     }
     
+    /**
+     * 
+     * @param v Vector
+     * @return
+     * The first Field which is present in both Vector objects
+     */
     public Field findNode(Vector v)
     {
         Field result = null;
         
-        if (v != null)
+        // Find the first Field which is also present in v
+        for (int i = 0; i < size(); i++)
         {
-            for (int i = 0; i < size(); i++)
+            if (v.contains(get(i)))
             {
-                if (v.contains(get(i)))
-                {
-                    result = get(i);
-                    break;
-                }
+                result = get(i);
+                break;
             }
         }
         
@@ -270,6 +302,11 @@ public class Vector
         return result + "\n";
     }
     
+    /**
+     * 
+     * @return
+     * Debug function
+     */
     public String print()
     {
         String result = "<Vector:\n";
