@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.net.URL;
-import javax.imageio.ImageIO;
 
 public class Field extends Component
 {
@@ -14,39 +12,20 @@ public class Field extends Component
     private boolean flyable;
     private boolean buildable;
     private BufferedImage bf = null;
+    private double random;
+    private double random2;
 
     public Field(BufferedImage bg)
     {
         setSize(40, 40);
-
-        randomChange(bg);
-
+        random = Math.random();
+        random2 = Math.random();
+        
+        bf = bg;
+        
         walkable = true;
         flyable = true;
         buildable = true;
-    }
-    
-    public void randomChange(BufferedImage bg)
-    {
-        Dimension size = getSize();
-        bf = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
-        Graphics g = bf.createGraphics();
-
-        g.drawImage(bg, 0, 0, bg.getWidth(), bg.getHeight(), this);
-        
-        double random = Math.random();
-        if (random < 0.5)
-        {
-            upSideDown((Graphics2D) g, size);
-        }
-
-        double random2 = Math.random();
-        if (random2 < 0.5)
-        {
-            mirrored((Graphics2D) g, size);
-        }
-        
-        paint(g);
     }
 
     /**
@@ -107,8 +86,28 @@ public class Field extends Component
     {
         // Get the size of the Field object
         Dimension size = getSize();
+        
+        if (random < 0.5)
+        {
+            upSideDown((Graphics2D) g, size);
+        }
 
+        if (random2 < 0.5)
+        {
+            mirrored((Graphics2D) g, size);
+        }
+        
         g.drawImage(bf, 0, 0, size.width, size.height, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
+        
+        if (random < 0.5)
+        {
+            upSideDown((Graphics2D) g, size);
+        }
+
+        if (random2 < 0.5)
+        {
+            mirrored((Graphics2D) g, size);
+        }
     }
 
     public void paintPath()

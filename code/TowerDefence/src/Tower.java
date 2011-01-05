@@ -15,7 +15,7 @@ public class Tower extends Field
     {
         // Just to set the size of the object
         super(bg);
-        this.setCaseNumber(0);
+        this.setCaseNumber(-1);
         this.setCounter(0);
     }
 
@@ -54,23 +54,23 @@ public class Tower extends Field
         Dimension size = getSize();
 
         int number = getCaseNumber();
-        BufferedImage bf = null;
+        BufferedImage img = null;
         URL url = null;
 
         // If a CaseNumber is selected
-        if (number == 1)
+        if (number == 0)
         {
             url = getClass().getResource("images/towerA1.png");
         }
-        else if (number == 2)
+        else if (number == 1)
         {
             url = getClass().getResource("images/towerB1.png");
         }
-        else if (number == 3)
+        else if (number == 2)
         {
             url = getClass().getResource("images/towerC1.png");
         }
-        else if (number == 4)
+        else if (number == 3)
         {
             url = getClass().getResource("images/towerD1.png");
         }
@@ -86,8 +86,8 @@ public class Tower extends Field
             // Add the selected image to the graphics
             try
             {
-                bf = ImageIO.read(url);
-                g.drawImage(bf, 1, 1, size.width, size.height, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
+                img = ImageIO.read(url);
+                g.drawImage(img, 1, 1, size.width, size.height, 0, 0, img.getWidth(null), img.getHeight(null), null);
             }
             catch (Exception e)
             {}

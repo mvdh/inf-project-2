@@ -56,7 +56,7 @@ public class TowerData {
         towerData[1][10] = 110;     //towerRange
         towerData[1][11] = 10;      //towerAttackSpeed
 
-        towerData[2][0] = 2;        //caseNumber
+        towerData[2][0] = 4;        //caseNumber
         towerData[2][1] = 275;      //costs
         towerData[2][2] = 100;      //hitPoints
         towerData[2][3] = 100;      //range
@@ -69,7 +69,7 @@ public class TowerData {
         towerData[2][10] = 120;     //towerRange
         towerData[2][11] = 10;      //towerAttackSpeed
 
-        towerData[3][0] = 3;        //caseNumber
+        towerData[3][0] = 5;        //caseNumber
         towerData[3][1] = 275;      //costs
         towerData[3][2] = 100;      //hitPoints
         towerData[3][3] = 100;      //range
@@ -82,7 +82,7 @@ public class TowerData {
         towerData[3][10] = 120;     //towerRange
         towerData[3][11] = 10;      //towerAttackSpeed
 
-        towerData[4][0] = 4;        //caseNumber
+        towerData[4][0] = 6;        //caseNumber
         towerData[4][1] = 275;      //costs
         towerData[4][2] = 100;      //hitPoints
         towerData[4][3] = 100;      //range
@@ -95,7 +95,7 @@ public class TowerData {
         towerData[4][10] = 120;     //towerRange
         towerData[4][11] = 10;      //towerAttackSpeed
 
-        towerData[5][0] = 0;        //caseNumber
+        towerData[5][0] = 2;        //caseNumber
         towerData[5][1] = 200;      //costs
         towerData[5][2] = 100;      //hitPoints
         towerData[5][3] = 100;      //range
@@ -108,7 +108,7 @@ public class TowerData {
         towerData[5][10] = 100;     //towerRange
         towerData[5][11] = 10;      //towerAttackSpeed
 
-        towerData[6][0] = 1;        //caseNumber
+        towerData[6][0] = 3;        //caseNumber
         towerData[6][1] = 250;      //costs
         towerData[6][2] = 100;      //hitPoints
         towerData[6][3] = 100;      //range
@@ -142,7 +142,7 @@ public class TowerData {
     }
 
     public String getTowerImageName(int caseNumber) {
-        return towerImages[this.getTowerImage(caseNumber)];
+        return towerImages[caseNumber];
     }
 
     /**
