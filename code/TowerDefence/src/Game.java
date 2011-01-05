@@ -180,7 +180,7 @@ public class Game extends JFrame
                     }
                 }
 
-                Field firstField = firstPath.get(firstTower - 1);
+                Field firstField = m.get(3, 2);
                 Field lastField = firstPath.get(lastTower + 1);
 
                 Point first = firstField.getLocation();
@@ -572,6 +572,7 @@ public class Game extends JFrame
      */
     private Field[] findPath(Unit puppet, Field target)
     {
+        //System.out.println(System.currentTimeMillis());
         // PathNode queue with some of the funcionality
         Path path = new Path();
         Point start = puppet.getLocation();
@@ -612,10 +613,10 @@ public class Game extends JFrame
                     }
                 }
             }
-    /*        if (!(path.hasNext()))
+            if (!(path.hasNext()))
             {
                 return null;
-            }*/
+            }
         }
         PathNode endNode = new PathNode(end.x, end.y, temp.getCount() + 1);
         Field[] fieldResultList = new Field[temp.getCount() + 2];
@@ -624,6 +625,7 @@ public class Game extends JFrame
             fieldResultList[i] = m.get(endNode.getY(), endNode.getX());
             endNode = path.findNext(endNode);
         }
+        //System.out.println(System.currentTimeMillis());
         return fieldResultList;
     }
 
