@@ -3,6 +3,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 public class Field extends Component
 {
@@ -10,10 +14,36 @@ public class Field extends Component
     private boolean walkable;
     private boolean flyable;
     private boolean buildable;
+    private BufferedImage bf = null;
 
     public Field()
     {
         setSize(40, 40);
+        
+        URL url = getClass().getResource("images/grass.png");
+        try
+        {
+            bf = ImageIO.read(url);
+            Dimension size = getSize();
+            Graphics g = bf.createGraphics();
+            
+            double random = Math.random();
+            if (random < 0.5)
+            {
+                upSideDown((Graphics2D) g, size);
+            }
+
+            double random2 = Math.random();
+            if (random2 < 0.5)
+            {
+                mirrored((Graphics2D) g, size);
+            }
+            
+            paint(g);
+        }
+        catch (Exception e)
+        {}
+        
         walkable = true;
         flyable = true;
         buildable = true;
@@ -80,13 +110,8 @@ public class Field extends Component
     {
         // Get the size of the Field object
         Dimension size = getSize();
-        // Set the Color to draw in
-        g.setColor(new Color(200, 100, 0));
-        // Draw a rectangle and fill it with the set Color
-        g.fillRect(0, 0, size.width, size.height);
-        g.setColor(new Color(0, 0, 0));
-        // Draw a rectangle, but don't fill it with a Color (border only)
-        g.drawRect(0, 0, size.width, size.height);
+        
+        g.drawImage(bf, 0, 0, size.width, size.height, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
     }
     
     public void paintPath()
@@ -96,6 +121,29 @@ public class Field extends Component
         
         g.setColor(new Color(255, 255, 0));
         g.fillOval(0, 0, size.width, size.height);
+    }
+
+    /**
+     * Turns the graphics up size down
+     * 
+     * @param g Graphics2D
+     * @param size Dimension
+     */
+    public void upSideDown(Graphics2D g, Dimension size)
+    {
+        // It works the same as to convert matrices (not our Matrix objects)
+        g.scale(1, -1);
+        g.translate(0, -size.height);
+    }
+
+    /**
+     * @param g Graphics2D
+     * @param size Dimension
+     */
+    public void mirrored(Graphics2D g, Dimension size)
+    {
+        g.scale(-1, 1);
+        g.translate(-size.width, 0);
     }
 
     /**
