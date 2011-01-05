@@ -135,6 +135,9 @@ public class Controller extends Container
 
         public void mousePressed(MouseEvent me)
         {
+            setTakeAction(true);
+            setType(((CLabel) me.getComponent()).getType());
+            
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
