@@ -3,10 +3,12 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -21,11 +23,30 @@ public class Controller extends Container
     private boolean takeAction = false;
     private int type = -1;
     private TowerData towerData;
+    
+    private JPanel description = new JPanel(new GridLayout(5, 1));
+    private JLabel priceLbl = new JLabel("  Price: ");
+    private JLabel hitPointsLbl = new JLabel("  Hitpoints: ");
+    private JLabel rangeLbl = new JLabel("  Range: ");
+    private JLabel speedLbl = new JLabel("  Attack speed: ");
+    private JLabel damageLbl = new JLabel("  Damage: ");
 
     public void init()
     {
         setLayout(null);
         setSize(680, 180);
+        
+        description.setLocation(165, 20);
+        description.setSize(495, 125);
+        
+        description.add(priceLbl);
+        description.add(hitPointsLbl);
+        description.add(rangeLbl);
+        description.add(speedLbl);
+        description.add(damageLbl);
+        
+        add(description);
+        paintAll(getGraphics());
     }
 
     /**
@@ -79,7 +100,7 @@ public class Controller extends Container
     class CLabel extends JLabel
     {
         private BufferedImage bf = null;
-        private int type;
+        private int type = -1;
 
         /**
          * @param bfi
@@ -143,10 +164,25 @@ public class Controller extends Container
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
             g.setColor(Color.white);
             g.fillRect(0, 0, 60, 60);
+
+            if (((CLabel) me.getComponent()).getType() != -1)
+            {
+                priceLbl.setText("  Price: " + towerData.getCosts(((CLabel) me.getComponent()).getType()));
+                hitPointsLbl.setText("  Hitpoints: " + towerData.getHitpoints(((CLabel) me.getComponent()).getType()));
+                rangeLbl.setText("  Range: " + towerData.getRange(((CLabel) me.getComponent()).getType()));
+                speedLbl.setText("  Attack speed: " + towerData.getAttackSpeed(((CLabel) me.getComponent()).getType()));
+                damageLbl.setText("  Damage: " + towerData.getMissleDamage(((CLabel) me.getComponent()).getType()));
+            }
         }
 
         public void mouseExited(MouseEvent me)
         {
+            priceLbl.setText("");
+            hitPointsLbl.setText("");
+            rangeLbl.setText("");
+            speedLbl.setText("");
+            damageLbl.setText("");
+            
             paint(getGraphics());
         }
 
