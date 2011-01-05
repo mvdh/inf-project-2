@@ -64,15 +64,15 @@ public class Tower extends Field
         }
         else if (number == 2)
         {
-            url = getClass().getResource("images/towerA2.png");
+            url = getClass().getResource("images/towerB1.png");
         }
         else if (number == 3)
         {
-            url = getClass().getResource("images/towerA3.png");
+            url = getClass().getResource("images/towerC1.png");
         }
         else if (number == 4)
         {
-            url = getClass().getResource("images/towerA4.png");
+            url = getClass().getResource("images/towerD1.png");
         }
 
         if (url == null)
