@@ -165,7 +165,7 @@ public class Matrix
     {
         Field result = null;
 
-        if (i < size() && j < get(i).size())
+        if ((i < size() && i >= 0) && (j >= 0 && j < get(i).size()))
         {
             result = get(i).get(j);
         }

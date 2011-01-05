@@ -119,8 +119,8 @@ public class TestAndra extends JFrame
         new Timer(delay, taskPerformer).start();
     }
 
-    public static void main(String[] args)
+    /*public static void main(String[] args)
     {
         new TestAndra("FrameDemo");
-    }
+    }*/
 }
