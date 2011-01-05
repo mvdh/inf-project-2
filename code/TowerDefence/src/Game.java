@@ -2,7 +2,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,8 +24,6 @@ public class Game extends JFrame
     private ControlPanel controlPanel;
     private Field selected = null;
 
-    private int amountOfTowers = 0;
-    private int maximumLengthOfPath = 0;
     private Vector path;
 
     private Timer actionTimer = null;
@@ -51,8 +48,15 @@ public class Game extends JFrame
         for (int i = 0; i < 7; i++)
         {
             v = new Vector();
-            v.add(new Tree(bf));
-            // amountOfTowers++;
+            if (i != 3)
+            {
+                v.add(new Tree(bf));
+            }
+            else
+            {
+                v.add(new Field(bf));
+            }
+            
             for (int j = 0; j < 16; j++)
             {
                 v.add(new Field(bf));
@@ -143,7 +147,6 @@ public class Game extends JFrame
             t.setLocation(p);
             t.addMouseListener(new GameMouseAdapter());
             t.setWalkable(false);
-            amountOfTowers++;
             if (path != null && path.contains(f))
             {
                 m.remove(f);
@@ -156,15 +159,6 @@ public class Game extends JFrame
                 // remove the Field from the JFrame and add the Tower to it
                 remove(f);
                 add(t);
-
-                /*
-                 *  Path finding
-                 *  First find the first and last Tower objects which are placed in the ideal route.
-                 *  Then get the Field object before the first Tower and the Field object after the
-                 *  last Tower, split the ideal path at those points. Calculate the shortest path 
-                 *  between those 2 Field objects and merge the 3 parts together (before first Tower,
-                 *  new calculated path and after last Tower.
-                 */ 
                 
                 Field firstField = m.get(3, 2);
                 Point first = firstField.getLocation();
@@ -223,7 +217,6 @@ public class Game extends JFrame
             // remove the Tower from the JFrame and add the Field to it
             remove(t);
             add(f);
-            amountOfTowers--;
             f.repaint();
          //   System.out.println(m.toString());
         }
@@ -240,160 +233,6 @@ public class Game extends JFrame
         });
         t.start();
     }
-
-    /**
-     * 
-     * @param start Point
-     * @param end Point
-     * @return 
-     * Shortest path in a Vector
-     */
-    public Vector calcPath(Point start, Point end)
-    {
-        Vector result = null;
-
-        // If the start isn't equal to the end, it is necessary to calculate a path
-        if (start != end)
-        {
-            // The maximum length of the path is the ideal path + 2 * (the amount of Tower objects divided by 2,
-            // rounded (1/2 = 1, 2/2 = 1, 3/2 = 2, 4/2 = 2, etc.))
-            maximumLengthOfPath = Math.abs(end.x - start.x + end.y - start.y) + (int) Math.round(((double) amountOfTowers) / 2) * 2;
-            result = next(new Vector(), start, end);
-            // If no path is found
-            if (result == null)
-            {
-                System.out.println("No shortest path");
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * 
-     * @param passed Vector
-     * @param current Point
-     * @param end Point
-     * @return
-     * The shortest path from the current Point to the end Point
-     */
-    public Vector next(Vector passed, Point current, Point end)
-    {
-        Vector result = null;
-        // Get the current Field
-        Field f = m.get(current.y, current.x);
-        // At the current Field to the Field objects which have been passed, needs to be a new object
-        Vector passedNew = new Vector();
-        for (int i = 0; i < passed.size(); i++)
-        {
-            passedNew.add(passed.get(i));
-        }
-        passedNew.add(f);
-        // Calculate the distance between the current Point and the end Point
-        int distance = Math.abs(end.x - current.x + end.y - current.y);
-
-        // If the end Point isn't reached yet and the amount of passed Field objects + the distance to the end
-        // is smaller then the maximum length of the path
-        if (!m.get(end.y, end.x).equals(f) && passed.size() + distance <= maximumLengthOfPath)
-        {
-            Point p;
-
-            // If it's possible to go West
-            if (current.x < 15)
-            {
-                p = new Point(current.x + 1, current.y);
-                // If p isn't a Tower and the Vector of passed objects doesn't contain the Field
-                if (!(m.get(p.y, p.x) instanceof Tower) && !passedNew.contains(m.get(p.y, p.x)))
-                {
-                    // Look further
-                    Vector all = next(passedNew, p, end);
-                    
-                    // all isn't equals to null if the end Point is reached
-                    if (all != null)
-                    {
-                        result = all;
-                    }
-                }
-            }
-
-            // If it's possible to go East
-            if (current.x > 0)
-            {
-                p = new Point(current.x - 1, current.y);
-                // If p isn't a Tower and the Vector of passed objects doesn't contain the Field
-                if (!(m.get(p.y, p.x) instanceof Tower) && !passedNew.contains(m.get(p.y, p.x)))
-                {
-                    // Look further
-                    Vector all = next(passedNew, p, end);
-
-                    // all isn't equals to null if the end Point is reached
-                    if (all != null)
-                    {
-                        // If there is no path found, or the path found is shorter
-                        if (result == null || result != null && result.size() > all.size())
-                        {
-                            result = all;
-                        }
-                    }
-                }
-            }
-
-            // If it's possible to go South
-            if (current.y > 0)
-            {
-                p = new Point(current.x, current.y - 1);
-                // If p isn't a Tower and the Vector of passed objects doesn't contain the Field
-                if (!(m.get(p.y, p.x) instanceof Tower) && !passedNew.contains(m.get(p.y, p.x)))
-                {
-                    // Look further
-                    Vector all = next(passedNew, p, end);
-
-                    // all isn't equals to null if the end Point is reached
-                    if (all != null)
-                    {
-                        // If there is no path found, or the path found is shorter
-                        if (result == null || result != null && result.size() > all.size())
-                        {
-                            result = all;
-                        }
-                    }
-                }
-            }
-
-            // If it's possible to go North
-            if (current.y < 6)
-            {
-                p = new Point(current.x, current.y + 1);
-                // If p isn't a Tower and the Vector of passed objects doesn't contain the Field
-                if (!(m.get(p.y, p.x) instanceof Tower) && !passedNew.contains(m.get(p.y, p.x)))
-                {
-                    // Look further
-                    Vector all = next(passedNew, p, end);
-
-                    // all isn't equals to null if the end Point is reached
-                    if (all != null)
-                    {
-                        // If there is no path found, or the path found is shorter
-                        if (result == null || result != null && result.size() > all.size())
-                        {
-                            result = all;
-                        }
-                    }
-                }
-            }
-        }
-        // If the current Field equals the end Field, result = all passed Field objects
-        else if (m.get(end.y, end.x).equals(f))
-        {
-            result = passedNew;
-        }
-
-        return result;
-    }
-
-    /**
-     * 
-     */
 
     public static void main(String[] args)
     {

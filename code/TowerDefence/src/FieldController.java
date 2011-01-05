@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -52,22 +53,22 @@ public class FieldController extends Controller
 
         CLabel lbl = new CLabel(A1, 1);
         lbl.setLocation(20, 20);
-        lbl.addMouseListener(new FCMouseAdapter());
+        lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
 
         lbl = new CLabel(A2, 2);
         lbl.setLocation(85, 20);
-        lbl.addMouseListener(new FCMouseAdapter());
+        lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
 
         lbl = new CLabel(A3, 3);
         lbl.setLocation(20, 85);
-        lbl.addMouseListener(new FCMouseAdapter());
+        lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
 
         lbl = new CLabel(A4, 4);
         lbl.setLocation(85, 85);
-        lbl.addMouseListener(new FCMouseAdapter());
+        lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
     }
     
@@ -77,8 +78,6 @@ public class FieldController extends Controller
         {
             super.mousePressed(me);
             
-            setTakeAction(true);
-            setType(((CLabel) me.getComponent()).getType());
         }
     }
 }
