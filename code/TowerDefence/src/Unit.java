@@ -16,6 +16,11 @@ public class Unit extends Sprite
     private int pathCounter;
     private double speed;
 
+    public Unit(){
+        super();
+        aviation = false;
+    }
+
     public double getSpeed()
     {
         return speed;

@@ -29,9 +29,7 @@ public class Path
 
     public PathNode next()
     {
-        PathNode res = path.get(counter);
-        counter++;
-        return res;
+        return path.get(counter++);
     }
 
     public void add(PathNode a)

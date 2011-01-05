@@ -14,6 +14,9 @@ public class Field extends Component
     public Field()
     {
         setSize(40, 40);
+        walkable = true;
+        flyable = true;
+        buildable = true;
     }
 
     /**

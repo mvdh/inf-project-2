@@ -132,7 +132,7 @@ public class Game extends JFrame
             Tower t = new Tower(type);
             t.setLocation(p);
             t.addMouseListener(new GameMouseAdapter());
-
+            t.setWalkable(false);
             amountOfTowers++;
             if (path != null && path.contains(f))
             {
@@ -189,14 +189,25 @@ public class Game extends JFrame
                 Point start = new Point(first.x / 40, first.y / 40);
                 Point end = new Point(last.x / 40, last.y / 40);
 
+                Unit unit = new Unit();
+                unit.setLocation(first);
                 Vector[] firstPart = firstPath.split(firstPath.get(firstTower));
                 Vector lastPart = firstPart[1];
                 if (amountOfTowers > 1 && firstTower != lastTower)
                 {
                     lastPart = firstPart[1].split(firstPath.get(lastTower))[1];
                 }
-                Vector newPart = calcPath(start, end);
-                path = firstPart[0].mergeAndCleanUp(newPart).mergeAndCleanUp(lastPart);
+                Field[] fields = findPath(unit, m.get(3, 14));
+                //System.out.println(fields.length);
+                //System.out.println(fields == null);
+                Vector newPart = new Vector();
+                for(int i = 0; i < fields.length; i++){
+                    //System.out.println(fields[i]);
+                    newPart.add(fields[i]);
+                }
+
+                path = newPart;
+                //path = firstPart[0].mergeAndCleanUp(newPart).mergeAndCleanUp(lastPart);
 
                 // for (int i = 0; i < firstPath.size(); i++)
                 // {
@@ -251,7 +262,7 @@ public class Game extends JFrame
 
             t.repaint();
             System.out.println(m.toString());
-            System.out.println(path.print());
+//            System.out.println(path.print());
         }
     }
 
@@ -566,8 +577,12 @@ public class Game extends JFrame
     {
         // PathNode queue with some of the funcionality
         Path path = new Path();
-        Point start = m.getPoint(puppet.getPath()[puppet.getPathCounter() - 1]);
-        Point end = m.getPoint(target);
+        Point start = puppet.getLocation();
+        start.x /= 40;//m.getPoint(puppet.getPath()[puppet.getPathCounter() - 1]);
+        start.y /= 40;
+        Point end = target.getLocation();
+        end.x /= 40;
+        end.y /= 40;
         // PathNode that will be called in the while loop
         PathNode temp = new PathNode(start.x, start.y, 0);
         path.add(temp);
@@ -575,6 +590,7 @@ public class Game extends JFrame
         Field f = null;
         while (!path.contains(end))
         {
+            //System.out.println("pathfind "  +  temp.getCount() + "\n" + m.get(temp.getY(), temp.getX()).isFlyable());
             temp = path.next();
             tempL[0] = new PathNode(temp.getX() + 1, temp.getY(), temp.getCount() + 1);
             tempL[1] = new PathNode(temp.getX(), temp.getY() + 1, temp.getCount() + 1);
@@ -582,7 +598,7 @@ public class Game extends JFrame
             tempL[3] = new PathNode(temp.getX(), temp.getY() - 1, temp.getCount() + 1);
             for (int k = 0; k < 4; k++)
             {
-                f = m.get(tempL[k].getX(), tempL[k].getY());
+                f = m.get(tempL[k].getY(), tempL[k].getX());
                 if (f != null)
                 {
                     if (puppet.getAviation() && !f.isFlyable())
@@ -599,16 +615,16 @@ public class Game extends JFrame
                     }
                 }
             }
-            if (!(path.hasNext()))
+    /*        if (!(path.hasNext()))
             {
                 return null;
-            }
+            }*/
         }
         PathNode endNode = new PathNode(end.x, end.y, temp.getCount() + 1);
         Field[] fieldResultList = new Field[temp.getCount() + 2];
         for (int i = fieldResultList.length - 1; i > -1; i--)
         {
-            fieldResultList[i] = m.get(endNode.getX(), endNode.getY());
+            fieldResultList[i] = m.get(endNode.getY(), endNode.getX());
             endNode = path.findNext(endNode);
         }
         return fieldResultList;
@@ -664,12 +680,9 @@ public class Game extends JFrame
                 if (t.getCounter() == towerData.getMissleSpeed(t.getCaseNumber()))
                 {
                     // range check
-                    a = m.getPoint(t);
-                    a.x *= 40;
+                    a = t.getLocation();
                     a.x += 20;
-                    a.y *= 40;
                     a.y += 20;
-
                     for (Unit u : spriteList.getUnitList())
                     {
                         b = u.getLocation();
@@ -679,6 +692,7 @@ public class Game extends JFrame
                             Projectile tempP = new Projectile(towerData.getMissleDamage(t.getCaseNumber()), towerData.getMissleImage(t.getCaseNumber()), (double) towerData.getMissleSpeed(t.getCaseNumber()), towerData.getMissleRange(t.getCaseNumber()), fireMissle(t, u), a);
                             spriteList.add(tempP);
                             add(tempP);
+                            break;
                         }
                     }
                 }
@@ -702,11 +716,14 @@ public class Game extends JFrame
                         {
                             //award reward
                             remove(u);
+                            spriteList.remove(u);
                             cleanUp.add(u);
                         }
                     }
                 }
                 m.endMove();
+                remove(m);
+                spriteList.remove(m);
                 cleanUp.add(m);
             }
         }
