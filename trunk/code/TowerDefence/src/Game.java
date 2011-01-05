@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -24,11 +26,23 @@ public class Game extends JFrame
     private SpriteList spriteList;
     private ControlPanel controlPanel;
     private JPanel fieldPanel = new JPanel();
+    private JPanel statsPanel = new JPanel();
+    private JLabel goldLbl = new JLabel();
+    private JLabel pointsLbl = new JLabel();
+    private JLabel healthLbl = new JLabel();
+    
     private Field selected = null;
 
     private Vector path;
 
     private Timer actionTimer = null;
+    
+    // Start values
+    private int gold = 0;
+    private int points = 0;
+    private int castleHealth = 600;
+    
+    // Field background image
     private BufferedImage bf = null;
 
     public Game()
@@ -45,6 +59,14 @@ public class Game extends JFrame
         }
         catch (Exception e)
         {}
+        
+        statsPanel.setLayout(new GridLayout(1, 3));
+        statsPanel.setSize(670, 20);
+        statsPanel.setLocation(10, 0);
+        
+        statsPanel.add(goldLbl);
+        statsPanel.add(pointsLbl);
+        statsPanel.add(healthLbl);
         
         fieldPanel.setLayout(null);
         fieldPanel.setSize(680, 360);
@@ -90,10 +112,9 @@ public class Game extends JFrame
 
         setTowerData(towerData);
         spriteList = new SpriteList();
-//        Tower field = new Tower(bf);
-//        controlPanel = new ControlPanel(getTowerData(), field);
+        add(statsPanel);
+        updateStats();
         add(fieldPanel);
-//        add(controlPanel);
 
         //System.out.println(m.toString());
         paintAll(getGraphics());
@@ -129,6 +150,13 @@ public class Game extends JFrame
             }
         });
         add(testButton);
+    }
+    
+    public void updateStats()
+    {
+        goldLbl.setText("Gold: " + gold);
+        pointsLbl.setText("Points: " + points);
+        healthLbl.setText("Health: " + castleHealth);
     }
 
     public void setTowerData(TowerData towerData)
