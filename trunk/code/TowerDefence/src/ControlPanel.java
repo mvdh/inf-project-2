@@ -15,10 +15,10 @@ public class ControlPanel extends JPanel {
     public ControlPanel(TowerData towerData, Field field) {
         setLocation(0, 380);
         setSize(680, 180);
+        setTowerData(towerData);
         setField(field);
         findType(field);
         setVisible(true);
-        setTowerData(towerData);
         this.setLayout(null);
         setBackground(Color.white);
     }

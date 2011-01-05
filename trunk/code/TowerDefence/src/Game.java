@@ -110,7 +110,7 @@ public class Game extends JFrame
 
         }
 
-        setTowerData(towerData);
+        setTowerData(new TowerData());
         spriteList = new SpriteList();
         add(statsPanel);
         updateStats();
@@ -343,6 +343,7 @@ public class Game extends JFrame
                             else if (!(f instanceof Tree))
                             {
                                 int type = controlPanel.getController().getType();
+                                System.out.println(type);
                                 FieldToTower(f, type);
                                 controlPanel.getController().setTakeAction(false);
                                 remove(controlPanel);
