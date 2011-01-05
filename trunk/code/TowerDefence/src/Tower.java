@@ -11,17 +11,17 @@ public class Tower extends Field
     private int counter;
     private int caseNumber;
 
-    public Tower()
+    public Tower(BufferedImage bg)
     {
         // Just to set the size of the object
-        super();
+        super(bg);
         this.setCaseNumber(0);
         this.setCounter(0);
     }
 
-    public Tower(int tower)
+    public Tower(BufferedImage bg, int tower)
     {
-        super();
+        super(bg);
         this.setCaseNumber(tower);
         this.setCounter(0);
     }
