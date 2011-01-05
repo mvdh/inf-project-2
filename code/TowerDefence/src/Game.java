@@ -24,7 +24,6 @@ public class Game extends JFrame
     private int amountOfTowers = 0;
     private int maximumLengthOfPath = 0;
     private Vector path;
-    private Vector firstPath;
 
     private Timer actionTimer = null;
 
@@ -72,14 +71,13 @@ public class Game extends JFrame
         controlPanel = new ControlPanel(getTowerData(), field);
         add(controlPanel);
 
-        System.out.println(m.toString());
+        //System.out.println(m.toString());
         paintAll(getGraphics());
 
-        path = calcPath(new Point(2, 3), new Point(15, 3));
-        firstPath = new Vector();
-        for (int i = 0; i < path.size(); i++)
+        path = new Vector();
+        for (int i = 2; i < 17; i++)
         {
-            firstPath.add(path.get(i));
+            path.add(m.get(3, i));
         }
     }
 
@@ -157,9 +155,9 @@ public class Game extends JFrame
                  */ 
                 
                 int firstTower = 0;
-                for (int i = 0; i < firstPath.size(); i++)
+                for (int i = 0; i < path.size(); i++)
                 {
-                    Field someField = firstPath.get(i);
+                    Field someField = path.get(i);
                     Point someLoc = m.getPoint(someField);
                     if (m.get(someLoc.y, someLoc.x) instanceof Tower)
                     {
@@ -169,9 +167,9 @@ public class Game extends JFrame
                 }
 
                 int lastTower = 0;
-                for (int i = firstPath.size() - 1; i > 0; i--)
+                for (int i = path.size() - 1; i > 0; i--)
                 {
-                    Field someField = firstPath.get(i);
+                    Field someField = path.get(i);
                     Point someLoc = m.getPoint(someField);
                     if (m.get(someLoc.y, someLoc.x) instanceof Tower)
                     {
@@ -181,7 +179,7 @@ public class Game extends JFrame
                 }
 
                 Field firstField = m.get(3, 2);
-                Field lastField = firstPath.get(lastTower + 1);
+                Field lastField = path.get(lastTower + 1);
 
                 Point first = firstField.getLocation();
                 Point last = lastField.getLocation();
@@ -191,13 +189,8 @@ public class Game extends JFrame
 
                 Unit unit = new Unit();
                 unit.setLocation(first);
-                Vector[] firstPart = firstPath.split(firstPath.get(firstTower));
-                Vector lastPart = firstPart[1];
-                if (amountOfTowers > 1 && firstTower != lastTower)
-                {
-                    lastPart = firstPart[1].split(firstPath.get(lastTower))[1];
-                }
-                Field[] fields = findPath(unit, m.get(3, 14));
+                
+                Field[] fields = findPath(unit, m.get(3, 16));
                 //System.out.println(fields.length);
                 //System.out.println(fields == null);
                 Vector newPart = new Vector();
@@ -261,7 +254,7 @@ public class Game extends JFrame
             }
 
             t.repaint();
-            System.out.println(m.toString());
+           // System.out.println(m.toString());
 //            System.out.println(path.print());
         }
     }
@@ -291,7 +284,7 @@ public class Game extends JFrame
             add(f);
             amountOfTowers--;
             f.repaint();
-            System.out.println(m.toString());
+         //   System.out.println(m.toString());
         }
     }
 
