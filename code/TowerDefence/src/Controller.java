@@ -20,6 +20,7 @@ public class Controller extends Container
 {
     private boolean takeAction = false;
     private int type = -1;
+    private TowerData towerData;
 
     public void init()
     {
@@ -57,6 +58,22 @@ public class Controller extends Container
     public int getType()
     {
         return type;
+    }
+
+    /**
+     * @return
+     */
+    public TowerData getTowerData()
+    {
+        return towerData;
+    }
+
+    /**
+     * @param towerData
+     */
+    public void setTowerData(TowerData towerDataIn)
+    {
+        towerData = towerDataIn;
     }
 
     class CLabel extends JLabel
