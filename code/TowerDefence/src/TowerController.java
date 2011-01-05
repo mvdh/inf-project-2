@@ -16,8 +16,11 @@ public class TowerController extends Controller {
     private TowerData towerData;
 
     public TowerController(TowerData td, Tower t) {
+        setTowerData(td);
+
+        //setCaseNumber(t.getCaseNumber());
+        setCaseNumber(1);
         init();
-        setCaseNumber(t.getCaseNumber());
     }
 
     /**
@@ -71,27 +74,38 @@ public class TowerController extends Controller {
     public void init() {
         super.init();
         BufferedImage img = null;
-        URL url = getClass().getResource("images/boom.png");
 
-        try {
-            img = ImageIO.read(url);
-        } catch (Exception e) {
-        }
+        //check welke upgradables er zijn, en aan de hand daarvan moeten plaatjes worden geladen
+        ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(this.getCaseNumber(), 0);
+        if (upgradables.get(0) != -1) {
+            System.out.println("Some upgradables");
 
-        CLabel label = new CLabel(img);
-        label.addMouseListener(new TCMouseAdapter());
-        label.setLocation(20, 20);
-        add(label);
-    }
+            URL url = getClass().getResource("images/boom.png");
+            try {
+                img = ImageIO.read(url);
+            } catch (Exception e) {
+            }
 
-    class TCMouseAdapter extends CMouseAdapter
-    {
-        public void mousePressed(MouseEvent me)
-        {
-            super.mousePressed(me);
+            CLabel label = new CLabel(img);
+            label.addMouseListener(new CMouseAdapter());
+            label.setLocation(20, 20);
+            add(label);
 
-            setTakeAction(true);
-            setType(((CLabel) me.getComponent()).getType());
+            int position = 85;
+            for (int upgr : upgradables) {
+                url = getClass().getResource("images/tower" + this.getTowerData().getTowerImageName(upgr) + ".png");
+                try {
+                    img = ImageIO.read(url);
+                } catch (Exception e) {
+                }
+
+                label = new CLabel(img);
+                label.addMouseListener(new CMouseAdapter());
+                label.setLocation(position, 20);
+                add(label);
+
+                position += 65;
+            }
         }
     }
 }
