@@ -558,9 +558,6 @@ public class Game extends JFrame
             g.setColor(new Color(0, 0, 255));
             // Draw a rectangle and fill it with the set Color
             g.fillRect(0, 0, size.width, size.height);
-            g.setColor(new Color(0, 0, 0));
-            // Draw a rectangle, but don't fill it with a Color (border only)
-            g.drawRect(0, 0, size.width, size.height);
         }
     }
 
