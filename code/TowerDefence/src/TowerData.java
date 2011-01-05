@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 
-
 /**
  *
  * @author Maarten van den Hoek
@@ -14,42 +13,44 @@ public class TowerData {
      * 2    hitPoints
      * 3    range
      * 4    previousCaseNumber
-     *
-     *      //missle stats
      * 5    missleDamage
      * 6    missleImage
      * 7    missleSpeed
      * 8    towerImage
      * 9    missleRange
+     * 10   towerRange
      */
-    private int[][] towerData;
+    final private int[][] towerData;
 
     /**
      * 
      */
     public TowerData() {
-        towerData = new int[3][10];
+        towerData = new int[3][11];
+        
         towerData[0][0] = 0;        //caseNumber
         towerData[0][1] = 200;      //costs
         towerData[0][2] = 100;      //hitPoints
         towerData[0][3] = 100;      //range
-        towerData[0][4] = 0;        //previousCaseNumber
+        towerData[0][4] = -1;       //previousCaseNumber
         towerData[0][5] = 2;        //missleDamage
         towerData[0][6] = 1;        //missleImage
         towerData[0][7] = 10;       //missleSpeed
         towerData[0][8] = 1;        //towerImage
         towerData[0][9] = 20;       //missleRange
+        towerData[0][10] = 100;     //towerRange
 
         towerData[1][0] = 1;        //caseNumber
         towerData[1][1] = 250;      //costs
         towerData[1][2] = 100;      //hitPoints
         towerData[1][3] = 100;      //range
-        towerData[1][4] = 1;        //previousCaseNumber
+        towerData[1][4] = -1;       //previousCaseNumber
         towerData[1][5] = 2;        //missleDamage
         towerData[1][6] = 1;        //missleImage
         towerData[1][7] = 15;       //missleSpeed
         towerData[1][8] = 1;        //towerImage
         towerData[1][9] = 20;       //missleRange
+        towerData[0][10] = 110;     //towerRange
 
         towerData[2][0] = 2;        //caseNumber
         towerData[2][1] = 275;      //costs
@@ -60,7 +61,8 @@ public class TowerData {
         towerData[2][6] = 2;        //missleImage
         towerData[2][7] = 20;       //missleSpeed
         towerData[2][8] = 1;        //towerImage
-        towerData[2][9] = 20;       //missleRange 
+        towerData[2][9] = 20;       //missleRange
+        towerData[0][10] = 120;     //towerRange
     }
 
     public int[][] getTowerData() {
@@ -79,12 +81,12 @@ public class TowerData {
         int[][] data = this.getTowerData();
 
         for (int i = 0; i < data.length; i++) {
-            if (data[i][4] == caseNumber && data[i][1] < currency ) {
+            if (data[i][4] == caseNumber) {
                 result.add(data[i][0]);
             }
         }
 
-        if(result.isEmpty()){
+        if (result.isEmpty()) {
             result.add(-1);
         }
 
@@ -199,5 +201,16 @@ public class TowerData {
      */
     public int getMissleRange(int caseNumber) {
         return towerData[caseNumber][9];
+    }
+
+    /**
+     * Returns the tower range where the caseNumber of the tower
+     * equals the parameter caseNumber.
+     *
+     * @param caseNumber the caseNumber of the towertype
+     * @return the tower range
+     */
+    public int getTowerRange(int caseNumber) {
+        return towerData[caseNumber][10];
     }
 }
