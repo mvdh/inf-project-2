@@ -23,7 +23,7 @@ public class TowerData {
     final private int[][] towerData;
 
     /**
-     * 
+     * Constructor. Here is all the information of the towers added to towerData
      */
     public TowerData() {
         towerData = new int[3][11];
@@ -65,6 +65,11 @@ public class TowerData {
         towerData[0][10] = 120;     //towerRange
     }
 
+    /**
+     * Return the towerData. towerData contains the information of all towers.
+     *
+     * @return the towerData.
+     */
     public int[][] getTowerData() {
         return this.towerData;
     }
@@ -80,12 +85,22 @@ public class TowerData {
         ArrayList<Integer> result = new ArrayList();
         int[][] data = this.getTowerData();
 
+        /*
+         * Determine if there is a tower with the caseNumber as
+         * previousCaseNumber. If a tower has that previousCaseNumber, add it to
+         * the list. The tower then is an upgradable of the current tower.
+         */
         for (int i = 0; i < data.length; i++) {
             if (data[i][4] == caseNumber) {
                 result.add(data[i][0]);
             }
         }
 
+        /*
+         * If the current tower has no upgradables, add the value '-1' to the
+         * list. If this value is passed to the list, it is clear that there is
+         * no upgradable.
+         */
         if (result.isEmpty()) {
             result.add(-1);
         }
