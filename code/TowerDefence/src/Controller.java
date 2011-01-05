@@ -102,7 +102,7 @@ public class Controller extends Container
 
         public void paint(Graphics g)
         {
-            g.setColor(new Color(200, 100, 0));
+            g.setColor(new Color(200, 200, 200));
             g.fillRect(0, 0, 60, 60);
             if (bf != null)
             {
