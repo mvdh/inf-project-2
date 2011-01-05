@@ -52,9 +52,8 @@ public class Game extends JFrame
         {
             v = new Vector();
             v.add(new Tree(bf));
-            v.add(new Tower(bf));
             // amountOfTowers++;
-            for (int j = 0; j < 15; j++)
+            for (int j = 0; j < 16; j++)
             {
                 v.add(new Field(bf));
             }
