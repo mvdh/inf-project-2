@@ -91,14 +91,19 @@ public class Game extends JFrame
         setVisible(true);
         setLayout(null);
 
-        JButton testButton = new JButton("calc");
+        JButton testButton = new JButton("ShowPath");
         testButton.setSize(150, 25);
         testButton.setLocation(25, 600);
         testButton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent arg0)
             {
-                path = calcPath(new Point(2, 3), new Point(15, 3));
+                //path = calcPath(new Point(2, 3), new Point(15, 3));
+                
+                for (int i = 0; i < path.size(); i++)
+                {
+                    path.get(i).paintPath();
+                }
             }
         });
         add(testButton);
