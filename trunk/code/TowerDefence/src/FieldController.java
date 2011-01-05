@@ -7,8 +7,6 @@ import javax.imageio.ImageIO;
  */
 public class FieldController extends Controller
 {
-    private TowerData towerData;
-
     public FieldController(TowerData towerDataIn)
     {
         init();
@@ -71,21 +69,5 @@ public class FieldController extends Controller
         lbl.setLocation(85, 85);
         lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
-    }
-
-    /**
-     * @return
-     */
-    public TowerData getTowerData()
-    {
-        return towerData;
-    }
-
-    /**
-     * @param towerData
-     */
-    public void setTowerData(TowerData towerDataIn)
-    {
-        towerData = towerDataIn;
     }
 }
