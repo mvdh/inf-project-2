@@ -154,90 +154,19 @@ public class Game extends JFrame
                  *  new calculated path and after last Tower.
                  */ 
                 
-                int firstTower = 0;
-                for (int i = 0; i < path.size(); i++)
-                {
-                    Field someField = path.get(i);
-                    Point someLoc = m.getPoint(someField);
-                    if (m.get(someLoc.y, someLoc.x) instanceof Tower)
-                    {
-                        firstTower = i;
-                        break;
-                    }
-                }
-
-                int lastTower = 0;
-                for (int i = path.size() - 1; i > 0; i--)
-                {
-                    Field someField = path.get(i);
-                    Point someLoc = m.getPoint(someField);
-                    if (m.get(someLoc.y, someLoc.x) instanceof Tower)
-                    {
-                        lastTower = i;
-                        break;
-                    }
-                }
-
                 Field firstField = m.get(3, 2);
-                Field lastField = path.get(lastTower + 1);
-
                 Point first = firstField.getLocation();
-                Point last = lastField.getLocation();
-
-                Point start = new Point(first.x / 40, first.y / 40);
-                Point end = new Point(last.x / 40, last.y / 40);
 
                 Unit unit = new Unit();
                 unit.setLocation(first);
                 
                 Field[] fields = findPath(unit, m.get(3, 16));
-                //System.out.println(fields.length);
-                //System.out.println(fields == null);
                 Vector newPart = new Vector();
                 for(int i = 0; i < fields.length; i++){
-                    //System.out.println(fields[i]);
                     newPart.add(fields[i]);
                 }
 
                 path = newPart;
-                //path = firstPart[0].mergeAndCleanUp(newPart).mergeAndCleanUp(lastPart);
-
-                // for (int i = 0; i < firstPath.size(); i++)
-                // {
-                // Field check = firstPath.get(i);
-                // Point loc = m.getPoint(check);
-                // if (m.get(loc.y, loc.x) instanceof Tower && i > 0 && i + 1 <
-                // firstPath.size())
-                // {
-                // int x = 1;
-                // Field lastField = firstPath.get(i - x);
-                // Point lastLoc = m.getPoint(lastField);
-                // while (m.get(lastLoc.y, lastLoc.x) instanceof Tower)
-                // {
-                // x--;
-                // lastField = firstPath.get(i + x);
-                // lastLoc = m.getPoint(lastField);
-                // }
-                // x = 1;
-                // Field nextField = firstPath.get(i + x);
-                // Point nextLoc = m.getPoint(nextField);
-                // while (m.get(nextLoc.y, nextLoc.x) instanceof Tower)
-                // {
-                // x++;
-                // nextField = firstPath.get(i + x);
-                // nextLoc = m.getPoint(nextField);
-                // }
-                // Point last = lastField.getLocation();
-                // Point next = nextField.getLocation();
-                // Point start = new Point(last.x / 40, last.y / 40);
-                // Point end = new Point(next.x / 40, next.y / 40);
-                //    
-                // Vector[] oldPath = firstPath.split(check);
-                // Vector newPath = calcPath(start, end);
-                // path = oldPath[0].mergeAndCleanUp(newPath).mergeAndCleanUp(
-                // oldPath[1]);
-                // }
-                // }
             }
             else
             {
@@ -254,8 +183,8 @@ public class Game extends JFrame
             }
 
             t.repaint();
-           // System.out.println(m.toString());
-//            System.out.println(path.print());
+            System.out.println(m.toString());
+            System.out.println(path.print());
         }
     }
 
