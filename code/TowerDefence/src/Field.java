@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -16,42 +15,43 @@ public class Field extends Component
     private boolean buildable;
     private BufferedImage bf = null;
 
-    public Field()
+    public Field(BufferedImage bg)
     {
         setSize(40, 40);
-        
-        URL url = getClass().getResource("images/grass.png");
-        try
-        {
-            bf = ImageIO.read(url);
-            Dimension size = getSize();
-            Graphics g = bf.createGraphics();
-            
-            double random = Math.random();
-            if (random < 0.5)
-            {
-                upSideDown((Graphics2D) g, size);
-            }
 
-            double random2 = Math.random();
-            if (random2 < 0.5)
-            {
-                mirrored((Graphics2D) g, size);
-            }
-            
-            paint(g);
-        }
-        catch (Exception e)
-        {}
-        
+        randomChange(bg);
+
         walkable = true;
         flyable = true;
         buildable = true;
     }
+    
+    public void randomChange(BufferedImage bg)
+    {
+        Dimension size = getSize();
+        bf = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+        Graphics g = bf.createGraphics();
+
+        g.drawImage(bg, 0, 0, bg.getWidth(), bg.getHeight(), this);
+        
+        double random = Math.random();
+        if (random < 0.5)
+        {
+            upSideDown((Graphics2D) g, size);
+        }
+
+        double random2 = Math.random();
+        if (random2 < 0.5)
+        {
+            mirrored((Graphics2D) g, size);
+        }
+        
+        paint(g);
+    }
 
     /**
-     *
      * Is it possible to build at this Field?
+     * 
      * @return buildable
      */
     public boolean isBuildable()
@@ -60,7 +60,6 @@ public class Field extends Component
     }
 
     /**
-     *
      * @param buildable
      */
     public void setBuildable(boolean buildable)
@@ -69,8 +68,8 @@ public class Field extends Component
     }
 
     /**
-     *
      * Is it possible to fly over this Field?
+     * 
      * @return flyable
      */
     public boolean isFlyable()
@@ -79,7 +78,6 @@ public class Field extends Component
     }
 
     /**
-     *
      * @param flyable
      */
     public void setFlyable(boolean flyable)
@@ -88,8 +86,8 @@ public class Field extends Component
     }
 
     /**
-     *
      * Is it possible to walk over this Field?
+     * 
      * @return walkable
      */
     public boolean isWalkable()
@@ -98,7 +96,6 @@ public class Field extends Component
     }
 
     /**
-     *
      * @param walkable
      */
     public void setWalkable(boolean walkable)
@@ -110,15 +107,15 @@ public class Field extends Component
     {
         // Get the size of the Field object
         Dimension size = getSize();
-        
+
         g.drawImage(bf, 0, 0, size.width, size.height, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
     }
-    
+
     public void paintPath()
     {
         Graphics g = getGraphics();
         Dimension size = getSize();
-        
+
         g.setColor(new Color(255, 255, 0));
         g.fillOval(0, 0, size.width, size.height);
     }
@@ -147,7 +144,6 @@ public class Field extends Component
     }
 
     /**
-     *
      * @param f Field
      * @return this.equals(f)
      */
@@ -155,11 +151,11 @@ public class Field extends Component
     {
         return f != null && f.getLocation().equals(getLocation());
     }
-    
+
     public String toString()
     {
         String result = "<Field:\t" + getLocation() + ">";
-        
+
         return result;
     }
 }

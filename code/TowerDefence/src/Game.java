@@ -2,12 +2,16 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,6 +30,7 @@ public class Game extends JFrame
     private Vector path;
 
     private Timer actionTimer = null;
+    private BufferedImage bf = null;
 
     public Game()
     {
@@ -34,16 +39,24 @@ public class Game extends JFrame
 
         m = new Matrix();
 
+        URL url = getClass().getResource("images/grass.png");
+        try
+        {
+            bf = ImageIO.read(url);
+        }
+        catch (Exception e)
+        {}
+        
         Vector v;
         for (int i = 0; i < 7; i++)
         {
             v = new Vector();
-            v.add(new Tree());
-            v.add(new Tower());
+            v.add(new Tree(bf));
+            v.add(new Tower(bf));
             // amountOfTowers++;
             for (int j = 0; j < 15; j++)
             {
-                v.add(new Field());
+                v.add(new Field(bf));
             }
             m.add(v);
         }
@@ -67,7 +80,7 @@ public class Game extends JFrame
 
         setTowerData(towerData);
         spriteList = new SpriteList();
-        Tower field = new Tower();
+        Tower field = new Tower(bf);
         controlPanel = new ControlPanel(getTowerData(), field);
         add(controlPanel);
 
@@ -127,7 +140,7 @@ public class Game extends JFrame
         if (f != null)
         {
             Point p = f.getLocation();
-            Tower t = new Tower(type);
+            Tower t = new Tower(bf, type);
             t.setLocation(p);
             t.addMouseListener(new GameMouseAdapter());
             t.setWalkable(false);
@@ -198,7 +211,7 @@ public class Game extends JFrame
         if (t != null)
         {
             Point p = t.getLocation();
-            Field f = new Field();
+            Field f = new Field(bf);
             f.setLocation(p);
             f.addMouseListener(new GameMouseAdapter());
             m.remove(t);

@@ -9,10 +9,10 @@ public class Tree extends Field
 {
     private BufferedImage img = null;
 
-    public Tree()
+    public Tree(BufferedImage bg)
     {
         // Just to set the size of the object
-        super();
+        super(bg);
         // Load an image
         loadImage();
     }
