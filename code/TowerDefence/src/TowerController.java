@@ -1,4 +1,5 @@
 
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
@@ -78,8 +79,19 @@ public class TowerController extends Controller {
         }
 
         CLabel label = new CLabel(img);
-        label.addMouseListener(new CMouseAdapter());
+        label.addMouseListener(new TCMouseAdapter());
         label.setLocation(20, 20);
         add(label);
+    }
+
+    class TCMouseAdapter extends CMouseAdapter
+    {
+        public void mousePressed(MouseEvent me)
+        {
+            super.mousePressed(me);
+
+            setTakeAction(true);
+            setType(((CLabel) me.getComponent()).getType());
+        }
     }
 }
