@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Game extends JFrame
@@ -22,6 +23,7 @@ public class Game extends JFrame
     private TowerData towerData;
     private SpriteList spriteList;
     private ControlPanel controlPanel;
+    private JPanel fieldPanel = new JPanel();
     private Field selected = null;
 
     private Vector path;
@@ -44,11 +46,15 @@ public class Game extends JFrame
         catch (Exception e)
         {}
         
+        fieldPanel.setLayout(null);
+        fieldPanel.setSize(680, 360);
+        fieldPanel.setLocation(0, 20);
+        
         Vector v;
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 9; i++)
         {
             v = new Vector();
-            if (i != 3)
+            if (i != 4)
             {
                 v.add(new Tree(bf));
             }
@@ -57,7 +63,7 @@ public class Game extends JFrame
                 v.add(new Field(bf));
             }
             
-            for (int j = 0; j < 16; j++)
+            for (int j = 0; j < 14; j++)
             {
                 v.add(new Field(bf));
             }
@@ -75,7 +81,8 @@ public class Game extends JFrame
                 if (f != null)
                 {
                     // Add the Field objects to the JFrame
-                    add(f);
+                    fieldPanel.add(f);
+                    System.out.println(f.getLocation());
                 }
             }
 
@@ -83,17 +90,18 @@ public class Game extends JFrame
 
         setTowerData(towerData);
         spriteList = new SpriteList();
-        Tower field = new Tower(bf);
-        controlPanel = new ControlPanel(getTowerData(), field);
-        add(controlPanel);
+//        Tower field = new Tower(bf);
+//        controlPanel = new ControlPanel(getTowerData(), field);
+        add(fieldPanel);
+//        add(controlPanel);
 
         //System.out.println(m.toString());
         paintAll(getGraphics());
 
         path = new Vector();
-        for (int i = 2; i < 17; i++)
+        for (int i = 0; i < 15; i++)
         {
-            path.add(m.get(3, i));
+            path.add(m.get(4, i));
         }
     }
 
@@ -157,16 +165,16 @@ public class Game extends JFrame
                 }
 
                 // remove the Field from the JFrame and add the Tower to it
-                remove(f);
-                add(t);
+                fieldPanel.remove(f);
+                fieldPanel.add(t);
                 
-                Field firstField = m.get(3, 2);
+                Field firstField = m.get(4, 0);
                 Point first = firstField.getLocation();
 
                 Unit unit = new Unit();
                 unit.setLocation(first);
                 
-                Field[] fields = findPath(unit, m.get(3, 16));
+                Field[] fields = findPath(unit, m.get(4, 14));
                 Vector newPart = new Vector();
                 for(int i = 0; i < fields.length; i++){
                     newPart.add(fields[i]);
@@ -184,8 +192,8 @@ public class Game extends JFrame
                 }
 
                 // remove the Field from the JFrame and add the Tower to it
-                remove(f);
-                add(t);
+                fieldPanel.remove(f);
+                fieldPanel.add(t);
             }
 
             t.repaint();
@@ -215,8 +223,8 @@ public class Game extends JFrame
             }
 
             // remove the Tower from the JFrame and add the Field to it
-            remove(t);
-            add(f);
+            fieldPanel.remove(t);
+            fieldPanel.add(f);
             f.repaint();
          //   System.out.println(m.toString());
         }
@@ -277,7 +285,10 @@ public class Game extends JFrame
             if (f != null && f.getParent() != null && !(f instanceof Tree))
             {
                 select(f);
-                remove(controlPanel);
+                if (controlPanel != null)
+                {
+                    remove(controlPanel);
+                }
                 controlPanel = new ControlPanel(getTowerData(), f);
                 add(controlPanel);
                 controlPanel.repaint();

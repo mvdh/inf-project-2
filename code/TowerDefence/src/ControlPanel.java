@@ -13,7 +13,7 @@ public class ControlPanel extends JPanel {
     private Controller controller = null;
 
     public ControlPanel(TowerData towerData, Field field) {
-        setLocation(0, 281);
+        setLocation(0, 380);
         setSize(680, 180);
         setField(field);
         findType(field);

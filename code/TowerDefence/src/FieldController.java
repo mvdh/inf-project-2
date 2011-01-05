@@ -71,13 +71,4 @@ public class FieldController extends Controller
         lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
     }
-    
-    class FCMouseAdapter extends CMouseAdapter
-    {
-        public void mousePressed(MouseEvent me)
-        {
-            super.mousePressed(me);
-            
-        }
-    }
 }
