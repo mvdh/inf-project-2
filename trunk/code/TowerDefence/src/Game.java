@@ -204,7 +204,8 @@ public class Game extends JFrame
                 
                 Field[] fields = findPath(unit, m.get(4, 14));
                 Vector newPart = new Vector();
-                for(int i = 0; i < fields.length; i++){
+                for(int i = 0; i < fields.length; i++)
+                {
                     newPart.add(fields[i]);
                 }
 
@@ -224,7 +225,6 @@ public class Game extends JFrame
                 fieldPanel.add(t);
             }
 
-            t.repaint();
             System.out.println(m.toString());
             System.out.println(path.print());
         }
@@ -253,7 +253,6 @@ public class Game extends JFrame
             // remove the Tower from the JFrame and add the Field to it
             fieldPanel.remove(t);
             fieldPanel.add(f);
-            f.repaint();
          //   System.out.println(m.toString());
         }
     }
@@ -343,7 +342,6 @@ public class Game extends JFrame
                             else if (!(f instanceof Tree))
                             {
                                 int type = controlPanel.getController().getType();
-                                System.out.println(type);
                                 FieldToTower(f, type);
                                 controlPanel.getController().setTakeAction(false);
                                 remove(controlPanel);
