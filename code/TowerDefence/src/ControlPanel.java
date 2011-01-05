@@ -65,7 +65,7 @@ public class ControlPanel extends JPanel {
             controller = new TowerController(getTowerData(), (Tower) field);
             System.out.println("Tower");
         } else if(field instanceof Field){
-            controller = new FieldController();
+            controller = new FieldController(getTowerData());
             System.out.println("Field");
         } else{
             //DO NOTHING

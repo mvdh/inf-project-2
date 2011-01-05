@@ -1,5 +1,3 @@
-import java.awt.Graphics;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
@@ -8,16 +6,19 @@ import javax.imageio.ImageIO;
  * @author Tom Nieuwenhuijs
  */
 public class FieldController extends Controller
-{    
-    public FieldController()
+{
+    private TowerData towerData;
+
+    public FieldController(TowerData towerDataIn)
     {
         init();
+        setTowerData(towerDataIn);
     }
 
     public void init()
     {
         super.init();
-        
+
         BufferedImage A1 = null;
         BufferedImage B1 = null;
         BufferedImage C1 = null;
@@ -70,5 +71,21 @@ public class FieldController extends Controller
         lbl.setLocation(85, 85);
         lbl.addMouseListener(new CMouseAdapter());
         add(lbl);
+    }
+
+    /**
+     * @return
+     */
+    public TowerData getTowerData()
+    {
+        return towerData;
+    }
+
+    /**
+     * @param towerData
+     */
+    public void setTowerData(TowerData towerDataIn)
+    {
+        towerData = towerDataIn;
     }
 }
