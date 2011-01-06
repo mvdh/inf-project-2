@@ -1,7 +1,9 @@
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -308,7 +310,15 @@ public class Game extends JFrame
         // OnMouseOver
         public void mouseEntered(MouseEvent me)
         {
-            select((Field) me.getComponent());
+            //select((Field) me.getComponent());
+            if (!((Field) me.getComponent()).equals(selected))
+            {
+                Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
+                float alpha = .3f;
+                g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+                g.setColor(Color.white);
+                g.fillRect(0, 0, 40, 40);
+            }
         }
 
         // OnMouseOut
@@ -387,11 +397,12 @@ public class Game extends JFrame
         {
             // Get the Graphics of the hovered Component and it's size
             Graphics g = f.getGraphics();
+            f.paint(g);
             Dimension size = f.getSize();
             // Set the Color to draw in
-            g.setColor(new Color(0, 0, 255));
+            g.setColor(new Color(200, 200, 200));
             // Draw a rectangle and fill it with the set Color
-            g.fillRect(0, 0, size.width, size.height);
+            g.drawRect(0, 0, size.width - 1, size.height - 1);
         }
     }
 
