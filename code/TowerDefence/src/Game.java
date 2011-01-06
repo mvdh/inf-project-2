@@ -77,14 +77,24 @@ public class Game extends JFrame
             if (i != 4)
             {
                 v.add(new Tree(bf));
-            } else
-            {
-                v.add(new Field(bf));
             }
-
+            else
+            {
+                Field toBeAdded = new Field(bf);
+                toBeAdded.setBuildable(false);
+                v.add(toBeAdded);
+            }
+            
             for (int j = 0; j < 14; j++)
             {
-                v.add(new Field(bf));
+                Field toBeAdded = new Field(bf);
+
+                if (j == 0 || j == 13)
+                {
+                    toBeAdded.setBuildable(false);
+                }
+                
+                v.add(toBeAdded);
             }
             m.add(v);
         }
@@ -96,15 +106,14 @@ public class Game extends JFrame
             {
                 f = m.get(i, j);
                 f.setLocation(j * 40, i * 40);
-                f.addMouseListener(new GameMouseAdapter());
-                if (f != null)
+                if (f.isBuildable())
                 {
-                    // Add the Field objects to the JFrame
-                    fieldPanel.add(f);
-                    //System.out.println(f.getLocation());
+                    f.addMouseListener(new GameMouseAdapter());
                 }
+                // Add the Field objects to the JFrame
+                fieldPanel.add(f);
+                //System.out.println(f.getLocation());
             }
-
         }
 
         setTowerData(new TowerData());
