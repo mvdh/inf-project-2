@@ -244,19 +244,7 @@ public class Game extends JFrame
                     {
                         newPart.add(fields[i]);
                     }
-                } /*else
-                {
-                m.remove(f);
-                boolean added = m.add(t, p.x / 40, p.y / 40);
-                if (!added)
-                {
-                JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
                 }
-
-                // remove the Field from the JFrame and add the Tower to it
-                fieldPanel.remove(f);
-                fieldPanel.add(t);
-                }*/
 
                 //System.out.println(m.toString());
                 //System.out.println(path.print());
