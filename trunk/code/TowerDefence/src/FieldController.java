@@ -18,6 +18,7 @@ public class FieldController extends Controller
     {
         super.init();
 
+        Point[] locations = { new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85) };
         int[] possibilities = new int[4];
         int amountFound = 0;
 
