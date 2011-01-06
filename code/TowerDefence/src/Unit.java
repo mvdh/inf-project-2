@@ -25,9 +25,11 @@ public class Unit extends Sprite
         this.caseNumber = caseNumber;
     }
 
-    public Unit(){
-        super();
+    public Unit(double speed){
+        super(speed);
         aviation = false;
+        pathCounter = 0;
+        caseNumber = 0;
     }
 
     public double getSpeed()

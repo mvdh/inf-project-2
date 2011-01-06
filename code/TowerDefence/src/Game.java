@@ -46,7 +46,6 @@ public class Game extends JFrame
     {
         init();
 
-
         m = new Matrix();
 
         URL url = getClass().getResource("images/grass.png");
@@ -130,13 +129,14 @@ public class Game extends JFrame
         {
             path.add(m.get(4, i));
         }
-        /*Unit a = new Unit();
-        a.setLocation(new Point(40, 120));
-        a.setNewDestination(new Point(400, 120));
+        Unit a = new Unit(2.0);
+        a.setLocation(new Point(40, 160));
+        a.setNewDestination(new Point(80, 160));
         a.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
         a.setPath(path.getAll());
+        a.setVisible(true);
         add(a);
-        spriteList.add(a);*/
+        spriteList.add(a);
         initHeartbeat();
     }
 
@@ -218,7 +218,7 @@ public class Game extends JFrame
                 Field firstField = m.get(4, 0);
                 Point first = firstField.getLocation();
 
-                Unit unit = new Unit();
+                Unit unit = new Unit(0.0);
                 unit.setLocation(first);
 
                 Field[] fields = findPath(unit, m.get(4, 14));
@@ -494,6 +494,7 @@ public class Game extends JFrame
 
     public void heartbeat()
     {
+        long testTime = System.currentTimeMillis();
         // step
         spriteList.step();
         // ophogen tower counters
@@ -518,6 +519,12 @@ public class Game extends JFrame
                 cleanUp.add(u);
                 castleHealth -= u.getCaseNumber() * 2;
             }
+            /*if(u.getLocation().equals(u.getDestination())){
+                b = (Point) u.getNextPath().getLocation().clone();
+                b.x += 20;
+                b.y += 20;
+                u.setDestination(b);
+            }*/
         }
         for (int i = 0; i < temp.size(); i++)
         {
@@ -547,19 +554,19 @@ public class Game extends JFrame
             }
         }
         // check missle hits
-        for (Projectile m : spriteList.getProjectileList())
+        for (Projectile pr : spriteList.getProjectileList())
         {
-            if (m.getLocation().equals(m.getEnd()))
+            if (pr.getLocation().equals(pr.getEnd()))
             {
                 for (Unit u : spriteList.getUnitList())
                 {
                     a = u.getLocation();
-                    b = m.getEnd();
+                    b = pr.getEnd();
 
                     // check if unit is on the field of destruction!
-                    if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= towerData.getRange(m.getRange()))
+                    if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= pr.getRange())
                     {
-                        u.setHitPoints(u.getHitPoints() - m.getDamage());
+                        u.setHitPoints(u.getHitPoints() - pr.getDamage());
                         if (u.getHitPoints() <= 0)
                         {
                             gold += unitData.getReward(u.getCaseNumber());
@@ -569,8 +576,8 @@ public class Game extends JFrame
                         }
                     }
                 }
-                m.endMove();
-                cleanUp.add(m);
+                pr.endMove();
+                cleanUp.add(pr);
             }
         }
         for (Sprite s : cleanUp)
