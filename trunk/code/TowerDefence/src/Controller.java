@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -23,6 +24,8 @@ public class Controller extends Container
     private boolean takeAction = false;
     private int type = -1;
     private TowerData towerData;
+    
+    protected Point[] locations = { new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85) };
     
     private JPanel description = new JPanel(new GridLayout(5, 1));
     private JLabel priceLbl = new JLabel("  Price: ");
