@@ -1,14 +1,15 @@
+
+import java.awt.Point;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Slayer
  */
-public class Unit extends Sprite
-{
+public class Unit extends Sprite {
 
     private int hitPoints;
     private boolean aviation;
@@ -25,43 +26,47 @@ public class Unit extends Sprite
         this.caseNumber = caseNumber;
     }
 
-    public Unit(double speed){
+    public Unit(double speed) {
         super(speed);
         aviation = false;
         pathCounter = 0;
         caseNumber = 0;
     }
 
-    public double getSpeed()
-    {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(double speed)
-    {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
-    public Field[] getPath()
-    {
+    public Field[] getPath() {
         return path;
     }
 
-    public void setPath(Field[] path)
-    {
-        if (path != null)
-        {
+    public void setPath(Field[] path) {
+        if (path != null) {
             this.path = path;
         }
     }
 
-    public boolean pathContains(Field field)
-    {
+    @Override
+    public void endMove() {
+        if (hasNextPath()) {
+            Point newEnd = getNextPath().getLocation();
+            System.out.println(newEnd);
+            newEnd.x += 20;
+            newEnd.y += 20;
+            System.out.println(newEnd);
+            setEnd(newEnd);
+        }
+    }
+
+    public boolean pathContains(Field field) {
         boolean res = false;
-        for (int i = this.getPathCounter(); i < path.length; i++)
-        {
-            if (path[i].equals(field))
-            {
+        for (int i = this.getPathCounter(); i < path.length; i++) {
+            if (path[i].equals(field)) {
                 res = true;
                 break;
             }
@@ -69,43 +74,35 @@ public class Unit extends Sprite
         return res;
     }
 
-    public Field getNextPath()
-    {
+    public Field getNextPath() {
         return path[pathCounter++];
     }
 
-    public boolean hasNextPath()
-    {
+    public boolean hasNextPath() {
         return (pathCounter < path.length);
     }
 
-    public int getPathCounter()
-    {
+    public int getPathCounter() {
         return pathCounter;
     }
 
-    public void setPathCounter(int pathCounter)
-    {
+    public void setPathCounter(int pathCounter) {
         this.pathCounter = pathCounter;
     }
 
-    public boolean getAviation()
-    {
+    public boolean getAviation() {
         return aviation;
     }
 
-    public void setAviation(boolean aviation)
-    {
+    public void setAviation(boolean aviation) {
         this.aviation = aviation;
     }
 
-    public int getHitPoints()
-    {
+    public int getHitPoints() {
         return hitPoints;
     }
 
-    public void setHitPoints(int hitPoints)
-    {
+    public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
     }
 }

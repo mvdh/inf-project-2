@@ -12,11 +12,7 @@ public class Sprite extends JLabel
     int stepCounter;// = 0;
     int marge;// = 2;
 
-    public Point getDestination(){
-        return d;
-    }
-
-    public void setDestination(Point p){
+    public void setEnd(Point p){
         d = p;
     }
 
