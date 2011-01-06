@@ -22,8 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Game extends JFrame
-{
+public class Game extends JFrame {
 
     private Matrix m;
     private TowerData towerData;
@@ -45,18 +44,15 @@ public class Game extends JFrame
     // Field background image
     private BufferedImage bf = null;
 
-    public Game()
-    {
+    public Game() {
         init();
 
         m = new Matrix();
 
         URL url = getClass().getResource("images/grass.png");
-        try
-        {
+        try {
             bf = ImageIO.read(url);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
         }
 
         statsPanel.setLayout(new GridLayout(1, 3));
@@ -72,43 +68,34 @@ public class Game extends JFrame
         fieldPanel.setLocation(0, 20);
 
         Vector v;
-        for (int i = 0; i < 9; i++)
-        {
+        for (int i = 0; i < 9; i++) {
             v = new Vector();
-            if (i != 4)
-            {
+            if (i != 4) {
                 v.add(new Tree(bf));
-            }
-            else
-            {
+            } else {
                 Field toBeAdded = new Field(bf);
                 toBeAdded.setBuildable(false);
                 v.add(toBeAdded);
             }
-            
-            for (int j = 0; j < 14; j++)
-            {
+
+            for (int j = 0; j < 14; j++) {
                 Field toBeAdded = new Field(bf);
 
-                if (j == 0 || j == 13)
-                {
+                if (j == 0 || j == 13) {
                     toBeAdded.setBuildable(false);
                 }
-                
+
                 v.add(toBeAdded);
             }
             m.add(v);
         }
 
         Field f;
-        for (int i = 0; i < m.size(); i++)
-        {
-            for (int j = 0; j < m.get(i).size(); j++)
-            {
+        for (int i = 0; i < m.size(); i++) {
+            for (int j = 0; j < m.get(i).size(); j++) {
                 f = m.get(i, j);
                 f.setLocation(j * 40, i * 40);
-                if (f.isBuildable())
-                {
+                if (f.isBuildable()) {
                     f.addMouseListener(new GameMouseAdapter());
                 }
                 // Add the Field objects to the JFrame
@@ -128,15 +115,15 @@ public class Game extends JFrame
         paintAll(getGraphics());
 
         path = new Vector();
-        for (int i = 0; i < 15; i++)
-        {
+        for (int i = 0; i < 15; i++) {
             path.add(m.get(4, i));
         }
-        Unit a = new Unit(2.0);
-        a.setLocation(new Point(40, 160));
-        a.setNewDestination(new Point(80, 160));
+        Unit a = new Unit(1.5);
+        a.setLocation(new Point(-60, 180));
+        a.setNewDestination(new Point(20, 180));
         a.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
         a.setPath(path.getAll());
+        a.setSize(20, 20);
         a.setVisible(true);
         add(a);
         spriteList.add(a);
@@ -144,8 +131,7 @@ public class Game extends JFrame
     }
 
     // Properties of the JFrame
-    public void init()
-    {
+    public void init() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 700);
         setVisible(true);
@@ -154,15 +140,12 @@ public class Game extends JFrame
         JButton testButton = new JButton("ShowPath");
         testButton.setSize(150, 25);
         testButton.setLocation(25, 600);
-        testButton.addActionListener(new ActionListener()
-        {
+        testButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent arg0)
-            {
+            public void actionPerformed(ActionEvent arg0) {
                 //path = calcPath(new Point(2, 3), new Point(15, 3));
 
-                for (int i = 0; i < path.size(); i++)
-                {
+                for (int i = 0; i < path.size(); i++) {
                     path.get(i).paintPath();
                 }
             }
@@ -170,20 +153,17 @@ public class Game extends JFrame
         add(testButton);
     }
 
-    public void updateStats()
-    {
+    public void updateStats() {
         goldLbl.setText("Gold: " + gold);
         pointsLbl.setText("Points: " + points);
         healthLbl.setText("Health: " + castleHealth);
     }
 
-    public void setTowerData(TowerData towerData)
-    {
+    public void setTowerData(TowerData towerData) {
         this.towerData = towerData;
     }
 
-    public TowerData getTowerData()
-    {
+    public TowerData getTowerData() {
         return towerData;
     }
 
@@ -192,12 +172,9 @@ public class Game extends JFrame
      *
      * @param f Field
      */
-    public void FieldToTower(Field f, int type)
-    {
-        if (f != null)
-        {
-            if (f.isBuildable())
-            {
+    public void FieldToTower(Field f, int type) {
+        if (f != null) {
+            if (f.isBuildable()) {
                 Point p = f.getLocation();
                 Tower t = new Tower(bf, type);
                 t.setLocation(p);
@@ -205,8 +182,7 @@ public class Game extends JFrame
                 t.setWalkable(false);
                 m.remove(f);
                 boolean added = m.add(t, p.x / 40, p.y / 40);
-                if (!added)
-                {
+                if (!added) {
                     JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
                 }
 
@@ -214,8 +190,7 @@ public class Game extends JFrame
                 fieldPanel.remove(f);
                 fieldPanel.add(t);
             }
-            if (path != null && path.contains(f))
-            {
+            if (path != null && path.contains(f)) {
 
 
                 Field firstField = m.get(4, 0);
@@ -226,24 +201,18 @@ public class Game extends JFrame
 
                 Field[] fields = findPath(unit, m.get(4, 14));
                 Vector newPart = new Vector();
-                if (fields != null)
-                {
-                    for (int i = 0; i < fields.length; i++)
-                    {
+                if (fields != null) {
+                    for (int i = 0; i < fields.length; i++) {
                         newPart.add(fields[i]);
                     }
 
                     path = newPart;
-                } else
-                {
-                    for (Unit u : spriteList.getUnitList())
-                    {
-                        if (u.pathContains(f))
-                        {
+                } else {
+                    for (Unit u : spriteList.getUnitList()) {
+                        if (u.pathContains(f)) {
                         }
                     }
-                    for (int i = 0; i < fields.length; i++)
-                    {
+                    for (int i = 0; i < fields.length; i++) {
                         newPart.add(fields[i]);
                     }
                 }
@@ -259,18 +228,15 @@ public class Game extends JFrame
      *
      * @param t Field
      */
-    public void TowerToField(Field t)
-    {
-        if (t != null)
-        {
+    public void TowerToField(Field t) {
+        if (t != null) {
             Point p = t.getLocation();
             Field f = new Field(bf);
             f.setLocation(p);
             f.addMouseListener(new GameMouseAdapter());
             m.remove(t);
             boolean added = m.add(f, p.x / 40, p.y / 40);
-            if (!added)
-            {
+            if (!added) {
                 JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
             }
 
@@ -281,35 +247,28 @@ public class Game extends JFrame
         }
     }
 
-    public void initHeartbeat()
-    {
-        Timer t = new Timer(40, new ActionListener()
-        {
+    public void initHeartbeat() {
+        Timer t = new Timer(40, new ActionListener() {
 
-            public void actionPerformed(ActionEvent arg0)
-            {
+            public void actionPerformed(ActionEvent arg0) {
                 heartbeat();
             }
         });
         t.start();
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new Game();
     }
 
-    class GameMouseAdapter implements MouseListener
-    {
+    class GameMouseAdapter implements MouseListener {
 
-        public void mouseClicked(MouseEvent me)
-        {
+        public void mouseClicked(MouseEvent me) {
             // Do nothing
         }
 
         // OnMouseOver
-        public void mouseEntered(MouseEvent me)
-        {
+        public void mouseEntered(MouseEvent me) {
             //select((Field) me.getComponent());
             if (!((Field) me.getComponent()).equals(selected))
             {
@@ -322,31 +281,25 @@ public class Game extends JFrame
         }
 
         // OnMouseOut
-        public void mouseExited(MouseEvent me)
-        {
-            if (((Field) me.getComponent()) instanceof Tree || actionTimer == null || !actionTimer.isRunning() || actionTimer.isRunning() && controlPanel.getField() != ((Field) me.getComponent()))
-            {
+        public void mouseExited(MouseEvent me) {
+            if (((Field) me.getComponent()) instanceof Tree || actionTimer == null || !actionTimer.isRunning() || actionTimer.isRunning() && controlPanel.getField() != ((Field) me.getComponent())) {
                 me.getComponent().repaint();
             }
         }
 
         // OnClick
-        public void mousePressed(MouseEvent me)
-        {
+        public void mousePressed(MouseEvent me) {
             // In case a second Field gets selected, the previous Field has to be repainted
-            if (selected != null)
-            {
+            if (selected != null) {
                 selected.paint(selected.getGraphics());
             }
             // Remove the selected Field from the Matrix
             final Field f = (Field) me.getSource();
             selected = f;
             // Checks if a Field was removed, which also was part of the JFrame
-            if (f != null && f.getParent() != null && !(f instanceof Tree))
-            {
+            if (f != null && f.getParent() != null && !(f instanceof Tree)) {
                 select(f);
-                if (controlPanel != null)
-                {
+                if (controlPanel != null) {
                     remove(controlPanel);
                 }
                 controlPanel = new ControlPanel(getTowerData(), f);
@@ -354,26 +307,20 @@ public class Game extends JFrame
                 controlPanel.repaint();
 
                 // Checks if the Timer is running, if so, it has to stop
-                if (actionTimer != null && actionTimer.isRunning())
-                {
+                if (actionTimer != null && actionTimer.isRunning()) {
                     actionTimer.stop();
                 }
 
                 // Create Timer to check if a Tower is selected in the controlPanel
-                actionTimer = new Timer(100, new ActionListener()
-                {
+                actionTimer = new Timer(100, new ActionListener() {
 
-                    public void actionPerformed(ActionEvent ae)
-                    {
+                    public void actionPerformed(ActionEvent ae) {
                         // If a Tower is selected -> take action
-                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
-                        {
+                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction()) {
                             selected = null;
-                            if (f instanceof Tower)
-                            {
+                            if (f instanceof Tower) {
                                 TowerToField(f);
-                            } else if (!(f instanceof Tree))
-                            {
+                            } else if (!(f instanceof Tree)) {
                                 int type = controlPanel.getController().getType();
                                 FieldToTower(f, type);
                                 controlPanel.getController().setTakeAction(false);
@@ -388,13 +335,11 @@ public class Game extends JFrame
             }
         }
 
-        public void mouseReleased(MouseEvent me)
-        {
+        public void mouseReleased(MouseEvent me) {
             // Do nothing
         }
 
-        public void select(Field f)
-        {
+        public void select(Field f) {
             // Get the Graphics of the hovered Component and it's size
             Graphics g = f.getGraphics();
             f.paint(g);
@@ -415,8 +360,7 @@ public class Game extends JFrame
      *
      * @return null if no path can be found
      */
-    private Field[] findPath(Unit puppet, Field target)
-    {
+    private Field[] findPath(Unit puppet, Field target) {
         //System.out.println(System.currentTimeMillis());
         // PathNode queue with some of the funcionality
         Path path = new Path();
@@ -431,41 +375,33 @@ public class Game extends JFrame
         path.add(temp);
         PathNode[] tempL = new PathNode[4];
         Field f = null;
-        while (!path.contains(end))
-        {
+        while (!path.contains(end)) {
             //System.out.println("pathfind "  +  temp.getCount() + "\n" + m.get(temp.getY(), temp.getX()).isFlyable());
             temp = path.next();
             tempL[0] = new PathNode(temp.getX() + 1, temp.getY(), temp.getCount() + 1);
             tempL[1] = new PathNode(temp.getX(), temp.getY() + 1, temp.getCount() + 1);
             tempL[2] = new PathNode(temp.getX() - 1, temp.getY(), temp.getCount() + 1);
             tempL[3] = new PathNode(temp.getX(), temp.getY() - 1, temp.getCount() + 1);
-            for (int k = 0; k < 4; k++)
-            {
+            for (int k = 0; k < 4; k++) {
                 f = m.get(tempL[k].getY(), tempL[k].getX());
-                if (f != null)
-                {
-                    if (puppet.getAviation() && !f.isFlyable())
-                    {
+                if (f != null) {
+                    if (puppet.getAviation() && !f.isFlyable()) {
                         tempL[k] = null;
-                    } else if (!f.isWalkable())
-                    {
+                    } else if (!f.isWalkable()) {
                         tempL[k] = null;
                     }
-                    if (tempL[k] != null && !path.containsLower(tempL[k]))
-                    {
+                    if (tempL[k] != null && !path.containsLower(tempL[k])) {
                         path.add(tempL[k]);
                     }
                 }
             }
-            if (!(path.hasNext()))
-            {
+            if (!(path.hasNext())) {
                 return null;
             }
         }
         PathNode endNode = new PathNode(end.x, end.y, temp.getCount() + 1);
         Field[] fieldResultList = new Field[temp.getCount() + 2];
-        for (int i = fieldResultList.length - 1; i > -1; i--)
-        {
+        for (int i = fieldResultList.length - 1; i > -1; i--) {
             fieldResultList[i] = m.get(endNode.getY(), endNode.getX());
             endNode = path.findNext(endNode);
         }
@@ -476,8 +412,7 @@ public class Game extends JFrame
     /*
      * Unit / Sprite getFieldPercentage(); SpriteList getPoint(Unit s);
      */
-    public Point fireMissle(Tower shooter, Unit target)
-    {
+    public Point fireMissle(Tower shooter, Unit target) {
         Point res = null;
         double speedMissle = towerData.getMissleSpeed(shooter.getCaseNumber());
         double speedTarget = target.getSpeed();
@@ -487,11 +422,9 @@ public class Game extends JFrame
         // delta y) / 40 ;
         Point tower = m.getPoint(shooter);
         Point unit; // = spriteList.getPoint(target);
-        for (int i = target.getPathCounter() + 1; i < path.length; i++)
-        {
+        for (int i = target.getPathCounter() + 1; i < path.length; i++) {
             unit = m.getPoint(path[i]); // = spriteList.getPoint(target);
-            if (speedMissle >= (Math.sqrt(Math.pow(Math.abs(tower.getX() - unit.getX()), 2) + Math.pow(Math.abs(tower.getY() - unit.getY()), 2)) / ((1.0 / speedTarget) * count)))
-            {
+            if (speedMissle >= (Math.sqrt(Math.pow(Math.abs(tower.getX() - unit.getX()), 2) + Math.pow(Math.abs(tower.getY() - unit.getY()), 2)) / ((1.0 / speedTarget) * count))) {
                 res = unit;
                 break;
             }
@@ -504,8 +437,7 @@ public class Game extends JFrame
         return res;
     }
 
-    public void heartbeat()
-    {
+    public void heartbeat() {
         long testTime = System.currentTimeMillis();
         // step
         spriteList.step();
@@ -515,47 +447,33 @@ public class Game extends JFrame
         Tower t;
         Point a;
         Point b;
-        for (Unit u : spriteList.getUnitList())
-        {
+        for (Unit u : spriteList.getUnitList()) {
             a = u.getLocation();
             a.x /= 40;
             a.y /= 40;
-            if (m.get(a.y, a.x) instanceof Tower)
-            {
+            if (m.get(a.y, a.x) instanceof Tower) {
                 cleanUp.add(u);
                 t = (Tower) m.get(a.y, a.x);
                 t.setHealth(t.getHealth() - 100);
             }
-            if (a.x == 14 && a.y == 4)
-            {
+            if (a.x == 14 && a.y == 4) {
                 cleanUp.add(u);
-                castleHealth -= u.getCaseNumber() * 2;
+                castleHealth -= (u.getCaseNumber() + 1) * 2;
             }
-            /*if(u.getLocation().equals(u.getDestination())){
-                b = (Point) u.getNextPath().getLocation().clone();
-                b.x += 20;
-                b.y += 20;
-                u.setDestination(b);
-            }*/
         }
-        for (int i = 0; i < temp.size(); i++)
-        {
+        for (int i = 0; i < temp.size(); i++) {
             t = (Tower) temp.get(i);
             t.count();
-            if (t != null)
-            {
-                if (t.getCounter() == towerData.getMissleSpeed(t.getCaseNumber()))
-                {
+            if (t != null) {
+                if (t.getCounter() == towerData.getMissleSpeed(t.getCaseNumber())) {
                     // range check
                     a = t.getLocation();
                     a.x += 20;
                     a.y += 20;
-                    for (Unit u : spriteList.getUnitList())
-                    {
+                    for (Unit u : spriteList.getUnitList()) {
                         b = u.getLocation();
                         if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0)
-                                + Math.pow(a.getY() - b.getY(), 2.0)) <= towerData.getRange(t.getCaseNumber()))
-                        {
+                                + Math.pow(a.getY() - b.getY(), 2.0)) <= towerData.getRange(t.getCaseNumber())) {
                             Projectile tempP = new Projectile(towerData.getMissleDamage(t.getCaseNumber()), towerData.getMissleImage(t.getCaseNumber()), (double) towerData.getMissleSpeed(t.getCaseNumber()), towerData.getMissleRange(t.getCaseNumber()), fireMissle(t, u), a);
                             spriteList.add(tempP);
                             add(tempP);
@@ -566,21 +484,16 @@ public class Game extends JFrame
             }
         }
         // check missle hits
-        for (Projectile pr : spriteList.getProjectileList())
-        {
-            if (pr.getLocation().equals(pr.getEnd()))
-            {
-                for (Unit u : spriteList.getUnitList())
-                {
+        for (Projectile pr : spriteList.getProjectileList()) {
+            if (pr.getLocation().equals(pr.getEnd())) {
+                for (Unit u : spriteList.getUnitList()) {
                     a = u.getLocation();
                     b = pr.getEnd();
 
                     // check if unit is on the field of destruction!
-                    if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= pr.getRange())
-                    {
+                    if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= pr.getRange()) {
                         u.setHitPoints(u.getHitPoints() - pr.getDamage());
-                        if (u.getHitPoints() <= 0)
-                        {
+                        if (u.getHitPoints() <= 0) {
                             gold += unitData.getReward(u.getCaseNumber());
                             points += unitData.getReward(u.getCaseNumber()) * 5;
                             remove(u);
@@ -592,10 +505,13 @@ public class Game extends JFrame
                 cleanUp.add(pr);
             }
         }
-        for (Sprite s : cleanUp)
-        {
+        for (Sprite s : cleanUp) {
             remove(s);
             spriteList.remove(s);
         }
+        //System.out.println(System.currentTimeMillis() - testTime);
+    }
+
+    public void checkPath(Vector pathOld, Vector pathNew) {
     }
 }
