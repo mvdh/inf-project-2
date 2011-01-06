@@ -25,8 +25,6 @@ public class Tree extends Field
         super.paint(g);
 
         Dimension size = getSize();
-        // upSideDown((Graphics2D) g, size);
-        // mirrored((Graphics2D) g, size);
         if (img != null)
         {
             g.drawImage(img, 0, 0, size.width, size.height, 0, 0, img.getWidth(null), img.getHeight(null), null);
