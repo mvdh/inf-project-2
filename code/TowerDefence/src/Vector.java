@@ -318,4 +318,8 @@ public class Vector
         
         return result + ">";
     }
+
+    public Field[] getAll(){
+        return vector;
+    }
 }
