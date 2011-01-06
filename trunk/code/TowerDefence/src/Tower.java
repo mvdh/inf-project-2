@@ -10,6 +10,15 @@ public class Tower extends Field
 
     private int counter;
     private int caseNumber;
+    private int health;
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     public Tower(BufferedImage bg)
     {

@@ -23,6 +23,7 @@ public class Game extends JFrame
 {
     private Matrix m;
     private TowerData towerData;
+    private UnitData unitData;
     private SpriteList spriteList;
     private ControlPanel controlPanel;
     private JPanel fieldPanel = new JPanel();
@@ -104,7 +105,7 @@ public class Game extends JFrame
                 {
                     // Add the Field objects to the JFrame
                     fieldPanel.add(f);
-                    System.out.println(f.getLocation());
+                    //System.out.println(f.getLocation());
                 }
             }
 
@@ -112,6 +113,7 @@ public class Game extends JFrame
 
         setTowerData(new TowerData());
         spriteList = new SpriteList();
+        unitData = new UnitData();
         add(statsPanel);
         updateStats();
         add(fieldPanel);
@@ -225,8 +227,8 @@ public class Game extends JFrame
                 fieldPanel.add(t);
             }
 
-            System.out.println(m.toString());
-            System.out.println(path.print());
+            //System.out.println(m.toString());
+            //System.out.println(path.print());
         }
     }
 
@@ -481,6 +483,20 @@ public class Game extends JFrame
         Tower t;
         Point a;
         Point b;
+        for(Unit u : spriteList.getUnitList()){
+            a = u.getLocation();
+            a.x /= 40;
+            a.y /= 40;
+            if(m.get(a.y, a.x) instanceof Tower){
+                cleanUp.add(u);
+                t = (Tower) m.get(a.y, a.x);
+                t.setHealth(t.getHealth() - 100);
+            }
+            if(a.x == 14 && a.y == 4){
+                cleanUp.add(u);
+                castleHealth -= u.getCaseNumber() * 2;
+            }
+        }
         for (int i = 0; i < temp.size(); i++)
         {
             t = (Tower) temp.get(i);
@@ -524,21 +540,20 @@ public class Game extends JFrame
                         u.setHitPoints(u.getHitPoints() - m.getDamage());
                         if (u.getHitPoints() <= 0)
                         {
-                            //award reward
+                            gold += unitData.getReward(u.getCaseNumber());
+                            points += unitData.getReward(u.getCaseNumber()) * 5;
                             remove(u);
-                            spriteList.remove(u);
                             cleanUp.add(u);
                         }
                     }
                 }
                 m.endMove();
-                remove(m);
-                spriteList.remove(m);
                 cleanUp.add(m);
             }
         }
         for (Sprite s : cleanUp)
         {
+            remove(s);
             spriteList.remove(s);
         }
     }
