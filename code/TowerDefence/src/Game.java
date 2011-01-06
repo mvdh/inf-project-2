@@ -190,36 +190,7 @@ public class Game extends JFrame {
                 fieldPanel.remove(f);
                 fieldPanel.add(t);
             }
-            if (path != null && path.contains(f)) {
-
-
-                Field firstField = m.get(4, 0);
-                Point first = firstField.getLocation();
-
-                Unit unit = new Unit(0.0);
-                unit.setLocation(first);
-
-                Field[] fields = findPath(unit, m.get(4, 14));
-                Vector newPart = new Vector();
-                if (fields != null) {
-                    for (int i = 0; i < fields.length; i++) {
-                        newPart.add(fields[i]);
-                    }
-
-                    path = newPart;
-                } else {
-                    for (Unit u : spriteList.getUnitList()) {
-                        if (u.pathContains(f)) {
-                        }
-                    }
-                    for (int i = 0; i < fields.length; i++) {
-                        newPart.add(fields[i]);
-                    }
-                }
-
-                //System.out.println(m.toString());
-                //System.out.println(path.print());
-            }
+            checkPath(f);
         }
     }
 
@@ -244,6 +215,7 @@ public class Game extends JFrame {
             fieldPanel.remove(t);
             fieldPanel.add(f);
             //   System.out.println(m.toString());
+            checkPath(f);
         }
     }
 
@@ -512,6 +484,27 @@ public class Game extends JFrame {
         //System.out.println(System.currentTimeMillis() - testTime);
     }
 
-    public void checkPath(Vector pathOld, Vector pathNew) {
+    public void checkPath(Field f) {
+        if (path != null && path.contains(f)) {
+                Field firstField = m.get(4, 0);
+                Point first = firstField.getLocation();
+
+                Unit unit = new Unit(0.0);
+                unit.setLocation(first);
+
+                Field[] fields = findPath(unit, m.get(4, 14));
+                Vector newPart = new Vector();
+                if (fields != null) {
+                    for (int i = 0; i < fields.length; i++) {
+                        newPart.add(fields[i]);
+                    }
+
+                    path = newPart;
+                } else {
+                    for (int i = 0; i < fields.length; i++) {
+                        newPart.add(fields[i]);
+                    }
+                }
+            }
     }
 }
