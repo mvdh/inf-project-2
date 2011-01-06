@@ -12,10 +12,6 @@ public class Sprite extends JLabel
     int stepCounter;// = 0;
     int marge;// = 2;
 
-    public void setEnd(Point p){
-        d = p;
-    }
-
     public Sprite()
     {
         //ImageIcon img = new ImageIcon(getClass().getResource("spriteDefault.png"));

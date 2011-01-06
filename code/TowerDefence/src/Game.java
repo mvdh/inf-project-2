@@ -115,12 +115,18 @@ public class Game extends JFrame {
         paintAll(getGraphics());
 
         path = new Vector();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 13; i++) {
             path.add(m.get(4, i));
         }
-        Unit a = new Unit(1.5);
-        a.setLocation(new Point(-60, 180));
-        a.setNewDestination(new Point(20, 180));
+        path.add(m.get(5,12));
+        path.add(m.get(6,12));
+        path.add(m.get(6,13));
+        path.add(m.get(6,14));
+        path.add(m.get(5,14));
+        path.add(m.get(4,14));
+        Unit a = new Unit(4);
+        a.setLocation(new Point(-60, 200));
+        a.setNewDestination(new Point(20, 200));
         a.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
         a.setPath(path.getAll());
         a.setSize(20, 20);
