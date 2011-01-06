@@ -17,6 +17,7 @@ public class Tree extends Field
         loadImage();
         setWalkable(false);
         setFlyable(false);
+        setBuildable(false);
     }
 
     public void paint(Graphics g)
