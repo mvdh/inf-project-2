@@ -79,18 +79,16 @@ public class Sprite extends JLabel
 
     public void endMove()
     {
-        setNewDestination();
+        //setNewDestination();
     }
 
-    private void setNewDestination()
+    public void setNewDestination(Point p)
     {
         c = this.getLocation();
         stepCounter = 0;
-        int x = (int) (Math.random() * 480);
-        int y = (int) (Math.random() * 280);
-        d.setLocation(x, y);
-        System.out.println(c);
-        System.out.println(d);
+        d = p;
+        //System.out.println(c);
+        //System.out.println(d);
     }
 
     private double distance(Point p, Point q)

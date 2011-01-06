@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ import javax.swing.Timer;
 
 public class Game extends JFrame
 {
+
     private Matrix m;
     private TowerData towerData;
     private UnitData unitData;
@@ -31,25 +33,20 @@ public class Game extends JFrame
     private JLabel goldLbl = new JLabel();
     private JLabel pointsLbl = new JLabel();
     private JLabel healthLbl = new JLabel();
-    
     private Field selected = null;
-
     private Vector path;
-
     private Timer actionTimer = null;
-    
     // Start values
     private int gold = 0;
     private int points = 0;
     private int castleHealth = 600;
-    
     // Field background image
     private BufferedImage bf = null;
 
     public Game()
     {
         init();
-        initHeartbeat();
+
 
         m = new Matrix();
 
@@ -57,22 +54,22 @@ public class Game extends JFrame
         try
         {
             bf = ImageIO.read(url);
+        } catch (Exception e)
+        {
         }
-        catch (Exception e)
-        {}
-        
+
         statsPanel.setLayout(new GridLayout(1, 3));
         statsPanel.setSize(670, 20);
         statsPanel.setLocation(10, 0);
-        
+
         statsPanel.add(goldLbl);
         statsPanel.add(pointsLbl);
         statsPanel.add(healthLbl);
-        
+
         fieldPanel.setLayout(null);
         fieldPanel.setSize(680, 360);
         fieldPanel.setLocation(0, 20);
-        
+
         Vector v;
         for (int i = 0; i < 9; i++)
         {
@@ -80,12 +77,11 @@ public class Game extends JFrame
             if (i != 4)
             {
                 v.add(new Tree(bf));
-            }
-            else
+            } else
             {
                 v.add(new Field(bf));
             }
-            
+
             for (int j = 0; j < 14; j++)
             {
                 v.add(new Field(bf));
@@ -126,6 +122,14 @@ public class Game extends JFrame
         {
             path.add(m.get(4, i));
         }
+        /*Unit a = new Unit();
+        a.setLocation(new Point(40, 120));
+        a.setNewDestination(new Point(400, 120));
+        a.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
+        a.setPath(path.getAll());
+        add(a);
+        spriteList.add(a);*/
+        initHeartbeat();
     }
 
     // Properties of the JFrame
@@ -141,10 +145,11 @@ public class Game extends JFrame
         testButton.setLocation(25, 600);
         testButton.addActionListener(new ActionListener()
         {
+
             public void actionPerformed(ActionEvent arg0)
             {
                 //path = calcPath(new Point(2, 3), new Point(15, 3));
-                
+
                 for (int i = 0; i < path.size(); i++)
                 {
                     path.get(i).paintPath();
@@ -153,7 +158,7 @@ public class Game extends JFrame
         });
         add(testButton);
     }
-    
+
     public void updateStats()
     {
         goldLbl.setText("Gold: " + gold);
@@ -173,20 +178,20 @@ public class Game extends JFrame
 
     /**
      * Changes the Object type from Field to Tower
-     * 
+     *
      * @param f Field
      */
     public void FieldToTower(Field f, int type)
     {
         if (f != null)
         {
-            Point p = f.getLocation();
-            Tower t = new Tower(bf, type);
-            t.setLocation(p);
-            t.addMouseListener(new GameMouseAdapter());
-            t.setWalkable(false);
-            if (path != null && path.contains(f))
+            if (f.isBuildable())
             {
+                Point p = f.getLocation();
+                Tower t = new Tower(bf, type);
+                t.setLocation(p);
+                t.addMouseListener(new GameMouseAdapter());
+                t.setWalkable(false);
                 m.remove(f);
                 boolean added = m.add(t, p.x / 40, p.y / 40);
                 if (!added)
@@ -197,44 +202,62 @@ public class Game extends JFrame
                 // remove the Field from the JFrame and add the Tower to it
                 fieldPanel.remove(f);
                 fieldPanel.add(t);
-                
+            }
+            if (path != null && path.contains(f))
+            {
+
+
                 Field firstField = m.get(4, 0);
                 Point first = firstField.getLocation();
 
                 Unit unit = new Unit();
                 unit.setLocation(first);
-                
+
                 Field[] fields = findPath(unit, m.get(4, 14));
                 Vector newPart = new Vector();
-                for(int i = 0; i < fields.length; i++)
+                if (fields != null)
                 {
-                    newPart.add(fields[i]);
-                }
+                    for (int i = 0; i < fields.length; i++)
+                    {
+                        newPart.add(fields[i]);
+                    }
 
-                path = newPart;
-            }
-            else
-            {
+                    path = newPart;
+                } else
+                {
+                    for (Unit u : spriteList.getUnitList())
+                    {
+                        if (u.pathContains(f))
+                        {
+                        }
+                    }
+                    for (int i = 0; i < fields.length; i++)
+                    {
+                        newPart.add(fields[i]);
+                    }
+                } /*else
+                {
                 m.remove(f);
                 boolean added = m.add(t, p.x / 40, p.y / 40);
                 if (!added)
                 {
-                    JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
+                JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
                 }
 
                 // remove the Field from the JFrame and add the Tower to it
                 fieldPanel.remove(f);
                 fieldPanel.add(t);
-            }
+                }*/
 
-            //System.out.println(m.toString());
-            //System.out.println(path.print());
+                //System.out.println(m.toString());
+                //System.out.println(path.print());
+            }
         }
     }
 
     /**
      * Changes the Object type from Tower to Field
-     * 
+     *
      * @param t Field
      */
     public void TowerToField(Field t)
@@ -255,7 +278,7 @@ public class Game extends JFrame
             // remove the Tower from the JFrame and add the Field to it
             fieldPanel.remove(t);
             fieldPanel.add(f);
-         //   System.out.println(m.toString());
+            //   System.out.println(m.toString());
         }
     }
 
@@ -263,9 +286,10 @@ public class Game extends JFrame
     {
         Timer t = new Timer(40, new ActionListener()
         {
+
             public void actionPerformed(ActionEvent arg0)
             {
-                // TODO
+                heartbeat();
             }
         });
         t.start();
@@ -331,6 +355,7 @@ public class Game extends JFrame
                 // Create Timer to check if a Tower is selected in the controlPanel
                 actionTimer = new Timer(100, new ActionListener()
                 {
+
                     public void actionPerformed(ActionEvent ae)
                     {
                         // If a Tower is selected -> take action
@@ -340,8 +365,7 @@ public class Game extends JFrame
                             if (f instanceof Tower)
                             {
                                 TowerToField(f);
-                            }
-                            else if (!(f instanceof Tree))
+                            } else if (!(f instanceof Tree))
                             {
                                 int type = controlPanel.getController().getType();
                                 FieldToTower(f, type);
@@ -376,11 +400,11 @@ public class Game extends JFrame
 
     /*
      * @param Unit puppet
-     * 
+     *
      * @param Field target
-     * 
+     *
      * @return calculates the path from the puppet to the target
-     * 
+     *
      * @return null if no path can be found
      */
     private Field[] findPath(Unit puppet, Field target)
@@ -415,8 +439,7 @@ public class Game extends JFrame
                     if (puppet.getAviation() && !f.isFlyable())
                     {
                         tempL[k] = null;
-                    }
-                    else if (!f.isWalkable())
+                    } else if (!f.isWalkable())
                     {
                         tempL[k] = null;
                     }
@@ -483,16 +506,19 @@ public class Game extends JFrame
         Tower t;
         Point a;
         Point b;
-        for(Unit u : spriteList.getUnitList()){
+        for (Unit u : spriteList.getUnitList())
+        {
             a = u.getLocation();
             a.x /= 40;
             a.y /= 40;
-            if(m.get(a.y, a.x) instanceof Tower){
+            if (m.get(a.y, a.x) instanceof Tower)
+            {
                 cleanUp.add(u);
                 t = (Tower) m.get(a.y, a.x);
                 t.setHealth(t.getHealth() - 100);
             }
-            if(a.x == 14 && a.y == 4){
+            if (a.x == 14 && a.y == 4)
+            {
                 cleanUp.add(u);
                 castleHealth -= u.getCaseNumber() * 2;
             }
@@ -558,4 +584,3 @@ public class Game extends JFrame
         }
     }
 }
-
