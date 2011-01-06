@@ -21,6 +21,7 @@ public class SpriteList {
 
     public void step(){
         for(Unit a : unitList){
+            System.out.println(a);
             a.step();
         }
         for(Projectile a : projectileList){
@@ -48,7 +49,7 @@ public class SpriteList {
     public Sprite remove(Sprite a){
         Sprite res = null;
         if(a instanceof Unit){
-            res = (Unit) a;
+            res = a;//(Unit) a;
             for(int i = 0; i < unitList.size(); i++){
                 if(res == unitList.get(i)){
                     unitList.remove(i);
