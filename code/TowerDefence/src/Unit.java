@@ -15,6 +15,15 @@ public class Unit extends Sprite
     private Field[] path;
     private int pathCounter;
     private double speed;
+    private int caseNumber;
+
+    public int getCaseNumber() {
+        return caseNumber;
+    }
+
+    public void setCaseNumber(int caseNumber) {
+        this.caseNumber = caseNumber;
+    }
 
     public Unit(){
         super();

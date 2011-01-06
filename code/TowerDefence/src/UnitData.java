@@ -78,4 +78,8 @@ public class UnitData {
         unitImages[6] = "D1";
 
     }
+
+    public int getReward(int caseNumber){
+        return unitData[caseNumber][0];
+    }
 }
