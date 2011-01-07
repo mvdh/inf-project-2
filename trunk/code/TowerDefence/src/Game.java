@@ -118,19 +118,19 @@ public class Game extends JFrame {
         for (int i = 0; i < 13; i++) {
             path.add(m.get(4, i));
         }
-        path.add(m.get(5,12));
-        path.add(m.get(6,12));
-        path.add(m.get(6,13));
-        path.add(m.get(6,14));
-        path.add(m.get(5,14));
-        path.add(m.get(4,14));
+        path.add(m.get(5, 12));
+        path.add(m.get(6, 12));
+        path.add(m.get(6, 13));
+        path.add(m.get(6, 14));
+        path.add(m.get(5, 14));
+        path.add(m.get(4, 14));
         Unit a = new Unit(4);
-        a.setLocation(new Point(-60, 200));
-        a.setNewDestination(new Point(20, 200));
+        a.setLocation(new Point(-60, 190));
+        a.setNewDestination(new Point(20, 190));
         a.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
         a.setPath(path.getAll());
         a.setSize(20, 20);
-        a.setVisible(true);
+        //a.setVisible(true);
         add(a);
         spriteList.add(a);
         initHeartbeat();
@@ -248,8 +248,7 @@ public class Game extends JFrame {
         // OnMouseOver
         public void mouseEntered(MouseEvent me) {
             //select((Field) me.getComponent());
-            if (!((Field) me.getComponent()).equals(selected))
-            {
+            if (!((Field) me.getComponent()).equals(selected)) {
                 Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
                 float alpha = .3f;
                 g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
@@ -433,6 +432,8 @@ public class Game extends JFrame {
                 cleanUp.add(u);
                 t = (Tower) m.get(a.y, a.x);
                 t.setHealth(t.getHealth() - 100);
+                //Tower healthcheck <= 0
+                    //TowerToField
             }
             if (a.x == 14 && a.y == 4) {
                 cleanUp.add(u);
@@ -492,25 +493,24 @@ public class Game extends JFrame {
 
     public void checkPath(Field f) {
         if (path != null && path.contains(f)) {
-                Field firstField = m.get(4, 0);
-                Point first = firstField.getLocation();
+            Field firstField = m.get(4, 0);
+            Point first = firstField.getLocation();
 
-                Unit unit = new Unit(0.0);
-                unit.setLocation(first);
+            Unit unit = new Unit(0.0);
+            unit.setLocation(first);
 
-                Field[] fields = findPath(unit, m.get(4, 14));
-                Vector newPart = new Vector();
-                if (fields != null) {
-                    for (int i = 0; i < fields.length; i++) {
-                        newPart.add(fields[i]);
-                    }
-
-                    path = newPart;
-                } else {
-                    for (int i = 0; i < fields.length; i++) {
-                        newPart.add(fields[i]);
-                    }
+            Field[] fields = findPath(unit, m.get(4, 14));
+            Vector newPart = new Vector();
+            if (fields != null) {
+                for (int i = 0; i < fields.length; i++) {
+                    newPart.add(fields[i]);
+                }
+                path = newPart;
+            } else {
+                for (int i = 0; i < fields.length; i++) {
+                    newPart.add(fields[i]);
                 }
             }
+        }
     }
 }
