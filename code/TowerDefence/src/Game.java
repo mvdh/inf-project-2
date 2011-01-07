@@ -133,11 +133,11 @@ public class Game extends JFrame {
         path.add(m.get(5, 13));
         path.add(m.get(4, 13));
         path.add(m.get(4, 14));
-        Unit a = new Unit(4);
-        a.setLocation(new Point(-60, 190));
-        a.setNewDestination(new Point(20, 190));
-        a.setPath(path.getAll());
+        Unit a = new Unit(2);
         a.setSize(20, 20);
+        a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
+        a.setNewDestination(a.getLocation());
+        a.setPath(path.getAll());
         //a.setVisible(true);
         getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
         spriteList.add(a);
