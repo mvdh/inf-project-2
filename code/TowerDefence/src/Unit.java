@@ -1,5 +1,3 @@
-
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -7,14 +5,14 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 /**
- *
  * @author Slayer
  */
-public class Unit extends Sprite {
+public class Unit extends Sprite
+{
 
     private int hitPoints;
     private boolean aviation;
@@ -25,69 +23,102 @@ public class Unit extends Sprite {
 
     private BufferedImage bf1 = null;
     private BufferedImage bf2 = null;
+    private int animationSpeed = 10;
     private int number = 0;
 
-    public Unit(double speed) {
+    public Unit(double speed)
+    {
         super(speed);
         aviation = false;
         pathCounter = 0;
         caseNumber = 0;
-        
+
+        /**
+         * 
+         */
+
         URL url = getClass().getResource("images/mario1.png");
-        try {
+        try
+        {
             bf1 = ImageIO.read(url);
-        } catch (Exception e) {}
-        
+        }
+        catch (Exception e)
+        {}
+
         url = getClass().getResource("images/mario2.png");
-        try {
+        try
+        {
             bf2 = ImageIO.read(url);
-        } catch (Exception e) {}
+        }
+        catch (Exception e)
+        {}
     }
 
-    public int getCaseNumber() {
+    public int getCaseNumber()
+    {
         return caseNumber;
     }
 
-    public void setCaseNumber(int caseNumber) {
+    public void setCaseNumber(int caseNumber)
+    {
         this.caseNumber = caseNumber;
     }
 
-    public double getSpeed() {
+    public double getSpeed()
+    {
         return speed;
     }
 
-    public void setSpeed(double speed) {
+    public void setSpeed(double speed)
+    {
         this.speed = speed;
     }
 
-    public Field[] getPath() {
+    public void setAnimationSpeed(int speed)
+    {
+        animationSpeed = speed;
+    }
+
+    public int getAnimationSpeed()
+    {
+        return animationSpeed;
+    }
+
+    public Field[] getPath()
+    {
         return path;
     }
 
-    public void setPath(Field[] path) {
-        if (path != null) {
+    public void setPath(Field[] path)
+    {
+        if (path != null)
+        {
             this.path = path;
         }
     }
 
     @Override
-    public void endMove() {
-        if (hasNextPath()) {
+    public void endMove()
+    {
+        if (hasNextPath())
+        {
             Point newEnd = getNextPath().getLocation();
-            //System.out.println(newEnd);
-            //newEnd.x += 20;
+            // newEnd.x += 20;
             newEnd.x += (this.getWidth() / 2);
-            newEnd.y += 20;
+            newEnd.y += 20; // * Math.random() ???
             newEnd.y += (this.getHeight() / 2);
-            //System.out.println(newEnd);
+            // System.out.println(newEnd);
             setNewDestination(newEnd);
         }
     }
 
-    public boolean pathContains(Field field) {
+    public boolean pathContains(Field field)
+    {
         boolean res = false;
-        for (int i = this.getPathCounter(); i < path.length; i++) {
-            if (path[i].equals(field)) {
+        for (int i = this.getPathCounter(); i < path.length; i++)
+        {
+            if (path[i].equals(field))
+            {
                 res = true;
                 break;
             }
@@ -95,41 +126,49 @@ public class Unit extends Sprite {
         return res;
     }
 
-    public Field getNextPath() {
+    public Field getNextPath()
+    {
         return path[pathCounter++];
     }
 
-    public boolean hasNextPath() {
+    public boolean hasNextPath()
+    {
         return (pathCounter < path.length);
     }
 
-    public int getPathCounter() {
+    public int getPathCounter()
+    {
         return pathCounter;
     }
 
-    public void setPathCounter(int pathCounter) {
+    public void setPathCounter(int pathCounter)
+    {
         this.pathCounter = pathCounter;
     }
 
-    public boolean getAviation() {
+    public boolean getAviation()
+    {
         return aviation;
     }
 
-    public void setAviation(boolean aviation) {
+    public void setAviation(boolean aviation)
+    {
         this.aviation = aviation;
     }
 
-    public int getHitPoints() {
+    public int getHitPoints()
+    {
         return hitPoints;
     }
 
-    public void setHitPoints(int hitPoints) {
+    public void setHitPoints(int hitPoints)
+    {
         this.hitPoints = hitPoints;
     }
-    
+
     public void paint(Graphics g)
-    {        
-        if (number < 5)
+    {
+        if (number < animationSpeed / 2)
         {
             setImage(bf1);
         }
@@ -137,9 +176,9 @@ public class Unit extends Sprite {
         {
             setImage(bf2);
         }
-        
-        number = (number + 1) % 10;
-        
+
+        number = (number + 1) % animationSpeed;
+
         super.paint(g);
     }
 }
