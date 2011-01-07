@@ -21,8 +21,7 @@ public class Unit extends Sprite
     private double speed;
     private int caseNumber;
 
-    private BufferedImage bf1 = null;
-    private BufferedImage bf2 = null;
+    private BufferedImage[] bf = null;
     private int animationSpeed = 10;
     private int number = 0;
 
@@ -37,10 +36,12 @@ public class Unit extends Sprite
          * 
          */
 
+        bf = new BufferedImage[2];
+        
         URL url = getClass().getResource("images/mario1.png");
         try
         {
-            bf1 = ImageIO.read(url);
+            bf[0] = ImageIO.read(url);
         }
         catch (Exception e)
         {}
@@ -48,7 +49,7 @@ public class Unit extends Sprite
         url = getClass().getResource("images/mario2.png");
         try
         {
-            bf2 = ImageIO.read(url);
+            bf[1] = ImageIO.read(url);
         }
         catch (Exception e)
         {}
@@ -177,11 +178,11 @@ public class Unit extends Sprite
     {
         if (number < animationSpeed / 2)
         {
-            setImage(bf1);
+            setImage(bf[0]);
         }
         else
         {
-            setImage(bf2);
+            setImage(bf[1]);
         }
 
         super.paint(g);
