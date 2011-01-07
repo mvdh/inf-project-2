@@ -1,5 +1,4 @@
-
-import java.awt.event.MouseEvent;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ public class TowerController extends Controller {
 
     public TowerController(TowerData td, Tower t) {
         setTowerData(td);
-
         //setCaseNumber(t.getCaseNumber());
         setCaseNumber(1);
         init();
@@ -74,6 +72,9 @@ public class TowerController extends Controller {
     public void init() {
         super.init();
         BufferedImage img = null;
+        Point[] locations =
+        { new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85) };
+
 
         //check welke upgradables er zijn, en aan de hand daarvan moeten plaatjes worden geladen
         ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(this.getCaseNumber(), 0);
@@ -91,9 +92,8 @@ public class TowerController extends Controller {
             label.setLocation(20, 20);
             add(label);
 
-            int position = 85;
-            for (int upgr : upgradables) {
-                url = getClass().getResource("images/tower" + this.getTowerData().getTowerImageName(upgr) + ".png");
+            for (int i = 1; i <= upgradables.size(); i++) {
+                url = getClass().getResource("images/tower" + this.getTowerData().getTowerImageName(upgradables.get(i-1)) + ".png");
                 try {
                     img = ImageIO.read(url);
                 } catch (Exception e) {
@@ -101,10 +101,8 @@ public class TowerController extends Controller {
 
                 label = new CLabel(img);
                 label.addMouseListener(new CMouseAdapter());
-                label.setLocation(position, 20);
+                label.setLocation(locations[i]);
                 add(label);
-
-                position += 65;
             }
         }
     }
