@@ -1,9 +1,8 @@
 
+import java.awt.Component;
 import java.awt.Point;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
-public class Sprite extends JLabel
+public class Sprite extends Component
 {
 
     Point c;// = new Point();          // Start Positie
@@ -14,13 +13,13 @@ public class Sprite extends JLabel
 
     public Sprite()
     {
-        //ImageIcon img = new ImageIcon(getClass().getResource("spriteDefault.png"));
-        //setIcon(img);
-        //setSize(img.getIconWidth(), img.getIconHeight());
-        //int x = (int) (Math.random() * 480);
-        //int y = (int) (Math.random() * 280);
-        //setLocation(x, y);
-        //c = getLocation();
+//        ImageIcon img = new ImageIcon(getClass().getResource("spriteDefault.png"));
+//        setIcon(img);
+//        setSize(img.getIconWidth(), img.getIconHeight());
+//        int x = (int) (Math.random() * 480);
+//        int y = (int) (Math.random() * 280);
+//        setLocation(x, y);
+//        c = getLocation();
     }
 
     public Sprite(double s)

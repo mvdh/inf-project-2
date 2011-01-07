@@ -1,5 +1,10 @@
 
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 /*
  * To change this template, choose Tools | Templates
@@ -18,6 +23,10 @@ public class Unit extends Sprite {
     private double speed;
     private int caseNumber;
 
+    private BufferedImage bf1 = null;
+    private BufferedImage bf2 = null;
+    private int number = 0;
+
     public int getCaseNumber() {
         return caseNumber;
     }
@@ -31,6 +40,16 @@ public class Unit extends Sprite {
         aviation = false;
         pathCounter = 0;
         caseNumber = 0;
+        
+        URL url = getClass().getResource("images/mario1.png");
+        try {
+            bf1 = ImageIO.read(url);
+        } catch (Exception e) {}
+        
+        url = getClass().getResource("images/mario2.png");
+        try {
+            bf2 = ImageIO.read(url);
+        } catch (Exception e) {}
     }
 
     public double getSpeed() {
@@ -106,5 +125,20 @@ public class Unit extends Sprite {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+    
+    public void paint(Graphics g)
+    {
+        Dimension size = getSize();
+        if (number == 0)
+        {
+            g.drawImage(bf1, 0, 0, size.width, size.height, 0, 0, bf1.getWidth(null), bf1.getHeight(null), null);
+        }
+        else if (number == 1)
+        {
+            g.drawImage(bf2, 0, 0, size.width, size.height, 0, 0, bf2.getWidth(null), bf2.getHeight(null), null);
+        }
+        
+        number = (number + 1) % 2;
     }
 }
