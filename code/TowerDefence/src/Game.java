@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -52,8 +53,7 @@ public class Game extends JFrame {
         URL url = getClass().getResource("images/grass.png");
         try {
             bf = ImageIO.read(url);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         statsPanel.setLayout(new GridLayout(1, 3));
         statsPanel.setSize(670, 20);
@@ -136,11 +136,10 @@ public class Game extends JFrame {
         Unit a = new Unit(4);
         a.setLocation(new Point(-60, 190));
         a.setNewDestination(new Point(20, 190));
-        a.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
         a.setPath(path.getAll());
         a.setSize(20, 20);
         //a.setVisible(true);
-        add(a);
+        getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
         spriteList.add(a);
         initHeartbeat();
     }
