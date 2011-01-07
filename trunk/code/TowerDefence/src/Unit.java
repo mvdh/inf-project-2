@@ -130,15 +130,15 @@ public class Unit extends Sprite {
     public void paint(Graphics g)
     {
         Dimension size = getSize();
-        if (number == 0)
+        if (number < 5)
         {
             g.drawImage(bf1, 0, 0, size.width, size.height, 0, 0, bf1.getWidth(null), bf1.getHeight(null), null);
         }
-        else if (number == 1)
+        else
         {
             g.drawImage(bf2, 0, 0, size.width, size.height, 0, 0, bf2.getWidth(null), bf2.getHeight(null), null);
         }
         
-        number = (number + 1) % 2;
+        number = (number + 1) % 10;
     }
 }
