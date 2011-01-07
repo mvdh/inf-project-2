@@ -111,6 +111,13 @@ public class Unit extends Sprite
             setNewDestination(newEnd);
         }
     }
+    
+    public void step()
+    {
+        super.step();
+
+        number = (number + 1) % animationSpeed;
+    }
 
     public boolean pathContains(Field field)
     {
@@ -176,8 +183,6 @@ public class Unit extends Sprite
         {
             setImage(bf2);
         }
-
-        number = (number + 1) % animationSpeed;
 
         super.paint(g);
     }
