@@ -78,13 +78,21 @@ public class Game extends JFrame {
                 v.add(toBeAdded);
             }
 
-            for (int j = 0; j < 14; j++) {
+            for (int j = 0; j < 13; j++) {
                 Field toBeAdded = new Field(bf);
 
-                if (j == 0 || j == 13) {
+                if (j == 0 || j == 12) {
                     toBeAdded.setBuildable(false);
                 }
 
+                v.add(toBeAdded);
+            }
+            
+            if (i != 4) {
+                v.add(new Brick(bf));
+            } else {
+                Field toBeAdded = new Field(bf);
+                toBeAdded.setBuildable(false);
                 v.add(toBeAdded);
             }
             m.add(v);
@@ -115,14 +123,15 @@ public class Game extends JFrame {
         paintAll(getGraphics());
 
         path = new Vector();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 12; i++) {
             path.add(m.get(4, i));
         }
-        path.add(m.get(5, 12));
+        path.add(m.get(5, 11));
+        path.add(m.get(6, 11));
         path.add(m.get(6, 12));
         path.add(m.get(6, 13));
-        path.add(m.get(6, 14));
-        path.add(m.get(5, 14));
+        path.add(m.get(5, 13));
+        path.add(m.get(4, 13));
         path.add(m.get(4, 14));
         Unit a = new Unit(4);
         a.setLocation(new Point(-60, 190));
