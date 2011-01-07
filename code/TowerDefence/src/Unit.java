@@ -55,12 +55,12 @@ public class Unit extends Sprite {
     public void endMove() {
         if (hasNextPath()) {
             Point newEnd = getNextPath().getLocation();
-            System.out.println(newEnd);
+            //System.out.println(newEnd);
             //newEnd.x += 20;
             newEnd.x += (this.getWidth() / 2);
             newEnd.y += 20;
             newEnd.y += (this.getHeight() / 2);
-            System.out.println(newEnd);
+            //System.out.println(newEnd);
             setNewDestination(newEnd);
         }
     }
