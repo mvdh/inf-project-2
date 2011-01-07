@@ -306,6 +306,9 @@ public class Game extends JFrame {
                             selected = null;
                             if (f instanceof Tower) {
                                 TowerToField(f);
+                                controlPanel.getController().setTakeAction(false);
+                                remove(controlPanel);
+                                repaint();
                             } else if (!(f instanceof Tree)) {
                                 int type = controlPanel.getController().getType();
                                 FieldToTower(f, type);
