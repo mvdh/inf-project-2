@@ -4,11 +4,11 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
-public class Tree extends Field
+public class Brick extends Field
 {
     private BufferedImage img = null;
 
-    public Tree(BufferedImage bg)
+    public Brick(BufferedImage bg)
     {
         // Just to set the size of the object
         super(bg);
@@ -35,8 +35,8 @@ public class Tree extends Field
      */
     public void loadImage()
     {
-        // Get the full url of the image (C:\Users\...\images\tree.png)
-        URL url = getClass().getResource("images/tree.png");
+        // Get the full url of the image (C:\Users\...\images\castle.png)
+        URL url = getClass().getResource("images/castle.png");
         try
         {
             // Load the image at location url
