@@ -1,5 +1,10 @@
 
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /*
@@ -16,6 +21,8 @@ public class Projectile extends Sprite
     private int damage;
     private int range;
 
+    private BufferedImage bf;
+    
     public Projectile(int d, int img, double speed, int range, Point destination, Point start)
     {
         super(speed);
@@ -23,18 +30,23 @@ public class Projectile extends Sprite
         this.range = range;
         this.d = destination;
         this.c = start;
+        URL url = null;
+        
         switch (img)
         {
             case 0:
             {
-                this.setIcon(new ImageIcon(getClass().getResource("arrow.png")));
+                url = getClass().getResource("arrow.png");
             }
             case 1:
             {
-                this.setIcon(new ImageIcon(getClass().getResource("spriteDefault.png")));
+                url = getClass().getResource("spriteDefault.png");
             }
         }
-        setSize(this.getIcon().getIconWidth(), this.getIcon().getIconHeight());
+        try {
+            bf = ImageIO.read(url);
+        } catch (Exception e) {}
+        setImage(bf);
     }
 
     @Override

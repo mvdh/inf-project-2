@@ -27,14 +27,6 @@ public class Unit extends Sprite {
     private BufferedImage bf2 = null;
     private int number = 0;
 
-    public int getCaseNumber() {
-        return caseNumber;
-    }
-
-    public void setCaseNumber(int caseNumber) {
-        this.caseNumber = caseNumber;
-    }
-
     public Unit(double speed) {
         super(speed);
         aviation = false;
@@ -50,6 +42,14 @@ public class Unit extends Sprite {
         try {
             bf2 = ImageIO.read(url);
         } catch (Exception e) {}
+    }
+
+    public int getCaseNumber() {
+        return caseNumber;
+    }
+
+    public void setCaseNumber(int caseNumber) {
+        this.caseNumber = caseNumber;
     }
 
     public double getSpeed() {
@@ -128,17 +128,18 @@ public class Unit extends Sprite {
     }
     
     public void paint(Graphics g)
-    {
-        Dimension size = getSize();
+    {        
         if (number < 5)
         {
-            g.drawImage(bf1, 0, 0, size.width, size.height, 0, 0, bf1.getWidth(null), bf1.getHeight(null), null);
+            setImage(bf1);
         }
         else
         {
-            g.drawImage(bf2, 0, 0, size.width, size.height, 0, 0, bf2.getWidth(null), bf2.getHeight(null), null);
+            setImage(bf2);
         }
         
         number = (number + 1) % 10;
+        
+        super.paint(g);
     }
 }

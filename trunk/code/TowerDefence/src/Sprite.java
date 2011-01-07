@@ -1,15 +1,25 @@
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 public class Sprite extends Component
 {
 
-    Point c;// = new Point();          // Start Positie
-    Point d;// = new Point(300, 200);  // Bestemming
-    double speed;// = 2.1;
-    int stepCounter;// = 0;
-    int marge;// = 2;
+    public Point c;// = new Point();          // Start Positie
+    public Point d;// = new Point(300, 200);  // Bestemming
+    private double speed;// = 2.1;
+    private int stepCounter;// = 0;
+    private int marge;// = 2;
+    
+    private BufferedImage bf;
+    private double angle;
 
     public Sprite()
     {
@@ -34,22 +44,16 @@ public class Sprite extends Component
     {
 
         // Hou hier rekening met een modifier voor vertragende torens.
-
         Double dis = distance(this.getLocation(), d); // Wordt gebruikt om de te reizen afstand voor deze stap door te geven
         if (dis > speed)
         {                            // Op deze manier wordt 'overshoot' beperkt
             dis = speed;                             // en kan de marge hopelijk kleiner
         }
 
-
-        double angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
+        angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
 
         int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * (dis * stepCounter)));
         int newY = (int) Math.floor(c.getY() + (Math.sin(angle) * (dis * stepCounter)));
-
-
-
-
 
         // Om iets zekerder te zijn dat het object niet over het doel heen schiet is er een marge ingebouwd waarop ie 'snapped'
         if ((newX > d.getX() - marge) && (newX < d.getX() + marge))
@@ -101,5 +105,17 @@ public class Sprite extends Component
     public Point getEnd()
     {
         return d;
+    }
+    
+    public void paint(Graphics g)
+    {
+        AffineTransform trans = new AffineTransform();
+        trans.rotate(angle, bf.getWidth() / 2, bf.getHeight() / 2);
+        ((Graphics2D) g).drawImage(bf, trans, null);
+    }
+    
+    public void setImage(BufferedImage bfIn)
+    {
+        bf = bfIn;
     }
 }
