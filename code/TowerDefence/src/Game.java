@@ -81,9 +81,9 @@ public class Game extends JFrame {
             for (int j = 0; j < 13; j++) {
                 Field toBeAdded = new Field(bf);
 
-                if (j == 0 || j == 12) {
-                    toBeAdded.setBuildable(false);
-                }
+//                if (j == 0 || j == 12) {
+//                    toBeAdded.setBuildable(false);
+//                }
 
                 v.add(toBeAdded);
             }
