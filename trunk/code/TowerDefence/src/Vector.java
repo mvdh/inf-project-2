@@ -11,6 +11,10 @@ public class Vector
         empty = 0;
     }
 
+    public Vector(Field[] f){
+        vector = f;
+        empty = 1;
+    }
     /**
      *
      * Add f to the Vector at the selected index, if that index didn't contain a Field

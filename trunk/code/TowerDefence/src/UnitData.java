@@ -25,13 +25,13 @@ public class UnitData {
         unitData = new int[7][5];
         unitImages = new String[7];
 
-        unitData[0][0] = 0;        //reward
+        unitData[0][0] = 1;        //reward
         unitData[0][1] = 200;      //hitPoints
         unitData[0][2] = 100;      //Damage
         unitData[0][3] = 100;      //Image
         unitData[0][4] = -1;       //Speed
 
-        unitData[1][0] = 0;        //reward
+        unitData[1][0] = 1;        //reward
         unitData[1][1] = 200;      //hitPoints
         unitData[1][2] = 100;      //Damage
         unitData[1][3] = 100;      //Image

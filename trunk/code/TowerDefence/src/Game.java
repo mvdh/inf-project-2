@@ -53,7 +53,8 @@ public class Game extends JFrame {
         URL url = getClass().getResource("images/grass.png");
         try {
             bf = ImageIO.read(url);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         statsPanel.setLayout(new GridLayout(1, 3));
         statsPanel.setSize(670, 20);
@@ -87,7 +88,7 @@ public class Game extends JFrame {
 
                 v.add(toBeAdded);
             }
-            
+
             if (i != 4) {
                 v.add(new Brick(bf));
             } else {
@@ -123,24 +124,27 @@ public class Game extends JFrame {
         paintAll(getGraphics());
 
         path = new Vector();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 15; i++) {
             path.add(m.get(4, i));
         }
-        path.add(m.get(5, 11));
-        path.add(m.get(6, 11));
-        path.add(m.get(6, 12));
-        path.add(m.get(6, 13));
-        path.add(m.get(5, 13));
-        path.add(m.get(4, 13));
-        path.add(m.get(4, 14));
-        Unit a = new Unit(2);
-        a.setSize(20, 20);
-        a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
-        a.setNewDestination(a.getLocation());
-        a.setPath(path.getAll());
-        //a.setVisible(true);
-        getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
-        spriteList.add(a);
+
+        Timer t = new Timer(2000, new ActionListener() {
+
+            public void actionPerformed(ActionEvent arg0) {
+                Unit a = new Unit(1.5);
+                a.setSize(20, 20);
+                a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
+                a.setNewDestination(a.getLocation());
+                a.setPath(path);
+                a.setHitPoints(5);
+                //a.setVisible(true);
+                getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
+                spriteList.add(a);
+
+            }
+        });
+        t.start();
+
         initHeartbeat();
     }
 
@@ -238,6 +242,7 @@ public class Game extends JFrame {
 
             public void actionPerformed(ActionEvent arg0) {
                 heartbeat();
+                updateStats();
             }
         });
         t.start();
@@ -348,7 +353,7 @@ public class Game extends JFrame {
      *
      * @return null if no path can be found
      */
-    private Field[] findPath(Unit puppet, Field target) {
+    private Vector findPath(Unit puppet, Field target) {
         //System.out.println(System.currentTimeMillis());
         // PathNode queue with some of the funcionality
         Path path = new Path();
@@ -394,7 +399,7 @@ public class Game extends JFrame {
             endNode = path.findNext(endNode);
         }
         //System.out.println(System.currentTimeMillis());
-        return fieldResultList;
+        return new Vector(fieldResultList);
     }
 
     /*
@@ -404,14 +409,14 @@ public class Game extends JFrame {
         Point res = null;
         double speedMissle = towerData.getMissleSpeed(shooter.getCaseNumber());
         double speedTarget = target.getSpeed();
-        Field[] path = target.getPath();
-        double count = 0.56; // = target.getFieldPercentage(); // =
+        Vector path = target.getPath();
+        double count = 0; // = target.getFieldPercentage(); // =
         // target.getFieldPixels() / 40; // = (delta x +
         // delta y) / 40 ;
         Point tower = m.getPoint(shooter);
         Point unit; // = spriteList.getPoint(target);
-        for (int i = target.getPathCounter() + 1; i < path.length; i++) {
-            unit = m.getPoint(path[i]); // = spriteList.getPoint(target);
+        for (int i = target.getPathCounter() + 1; i < path.size(); i++) {
+            unit = m.getPoint(path.get(i)); // = spriteList.getPoint(target);
             if (speedMissle >= (Math.sqrt(Math.pow(Math.abs(tower.getX() - unit.getX()), 2) + Math.pow(Math.abs(tower.getY() - unit.getY()), 2)) / ((1.0 / speedTarget) * count))) {
                 res = unit;
                 break;
@@ -440,11 +445,14 @@ public class Game extends JFrame {
             a.x /= 40;
             a.y /= 40;
             if (m.get(a.y, a.x) instanceof Tower) {
-                cleanUp.add(u);
+
                 t = (Tower) m.get(a.y, a.x);
-                t.setHealth(t.getHealth() - 100);
+                if ((!t.isFlyable() && u.getAviation()) || (!t.isWalkable() && !u.getAviation())) {
+                    cleanUp.add(u);
+                    t.setHealth(t.getHealth() - 100);
+                }
                 //Tower healthcheck <= 0
-                    //TowerToField
+                //TowerToField
             }
             if (a.x == 14 && a.y == 4) {
                 cleanUp.add(u);
@@ -462,14 +470,18 @@ public class Game extends JFrame {
                     a.y += 20;
                     for (Unit u : spriteList.getUnitList()) {
                         b = u.getLocation();
+                        b.x += u.getWidth();
+                        b.y += u.getHeight();
                         if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0)
                                 + Math.pow(a.getY() - b.getY(), 2.0)) <= towerData.getRange(t.getCaseNumber())) {
-                            Projectile tempP = new Projectile(towerData.getMissleDamage(t.getCaseNumber()), towerData.getMissleImage(t.getCaseNumber()), (double) towerData.getMissleSpeed(t.getCaseNumber()), towerData.getMissleRange(t.getCaseNumber()), fireMissle(t, u), a);
+                            Projectile tempP = new Projectile(towerData.getMissleDamage(t.getCaseNumber()), towerData.getMissleImage(t.getCaseNumber()), (double) towerData.getMissleSpeed(t.getCaseNumber()), towerData.getMissleRange(t.getCaseNumber()), b, t.getLocation());
                             spriteList.add(tempP);
-                            add(tempP);
+                            getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
+                            //System.out.println(towerData.getMissleDamage(t.getCaseNumber()));
                             break;
                         }
                     }
+                    t.setCounter(0);
                 }
             }
         }
@@ -478,15 +490,17 @@ public class Game extends JFrame {
             if (pr.getLocation().equals(pr.getEnd())) {
                 for (Unit u : spriteList.getUnitList()) {
                     a = u.getLocation();
+                    a.x += u.getWidth() / 2;
+                    a.y += u.getHeight() / 2;
                     b = pr.getEnd();
-
+                    //System.out.println(pr.getDamage());
                     // check if unit is on the field of destruction!
                     if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= pr.getRange()) {
                         u.setHitPoints(u.getHitPoints() - pr.getDamage());
+                        System.out.println(u.getHitPoints());
                         if (u.getHitPoints() <= 0) {
                             gold += unitData.getReward(u.getCaseNumber());
                             points += unitData.getReward(u.getCaseNumber()) * 5;
-                            remove(u);
                             cleanUp.add(u);
                         }
                     }
@@ -496,6 +510,7 @@ public class Game extends JFrame {
             }
         }
         for (Sprite s : cleanUp) {
+            s.setVisible(false);
             remove(s);
             spriteList.remove(s);
         }
@@ -503,25 +518,21 @@ public class Game extends JFrame {
     }
 
     public void checkPath(Field f) {
-        if (path != null && path.contains(f)) {
-            Field firstField = m.get(4, 0);
-            Point first = firstField.getLocation();
+        Field firstField = m.get(4, 0);
+        Point first = firstField.getLocation();
 
-            Unit unit = new Unit(0.0);
-            unit.setLocation(first);
+        Unit unit = new Unit(0.0);
+        unit.setLocation(first);
 
-            Field[] fields = findPath(unit, m.get(4, 14));
-            Vector newPart = new Vector();
-            if (fields != null) {
-                for (int i = 0; i < fields.length; i++) {
-                    newPart.add(fields[i]);
-                }
-                path = newPart;
-            } else {
-                for (int i = 0; i < fields.length; i++) {
-                    newPart.add(fields[i]);
-                }
-            }
+        Vector fields = findPath(unit, m.get(4, 14));
+        if (fields != null) {
+            path = fields;
+        }
+        for (Unit u : spriteList.getUnitList()) {
+            //u.setPath(path.mergeAndCleanUp(u.getPath()));
+            u.setPath(findPath(u, m.get(4, 14)));
+            //u.setPathCounter(u.findIndexOfNearestNextPath());
+            u.setPathCounter(1);
         }
     }
 }
