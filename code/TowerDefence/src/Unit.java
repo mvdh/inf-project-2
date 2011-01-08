@@ -16,7 +16,7 @@ public class Unit extends Sprite
 
     private int hitPoints;
     private boolean aviation;
-    private Field[] path;
+    private Vector path;
     private int pathCounter;
     private double speed;
     private int caseNumber;
@@ -85,12 +85,12 @@ public class Unit extends Sprite
         return animationSpeed;
     }
 
-    public Field[] getPath()
+    public Vector getPath()
     {
         return path;
     }
 
-    public void setPath(Field[] path)
+    public void setPath(Vector path)
     {
         if (path != null)
         {
@@ -123,9 +123,9 @@ public class Unit extends Sprite
     public boolean pathContains(Field field)
     {
         boolean res = false;
-        for (int i = this.getPathCounter(); i < path.length; i++)
+        for (int i = this.getPathCounter(); i < path.size(); i++)
         {
-            if (path[i].equals(field))
+            if (path.get(i).equals(field))
             {
                 res = true;
                 break;
@@ -136,17 +136,29 @@ public class Unit extends Sprite
 
     public Field getNextPath()
     {
-        return path[pathCounter++];
+        return path.get(pathCounter++);
     }
 
     public boolean hasNextPath()
     {
-        return (pathCounter < path.length);
+        return (pathCounter < path.size());
     }
 
     public int getPathCounter()
     {
         return pathCounter;
+    }
+
+    public int findIndexOfNearestNextPath(){
+        int res = -1;
+        double distance = 10000;
+        for(int i = pathCounter; i < path.size(); i++){
+            if(distance(this.getLocation(), path.get(i).getLocation()) < distance){
+                distance = distance(this.getLocation(), path.get(i).getLocation());
+                res = i - 1;
+            }
+        }
+        return res;
     }
 
     public void setPathCounter(int pathCounter)

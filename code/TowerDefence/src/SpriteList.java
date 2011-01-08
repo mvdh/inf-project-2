@@ -21,10 +21,11 @@ public class SpriteList {
 
     public void step(){
         for(Unit a : unitList){
-            System.out.println(a);
+            //System.out.println(a);
             a.step();
         }
         for(Projectile a : projectileList){
+            //System.out.println(a);
             a.step();
         }
     }

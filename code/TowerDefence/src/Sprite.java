@@ -94,7 +94,7 @@ public class Sprite extends Component
         //System.out.println(d);
     }
 
-    private double distance(Point p, Point q)
+    public double distance(Point p, Point q)
     {     //Calculates distance between two points
         double dx = p.x - q.x;                      //horizontal difference
         double dy = p.y - q.y;                      //vertical difference
