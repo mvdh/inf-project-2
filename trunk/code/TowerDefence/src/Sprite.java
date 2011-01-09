@@ -110,7 +110,7 @@ public class Sprite extends Component
     public void paint(Graphics g)
     {
         AffineTransform trans = new AffineTransform();
-        trans.rotate(angle, bf.getWidth() / 2, bf.getHeight() / 2);
+        trans.rotate(angle, getSize().getWidth() / 2, getSize().getHeight() / 2);
         ((Graphics2D) g).drawImage(bf, trans, null);
     }
     
