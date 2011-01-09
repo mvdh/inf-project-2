@@ -132,11 +132,11 @@ public class Game extends JFrame {
 
             public void actionPerformed(ActionEvent arg0) {
                 Unit a = new Unit(1.5);
-                a.setSize(20, 20);
-                a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
+//                a.setSize(20, 20);
+//                a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
                 a.setNewDestination(a.getLocation());
                 a.setPath(path);
-                a.setHitPoints(5);
+                a.setHitPoints(50);
                 //a.setVisible(true);
                 getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
                 spriteList.add(a);

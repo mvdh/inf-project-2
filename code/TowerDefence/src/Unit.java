@@ -36,9 +36,9 @@ public class Unit extends Sprite
          * 
          */
 
-        bf = new BufferedImage[2];
+        bf = new BufferedImage[3];
         
-        URL url = getClass().getResource("images/mario1.png");
+        URL url = getClass().getResource("images/unit-mario1-f1.png");
         try
         {
             bf[0] = ImageIO.read(url);
@@ -46,13 +46,26 @@ public class Unit extends Sprite
         catch (Exception e)
         {}
 
-        url = getClass().getResource("images/mario2.png");
+        url = getClass().getResource("images/unit-mario1-f2.png");
         try
         {
             bf[1] = ImageIO.read(url);
         }
         catch (Exception e)
         {}
+        
+        url = getClass().getResource("images/unit-mario1-f3.png");
+        try
+        {
+            bf[2] = ImageIO.read(url);
+        }
+        catch (Exception e)
+        {}
+        
+        int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
+        
+        setSize(size, size);
+        setLocation(-(int) getSize().getWidth(), 190);
     }
 
     public int getCaseNumber()
@@ -106,7 +119,7 @@ public class Unit extends Sprite
             Point newEnd = getNextPath().getLocation();
             // newEnd.x += 20;
             newEnd.x += (this.getWidth() / 2);
-            newEnd.y += 20; // * Math.random() ???
+            newEnd.y += 30 - (getSize().getHeight() / 2); // * Math.random() ???
             newEnd.y += (this.getHeight() / 2);
             // System.out.println(newEnd);
             setNewDestination(newEnd);
@@ -188,13 +201,12 @@ public class Unit extends Sprite
 
     public void paint(Graphics g)
     {
-        if (number < animationSpeed / 2)
+        for (int i = 0; i < bf.length; i++)
         {
-            setImage(bf[0]);
-        }
-        else
-        {
-            setImage(bf[1]);
+            if (number < animationSpeed * (i + 1) / bf.length && number >= animationSpeed * i / bf.length)
+            {
+                setImage(bf[i]);
+            }
         }
 
         super.paint(g);
