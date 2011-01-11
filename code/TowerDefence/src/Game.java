@@ -282,110 +282,6 @@ public class Game extends JFrame
         t.start();
     }
 
-    public static void main(String[] args)
-    {
-        new Game();
-    }
-
-    class GameMouseAdapter implements MouseListener
-    {
-
-        public void mouseClicked(MouseEvent me)
-        {
-            // Do nothing
-        }
-
-        // OnMouseOver
-        public void mouseEntered(MouseEvent me)
-        {
-            Field hov = (Field) me.getComponent();
-            if (!hov.equals(selected))
-            {
-                hov.setHovered(true);
-                hov.paint(hov.getGraphics());
-            }
-        }
-
-        // OnMouseOut
-        public void mouseExited(MouseEvent me)
-        {
-            Field hov = (Field) me.getComponent();
-            hov.setHovered(false);
-            hov.paint(hov.getGraphics());
-        }
-
-        // OnClick
-        public void mousePressed(MouseEvent me)
-        {
-            // In case a second Field gets selected, the previous Field has to
-            // be repainted
-            if (selected != null)
-            {
-                selected.setSelected(false);
-                selected.paint(selected.getGraphics());
-            }
-            // Remove the selected Field from the Matrix
-            final Field f = (Field) me.getSource();
-            // Checks if a Field was removed, which also was part of the JFrame
-            if (f != null && f.getParent() != null && !(f instanceof Tree))
-            {
-                selected = f;
-                f.setSelected(true);
-                f.paint(f.getGraphics());
-                if (controlPanel != null)
-                {
-                    remove(controlPanel);
-                }
-                controlPanel = new ControlPanel(getTowerData(), f);
-                add(controlPanel);
-                controlPanel.repaint();
-
-                // Checks if the Timer is running, if so, it has to stop
-                if (actionTimer != null && actionTimer.isRunning())
-                {
-                    actionTimer.stop();
-                }
-
-                // Create Timer to check if a Tower is selected in the
-                // controlPanel
-                actionTimer = new Timer(100, new ActionListener()
-                {
-
-                    public void actionPerformed(ActionEvent ae)
-                    {
-                        // If a Tower is selected -> take action
-                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
-                        {
-                            selected = null;
-                            if (f instanceof Tower)
-                            {
-                                TowerToField(f);
-                                controlPanel.getController().setTakeAction(false);
-                                remove(controlPanel);
-                                repaint();
-                            }
-                            else if (!(f instanceof Tree))
-                            {
-                                int type = controlPanel.getController().getType();
-                                FieldToTower(f, type);
-                                controlPanel.getController().setTakeAction(false);
-                                remove(controlPanel);
-                                repaint();
-                            }
-                            actionTimer.stop();
-                        }
-                    }
-                });
-                actionTimer.start();
-            }
-        }
-
-        public void mouseReleased(MouseEvent me)
-        {
-            // Do nothing
-        }
-    }
-
     /*
      * @param Unit puppet
      * 
@@ -489,7 +385,6 @@ public class Game extends JFrame
 
     public void heartbeat()
     {
-        long testTime = System.currentTimeMillis();
         // step
         spriteList.step();
         // ophogen tower counters
@@ -587,7 +482,6 @@ public class Game extends JFrame
             remove(s);
             spriteList.remove(s);
         }
-        // System.out.println(System.currentTimeMillis() - testTime);
     }
 
     public void checkPath(Field f)
@@ -609,6 +503,110 @@ public class Game extends JFrame
             u.setPath(findPath(u, m.get(4, 14)));
             // u.setPathCounter(u.findIndexOfNearestNextPath());
             u.setPathCounter(1);
+        }
+    }
+    
+    public static void main(String[] args)
+    {
+        new Game();
+    }
+
+    class GameMouseAdapter implements MouseListener
+    {
+
+        public void mouseClicked(MouseEvent me)
+        {
+            // Do nothing
+        }
+
+        // OnMouseOver
+        public void mouseEntered(MouseEvent me)
+        {
+            Field hov = (Field) me.getComponent();
+            if (!hov.equals(selected))
+            {
+                hov.setHovered(true);
+                hov.paint(hov.getGraphics());
+            }
+        }
+
+        // OnMouseOut
+        public void mouseExited(MouseEvent me)
+        {
+            Field hov = (Field) me.getComponent();
+            hov.setHovered(false);
+            hov.paint(hov.getGraphics());
+        }
+
+        // OnClick
+        public void mousePressed(MouseEvent me)
+        {
+            // In case a second Field gets selected, the previous Field has to
+            // be repainted
+            if (selected != null)
+            {
+                selected.setSelected(false);
+                selected.paint(selected.getGraphics());
+            }
+            // Remove the selected Field from the Matrix
+            final Field f = (Field) me.getSource();
+            // Checks if a Field was removed, which also was part of the JFrame
+            if (f != null && f.getParent() != null && !(f instanceof Tree))
+            {
+                selected = f;
+                f.setSelected(true);
+                f.paint(f.getGraphics());
+                if (controlPanel != null)
+                {
+                    remove(controlPanel);
+                }
+                controlPanel = new ControlPanel(getTowerData(), f);
+                add(controlPanel);
+                controlPanel.repaint();
+
+                // Checks if the Timer is running, if so, it has to stop
+                if (actionTimer != null && actionTimer.isRunning())
+                {
+                    actionTimer.stop();
+                }
+
+                // Create Timer to check if a Tower is selected in the
+                // controlPanel
+                actionTimer = new Timer(100, new ActionListener()
+                {
+
+                    public void actionPerformed(ActionEvent ae)
+                    {
+                        // If a Tower is selected -> take action
+                        if (controlPanel.hasController() && controlPanel.getController().getTakeAction())
+                        {
+                            selected = null;
+                            if (f instanceof Tower)
+                            {
+                                TowerToField(f);
+                                controlPanel.getController().setTakeAction(false);
+                                remove(controlPanel);
+                                repaint();
+                            }
+                            else if (!(f instanceof Tree))
+                            {
+                                int type = controlPanel.getController().getType();
+                                FieldToTower(f, type);
+                                controlPanel.getController().setTakeAction(false);
+                                remove(controlPanel);
+                                repaint();
+                            }
+                            actionTimer.stop();
+                        }
+                    }
+                });
+                actionTimer.start();
+            }
+        }
+
+        public void mouseReleased(MouseEvent me)
+        {
+            // Do nothing
         }
     }
 }
