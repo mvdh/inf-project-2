@@ -66,23 +66,9 @@ public class Tower extends Field
         BufferedImage img = null;
         URL url = null;
 
+        TowerData td = new TowerData();
         // If a CaseNumber is selected
-        if (number == 0)
-        {
-            url = getClass().getResource("images/towerA1.png");
-        }
-        else if (number == 1)
-        {
-            url = getClass().getResource("images/towerB1.png");
-        }
-        else if (number == 2)
-        {
-            url = getClass().getResource("images/towerC1.png");
-        }
-        else if (number == 3)
-        {
-            url = getClass().getResource("images/towerD1.png");
-        }
+        url = getClass().getResource("images/tower" + td.getTowerImageName(number) + ".png");
 
         if (url == null)
         {
