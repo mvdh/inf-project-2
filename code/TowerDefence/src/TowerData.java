@@ -123,7 +123,7 @@ public class TowerData {
         towerData[6][10] = 120;     //towerRange
         towerData[6][11] = 10;      //towerAttackSpeed
 
-        towerData[7][0] = 4;        //caseNumber
+        towerData[7][0] = 7;        //caseNumber
         towerData[7][1] = 275;      //costs
         towerData[7][2] = 100;      //hitPoints
         towerData[7][3] = 100;      //range
@@ -136,7 +136,7 @@ public class TowerData {
         towerData[7][10] = 120;     //towerRange
         towerData[7][11] = 10;      //towerAttackSpeed
 
-        towerData[8][0] = 5;        //caseNumber
+        towerData[8][0] = 8;        //caseNumber
         towerData[8][1] = 275;      //costs
         towerData[8][2] = 100;      //hitPoints
         towerData[8][3] = 100;      //range
@@ -149,7 +149,7 @@ public class TowerData {
         towerData[8][10] = 120;     //towerRange
         towerData[8][11] = 10;      //towerAttackSpeed
 
-        towerData[9][0] = 6;        //caseNumber
+        towerData[9][0] = 9;        //caseNumber
         towerData[9][1] = 275;      //costs
         towerData[9][2] = 100;      //hitPoints
         towerData[9][3] = 100;      //range
@@ -162,7 +162,7 @@ public class TowerData {
         towerData[9][10] = 120;     //towerRange
         towerData[9][11] = 10;      //towerAttackSpeed
 
-        towerData[10][0] = 4;        //caseNumber
+        towerData[10][0] = 10;        //caseNumber
         towerData[10][1] = 275;      //costs
         towerData[10][2] = 100;      //hitPoints
         towerData[10][3] = 100;      //range
@@ -175,7 +175,7 @@ public class TowerData {
         towerData[10][10] = 120;     //towerRange
         towerData[10][11] = 10;      //towerAttackSpeed
 
-        towerData[11][0] = 5;        //caseNumber
+        towerData[11][0] = 11;        //caseNumber
         towerData[11][1] = 275;      //costs
         towerData[11][2] = 100;      //hitPoints
         towerData[11][3] = 100;      //range
@@ -188,7 +188,7 @@ public class TowerData {
         towerData[11][10] = 120;     //towerRange
         towerData[11][11] = 10;      //towerAttackSpeed
 
-        towerData[12][0] = 6;        //caseNumber
+        towerData[12][0] = 12;        //caseNumber
         towerData[12][1] = 275;      //costs
         towerData[12][2] = 100;      //hitPoints
         towerData[12][3] = 100;      //range
@@ -201,7 +201,7 @@ public class TowerData {
         towerData[12][10] = 120;     //towerRange
         towerData[12][11] = 10;      //towerAttackSpeed
 
-        towerData[13][0] = 4;        //caseNumber
+        towerData[13][0] = 13;        //caseNumber
         towerData[13][1] = 275;      //costs
         towerData[13][2] = 100;      //hitPoints
         towerData[13][3] = 100;      //range
@@ -214,7 +214,7 @@ public class TowerData {
         towerData[13][10] = 120;     //towerRange
         towerData[13][11] = 10;      //towerAttackSpeed
 
-        towerData[14][0] = 5;        //caseNumber
+        towerData[14][0] = 14;        //caseNumber
         towerData[14][1] = 275;      //costs
         towerData[14][2] = 100;      //hitPoints
         towerData[14][3] = 100;      //range
@@ -227,7 +227,7 @@ public class TowerData {
         towerData[14][10] = 120;     //towerRange
         towerData[14][11] = 10;      //towerAttackSpeed
 
-        towerData[15][0] = 6;        //caseNumber
+        towerData[15][0] = 15;        //caseNumber
         towerData[15][1] = 275;      //costs
         towerData[15][2] = 100;      //hitPoints
         towerData[15][3] = 100;      //range
@@ -319,6 +319,7 @@ public class TowerData {
         for (int i = 0; i < this.getTowerData().length; i++) {
             if (this.getTowerData()[i][4] == caseNumber) {
                 result.add(this.getTowerData()[i][0]);
+                System.out.println(this.getTowerData()[i][0]);
             }
         }
 
