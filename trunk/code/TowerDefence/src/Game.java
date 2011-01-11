@@ -262,6 +262,28 @@ public class Game extends JFrame
         }
     }
 
+    public void upgradeTower(Tower t, int newCase)
+    {
+        if (t != null)
+        {
+            Point p = t.getLocation();
+            Tower nT = new Tower(bf, newCase);
+            nT.setLocation(p);
+            nT.addMouseListener(new GameMouseAdapter());
+            m.remove(t);
+            boolean added = m.add(nT, p.x / 40, p.y / 40);
+            if (!added)
+            {
+                JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
+            }
+
+            //remove the Tower from the JFrame and add the Field to it
+            fieldPanel.remove(t);
+            fieldPanel.add(nT);
+            //System.out.println(m.toString());
+        }
+    }
+
     public void initHeartbeat()
     {
         Timer t = new Timer(40, new ActionListener()
@@ -568,7 +590,6 @@ public class Game extends JFrame
                 // controlPanel
                 actionTimer = new Timer(100, new ActionListener()
                 {
-
                     public void actionPerformed(ActionEvent ae)
                     {
                         // If a Tower is selected -> take action
@@ -577,7 +598,12 @@ public class Game extends JFrame
                             selected = null;
                             if (f instanceof Tower)
                             {
-                                TowerToField(f);
+                                int type = controlPanel.getController().getType();
+                                if(type == -1){
+                                    TowerToField(f);
+                                } else {
+                                    upgradeTower((Tower)f, type);
+                                }
                                 controlPanel.getController().setTakeAction(false);
                                 remove(controlPanel);
                                 repaint();
