@@ -12,12 +12,10 @@ import javax.imageio.ImageIO;
 public class TowerController extends Controller {
 
     private int caseNumber;
-    private TowerData towerData;
 
     public TowerController(TowerData td, Tower t) {
         setTowerData(td);
-        //setCaseNumber(t.getCaseNumber());
-        setCaseNumber(1);
+        setCaseNumber(t.getCaseNumber());
         init();
     }
 
@@ -30,27 +28,11 @@ public class TowerController extends Controller {
     }
 
     /**
-     * 
-     * @return
-     */
-    public TowerData getTowerData() {
-        return towerData;
-    }
-
-    /**
      * Sets the caseNumber of the tower
      * @param caseNumber the caseNumber to set
      */
     public void setCaseNumber(int caseNumber) {
         this.caseNumber = caseNumber;
-    }
-
-    /**
-     * 
-     * @param towerData
-     */
-    public void setTowerData(TowerData towerData) {
-        this.towerData = towerData;
     }
 
     /**
@@ -75,11 +57,9 @@ public class TowerController extends Controller {
         Point[] locations =
         { new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85) };
 
-
         //check welke upgradables er zijn, en aan de hand daarvan moeten plaatjes worden geladen
         ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(this.getCaseNumber(), 0);
         if (upgradables.get(0) != -1) {
-            System.out.println("Some upgradables");
 
             URL url = getClass().getResource("images/boom.png");
             try {
@@ -87,9 +67,9 @@ public class TowerController extends Controller {
             } catch (Exception e) {
             }
 
-            CLabel label = new CLabel(img);
+            CLabel label = new CLabel(img, -1);
             label.addMouseListener(new CMouseAdapter());
-            label.setLocation(20, 20);
+            label.setLocation(locations[0]);
             add(label);
 
             for (int i = 1; i <= upgradables.size(); i++) {
@@ -99,7 +79,7 @@ public class TowerController extends Controller {
                 } catch (Exception e) {
                 }
 
-                label = new CLabel(img);
+                label = new CLabel(img, upgradables.get(i-1));
                 label.addMouseListener(new CMouseAdapter());
                 label.setLocation(locations[i]);
                 add(label);
