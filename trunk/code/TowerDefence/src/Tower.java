@@ -24,7 +24,7 @@ public class Tower extends Field
     {
         // Just to set the size of the object
         super(bg);
-        this.setCaseNumber(-1);
+        this.setCaseNumber(0);
         this.setCounter(0);
     }
 
