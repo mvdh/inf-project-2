@@ -15,6 +15,8 @@ public class Field extends Component
     private BufferedImage bf = null;
     private double random;
     private double random2;
+    
+    // Voor de graphics
     private boolean selected = false;
     private boolean hovered = false;
 
