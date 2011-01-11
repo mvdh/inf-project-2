@@ -1,3 +1,4 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -14,6 +15,8 @@ public class Field extends Component
     private BufferedImage bf = null;
     private double random;
     private double random2;
+    private boolean selected = false;
+    private boolean hovered = false;
 
     public Field(BufferedImage bg)
     {
@@ -81,6 +84,26 @@ public class Field extends Component
     {
         this.walkable = walkable;
     }
+    
+    public void setSelected(boolean sel)
+    {
+        selected = sel;
+    }
+    
+    public boolean getSelected()
+    {
+        return selected;
+    }
+    
+    public void setHovered(boolean hov)
+    {
+        hovered = hov;
+    }
+    
+    public boolean getHovered()
+    {
+        return hovered;
+    }
 
     public void paint(Graphics g)
     {
@@ -107,6 +130,23 @@ public class Field extends Component
         if (random2 < 0.5)
         {
             mirrored((Graphics2D) g, size);
+        }
+        
+        if (getSelected())
+        {
+            g.setColor(new Color(200, 200, 200));
+            g.drawRect(0, 0, size.width - 1, size.height - 1);
+        }
+        
+        if (getHovered() && !getSelected())
+        {
+            Graphics2D g2D = (Graphics2D) g;
+            float alpha = .3f;
+            g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+            g2D.setColor(Color.white);
+            g2D.fillRect(0, 0, 40, 40);
+            alpha = 1f;
+            g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         }
     }
 
