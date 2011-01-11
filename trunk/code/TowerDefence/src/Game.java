@@ -210,26 +210,22 @@ public class Game extends JFrame
      */
     public void FieldToTower(Field f, int type)
     {
-        if (f != null)
+        if (f != null && f.isBuildable())
         {
-            if (f.isBuildable())
+            Point p = f.getLocation();
+            Tower t = new Tower(bf, type);
+            t.setLocation(p);
+            t.addMouseListener(new GameMouseAdapter());
+            t.setWalkable(false);
+            m.remove(f);
+            boolean added = m.add(t, p.x / 40, p.y / 40);
+            if (!added)
             {
-                Point p = f.getLocation();
-                Tower t = new Tower(bf, type);
-                t.setLocation(p);
-                t.addMouseListener(new GameMouseAdapter());
-                t.setWalkable(false);
-                m.remove(f);
-                boolean added = m.add(t, p.x / 40, p.y / 40);
-                if (!added)
-                {
-                    JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
-                }
-
-                // remove the Field from the JFrame and add the Tower to it
-                fieldPanel.remove(f);
-                fieldPanel.add(t);
+                JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
             }
+
+            fieldPanel.remove(f);
+            fieldPanel.add(t);
             checkPath(f);
         }
     }
@@ -254,10 +250,8 @@ public class Game extends JFrame
                 JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
             }
 
-            // remove the Tower from the JFrame and add the Field to it
             fieldPanel.remove(t);
             fieldPanel.add(f);
-            // System.out.println(m.toString());
             checkPath(f);
         }
     }
@@ -278,10 +272,8 @@ public class Game extends JFrame
                 JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
             }
 
-            //remove the Tower from the JFrame and add the Field to it
             fieldPanel.remove(t);
             fieldPanel.add(nT);
-            //System.out.println(m.toString());
             checkPath(nT);
         }
     }
@@ -316,7 +308,7 @@ public class Game extends JFrame
         Path path = new Path();
         Point start = puppet.getLocation();
         start.x /= 40;// m.getPoint(puppet.getPath()[puppet.getPathCounter() -
-                      // 1]);
+        // 1]);
         start.y /= 40;
         Point end = target.getLocation();
         end.x /= 40;
@@ -523,7 +515,7 @@ public class Game extends JFrame
             u.setPathCounter(1);
         }
     }
-    
+
     public static void main(String[] args)
     {
         new Game();
@@ -601,10 +593,13 @@ public class Game extends JFrame
                             if (f instanceof Tower)
                             {
                                 int type = controlPanel.getController().getType();
-                                if(type == -1){
+                                if (type == -1)
+                                {
                                     TowerToField(f);
-                                } else {
-                                    upgradeTower((Tower)f, type);
+                                }
+                                else
+                                {
+                                    upgradeTower((Tower) f, type);
                                 }
                                 controlPanel.getController().setTakeAction(false);
                                 remove(controlPanel);
