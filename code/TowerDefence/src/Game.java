@@ -270,6 +270,7 @@ public class Game extends JFrame
             Tower nT = new Tower(bf, newCase);
             nT.setLocation(p);
             nT.addMouseListener(new GameMouseAdapter());
+            nT.setWalkable(false);
             m.remove(t);
             boolean added = m.add(nT, p.x / 40, p.y / 40);
             if (!added)
@@ -281,6 +282,7 @@ public class Game extends JFrame
             fieldPanel.remove(t);
             fieldPanel.add(nT);
             //System.out.println(m.toString());
+            checkPath(nT);
         }
     }
 
