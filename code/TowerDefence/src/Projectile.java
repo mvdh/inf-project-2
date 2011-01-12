@@ -1,11 +1,8 @@
 
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 /*
  * To change this template, choose Tools | Templates
@@ -47,6 +44,9 @@ public class Projectile extends Sprite
             bf = ImageIO.read(url);
         } catch (Exception e) {}
         setImage(bf);
+        
+        int size = Math.max(bf.getHeight(), bf.getWidth());
+        setSize(size, size);
     }
 
     @Override
