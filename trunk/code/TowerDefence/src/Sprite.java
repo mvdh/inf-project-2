@@ -1,13 +1,10 @@
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.net.URL;
-import javax.imageio.ImageIO;
 
 public class Sprite extends Component
 {

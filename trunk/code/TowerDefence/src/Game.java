@@ -81,13 +81,7 @@ public class Game extends JFrame
 
             for (int j = 0; j < 13; j++)
             {
-                Field toBeAdded = new Field(bf);
-
-                // if (j == 0 || j == 12) {
-                // toBeAdded.setBuildable(false);
-                // }
-
-                v.add(toBeAdded);
+                v.add(new Field(bf));
             }
 
             if (i != 4)
@@ -137,7 +131,6 @@ public class Game extends JFrame
 
         Timer t = new Timer(2000, new ActionListener()
         {
-
             public void actionPerformed(ActionEvent arg0)
             {
                 Unit a = new Unit(1.5);
@@ -435,8 +428,8 @@ public class Game extends JFrame
                         {
                             Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()), (double) gameStats.getTowerData().getMissleSpeed(t
                                     .getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, t.getLocation());
-                            spriteList.add(tempP);
                             getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
+                            spriteList.add(tempP);
                             // System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));
                             break;
                         }
