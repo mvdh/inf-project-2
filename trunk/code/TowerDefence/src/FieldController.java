@@ -8,9 +8,10 @@ import javax.imageio.ImageIO;
  */
 public class FieldController extends Controller
 {
-    public FieldController(TowerData towerDataIn)
+
+    public FieldController(GameStats gameStats)
     {
-        setTowerData(towerDataIn);
+        setGameStats(gameStats);
         init();
     }
 
@@ -22,7 +23,7 @@ public class FieldController extends Controller
         int[] possibilities = new int[4];
         int amountFound = 0;
 
-        TowerData data = getTowerData();
+        TowerData data = this.getGameStats().getTowerData();
 
         for (int i = 0; i < data.getTowerData().length; i++)
         {

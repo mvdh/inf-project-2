@@ -22,7 +22,7 @@ public class Controller extends Container
 {
     private boolean takeAction = false;
     private int type = -1;
-    private TowerData towerData;
+    private GameStats gameStats;
     
     private JPanel description = new JPanel(new GridLayout(5, 1));
     private JLabel priceLbl = new JLabel();
@@ -84,17 +84,17 @@ public class Controller extends Container
     /**
      * @return
      */
-    public TowerData getTowerData()
+    public GameStats getGameStats()
     {
-        return towerData;
+        return this.gameStats;
     }
 
     /**
-     * @param towerData
+     * @param gameStats
      */
-    public void setTowerData(TowerData towerDataIn)
+    public void setGameStats(GameStats gameStats)
     {
-        towerData = towerDataIn;
+        this.gameStats = gameStats;
     }
 
     class CLabel extends JLabel
@@ -167,11 +167,11 @@ public class Controller extends Container
 
             if (((CLabel) me.getComponent()).getType() != -1)
             {
-                priceLbl.setText("  Price: " + towerData.getCosts(((CLabel) me.getComponent()).getType()));
-                hitPointsLbl.setText("  Hitpoints: " + towerData.getHitpoints(((CLabel) me.getComponent()).getType()));
-                rangeLbl.setText("  Range: " + towerData.getRange(((CLabel) me.getComponent()).getType()));
-                speedLbl.setText("  Attack speed: " + towerData.getAttackSpeed(((CLabel) me.getComponent()).getType()));
-                damageLbl.setText("  Damage: " + towerData.getMissleDamage(((CLabel) me.getComponent()).getType()));
+                priceLbl.setText("  Price: " + getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType()));
+                hitPointsLbl.setText("  Hitpoints: " + getGameStats().getTowerData().getHitpoints(((CLabel) me.getComponent()).getType()));
+                rangeLbl.setText("  Range: " + getGameStats().getTowerData().getRange(((CLabel) me.getComponent()).getType()));
+                speedLbl.setText("  Attack speed: " + getGameStats().getTowerData().getAttackSpeed(((CLabel) me.getComponent()).getType()));
+                damageLbl.setText("  Damage: " + getGameStats().getTowerData().getMissleDamage(((CLabel) me.getComponent()).getType()));
             }
         }
 

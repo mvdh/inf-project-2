@@ -8,18 +8,18 @@ import javax.swing.JPanel;
 public class ControlPanel extends JPanel {
 
     private Field field;
-    private TowerData towerData;
-    
+    private int points;
+    private GameStats gameStats;
     private Controller controller = null;
 
-    public ControlPanel(TowerData towerData, Field field) {
+    public ControlPanel(GameStats gameStats, Field field) {
+        setGameStats(gameStats);
         setLocation(0, 380);
         setSize(680, 180);
-        setTowerData(towerData);
         setField(field);
         findType(field);
         setVisible(true);
-        this.setLayout(null);
+        setLayout(null);
         setBackground(Color.white);
     }
 
@@ -31,9 +31,10 @@ public class ControlPanel extends JPanel {
         this.field = field;
     }
 
-    public void setTowerData(TowerData towerData){
-        this.towerData = towerData;
+    public void setGameStats(GameStats gameStats){
+        this.gameStats = gameStats;
     }
+
     /**
      * Returns the field on which the controlpanel is based
      * @return the field field
@@ -42,15 +43,15 @@ public class ControlPanel extends JPanel {
         return this.field;
     }
 
-    public TowerData getTowerData(){
-        return this.towerData;
-    }
-    
     public Controller getController()
     {
         return controller;
     }
-    
+
+    public GameStats getGameStats(){
+        return this.gameStats;
+    }
+
     public boolean hasController()
     {
         return controller != null;
@@ -62,9 +63,9 @@ public class ControlPanel extends JPanel {
      */
     public void findType(Field field){
         if(field instanceof Tower){
-            controller = new TowerController(getTowerData(), (Tower) field);
+            controller = new TowerController(getGameStats(), (Tower) field);
         } else if(field instanceof Field){
-            controller = new FieldController(getTowerData());
+            controller = new FieldController(getGameStats());
         } else{
             //DO NOTHING
         }

@@ -308,7 +308,7 @@ public class TowerData {
      * @return An ArrayList with the caseNumber of the upgradables. If there is
      * no upgradable, the ArrayList has one value: -1.
      */
-    public ArrayList<Integer> getUpgradables(int caseNumber, int currency) {
+    public ArrayList<Integer> getUpgradables(int caseNumber) {
         ArrayList<Integer> result = new ArrayList();
 
         /*
