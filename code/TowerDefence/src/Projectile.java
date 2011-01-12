@@ -47,9 +47,9 @@ public class Projectile extends Sprite
         
         int size = Math.max(bf.getHeight(), bf.getWidth());
         setSize(size, size);
+        setLocation(start);
     }
 
-    @Override
     public void endMove()
     {
         //System.out.println("BOEM!!!\nIk doe nu " + damage + " schade aan m'n doelwit");
