@@ -57,21 +57,20 @@ public class TowerController extends Controller {
         Point[] locations =
         { new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85) };
 
+        URL url = getClass().getResource("images/boom.png");
+        try {
+            img = ImageIO.read(url);
+        } catch (Exception e) {
+        }
+
+        CLabel label = new CLabel(img, -1);
+        label.addMouseListener(new CMouseAdapter());
+        label.setLocation(locations[0]);
+        add(label);
+
         //check welke upgradables er zijn, en aan de hand daarvan moeten plaatjes worden geladen
         ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(this.getCaseNumber(), 0);
         if (upgradables.get(0) != -1) {
-
-            URL url = getClass().getResource("images/boom.png");
-            try {
-                img = ImageIO.read(url);
-            } catch (Exception e) {
-            }
-
-            CLabel label = new CLabel(img, -1);
-            label.addMouseListener(new CMouseAdapter());
-            label.setLocation(locations[0]);
-            add(label);
-
             for (int i = 1; i <= upgradables.size(); i++) {
                 url = getClass().getResource("images/tower" + this.getTowerData().getTowerImageName(upgradables.get(i-1)) + ".png");
                 try {
