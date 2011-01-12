@@ -15,7 +15,7 @@ public class ControlPanel extends JPanel {
     public ControlPanel(GameStats gameStats, Field field) {
         setGameStats(gameStats);
         setLocation(0, 380);
-        setSize(680, 180);
+        setSize(600, 165);
         setField(field);
         findType(field);
         setVisible(true);
