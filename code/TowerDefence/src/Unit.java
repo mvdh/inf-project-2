@@ -117,11 +117,9 @@ public class Unit extends Sprite
         if (hasNextPath())
         {
             Point newEnd = getNextPath().getLocation();
-            System.out.println(newEnd);
             // newEnd.x += 20;
             newEnd.x += (this.getWidth() / 2);
             newEnd.y += 40 - (getSize().getHeight() / 2);
-//            newEnd.y += (this.getHeight() / 2);
             // System.out.println(newEnd);
             setNewDestination(newEnd);
         }
