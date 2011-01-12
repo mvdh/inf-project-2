@@ -133,7 +133,7 @@ public class Game extends JFrame
         {
             public void actionPerformed(ActionEvent arg0)
             {
-                Unit a = new Unit(1.5, 50);
+                Unit a = new Unit(1.5, 20);
                 // a.setSize(20, 20);
                 // a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
                 a.setNewDestination(a.getLocation());
@@ -202,8 +202,9 @@ public class Game extends JFrame
             if (!added)
             {
                 JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
+            } else {
+                this.gameStats.updatePoints(-1, this.gameStats.getTowerData().getCosts(type));
             }
-
             fieldPanel.remove(f);
             fieldPanel.add(t);
             checkPath(f);
@@ -231,6 +232,20 @@ public class Game extends JFrame
             }
 
             fieldPanel.remove(t);
+            if(added){
+
+                int lastCaseNumber = ((Tower) t).getCaseNumber();
+                int totalCosts = 0;
+                
+                while(lastCaseNumber >= 0){
+                    totalCosts += gameStats.getTowerData().getCosts(lastCaseNumber);
+                    lastCaseNumber = gameStats.getTowerData().getPreviousCaseNumber(lastCaseNumber);
+                }
+
+                totalCosts = (totalCosts/10)*7;
+                gameStats.updatePoints(1, totalCosts);
+                //check which tower there also where
+            }
             fieldPanel.add(f);
             checkPath(f);
         }
@@ -250,6 +265,8 @@ public class Game extends JFrame
             if (!added)
             {
                 JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
+            } else {
+                this.gameStats.updatePoints(-1, this.gameStats.getTowerData().getCosts(newCase));
             }
 
             fieldPanel.remove(t);
@@ -459,7 +476,6 @@ public class Game extends JFrame
                             gold += unitData.getReward(u.getCaseNumber());
                             //points += unitData.getReward(u.getCaseNumber()) * 5;
                             gameStats.updatePoints(1, unitData.getReward(u.getCaseNumber()) * 5);
-                            System.out.println("gamestats: " + gameStats.getPoints());
                             cleanUp.add(u);
                         }
                     }
