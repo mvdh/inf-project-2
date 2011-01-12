@@ -10,7 +10,7 @@
 public class GameStats {
 
     private TowerData towerData = null;
-    private int points = 0;
+    private int points = 1000;
 
     public GameStats(){
         this.setTowerData(new TowerData());

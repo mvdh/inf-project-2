@@ -197,7 +197,15 @@ public class Controller extends Container
 
         public void mousePressed(MouseEvent me)
         {
-            setTakeAction(true);
+            int currentType = ((CLabel) me.getComponent()).getType();
+            if(currentType != -1){
+                int towerCosts = getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType());
+                if(gameStats.getPoints() >= towerCosts){
+                    setTakeAction(true);
+                }
+            } else {
+                setTakeAction(true);
+            }
             setType(((CLabel) me.getComponent()).getType());
             
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
@@ -214,7 +222,7 @@ public class Controller extends Container
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-            g.setColor(Color.white);
+            g.setColor(Color.red);
             g.fillRect(0, 0, 60, 60);
         }
     }
