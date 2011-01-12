@@ -101,7 +101,7 @@ public class TowerData {
         towerData[5][1] = 275;      //costs
         towerData[5][2] = 100;      //hitPoints
         towerData[5][3] = 100;      //range
-        towerData[5][4] = 0;        //previousCaseNumber
+        towerData[5][4] = 1;        //previousCaseNumber
         towerData[5][5] = 2;        //missleDamage
         towerData[5][6] = 2;        //missleImage
         towerData[5][7] = 20;       //missleSpeed
@@ -114,7 +114,7 @@ public class TowerData {
         towerData[6][1] = 275;      //costs
         towerData[6][2] = 100;      //hitPoints
         towerData[6][3] = 100;      //range
-        towerData[6][4] = 0;        //previousCaseNumber
+        towerData[6][4] = 2;        //previousCaseNumber
         towerData[6][5] = 2;        //missleDamage
         towerData[6][6] = 2;        //missleImage
         towerData[6][7] = 20;       //missleSpeed
@@ -127,7 +127,7 @@ public class TowerData {
         towerData[7][1] = 275;      //costs
         towerData[7][2] = 100;      //hitPoints
         towerData[7][3] = 100;      //range
-        towerData[7][4] = 1;        //previousCaseNumber
+        towerData[7][4] = 3;        //previousCaseNumber
         towerData[7][5] = 2;        //missleDamage
         towerData[7][6] = 2;        //missleImage
         towerData[7][7] = 20;       //missleSpeed
@@ -140,7 +140,7 @@ public class TowerData {
         towerData[8][1] = 275;      //costs
         towerData[8][2] = 100;      //hitPoints
         towerData[8][3] = 100;      //range
-        towerData[8][4] = 1;        //previousCaseNumber
+        towerData[8][4] = 4;        //previousCaseNumber
         towerData[8][5] = 2;        //missleDamage
         towerData[8][6] = 2;        //missleImage
         towerData[8][7] = 20;       //missleSpeed
@@ -153,7 +153,7 @@ public class TowerData {
         towerData[9][1] = 275;      //costs
         towerData[9][2] = 100;      //hitPoints
         towerData[9][3] = 100;      //range
-        towerData[9][4] = 1;        //previousCaseNumber
+        towerData[9][4] = 5;        //previousCaseNumber
         towerData[9][5] = 2;        //missleDamage
         towerData[9][6] = 2;        //missleImage
         towerData[9][7] = 20;       //missleSpeed
@@ -166,7 +166,7 @@ public class TowerData {
         towerData[10][1] = 275;      //costs
         towerData[10][2] = 100;      //hitPoints
         towerData[10][3] = 100;      //range
-        towerData[10][4] = 2;        //previousCaseNumber
+        towerData[10][4] = 6;        //previousCaseNumber
         towerData[10][5] = 2;        //missleDamage
         towerData[10][6] = 2;        //missleImage
         towerData[10][7] = 20;       //missleSpeed
@@ -179,7 +179,7 @@ public class TowerData {
         towerData[11][1] = 275;      //costs
         towerData[11][2] = 100;      //hitPoints
         towerData[11][3] = 100;      //range
-        towerData[11][4] = 2;        //previousCaseNumber
+        towerData[11][4] = 7;        //previousCaseNumber
         towerData[11][5] = 2;        //missleDamage
         towerData[11][6] = 2;        //missleImage
         towerData[11][7] = 20;       //missleSpeed
@@ -192,7 +192,7 @@ public class TowerData {
         towerData[12][1] = 275;      //costs
         towerData[12][2] = 100;      //hitPoints
         towerData[12][3] = 100;      //range
-        towerData[12][4] = 2;        //previousCaseNumber
+        towerData[12][4] = 8;        //previousCaseNumber
         towerData[12][5] = 2;        //missleDamage
         towerData[12][6] = 2;        //missleImage
         towerData[12][7] = 20;       //missleSpeed
@@ -205,7 +205,7 @@ public class TowerData {
         towerData[13][1] = 275;      //costs
         towerData[13][2] = 100;      //hitPoints
         towerData[13][3] = 100;      //range
-        towerData[13][4] = 3;        //previousCaseNumber
+        towerData[13][4] = 9;        //previousCaseNumber
         towerData[13][5] = 2;        //missleDamage
         towerData[13][6] = 2;        //missleImage
         towerData[13][7] = 20;       //missleSpeed
@@ -218,7 +218,7 @@ public class TowerData {
         towerData[14][1] = 275;      //costs
         towerData[14][2] = 100;      //hitPoints
         towerData[14][3] = 100;      //range
-        towerData[14][4] = 3;        //previousCaseNumber
+        towerData[14][4] = 10;        //previousCaseNumber
         towerData[14][5] = 2;        //missleDamage
         towerData[14][6] = 2;        //missleImage
         towerData[14][7] = 20;       //missleSpeed
@@ -231,7 +231,7 @@ public class TowerData {
         towerData[15][1] = 275;      //costs
         towerData[15][2] = 100;      //hitPoints
         towerData[15][3] = 100;      //range
-        towerData[15][4] = 3;        //previousCaseNumber
+        towerData[15][4] = 11;        //previousCaseNumber
         towerData[15][5] = 2;        //missleDamage
         towerData[15][6] = 2;        //missleImage
         towerData[15][7] = 20;       //missleSpeed
@@ -245,16 +245,16 @@ public class TowerData {
         towerImages[2] = "C1";
         towerImages[3] = "D1";
         towerImages[4] = "A2";
-        towerImages[5] = "A3";
-        towerImages[6] = "A4";
-        towerImages[7] = "B2";
-        towerImages[8] = "B3";
-        towerImages[9] = "B4";
-        towerImages[10] = "C2";
-        towerImages[11] = "C3";
-        towerImages[12] = "C4";
-        towerImages[13] = "D2";
-        towerImages[14] = "D3";
+        towerImages[5] = "B2";
+        towerImages[6] = "C2";
+        towerImages[7] = "D2";
+        towerImages[8] = "A3";
+        towerImages[9] = "B3";
+        towerImages[10] = "C3";
+        towerImages[11] = "D3";
+        towerImages[12] = "A4";
+        towerImages[13] = "B4";
+        towerImages[14] = "C4";
         towerImages[15] = "D4";
     }
 
