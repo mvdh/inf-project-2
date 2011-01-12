@@ -34,10 +34,10 @@ public class Controller extends Container
     public void init()
     {
         setLayout(null);
-        setSize(680, 180);
+        setSize(600, 165);
         
         description.setLocation(165, 20);
-        description.setSize(495, 125);
+        description.setSize(415, 125);
         
         description.add(priceLbl);
         description.add(hitPointsLbl);
@@ -162,7 +162,16 @@ public class Controller extends Container
             Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
             float alpha = .5f;
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+            int currentType = ((CLabel) me.getComponent()).getType();
+
             g.setColor(Color.white);
+            if(currentType != -1){
+                int towerCosts = getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType());
+                if(gameStats.getPoints() < towerCosts){
+                    g.setColor(Color.red);
+                }
+            }
+
             g.fillRect(0, 0, 60, 60);
 
             if (((CLabel) me.getComponent()).getType() != -1)
