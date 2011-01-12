@@ -13,8 +13,8 @@ public class TowerController extends Controller {
 
     private int caseNumber;
 
-    public TowerController(TowerData td, Tower t) {
-        setTowerData(td);
+    public TowerController(GameStats gameStats, Tower t) {
+        setGameStats(gameStats);
         setCaseNumber(t.getCaseNumber());
         init();
     }
@@ -33,21 +33,6 @@ public class TowerController extends Controller {
      */
     public void setCaseNumber(int caseNumber) {
         this.caseNumber = caseNumber;
-    }
-
-    /**
-     * Checks which towers the current tower can upgrade to. The towers can not
-     * be downgraded, so the previous cases are excluded
-     * @return The possible upgradables
-     */
-    public ArrayList<Integer> findUpgradables() {
-        int currentCase = getCaseNumber();
-        int currency = 100;
-
-        //The upgradables based on case number en currency
-        ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(caseNumber, currency);
-
-        return upgradables;
     }
 
     @Override
@@ -69,10 +54,10 @@ public class TowerController extends Controller {
         add(label);
 
         //check welke upgradables er zijn, en aan de hand daarvan moeten plaatjes worden geladen
-        ArrayList<Integer> upgradables = this.getTowerData().getUpgradables(this.getCaseNumber(), 0);
+        ArrayList<Integer> upgradables = this.getGameStats().getTowerData().getUpgradables(this.getCaseNumber());
         if (upgradables.get(0) != -1) {
             for (int i = 1; i <= upgradables.size(); i++) {
-                url = getClass().getResource("images/tower" + this.getTowerData().getTowerImageName(upgradables.get(i-1)) + ".png");
+                url = getClass().getResource("images/tower" + this.getGameStats().getTowerData().getTowerImageName(upgradables.get(i-1)) + ".png");
                 try {
                     img = ImageIO.read(url);
                 } catch (Exception e) {

@@ -20,7 +20,6 @@ public class Game extends JFrame
 {
 
     private Matrix m;
-    private TowerData towerData;
     private UnitData unitData;
     private SpriteList spriteList;
     private ControlPanel controlPanel;
@@ -34,10 +33,10 @@ public class Game extends JFrame
     private Timer actionTimer = null;
     // Start values
     private int gold = 0;
-    private int points = 0;
     private int castleHealth = 600;
     // Field background image
     private BufferedImage bf = null;
+    private GameStats gameStats = new GameStats();
 
     public Game()
     {
@@ -121,7 +120,6 @@ public class Game extends JFrame
             }
         }
 
-        setTowerData(new TowerData());
         spriteList = new SpriteList();
         unitData = new UnitData();
         add(statsPanel);
@@ -189,18 +187,8 @@ public class Game extends JFrame
     public void updateStats()
     {
         goldLbl.setText("Gold: " + gold);
-        pointsLbl.setText("Points: " + points);
+        pointsLbl.setText("Points: " + gameStats.getPoints());
         healthLbl.setText("Health: " + castleHealth);
-    }
-
-    public void setTowerData(TowerData towerData)
-    {
-        this.towerData = towerData;
-    }
-
-    public TowerData getTowerData()
-    {
-        return towerData;
     }
 
     /**
@@ -368,7 +356,7 @@ public class Game extends JFrame
     public Point fireMissle(Tower shooter, Unit target)
     {
         Point res = null;
-        double speedMissle = towerData.getMissleSpeed(shooter.getCaseNumber());
+        double speedMissle = gameStats.getTowerData().getMissleSpeed(shooter.getCaseNumber());
         double speedTarget = target.getSpeed();
         Vector path = target.getPath();
         double count = 0; // = target.getFieldPercentage(); // =
@@ -432,7 +420,7 @@ public class Game extends JFrame
             t.count();
             if (t != null)
             {
-                if (t.getCounter() == towerData.getMissleSpeed(t.getCaseNumber()))
+                if (t.getCounter() == gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()))
                 {
                     // range check
                     a = t.getLocation();
@@ -443,13 +431,13 @@ public class Game extends JFrame
                         b = u.getLocation();
                         b.x += u.getWidth();
                         b.y += u.getHeight();
-                        if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= towerData.getRange(t.getCaseNumber()))
+                        if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= gameStats.getTowerData().getRange(t.getCaseNumber()))
                         {
-                            Projectile tempP = new Projectile(towerData.getMissleDamage(t.getCaseNumber()), towerData.getMissleImage(t.getCaseNumber()), (double) towerData.getMissleSpeed(t
-                                    .getCaseNumber()), towerData.getMissleRange(t.getCaseNumber()), b, t.getLocation());
+                            Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()), (double) gameStats.getTowerData().getMissleSpeed(t
+                                    .getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, t.getLocation());
                             spriteList.add(tempP);
                             getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
-                            // System.out.println(towerData.getMissleDamage(t.getCaseNumber()));
+                            // System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));
                             break;
                         }
                     }
@@ -477,7 +465,9 @@ public class Game extends JFrame
                         if (u.getHitPoints() <= 0)
                         {
                             gold += unitData.getReward(u.getCaseNumber());
-                            points += unitData.getReward(u.getCaseNumber()) * 5;
+                            //points += unitData.getReward(u.getCaseNumber()) * 5;
+                            gameStats.updatePoints(1, unitData.getReward(u.getCaseNumber()) * 5);
+                            System.out.println("gamestats: " + gameStats.getPoints());
                             cleanUp.add(u);
                         }
                     }
@@ -570,7 +560,7 @@ public class Game extends JFrame
                 {
                     remove(controlPanel);
                 }
-                controlPanel = new ControlPanel(getTowerData(), f);
+                controlPanel = new ControlPanel(gameStats, f);
                 add(controlPanel);
                 controlPanel.repaint();
 
