@@ -25,11 +25,11 @@ public class Controller extends Container
     private TowerData towerData;
     
     private JPanel description = new JPanel(new GridLayout(5, 1));
-    private JLabel priceLbl = new JLabel("  Price: ");
-    private JLabel hitPointsLbl = new JLabel("  Hitpoints: ");
-    private JLabel rangeLbl = new JLabel("  Range: ");
-    private JLabel speedLbl = new JLabel("  Attack speed: ");
-    private JLabel damageLbl = new JLabel("  Damage: ");
+    private JLabel priceLbl = new JLabel();
+    private JLabel hitPointsLbl = new JLabel();
+    private JLabel rangeLbl = new JLabel();
+    private JLabel speedLbl = new JLabel();
+    private JLabel damageLbl = new JLabel();
 
     public void init()
     {

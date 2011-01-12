@@ -38,7 +38,7 @@ public class Unit extends Sprite
 
         bf = new BufferedImage[3];
         
-        URL url = getClass().getResource("images/unit-mario1-f1.png");
+        URL url = getClass().getResource("images/unit-mario3-f1.png");
         try
         {
             bf[0] = ImageIO.read(url);
@@ -46,7 +46,7 @@ public class Unit extends Sprite
         catch (Exception e)
         {}
 
-        url = getClass().getResource("images/unit-mario1-f2.png");
+        url = getClass().getResource("images/unit-mario3-f2.png");
         try
         {
             bf[1] = ImageIO.read(url);
@@ -54,7 +54,7 @@ public class Unit extends Sprite
         catch (Exception e)
         {}
         
-        url = getClass().getResource("images/unit-mario1-f3.png");
+        url = getClass().getResource("images/unit-mario3-f3.png");
         try
         {
             bf[2] = ImageIO.read(url);
@@ -65,7 +65,7 @@ public class Unit extends Sprite
         int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
         
         setSize(size, size);
-        setLocation(-(int) getSize().getWidth(), 190);
+        setLocation(-(int) getSize().getWidth(), 200 - size / 2);
     }
 
     public int getCaseNumber()
@@ -117,10 +117,11 @@ public class Unit extends Sprite
         if (hasNextPath())
         {
             Point newEnd = getNextPath().getLocation();
+            System.out.println(newEnd);
             // newEnd.x += 20;
             newEnd.x += (this.getWidth() / 2);
-            newEnd.y += 30 - (getSize().getHeight() / 2); // * Math.random() ???
-            newEnd.y += (this.getHeight() / 2);
+            newEnd.y += 40 - (getSize().getHeight() / 2);
+//            newEnd.y += (this.getHeight() / 2);
             // System.out.println(newEnd);
             setNewDestination(newEnd);
         }
