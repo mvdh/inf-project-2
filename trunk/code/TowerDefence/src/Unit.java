@@ -1,5 +1,8 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
@@ -13,7 +16,7 @@ import javax.imageio.ImageIO;
  */
 public class Unit extends Sprite
 {
-
+    private int maxHP;
     private int hitPoints;
     private boolean aviation;
     private Vector path;
@@ -25,9 +28,11 @@ public class Unit extends Sprite
     private int animationSpeed = 10;
     private int number = 0;
 
-    public Unit(double speed)
+    public Unit(double speed, int hp)
     {
         super(speed);
+        setHitPoints(hp);
+        maxHP = hp;
         aviation = false;
         pathCounter = 0;
         caseNumber = 0;
@@ -64,8 +69,8 @@ public class Unit extends Sprite
         
         int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
         
-        setSize(size, size);
-        setLocation(-(int) getSize().getWidth(), 200 - size / 2);
+        setSize(size, size + 5);
+        setLocation(-(int) getWidth(), 200 - getHeight() / 2);
     }
 
     public int getCaseNumber()
@@ -208,6 +213,15 @@ public class Unit extends Sprite
             }
         }
 
+        g.translate(getWidth() / 2 - bf[0].getWidth() / 2, 5);
         super.paint(g);
+        g.translate(-(getWidth() / 2 - bf[0].getWidth() / 2), -5);
+        double percentage = ((double) getHitPoints()) / ((double) maxHP);
+        double widthGreen = getWidth() * percentage;
+        
+        g.setColor(Color.red);
+        g.fillRect(0, 0, getWidth(), 5);
+        g.setColor(Color.green);
+        g.fillRect(0, 0, (int) widthGreen, 5);
     }
 }

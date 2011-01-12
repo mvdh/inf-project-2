@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -31,7 +32,7 @@ public class Sprite extends Component
 
     public Sprite(double s)
     {
-        this();
+//        this();
         speed = s;
         marge = (int) Math.ceil(s) + 1;
         stepCounter = 0;
@@ -107,7 +108,15 @@ public class Sprite extends Component
     public void paint(Graphics g)
     {
         AffineTransform trans = new AffineTransform();
-        trans.rotate(angle, getSize().getWidth() / 2, getSize().getHeight() / 2);
+        if (-angle == Math.PI / 2)
+        {
+            trans.translate(-5, 0);
+        }
+        else if (angle == Math.PI / 2)
+        {
+            trans.translate(-10, 0);
+        }
+        trans.rotate(angle, getWidth() / 2, getHeight() / 2);
         ((Graphics2D) g).drawImage(bf, trans, null);
     }
     

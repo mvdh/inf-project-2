@@ -133,12 +133,11 @@ public class Game extends JFrame
         {
             public void actionPerformed(ActionEvent arg0)
             {
-                Unit a = new Unit(1.5);
+                Unit a = new Unit(1.5, 50);
                 // a.setSize(20, 20);
                 // a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
                 a.setNewDestination(a.getLocation());
                 a.setPath(path);
-                a.setHitPoints(50);
                 // a.setVisible(true);
                 getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
                 spriteList.add(a);
@@ -482,7 +481,7 @@ public class Game extends JFrame
         Field firstField = m.get(4, 0);
         Point first = firstField.getLocation();
 
-        Unit unit = new Unit(0.0);
+        Unit unit = new Unit(0.0, 0);
         unit.setLocation(first);
 
         Vector fields = findPath(unit, m.get(4, 14));
