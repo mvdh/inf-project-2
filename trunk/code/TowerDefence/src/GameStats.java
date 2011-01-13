@@ -12,10 +12,51 @@ public class GameStats {
     private TowerData towerData;
     private int points;
     private int gold;
+    private int waveCounter;
+    private int waveUnits;
+
+    public int getWaveUnits() {
+        return waveUnits;
+    }
+
+    public void setWaveUnits(int waveUnits) {
+        this.waveUnits = waveUnits;
+    }
+    private int wave;
+
+    public int getWave() {
+        return wave;
+    }
+
+    public void setWave(int wave) {
+        this.wave = wave;
+    }
+
+    public int getWaveCounter() {
+        return waveCounter;
+    }
+
+    public void setWaveCounter(int waveCounter) {
+        this.waveCounter = waveCounter;
+    }
+
+    public void raiseWaveCounter(){
+        waveCounter++;
+    }
+
+    public void raiseWaveUnits(){
+        waveUnits++;
+    }
+    public void raiseWave(){
+        wave++;
+    }
 
     public GameStats(){
         points = 0;
         gold = 20;
+        waveCounter = 0;
+        waveUnits = 0;
+        wave = 0;
         this.setTowerData(new TowerData());
     }
 

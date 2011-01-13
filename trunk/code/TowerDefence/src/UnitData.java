@@ -26,46 +26,46 @@ public class UnitData {
         unitImages = new String[7];
 
         unitData[0][0] = 1;        //reward
-        unitData[0][1] = 200;      //hitPoints
+        unitData[0][1] = 16;      //hitPoints
         unitData[0][2] = 100;      //Damage
         unitData[0][3] = 100;      //Image
-        unitData[0][4] = -1;       //Speed
+        unitData[0][4] = 2;       //Speed
 
         unitData[1][0] = 1;        //reward
-        unitData[1][1] = 200;      //hitPoints
+        unitData[1][1] = 25;      //hitPoints
         unitData[1][2] = 100;      //Damage
         unitData[1][3] = 100;      //Image
-        unitData[1][4] = -1;       //Speed
+        unitData[1][4] = 2;       //Speed
 
-        unitData[2][0] = 0;        //reward
-        unitData[2][1] = 200;      //hitPoints
+        unitData[2][0] = 2;        //reward
+        unitData[2][1] = 40;      //hitPoints
         unitData[2][2] = 100;      //Damage
         unitData[2][3] = 100;      //Image
-        unitData[2][4] = -1;       //Speed
+        unitData[2][4] = 2;       //Speed
 
         unitData[3][0] = 0;        //reward
         unitData[3][1] = 200;      //hitPoints
         unitData[3][2] = 100;      //Damage
         unitData[3][3] = 100;      //Image
-        unitData[3][4] = -1;       //Speed
+        unitData[3][4] = 2;       //Speed
 
         unitData[4][0] = 0;        //reward
         unitData[4][1] = 200;      //hitPoints
         unitData[4][2] = 100;      //Damage
         unitData[4][3] = 100;      //Image
-        unitData[4][4] = -1;       //Speed
+        unitData[4][4] = 2;       //Speed
 
         unitData[5][0] = 0;        //reward
         unitData[5][1] = 200;      //hitPoints
         unitData[5][2] = 100;      //Damage
         unitData[5][3] = 100;      //Image
-        unitData[5][4] = -1;       //Speed
+        unitData[5][4] = 2;       //Speed
 
         unitData[6][0] = 0;        //reward
         unitData[6][1] = 200;      //hitPoints
         unitData[6][2] = 100;      //Damage
         unitData[6][3] = 100;      //Image
-        unitData[6][4] = -1;       //Speed
+        unitData[6][4] = 2;       //Speed
 
 
 
@@ -81,5 +81,10 @@ public class UnitData {
 
     public int getReward(int caseNumber){
         return unitData[caseNumber][0];
+    }
+
+    public Unit getNewUnit(int waveNumber){
+        Unit res = new Unit((double) unitData[waveNumber][4], unitData[waveNumber][1]);
+        return res;
     }
 }

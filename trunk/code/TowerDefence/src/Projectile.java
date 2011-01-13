@@ -33,11 +33,13 @@ public class Projectile extends Sprite
         {
             case 0:
             {
-                url = getClass().getResource("arrow.png");
+                url = getClass().getResource("images/kannonskogel.png");
+                break;
             }
             case 1:
             {
                 url = getClass().getResource("spriteDefault.png");
+                break;
             }
         }
         try {
