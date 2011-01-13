@@ -38,7 +38,7 @@ public class TowerData {
         towerData[0][3] = 100;      //range
         towerData[0][4] = -1;       //previousCaseNumber
         towerData[0][5] = 2;        //missleDamage
-        towerData[0][6] = 1;        //missleImage
+        towerData[0][6] = 0;        //missleImage
         towerData[0][7] = 10;       //missleSpeed
         towerData[0][8] = 0;        //towerImage
         towerData[0][9] = 25;       //missleRange
