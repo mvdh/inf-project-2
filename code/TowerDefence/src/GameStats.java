@@ -35,6 +35,14 @@ public class GameStats {
         this.points = points;
     }
 
+    public void updateGold(int dir, int gold){
+        if(dir == -1){
+            this.gold -= gold;
+        } else {
+            this.gold += gold;
+        }
+    }
+
     public void updatePoints(int dir, int points){
         if(dir == -1){
             this.points -= points;

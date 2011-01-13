@@ -124,7 +124,7 @@ public class Unit extends Sprite
             Point newEnd = getNextPath().getLocation();
             // newEnd.x += 20;
             newEnd.x += (this.getWidth() / 2);
-            newEnd.y += 40 - (getSize().getHeight() / 2);
+            newEnd.y += 40 - (this.getHeight() / 2);
             // System.out.println(newEnd);
             setNewDestination(newEnd);
         }
