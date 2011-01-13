@@ -132,7 +132,7 @@ public class Game extends JFrame
         {
             public void actionPerformed(ActionEvent arg0)
             {
-                Unit a = new Unit(1.5, 20);
+                Unit a = new Unit(1.5, 16);
                 // a.setSize(20, 20);
                 // a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
                 a.setNewDestination(a.getLocation());
@@ -442,7 +442,7 @@ public class Game extends JFrame
                         if (Math.sqrt(Math.pow((a.getX() - b.getX()), 2.0) + Math.pow(a.getY() - b.getY(), 2.0)) <= gameStats.getTowerData().getRange(t.getCaseNumber()))
                         {
                             Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()), (double) gameStats.getTowerData().getMissleSpeed(t
-                                    .getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, t.getLocation());
+                                    .getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a);
                             getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
                             spriteList.add(tempP);
                             // System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));

@@ -33,15 +33,15 @@ public class TowerData {
         //sortedList = new ArrayList<Integer>();
 
         towerData[0][0] = 0;        //caseNumber
-        towerData[0][1] = 200;      //costs
-        towerData[0][2] = 100;      //hitPoints
+        towerData[0][1] = 10;      //costs
+        towerData[0][2] = 150;      //hitPoints
         towerData[0][3] = 100;      //range
         towerData[0][4] = -1;       //previousCaseNumber
         towerData[0][5] = 2;        //missleDamage
         towerData[0][6] = 1;        //missleImage
         towerData[0][7] = 10;       //missleSpeed
         towerData[0][8] = 0;        //towerImage
-        towerData[0][9] = 20;       //missleRange
+        towerData[0][9] = 25;       //missleRange
         towerData[0][10] = 100;     //towerRange
         towerData[0][11] = 10;      //towerAttackSpeed
 
