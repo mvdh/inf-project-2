@@ -9,11 +9,22 @@
  */
 public class GameStats {
 
-    private TowerData towerData = null;
-    private int points = 1000;
+    private TowerData towerData;
+    private int points;
+    private int gold;
 
     public GameStats(){
+        points = 0;
+        gold = 0;
         this.setTowerData(new TowerData());
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     public void setTowerData(TowerData td){
