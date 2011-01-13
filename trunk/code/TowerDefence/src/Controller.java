@@ -202,7 +202,6 @@ public class Controller extends Container
                 int towerCosts = getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType());
                 if(gameStats.getGold() >= towerCosts){
                     setTakeAction(true);
-                    gameStats.setGold(gameStats.getGold() - towerCosts);
                 }
             } else {
                 //?
