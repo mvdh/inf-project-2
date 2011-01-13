@@ -32,7 +32,6 @@ public class Game extends JFrame
     private Vector path;
     private Timer actionTimer = null;
     // Start values
-    private int gold = 0;
     private int castleHealth = 600;
     // Field background image
     private BufferedImage bf = null;
@@ -178,7 +177,7 @@ public class Game extends JFrame
 
     public void updateStats()
     {
-        goldLbl.setText("Gold: " + gold);
+        goldLbl.setText("Gold: " + gameStats.getGold());
         pointsLbl.setText("Points: " + gameStats.getPoints());
         healthLbl.setText("Health: " + castleHealth);
     }
@@ -473,7 +472,7 @@ public class Game extends JFrame
                         System.out.println(u.getHitPoints());
                         if (u.getHitPoints() <= 0)
                         {
-                            gold += unitData.getReward(u.getCaseNumber());
+                            gameStats.setGold(gameStats.getGold()+ unitData.getReward(u.getCaseNumber()));
                             //points += unitData.getReward(u.getCaseNumber()) * 5;
                             gameStats.updatePoints(1, unitData.getReward(u.getCaseNumber()) * 5);
                             cleanUp.add(u);
