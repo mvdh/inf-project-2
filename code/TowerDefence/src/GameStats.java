@@ -15,7 +15,7 @@ public class GameStats {
 
     public GameStats(){
         points = 0;
-        gold = 0;
+        gold = 20;
         this.setTowerData(new TowerData());
     }
 

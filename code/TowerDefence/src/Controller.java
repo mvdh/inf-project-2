@@ -200,10 +200,12 @@ public class Controller extends Container
             int currentType = ((CLabel) me.getComponent()).getType();
             if(currentType != -1){
                 int towerCosts = getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType());
-                if(gameStats.getPoints() >= towerCosts){
+                if(gameStats.getGold() >= towerCosts){
                     setTakeAction(true);
+                    gameStats.setGold(gameStats.getGold() - towerCosts);
                 }
             } else {
+                //?
                 setTakeAction(true);
             }
             setType(((CLabel) me.getComponent()).getType());
