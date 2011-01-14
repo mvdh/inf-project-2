@@ -487,12 +487,25 @@ public class Game extends JFrame {
                 hov.setHovered(true);
                 hov.paint(hov.getGraphics());
             }
+            
+            if (hov instanceof Tower)
+            {
+            	Tower t = (Tower) hov;
+            	t.setShow(true);
+                hov.paint(hov.getGraphics());
+            }
         }
 
         // OnMouseOut
         public void mouseExited(MouseEvent me) {
             Field hov = (Field) me.getComponent();
             hov.setHovered(false);
+            
+            if (hov instanceof Tower)
+            {
+            	Tower t = (Tower) hov;
+            	t.setShow(false);
+            }
             hov.paint(hov.getGraphics());
         }
 
