@@ -217,11 +217,13 @@ public class Unit extends Sprite
         super.paint(g);
         g.translate(-(getWidth() / 2 - bf[0].getWidth() / 2), -5);
         double percentage = ((double) getHitPoints()) / ((double) maxHP);
-        double widthGreen = getWidth() * percentage;
+        double widthGreen = (getWidth() - 2) * percentage;
         
+        g.setColor(Color.black);
+        g.fillRect(0, 0, getWidth(), 7);
         g.setColor(Color.red);
-        g.fillRect(0, 0, getWidth(), 5);
+        g.fillRect(1, 1, getWidth() - 2, 5);
         g.setColor(Color.green);
-        g.fillRect(0, 0, (int) widthGreen, 5);
+        g.fillRect(1, 1, (int) widthGreen, 5);
     }
 }
