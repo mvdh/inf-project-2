@@ -85,15 +85,15 @@ public class TowerData {
         towerData[3][11] = 10;      //towerAttackSpeed
 
         towerData[4][0] = 4;        //caseNumber
-        towerData[4][1] = 275;      //costs
-        towerData[4][2] = 100;      //hitPoints
-        towerData[4][3] = 100;      //range
+        towerData[4][1] = 20;      //costs
+        towerData[4][2] = 150;      //hitPoints
+        towerData[4][3] = 120;      //range
         towerData[4][4] = 0;        //previousCaseNumber
-        towerData[4][5] = 2;        //missleDamage
+        towerData[4][5] = 8;        //missleDamage
         towerData[4][6] = 1;        //missleImage
-        towerData[4][7] = 20;       //missleSpeed
+        towerData[4][7] = 10;       //missleSpeed
         towerData[4][8] = 2;        //towerImage
-        towerData[4][9] = 20;       //missleRange
+        towerData[4][9] = 25;       //missleRange
         towerData[4][10] = 120;     //towerRange
         towerData[4][11] = 10;      //towerAttackSpeed
 
