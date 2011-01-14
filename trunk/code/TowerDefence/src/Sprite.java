@@ -118,6 +118,7 @@ public class Sprite extends Component
         }
         trans.rotate(angle, getWidth() / 2, getHeight() / 2);
         ((Graphics2D) g).drawImage(bf, trans, null);
+        setVisible(true);
     }
     
     public void setImage(BufferedImage bfIn)

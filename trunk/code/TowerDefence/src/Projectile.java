@@ -38,6 +38,16 @@ public class Projectile extends Sprite
             }
             case 1:
             {
+                url = getClass().getResource("images/projectile5-f2.png");
+                break;
+            }
+            case 2:
+            {
+                url = getClass().getResource("images/kogel.png");
+                break;
+            }
+            default:
+            {
                 url = getClass().getResource("spriteDefault.png");
                 break;
             }
