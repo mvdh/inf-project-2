@@ -169,7 +169,7 @@ public class Game extends JFrame {
     public void FieldToTower(Field f, int type) {
         if (f != null && f.isBuildable()) {
             Point p = f.getLocation();
-            Tower t = new Tower(bf, type);
+            Tower t = new Tower(bf, type, gameStats.getTowerData().getHitpoints(type));
             t.setLocation(p);
             t.addMouseListener(new GameMouseAdapter());
             t.setWalkable(false);
@@ -181,7 +181,6 @@ public class Game extends JFrame {
                 this.gameStats.updateGold(-1, this.gameStats.getTowerData().getCosts(type));
             }
             fieldPanel.remove(f);
-            t.setHealth(gameStats.getTowerData().getHitpoints(t.getCaseNumber()));
             fieldPanel.add(t);
             checkPath(f);
         }
@@ -227,7 +226,7 @@ public class Game extends JFrame {
     public void upgradeTower(Tower t, int newCase) {
         if (t != null) {
             Point p = t.getLocation();
-            Tower nT = new Tower(bf, newCase);
+            Tower nT = new Tower(bf, newCase, gameStats.getTowerData().getHitpoints(newCase));
             nT.setLocation(p);
             nT.addMouseListener(new GameMouseAdapter());
             nT.setWalkable(false);
