@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -13,20 +14,30 @@ public class Tower extends Field
     private int health;
     private int maxHP;
 
-    public int getHealth() {
+    public int getHealth()
+    {
         return health;
     }
 
-    public void setMaxHP(int health) {
+    public void setMaxHP(int health)
+    {
         this.maxHP = health;
     }
-    
-    public int getMaxHP() {
+
+    public int getMaxHP()
+    {
         return maxHP;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setHealth(int health)
+    {
+        if (health <= this.maxHP)
+        {
+            this.health = health;
+        } else
+        {
+            this.health = maxHP;
+        }
     }
 
     public Tower(BufferedImage bg)
@@ -86,22 +97,21 @@ public class Tower extends Field
             // Add a filled rectangle to the graphics
             g.setColor(new Color(0, 255, 0));
             g.fillRect(size.width / 4, size.height / 4, size.width / 2, size.height / 2);
-        }
-        else
+        } else
         {
             // Add the selected image to the graphics
             try
             {
                 img = ImageIO.read(url);
                 g.drawImage(img, 1, 1, 40, 40, 0, 0, img.getWidth(null), img.getHeight(null), null);
+            } catch (Exception e)
+            {
             }
-            catch (Exception e)
-            {}
         }
-        
+
         double percentage = ((double) getHealth()) / ((double) maxHP);
         double widthGreen = (getWidth() - 2) * percentage;
-        
+
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), 7);
         g.setColor(Color.red);

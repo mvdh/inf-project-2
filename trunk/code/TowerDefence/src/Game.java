@@ -379,15 +379,15 @@ public class Game extends JFrame {
             t = (Tower) temp.get(i);
             t.count();
             if (t != null) {
-                if (t.getCounter() == gameStats.getTowerData().getMissleSpeed(t.getCaseNumber())) {
+                if (t.getCounter() >= gameStats.getTowerData().getMissleSpeed(t.getCaseNumber())) {
                     // range check
                     a = t.getLocation();
                     a.x += (t.getWidth() / 4);
                     a.y += 60 - (t.getHeight() / 2);
                     for (Unit u : spriteList.getUnitList()) {
                         b = u.getLocation();
-                        b.x += (u.getWidth() / 2);
-                        b.y += 40 - (u.getHeight());// / 2);
+                        b.x += 20 - (u.getWidth() / 2);
+                        b.y += 20 - (u.getHeight() / 2);
                         if (u.distance(a, b) <= gameStats.getTowerData().getRange(t.getCaseNumber())) {
                             Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()), (double) gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a);
                             getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
@@ -405,8 +405,8 @@ public class Game extends JFrame {
             if (pr.getLocation().equals(pr.getEnd())) {
                 for (Unit u : spriteList.getUnitList()) {
                     a = u.getLocation();
-                    a.x += u.getWidth() / 2;
-                    a.y += u.getHeight() / 2;
+                    //a.x += u.getWidth() / 2;
+                    a.y += 40 - (u.getHeight() / 2);
                     b = pr.getEnd();
                     // System.out.println(pr.getDamage());
                     // check if unit is on the field of destruction!
@@ -444,6 +444,7 @@ public class Game extends JFrame {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
                 gameStats.raiseWave();
+                gameStats.updateGold(1, 0);
             }
         }
         System.out.println(System.currentTimeMillis() - testTime);
