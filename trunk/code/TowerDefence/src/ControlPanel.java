@@ -73,6 +73,6 @@ public class ControlPanel extends JPanel {
         if (controller != null)
         {
             add(controller);
-        }
-    }
+		}
+	}
 }

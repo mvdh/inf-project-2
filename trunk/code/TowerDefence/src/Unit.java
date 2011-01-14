@@ -268,6 +268,6 @@ public class Unit extends Sprite
         g.setColor(Color.red);
         g.fillRect(1, 1, getWidth() - 2, 5);
         g.setColor(Color.green);
-        g.fillRect(1, 1, (int) widthGreen, 5);
-    }
+		g.fillRect(1, 1, (int) widthGreen, 5);
+	}
 }
