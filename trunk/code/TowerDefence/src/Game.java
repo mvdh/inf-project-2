@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -73,7 +74,26 @@ public class Game extends JFrame
 			}
 			else
 			{
-				Field toBeAdded = new Field(bf);
+//				BufferedImage img = null;
+//				url = getClass().getResource("images/pipe.png");
+//				try
+//				{
+//					img = ImageIO.read(url);
+//				}
+//				catch (Exception e)
+//				{}
+//				
+				Field toBeAdded;
+//				if (img != null)
+//				{
+//					Graphics g = img.createGraphics();
+//					g.drawImage(bf, 0, 0, getWidth(), getHeight(), 0, 0, bf.getWidth(null), bf.getHeight(null), null);
+//					toBeAdded = new Field(img);
+//				}
+//				else
+//				{
+					toBeAdded = new Field(bf);
+//				}
 				toBeAdded.setBuildable(false);
 				v.add(toBeAdded);
 			}
@@ -417,9 +437,13 @@ public class Game extends JFrame
 				{
 					cleanUp.add(u);
 					t.setHealth(t.getHealth() - unitData.getDamage(u.getCaseNumber()));
+					t.setShow(true);
+					t.paint(t.getGraphics());
+					
 					if (t.getHealth() <= 0)
 					{
 						TowerToField(t);
+						repaint();
 					}
 				}
 			}
