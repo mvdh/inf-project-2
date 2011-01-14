@@ -22,56 +22,49 @@ public class UnitData {
      * Constructor. Here is all the information of the towers added to unitData
      */
     public UnitData() {
-        unitData = new int[7][5];
+        unitData = new int[7][4];
         unitImages = new String[7];
 
         unitData[0][0] = 1;        //reward
         unitData[0][1] = 16;      //hitPoints
         unitData[0][2] = 100;      //Damage
-        unitData[0][3] = 100;      //Image
-        unitData[0][4] = 2;       //Speed
+        unitData[0][3] = 2;       //Speed
 
         unitData[1][0] = 1;        //reward
         unitData[1][1] = 25;      //hitPoints
         unitData[1][2] = 100;      //Damage
-        unitData[1][3] = 100;      //Image
-        unitData[1][4] = 2;       //Speed
+        unitData[1][3] = 2;       //Speed
 
         unitData[2][0] = 2;        //reward
         unitData[2][1] = 40;      //hitPoints
         unitData[2][2] = 100;      //Damage
-        unitData[2][3] = 100;      //Image
-        unitData[2][4] = 2;       //Speed
+        unitData[2][3] = 2;       //Speed
 
         unitData[3][0] = 0;        //reward
         unitData[3][1] = 200;      //hitPoints
         unitData[3][2] = 100;      //Damage
-        unitData[3][3] = 100;      //Image
-        unitData[3][4] = 2;       //Speed
+        unitData[3][3] = 2;       //Speed
 
         unitData[4][0] = 0;        //reward
         unitData[4][1] = 200;      //hitPoints
         unitData[4][2] = 100;      //Damage
-        unitData[4][3] = 100;      //Image
-        unitData[4][4] = 2;       //Speed
+        unitData[4][3] = 2;       //Speed
 
         unitData[5][0] = 0;        //reward
         unitData[5][1] = 200;      //hitPoints
         unitData[5][2] = 100;      //Damage
-        unitData[5][3] = 100;      //Image
-        unitData[5][4] = 2;       //Speed
+        unitData[5][3] = 2;       //Speed
 
         unitData[6][0] = 0;        //reward
         unitData[6][1] = 200;      //hitPoints
         unitData[6][2] = 100;      //Damage
-        unitData[6][3] = 100;      //Image
-        unitData[6][4] = 2;       //Speed
+        unitData[6][3] = 2;       //Speed
 
 
 
-        unitImages[0] = "A1";
-        unitImages[1] = "B1";
-        unitImages[2] = "B2";
+        unitImages[0] = "unit-mario1-f";
+        unitImages[1] = "unit-mario2-f";
+        unitImages[2] = "unit-mario3-f";
         unitImages[3] = "B3";
         unitImages[4] = "B4";
         unitImages[5] = "C1";
@@ -84,7 +77,8 @@ public class UnitData {
     }
 
     public Unit getNewUnit(int waveNumber){
-        Unit res = new Unit((double) unitData[waveNumber][4], unitData[waveNumber][1]);
+        Unit res = new Unit((double) unitData[waveNumber][3], unitData[waveNumber][1], unitImages[waveNumber]);
+        res.setCaseNumber(waveNumber);
         return res;
     }
 }

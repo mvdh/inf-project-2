@@ -28,6 +28,50 @@ public class Unit extends Sprite
     private int animationSpeed = 10;
     private int number = 0;
 
+    public Unit(double speed, int hp, String img){
+        super(speed);
+        setHitPoints(hp);
+        maxHP = hp;
+        aviation = false;
+        pathCounter = 0;
+        caseNumber = 0;
+
+        /**
+         *
+         */
+
+        bf = new BufferedImage[3];
+
+        URL url = getClass().getResource("images/" + img + "1.png");
+        try
+        {
+            bf[0] = ImageIO.read(url);
+        }
+        catch (Exception e)
+        {}
+
+        url = getClass().getResource("images/" + img + "2.png");
+        try
+        {
+            bf[1] = ImageIO.read(url);
+        }
+        catch (Exception e)
+        {}
+
+        url = getClass().getResource("images/" + img + "3.png");
+        try
+        {
+            bf[2] = ImageIO.read(url);
+        }
+        catch (Exception e)
+        {}
+
+        int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
+
+        setSize(size, size + 5);
+        setLocation(-(int) getWidth(), 200 - getHeight() / 2);
+    }
+
     public Unit(double speed, int hp)
     {
         super(speed);
@@ -39,7 +83,7 @@ public class Unit extends Sprite
 
         /**
          * 
-         */
+         
 
         bf = new BufferedImage[3];
         
@@ -70,7 +114,7 @@ public class Unit extends Sprite
         int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
         
         setSize(size, size + 5);
-        setLocation(-(int) getWidth(), 200 - getHeight() / 2);
+        setLocation(-(int) getWidth(), 200 - getHeight() / 2);*/
     }
 
     public int getCaseNumber()
@@ -123,7 +167,7 @@ public class Unit extends Sprite
         {
             Point newEnd = getNextPath().getLocation();
             // newEnd.x += 20;
-            newEnd.x += (this.getWidth() / 2);
+            newEnd.x += 20 - (this.getWidth() / 2);
             newEnd.y += 40 - (this.getHeight() / 2);
             // System.out.println(newEnd);
             setNewDestination(newEnd);
