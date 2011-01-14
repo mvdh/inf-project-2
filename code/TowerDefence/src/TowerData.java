@@ -464,6 +464,6 @@ public class TowerData {
      * @return the attack speed of the tower
      */
     public int getAttackSpeed(int caseNumber) {
-        return towerData[caseNumber][11];
-    }
+		return towerData[caseNumber][11];
+	}
 }

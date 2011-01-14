@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
-public class Tower extends Field {
+public class Tower extends Field
+{
 
 	private int counter;
 	private int caseNumber;
@@ -13,34 +14,43 @@ public class Tower extends Field {
 	private int maxHP;
 	private boolean showHealth = false;
 
-	public int getHealth() {
+	public int getHealth()
+	{
 		return health;
 	}
 
-	public void setMaxHP(int health) {
+	public void setMaxHP(int health)
+	{
 		this.maxHP = health;
 	}
 
-	public int getMaxHP() {
+	public int getMaxHP()
+	{
 		return maxHP;
 	}
 
-	public void setHealth(int health) {
-		if (health <= this.maxHP) {
+	public void setHealth(int health)
+	{
+		if (health <= this.maxHP)
+		{
 			this.health = health;
-		} else {
+		}
+		else
+		{
 			this.health = maxHP;
 		}
 	}
 
-	public Tower(BufferedImage bg) {
+	public Tower(BufferedImage bg)
+	{
 		// Just to set the size of the object
 		super(bg);
 		this.setCaseNumber(0);
 		this.setCounter(0);
 	}
 
-	public Tower(BufferedImage bg, int tower, int health) {
+	public Tower(BufferedImage bg, int tower, int health)
+	{
 		super(bg);
 		this.setCaseNumber(tower);
 		this.setCounter(0);
@@ -51,14 +61,16 @@ public class Tower extends Field {
 	/**
 	 * @return
 	 */
-	public int getCaseNumber() {
+	public int getCaseNumber()
+	{
 		return caseNumber;
 	}
 
 	/**
 	 * @param caseNumber
 	 */
-	public void setCaseNumber(int caseNumber) {
+	public void setCaseNumber(int caseNumber)
+	{
 		this.caseNumber = caseNumber;
 	}
 
@@ -66,17 +78,18 @@ public class Tower extends Field {
 	{
 		showHealth = show;
 	}
-	
+
 	public boolean getShow()
 	{
 		return showHealth;
 	}
-	
+
 	/**
 	 * @param g
 	 */
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics g)
+	{
 		// Execute the paint function as if it was a Field object
 		super.paint(g);
 
@@ -88,24 +101,28 @@ public class Tower extends Field {
 
 		TowerData td = new TowerData();
 		// If a CaseNumber is selected
-		url = getClass().getResource(
-				"images/tower" + td.getTowerImageName(number) + ".png");
+		url = getClass().getResource("images/tower" + td.getTowerImageName(number) + ".png");
 
-		if (url == null) {
+		if (url == null)
+		{
 			// Add a filled rectangle to the graphics
 			g.setColor(new Color(0, 255, 0));
-			g.fillRect(size.width / 4, size.height / 4, size.width / 2,
-					size.height / 2);
-		} else {
+			g.fillRect(size.width / 4, size.height / 4, size.width / 2, size.height / 2);
+		}
+		else
+		{
 			// Add the selected image to the graphics
-			try {
+			try
+			{
 				img = ImageIO.read(url);
-				g.drawImage(img, 1, 1, 40, 40, 0, 0, img.getWidth(null), img
-						.getHeight(null), null);
-			} catch (Exception e) {}
+				g.drawImage(img, 1, 1, 40, 40, 0, 0, img.getWidth(null), img.getHeight(null), null);
+			}
+			catch (Exception e)
+			{}
 		}
 
-		if (showHealth) {
+		if (showHealth)
+		{
 			double percentage = ((double) getHealth()) / ((double) maxHP);
 			double widthGreen = (getWidth() - 2) * percentage;
 
@@ -118,19 +135,23 @@ public class Tower extends Field {
 		}
 	}
 
-	public int getCounter() {
+	public int getCounter()
+	{
 		return counter;
 	}
 
-	public void count() {
+	public void count()
+	{
 		this.counter++;
 	}
 
-	public void setCounter(int counter) {
+	public void setCounter(int counter)
+	{
 		this.counter = counter;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "<Tower:\t" + getLocation() + ">";
 
 		return result;
