@@ -14,6 +14,7 @@ public class GameStats {
     private int gold;
     private int waveCounter;
     private int waveUnits;
+    private int wave;
 
     public int getWaveUnits() {
         return waveUnits;
@@ -22,7 +23,6 @@ public class GameStats {
     public void setWaveUnits(int waveUnits) {
         this.waveUnits = waveUnits;
     }
-    private int wave;
 
     public int getWave() {
         return wave;
