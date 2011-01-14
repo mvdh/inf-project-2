@@ -76,6 +76,10 @@ public class UnitData {
         return unitData[caseNumber][0];
     }
 
+    public int getDamage(int caseNumber){
+        return unitData[caseNumber][2];
+    }
+
     public Unit getNewUnit(int waveNumber){
         Unit res = new Unit((double) unitData[waveNumber][3], unitData[waveNumber][1], unitImages[waveNumber]);
         res.setCaseNumber(waveNumber);

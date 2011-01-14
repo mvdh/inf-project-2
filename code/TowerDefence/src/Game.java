@@ -362,13 +362,11 @@ public class Game extends JFrame {
                 t = (Tower) m.get(a.y, a.x);
                 if ((!t.isFlyable() && u.getAviation()) || (!t.isWalkable() && !u.getAviation())) {
                     cleanUp.add(u);
-                    t.setHealth(t.getHealth() - 100);
+                    t.setHealth(t.getHealth() - unitData.getDamage(u.getCaseNumber()));
                     if (t.getHealth() <= 0) {
                         TowerToField(t);
                     }
                 }
-                // Tower healthcheck <= 0
-                // TowerToField
             }
             if (a.x == 14 && a.y == 4) {
                 cleanUp.add(u);
@@ -435,7 +433,7 @@ public class Game extends JFrame {
             Unit u = unitData.getNewUnit(gameStats.getWave());
             u.setNewDestination(u.getLocation());
             u.setPath(path);
-            // a.setVisible(true);
+            //a.setVisible(true);
             getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
             spriteList.add(u);
             gameStats.setWaveCounter(0);
@@ -444,7 +442,7 @@ public class Game extends JFrame {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
                 gameStats.raiseWave();
-                gameStats.updateGold(1, 0);
+                gameStats.updateGold(1, ((gameStats.getWave() + 1) * 2) + gameStats.getWave() + 1);
             }
         }
         System.out.println(System.currentTimeMillis() - testTime);
