@@ -11,9 +11,18 @@ public class Tower extends Field
     private int counter;
     private int caseNumber;
     private int health;
+    private int maxHP;
 
     public int getHealth() {
         return health;
+    }
+
+    public void setMaxHP(int health) {
+        this.maxHP = health;
+    }
+    
+    public int getMaxHP() {
+        return maxHP;
     }
 
     public void setHealth(int health) {
@@ -28,11 +37,13 @@ public class Tower extends Field
         this.setCounter(0);
     }
 
-    public Tower(BufferedImage bg, int tower)
+    public Tower(BufferedImage bg, int tower, int health)
     {
         super(bg);
         this.setCaseNumber(tower);
         this.setCounter(0);
+        setHealth(health);
+        setMaxHP(health);
     }
 
     /**
@@ -82,11 +93,19 @@ public class Tower extends Field
             try
             {
                 img = ImageIO.read(url);
-                g.drawImage(img, 1, 1, size.width, size.height, 0, 0, img.getWidth(null), img.getHeight(null), null);
+                g.drawImage(img, 1, 1, 40, 40, 0, 0, img.getWidth(null), img.getHeight(null), null);
             }
             catch (Exception e)
             {}
         }
+        
+        double percentage = ((double) getHealth()) / ((double) maxHP);
+        double widthGreen = getWidth() * percentage;
+        
+        g.setColor(Color.red);
+        g.fillRect(0, 0, getWidth(), 5);
+        g.setColor(Color.green);
+        g.fillRect(0, 0, (int) widthGreen, 5);
     }
 
     public int getCounter()
