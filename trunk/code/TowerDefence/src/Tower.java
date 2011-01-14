@@ -53,8 +53,8 @@ public class Tower extends Field
         super(bg);
         this.setCaseNumber(tower);
         this.setCounter(0);
-        setHealth(health);
         setMaxHP(health);
+        setHealth(health);
     }
 
     /**
