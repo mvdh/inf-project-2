@@ -138,6 +138,9 @@ public class Controller extends Container
 			return type;
 		}
 
+
+
+
 		public void paint(Graphics g)
 		{
 			g.setColor(new Color(200, 200, 200));
@@ -168,7 +171,7 @@ public class Controller extends Container
 			if (currentType != -1)
 			{
 				int towerCosts = getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType());
-				if (gameStats.getPoints() < towerCosts)
+				if (gameStats.getGold() < towerCosts)
 				{
 					g.setColor(Color.red);
 				}
