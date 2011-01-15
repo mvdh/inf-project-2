@@ -121,11 +121,25 @@ public class Sprite extends Component
 		AffineTransform trans = new AffineTransform();
 		if (-angle == Math.PI / 2)
 		{
-			trans.translate(-5, 0);
+			if (getWidth() == 16)
+			{
+				trans.translate(2, 0);
+			}
+			else
+			{
+				trans.translate(-5, 0);
+			}
 		}
 		else if (angle == Math.PI / 2)
 		{
-			trans.translate(-10, 0);
+			if (getWidth() == 16)
+			{
+				trans.translate(-2, 0);
+			}
+			else
+			{
+				trans.translate(-10, 0);
+			}
 		}
 		trans.rotate(angle, getWidth() / 2, getHeight() / 2);
 		((Graphics2D) g).drawImage(bf, trans, null);
