@@ -41,23 +41,13 @@ public class Sprite extends Component
 	{
 
 		// Hou hier rekening met een modifier voor vertragende torens.
-		Double dis = distance(this.getLocation(), d); // Wordt gebruikt om de te
-														// reizen afstand voor
-														// deze stap door te
-														// geven
+		Double dis = distance(this.getLocation(), d); // Wordt gebruikt om de te reizen afstand voor deze stap door te geven
 		if (dis > speed)
 		{ // Op deze manier wordt 'overshoot' beperkt
 			dis = speed; // en kan de marge hopelijk kleiner
 		}
 
-		angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent
-																		// de
-																		// hoek
-																		// waaronder
-																		// gereisd
-																		// wordt
-																		// in
-																		// radialen
+		angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
 
 		int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * (dis * stepCounter)));
 		int newY = (int) Math.floor(c.getY() + (Math.sin(angle) * (dis * stepCounter)));
@@ -107,7 +97,7 @@ public class Sprite extends Component
 		double dx = p.x - q.x; // horizontal difference
 		double dy = p.y - q.y; // vertical difference
 		double dist = Math.sqrt(dx * dx + dy * dy); // distance using Pythagoras
-													// theorem
+		// theorem
 		return dist;
 	}
 
