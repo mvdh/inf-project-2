@@ -131,6 +131,10 @@ public class Sprite extends Component
 				trans.translate(-10, 0);
 			}
 		}
+		else if (Math.abs(angle) == Math.PI && this instanceof Projectile && getWidth() == 24)
+		{
+			trans.translate(0, -15);
+		}
 		trans.rotate(angle, getWidth() / 2, getHeight() / 2);
 		((Graphics2D) g).drawImage(bf, trans, null);
 		setVisible(true);
