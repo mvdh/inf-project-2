@@ -476,7 +476,7 @@ public class Game extends JFrame {
             }
         }
         //checkPath(m.get(4, 14));
-        System.out.println(System.currentTimeMillis() - testTime);
+//        System.out.println(System.currentTimeMillis() - testTime);
     }
 
     public void checkPath(Field f) {

@@ -12,10 +12,11 @@ public class Sprite extends Component
 	public Point d;// = new Point(300, 200); // Bestemming
 	private double speed;// = 2.1;
 	private int stepCounter;// = 0;
-	private int marge;// = 2;
+	private double lastDis = Math.pow(2, 32) - 1;
 
 	private BufferedImage bf;
-	private double angle;
+	public double angle;
+	public double standardDis;
 
 	public Sprite()
 	{
@@ -33,7 +34,6 @@ public class Sprite extends Component
 	{
 		// this();
 		speed = s;
-		marge = (int) Math.ceil(s) + 1;
 		stepCounter = 0;
 	}
 
@@ -47,21 +47,20 @@ public class Sprite extends Component
 			dis = speed; // en kan de marge hopelijk kleiner
 		}
 
-		angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
+		if (!(this instanceof Projectile))
+		{
+			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
+		}
 
-		int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * (dis * stepCounter)));
-		int newY = (int) Math.floor(c.getY() + (Math.sin(angle) * (dis * stepCounter)));
+		int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * dis * stepCounter));
+		int newY = (int) Math.floor(c.getY() + (Math.sin(angle) * dis * stepCounter));
 
 		// Om iets zekerder te zijn dat het object niet over het doel heen
 		// schiet is er een marge ingebouwd waarop ie 'snapped'
-		if ((newX > d.getX() - marge) && (newX < d.getX() + marge))
+		if (dis < standardDis && this instanceof Projectile || lastDis < dis && this instanceof Unit)
 		{
-			newX = (int) d.getX();
-		}
-
-		if ((newY > d.getY() - marge) && (newY < d.getY() + marge))
-		{
-			newY = (int) d.getY();
+			newX = d.x;
+			newY = d.y;
 		}
 
 		this.setLocation(newX, newY);
@@ -75,6 +74,7 @@ public class Sprite extends Component
 			this.endMove();
 		}
 		stepCounter++;
+		lastDis = dis;
 
 	}
 
@@ -109,7 +109,14 @@ public class Sprite extends Component
 	public void paint(Graphics g)
 	{
 		AffineTransform trans = new AffineTransform();
-		if (-angle == Math.PI / 2)
+		if (this instanceof Projectile)
+		{
+			if (Math.abs(angle) == Math.PI && getWidth() == 24)
+			{
+				trans.translate(0, -15);
+			}
+		}
+		else if (-angle == Math.PI / 2)
 		{
 			if (getWidth() == 16)
 			{
@@ -130,10 +137,6 @@ public class Sprite extends Component
 			{
 				trans.translate(-10, 0);
 			}
-		}
-		else if (Math.abs(angle) == Math.PI && this instanceof Projectile && getWidth() == 24)
-		{
-			trans.translate(0, -15);
 		}
 		trans.rotate(angle, getWidth() / 2, getHeight() / 2);
 		((Graphics2D) g).drawImage(bf, trans, null);
