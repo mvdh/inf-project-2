@@ -26,6 +26,8 @@ public class Projectile extends Sprite
 		this.d = destination;
 		this.c = start;
 		URL url = null;
+		angle = Math.atan2(destination.getY() - c.getY(), destination.getX() - c.getX());
+		standardDis = Math.min(distance(start, destination), speed);
 
 		switch (img)
 		{
