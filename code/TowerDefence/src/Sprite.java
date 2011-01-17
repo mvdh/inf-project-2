@@ -12,7 +12,7 @@ public class Sprite extends Component
 	public Point d;// = new Point(300, 200); // Bestemming
 	private double speed;// = 2.1;
 	private int stepCounter;// = 0;
-	private double lastDis = Math.pow(2, 32) - 1;
+	private double lastDis = Math.pow(2, 32) - 1; // Maximum value of an int
 
 	private BufferedImage bf;
 	public double angle;
