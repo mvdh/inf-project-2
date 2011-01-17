@@ -19,6 +19,7 @@ public class TowerData {
      * 8    towerImage
      * 9    missleRange
      * 10   towerRange
+     * 11   towerAttackSpeed
      */
     final private int[][] towerData;
     final private String[] towerImages;
@@ -46,7 +47,7 @@ public class TowerData {
         towerData[0][11] = 10;      //towerAttackSpeed
 
         towerData[1][0] = 1;        //caseNumber
-        towerData[1][1] = 250;      //costs
+        towerData[1][1] = 10;       //costs
         towerData[1][2] = 100;      //hitPoints
         towerData[1][3] = 100;      //range
         towerData[1][4] = -1;       //previousCaseNumber
@@ -59,7 +60,7 @@ public class TowerData {
         towerData[1][11] = 10;      //towerAttackSpeed
 
         towerData[2][0] = 2;        //caseNumber
-        towerData[2][1] = 200;      //costs
+        towerData[2][1] = 10;       //costs
         towerData[2][2] = 100;      //hitPoints
         towerData[2][3] = 100;      //range
         towerData[2][4] = -1;       //previousCaseNumber
@@ -72,20 +73,20 @@ public class TowerData {
         towerData[2][11] = 10;      //towerAttackSpeed
 
         towerData[3][0] = 3;        //caseNumber
-        towerData[3][1] = 250;      //costs
+        towerData[3][1] = 10;       //costs
         towerData[3][2] = 100;      //hitPoints
-        towerData[3][3] = 100;      //range
+        towerData[3][3] = 500;      //range
         towerData[3][4] = -1;       //previousCaseNumber
-        towerData[3][5] = 2;        //missleDamage
-        towerData[3][6] = 1;        //missleImage
-        towerData[3][7] = 15;       //missleSpeed
+        towerData[3][5] = 4;        //missleDamage
+        towerData[3][6] = 0;        //missleImage
+        towerData[3][7] = 30;       //missleSpeed
         towerData[3][8] = 1;        //towerImage
-        towerData[3][9] = 20;       //missleRange
-        towerData[3][10] = 110;     //towerRange
-        towerData[3][11] = 10;      //towerAttackSpeed
+        towerData[3][9] = 40;       //missleRange
+        towerData[3][10] = 600;     //towerRange
+        towerData[3][11] = 15;      //towerAttackSpeed
 
         towerData[4][0] = 4;        //caseNumber
-        towerData[4][1] = 20;      //costs
+        towerData[4][1] = 10;       //costs
         towerData[4][2] = 150;      //hitPoints
         towerData[4][3] = 120;      //range
         towerData[4][4] = 0;        //previousCaseNumber
@@ -98,7 +99,7 @@ public class TowerData {
         towerData[4][11] = 10;      //towerAttackSpeed
 
         towerData[5][0] = 5;        //caseNumber
-        towerData[5][1] = 275;      //costs
+        towerData[5][1] = 20;      //costs
         towerData[5][2] = 100;      //hitPoints
         towerData[5][3] = 100;      //range
         towerData[5][4] = 1;        //previousCaseNumber
@@ -111,7 +112,7 @@ public class TowerData {
         towerData[5][11] = 10;      //towerAttackSpeed
 
         towerData[6][0] = 6;        //caseNumber
-        towerData[6][1] = 275;      //costs
+        towerData[6][1] = 20;      //costs
         towerData[6][2] = 100;      //hitPoints
         towerData[6][3] = 100;      //range
         towerData[6][4] = 2;        //previousCaseNumber
@@ -124,7 +125,7 @@ public class TowerData {
         towerData[6][11] = 10;      //towerAttackSpeed
 
         towerData[7][0] = 7;        //caseNumber
-        towerData[7][1] = 275;      //costs
+        towerData[7][1] = 20;      //costs
         towerData[7][2] = 100;      //hitPoints
         towerData[7][3] = 100;      //range
         towerData[7][4] = 3;        //previousCaseNumber
@@ -137,7 +138,7 @@ public class TowerData {
         towerData[7][11] = 10;      //towerAttackSpeed
 
         towerData[8][0] = 8;        //caseNumber
-        towerData[8][1] = 275;      //costs
+        towerData[8][1] = 20;      //costs
         towerData[8][2] = 100;      //hitPoints
         towerData[8][3] = 100;      //range
         towerData[8][4] = 4;        //previousCaseNumber
