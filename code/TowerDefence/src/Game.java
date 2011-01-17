@@ -293,7 +293,7 @@ public class Game extends JFrame {
         Point end = target.getLocation();
         end.x /= 40;
         end.y /= 40;
-        if(end.x == start.x && end.y == start.y){
+        if (end.x == start.x && end.y == start.y) {
             Vector v = new Vector();
             v.add(target);
             return v;
@@ -489,26 +489,36 @@ public class Game extends JFrame {
             path = fields;
         }
         for (Unit u : spriteList.getUnitList()) {
-            Field nearest = path.get(0);
-            int j = 0;
-            for(int i = 1; i < path.size(); i++){
-                if(u.distance(nearest.getLocation(), u.getLocation()) > u.distance(path.get(i).getLocation(), u.getLocation())){
-                    nearest = path.get(i);
-                    j = i;
+            boolean hasF = false;
+            for (int i = u.getPathCounter(); i < u.getPath().size(); i++) {
+                if (f.equals(u.getPath().get(i))) {
+                    hasF = true;
+                    break;
                 }
             }
-            fields = findPath(u, nearest);
-            if (fields != null) {
-                u.setPathCounter(1);
+            if (hasF) {
+                Field nearest = path.get(0);
+                int j = 0;
+                for (int i = 1; i < path.size(); i++) {
+                    if (u.distance(nearest.getLocation(), u.getLocation()) > u.distance(path.get(i).getLocation(), u.getLocation())) {
+                        nearest = path.get(i);
+                        j = i;
+                    }
+                }
+                fields = findPath(u, nearest);
+                if (fields != null) {
+                    u.setPathCounter(1);
+                }
+                for (int i = j + 1; i < path.size(); i++) {
+                    fields.add(path.get(i));
+                }
+                u.setPath(fields);
             }
-            for(int i = j + 1; i < path.size(); i++){
-                fields.add(path.get(i));
-            }
-            u.setPath(fields);
+
             /*fields = findPath(u, m.get(4, 14));
             u.setPath(fields);
             if (fields != null) {
-                u.setPathCounter(1);
+            u.setPathCounter(1);
             }*/
         }
     }
