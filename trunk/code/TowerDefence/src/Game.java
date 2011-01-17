@@ -462,18 +462,20 @@ public class Game extends JFrame {
             Unit u = unitData.getNewUnit(gameStats.getWave());
             u.setNewDestination(u.getLocation());
             u.setPath(path);
-            // a.setVisible(true);
             getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
             spriteList.add(u);
             gameStats.setWaveCounter(0);
             gameStats.raiseWaveUnits();
+            if(gameStats.getWaveUnits() == 0){
+                gameStats.updateGold(1, (gameStats.getWave() * 2) + gameStats.getWave());
+            }
             if (gameStats.getWaveUnits() == 15) {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
                 gameStats.raiseWave();
-                gameStats.updateGold(1, ((gameStats.getWave() + 1) * 2) + gameStats.getWave() + 1);
             }
         }
+        //checkPath(m.get(4, 14));
         System.out.println(System.currentTimeMillis() - testTime);
     }
 
@@ -514,7 +516,6 @@ public class Game extends JFrame {
                 }
                 u.setPath(fields);
             }
-
             /*fields = findPath(u, m.get(4, 14));
             u.setPath(fields);
             if (fields != null) {
