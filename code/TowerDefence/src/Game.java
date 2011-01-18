@@ -265,7 +265,7 @@ public class Game extends JFrame {
     }
 
     public void initHeartbeat() {
-        Timer t = new Timer(40, new ActionListener() {
+        Timer t = new Timer(140, new ActionListener() {
 
             public void actionPerformed(ActionEvent arg0) {
                 heartbeat();
