@@ -403,7 +403,7 @@ public class Game extends JFrame {
             t = (Tower) temp.get(i);
             t.count();
             if (t != null) {
-                if (t.getCounter() >= gameStats.getTowerData().getMissleSpeed(t.getCaseNumber())) {
+                if (t.getCounter() >= gameStats.getTowerData().getTowerAttackSpeed(t.getCaseNumber())) {
                     // range check
                     a = t.getLocation();
                     a.x += (t.getWidth() / 4);

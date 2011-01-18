@@ -44,7 +44,7 @@ public class TowerData {
         towerData[0][8] = 0;        //towerImage
         towerData[0][9] = 25;       //missleRange
         towerData[0][10] = 100;     //towerRange
-        towerData[0][11] = 10;      //towerAttackSpeed
+        towerData[0][11] = 1;      //towerAttackSpeed
 
         towerData[1][0] = 1;        //caseNumber
         towerData[1][1] = 10;       //costs
@@ -433,6 +433,9 @@ public class TowerData {
      */
     public int getTowerImage(int caseNumber) {
         return towerData[caseNumber][8];
+    }
+    public int getTowerAttackSpeed(int caseNumber) {
+        return towerData[caseNumber][11];
     }
 
     /**
