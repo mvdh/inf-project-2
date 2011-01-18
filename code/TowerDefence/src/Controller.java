@@ -184,7 +184,7 @@ public class Controller extends Container
 				priceLbl.setText("  Price: " + getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType()));
 				hitPointsLbl.setText("  Hitpoints: " + getGameStats().getTowerData().getHitpoints(((CLabel) me.getComponent()).getType()));
 				rangeLbl.setText("  Range: " + getGameStats().getTowerData().getRange(((CLabel) me.getComponent()).getType()));
-				speedLbl.setText("  Attack speed: " + getGameStats().getTowerData().getAttackSpeed(((CLabel) me.getComponent()).getType()));
+				speedLbl.setText("  Attack speed: " + getGameStats().getTowerData().getTowerAttackSpeed(((CLabel) me.getComponent()).getType()));
 				damageLbl.setText("  Damage: " + getGameStats().getTowerData().getMissleDamage(((CLabel) me.getComponent()).getType()));
 			}
 		}
