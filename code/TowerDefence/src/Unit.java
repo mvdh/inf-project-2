@@ -23,12 +23,13 @@ public class Unit extends Sprite
 	private int pathCounter;
 	private double speed;
 	private int caseNumber;
+        private int reward;
 
 	private BufferedImage[] bf = null;
 	private int animationSpeed = 10;
 	private int number = 0;
 
-	public Unit(double speed, int hp, String img)
+	public Unit(double speed, int hp, String img, int reward)
 	{
 		super(speed);
 		setHitPoints(hp);
@@ -36,6 +37,7 @@ public class Unit extends Sprite
 		aviation = false;
 		pathCounter = 0;
 		caseNumber = 0;
+                this.reward = reward;
 
 		/**
          *
@@ -116,6 +118,7 @@ public class Unit extends Sprite
 	{
 		return caseNumber;
 	}
+
 
 	public void setCaseNumber(int caseNumber)
 	{
@@ -267,4 +270,18 @@ public class Unit extends Sprite
 		g.setColor(Color.green);
 		g.fillRect(1, 1, (int) widthGreen, 5);
 	}
+
+    /**
+     * @return the reward
+     */
+    public int getReward() {
+        return reward;
+    }
+
+    /**
+     * @param reward the reward to set
+     */
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
 }
