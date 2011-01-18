@@ -9,119 +9,129 @@
 public class GameStats
 {
 
-	private TowerData towerData;
-	private int points;
-	private int gold;
-	private int waveCounter;
-	private int waveUnits;
-	private int wave;
+        private TowerData towerData;
+        private int points;
+        private int gold;
+        private int waveCounter;
+        private int waveUnits;
+        private int wave;
+        private UnitData unitData;
 
-	public int getWaveUnits()
-	{
-		return waveUnits;
-	}
+        public UnitData getUnitData()
+        {
+                return unitData;
+        }
 
-	public void setWaveUnits(int waveUnits)
-	{
-		this.waveUnits = waveUnits;
-	}
+        public void setUnitData(UnitData unitData)
+        {
+                this.unitData = unitData;
+        }
 
-	public int getWave()
-	{
-		return wave;
-	}
+        public int getWaveUnits()
+        {
+                return waveUnits;
+        }
 
-	public void setWave(int wave)
-	{
-		this.wave = wave;
-	}
+        public void setWaveUnits(int waveUnits)
+        {
+                this.waveUnits = waveUnits;
+        }
 
-	public int getWaveCounter()
-	{
-		return waveCounter;
-	}
+        public int getWave()
+        {
+                return wave;
+        }
 
-	public void setWaveCounter(int waveCounter)
-	{
-		this.waveCounter = waveCounter;
-	}
+        public void setWave(int wave)
+        {
+                this.wave = wave;
+        }
 
-	public void raiseWaveCounter()
-	{
-		waveCounter++;
-	}
+        public int getWaveCounter()
+        {
+                return waveCounter;
+        }
 
-	public void raiseWaveUnits()
-	{
-		waveUnits++;
-	}
+        public void setWaveCounter(int waveCounter)
+        {
+                this.waveCounter = waveCounter;
+        }
 
-	public void raiseWave()
-	{
-		wave++;
-	}
+        public void raiseWaveCounter()
+        {
+                waveCounter++;
+        }
 
-	public GameStats()
-	{
-		points = 0;
-		gold = 20;
-		waveCounter = 0;
-		waveUnits = 0;
-		wave = 0;
-		this.setTowerData(new TowerData());
-	}
+        public void raiseWaveUnits()
+        {
+                waveUnits++;
+        }
 
-	public int getGold()
-	{
-		return gold;
-	}
+        public void raiseWave()
+        {
+                wave++;
+        }
 
-	public void setGold(int gold)
-	{
-		this.gold = gold;
-	}
+        public GameStats()
+        {
+                points = 0;
+                gold = 20;
+                waveCounter = 0;
+                waveUnits = 0;
+                wave = 0;
+                this.setTowerData(new TowerData());
+                unitData = new UnitData();
+        }
 
-	public void setTowerData(TowerData td)
-	{
-		this.towerData = td;
-	}
+        public int getGold()
+        {
+                return gold;
+        }
 
-	public void setPoints(int points)
-	{
-		this.points = points;
-	}
+        public void setGold(int gold)
+        {
+                this.gold = gold;
+        }
 
-	public void updateGold(int dir, int gold)
-	{
-		if (dir == -1)
-		{
-			this.gold -= gold;
-		}
-		else
-		{
-			this.gold += gold;
-		}
-	}
+        public void setTowerData(TowerData td)
+        {
+                this.towerData = td;
+        }
 
-	public void updatePoints(int dir, int points)
-	{
-		if (dir == -1)
-		{
-			this.points -= points;
-		}
-		else
-		{
-			this.points += points;
-		}
-	}
+        public void setPoints(int points)
+        {
+                this.points = points;
+        }
 
-	public TowerData getTowerData()
-	{
-		return this.towerData;
-	}
+        public void updateGold(int dir, int gold)
+        {
+                if (dir == -1)
+                {
+                        this.gold -= gold;
+                } else
+                {
+                        this.gold += gold;
+                }
+        }
 
-	public int getPoints()
-	{
-		return this.points;
-	}
+        public void updatePoints(int dir, int points)
+        {
+                if (dir == -1)
+                {
+                        this.points -= points;
+                } else
+                {
+                        this.points += points;
+                }
+        }
+
+        public TowerData getTowerData()
+        {
+                return this.towerData;
+        }
+
+        public int getPoints()
+        {
+                return this.points;
+        }
 }

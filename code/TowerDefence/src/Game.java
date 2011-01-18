@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class Game extends JFrame {
 
     private Matrix m;
-    private UnitData unitData;
+    //private UnitData unitData;
     private SpriteList spriteList;
     private ControlPanel controlPanel;
     private JPanel fieldPanel = new JPanel();
@@ -119,7 +119,6 @@ public class Game extends JFrame {
         }
 
         spriteList = new SpriteList();
-        unitData = new UnitData();
         add(statsPanel);
         updateStats();
         add(fieldPanel);
@@ -385,7 +384,7 @@ public class Game extends JFrame {
                 t = (Tower) m.get(a.y, a.x);
                 if ((!t.isFlyable() && u.getAviation()) || (!t.isWalkable() && !u.getAviation())) {
                     cleanUp.add(u);
-                    t.setHealth(t.getHealth() - unitData.getDamage(u.getCaseNumber()));
+                    t.setHealth(t.getHealth() - gameStats.getUnitData().getDamage(u.getCaseNumber()));
                     t.setShow(true);
                     t.paint(t.getGraphics());
 
@@ -442,8 +441,8 @@ public class Game extends JFrame {
                         if (u.getHitPoints() <= 0) {
                             // points += unitData.getReward(u.getCaseNumber()) *
                             // 5;
-                            gameStats.updatePoints(1, unitData.getReward(u.getCaseNumber()) * 5);
-                            gameStats.updateGold(1, unitData.getReward(u.getCaseNumber()));
+                            gameStats.updatePoints(1, gameStats.getUnitData().getReward(u.getCaseNumber()) * 5);
+                            gameStats.updateGold(1, gameStats.getUnitData().getReward(u.getCaseNumber()));
                             cleanUp.add(u);
                         }
                     }
@@ -459,7 +458,7 @@ public class Game extends JFrame {
         }
         gameStats.raiseWaveCounter();
         if (gameStats.getWaveCounter() >= 50) {
-            Unit u = unitData.getNewUnit(gameStats.getWave());
+            Unit u = gameStats.getUnitData().getNewUnit(gameStats.getWave());
             u.setNewDestination(u.getLocation());
             u.setPath(path);
             getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
