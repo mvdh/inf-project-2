@@ -434,6 +434,7 @@ public class TowerData {
     public int getTowerImage(int caseNumber) {
         return towerData[caseNumber][8];
     }
+    
     public int getTowerAttackSpeed(int caseNumber) {
         return towerData[caseNumber][11];
     }
