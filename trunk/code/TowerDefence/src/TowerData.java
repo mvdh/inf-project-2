@@ -31,86 +31,93 @@ public class TowerData {
     public TowerData() {
         towerData = new int[16][12];
         towerImages = new String[16];
-        //sortedList = new ArrayList<Integer>();
 
+        /*
+         * Tower A1
+         */
         towerData[0][0] = 0;        //caseNumber
-        towerData[0][1] = 10;      //costs
-        towerData[0][2] = 150;      //hitPoints
-        towerData[0][3] = 100;      //range
-        towerData[0][4] = -1;       //previousCaseNumber
-        towerData[0][5] = 2;        //missleDamage
-        towerData[0][6] = 0;        //missleImage
-        towerData[0][7] = 10;       //missleSpeed
-        towerData[0][8] = 0;        //towerImage
+        towerData[0][1] = -1;       //previousCaseNumber
+        towerData[0][2] = 6;        //costs
+        towerData[0][3] = 150;      //hitPoints
+        towerData[0][4] = 0;        //missleImage
+        towerData[0][5] = 60;       //towerRange
+        towerData[0][6] = 10;       //towerAttackSpeed
+        towerData[0][7] = 11;       //missleDamage
+        towerData[0][8] = 10;       //missleSpeed
         towerData[0][9] = 25;       //missleRange
-        towerData[0][10] = 100;     //towerRange
-        towerData[0][11] = 1;      //towerAttackSpeed
 
+        /*
+         * Tower B1
+         */
         towerData[1][0] = 1;        //caseNumber
-        towerData[1][1] = 10;       //costs
-        towerData[1][2] = 100;      //hitPoints
-        towerData[1][3] = 100;      //range
-        towerData[1][4] = -1;       //previousCaseNumber
-        towerData[1][5] = 2;        //missleDamage
-        towerData[1][6] = 1;        //missleImage
-        towerData[1][7] = 15;       //missleSpeed
-        towerData[1][8] = 1;        //towerImage
-        towerData[1][9] = 20;       //missleRange
-        towerData[1][10] = 110;     //towerRange
-        towerData[1][11] = 10;      //towerAttackSpeed
+        towerData[1][1] = -1;       //previousCaseNumber
+        towerData[1][2] = 16;        //costs
+        towerData[1][3] = 100;      //hitPoints
+        towerData[1][4] = 1;        //missleImage
+        towerData[1][5] = 100;      //range
+        towerData[1][6] = 15;        //towerAttackSpeed
+        towerData[1][7] = 15;        //missleDamage
+        towerData[1][8] = 20;       //missleSpeed
+        towerData[1][9] = 25;       //missleRange
 
+        /*
+         * Tower C1
+         */
         towerData[2][0] = 2;        //caseNumber
-        towerData[2][1] = 10;       //costs
-        towerData[2][2] = 100;      //hitPoints
-        towerData[2][3] = 100;      //range
-        towerData[2][4] = -1;       //previousCaseNumber
-        towerData[2][5] = 2;        //missleDamage
-        towerData[2][6] = 1;        //missleImage
-        towerData[2][7] = 10;       //missleSpeed
-        towerData[2][8] = 0;        //towerImage
+        towerData[2][1] = -1;       //previousCaseNumber
+        towerData[2][2] = 4;       //costs
+        towerData[2][3] = 100;      //hitPoints
+        towerData[2][4] = 1;        //missleImage
+        towerData[2][5] = 100;      //towerRange
+        towerData[2][6] = 10;       //towerAttackSpeed
+        towerData[2][7] = 2;        //missleDamage
+        towerData[2][8] = 10;       //missleSpeed
         towerData[2][9] = 20;       //missleRange
-        towerData[2][10] = 100;     //towerRange
-        towerData[2][11] = 10;      //towerAttackSpeed
 
+        /*
+         * Tower D1
+         */
         towerData[3][0] = 3;        //caseNumber
-        towerData[3][1] = 10;       //costs
-        towerData[3][2] = 100;      //hitPoints
-        towerData[3][3] = 500;      //range
-        towerData[3][4] = -1;       //previousCaseNumber
-        towerData[3][5] = 4;        //missleDamage
-        towerData[3][6] = 0;        //missleImage
-        towerData[3][7] = 30;       //missleSpeed
-        towerData[3][8] = 1;        //towerImage
+        towerData[3][1] = -1;       //previousCaseNumber
+        towerData[3][2] = 1;        //costs
+        towerData[3][3] = 100;      //hitPoints
+        towerData[3][4] = 0;        //missleImage
+        towerData[3][5] = 500;      //towerRange
+        towerData[3][6] = 15;       //towerAttackSpeed
+        towerData[3][7] = 4;        //missleDamage
+        towerData[3][8] = 30;       //missleSpeed
         towerData[3][9] = 40;       //missleRange
-        towerData[3][10] = 600;     //towerRange
-        towerData[3][11] = 15;      //towerAttackSpeed
 
+        /*
+         * Tower A2
+         */
         towerData[4][0] = 4;        //caseNumber
-        towerData[4][1] = 10;       //costs
-        towerData[4][2] = 150;      //hitPoints
-        towerData[4][3] = 120;      //range
-        towerData[4][4] = 0;        //previousCaseNumber
-        towerData[4][5] = 8;        //missleDamage
-        towerData[4][6] = 1;        //missleImage
-        towerData[4][7] = 10;       //missleSpeed
-        towerData[4][8] = 2;        //towerImage
+        towerData[4][1] = 0;       //previousCaseNumber
+        towerData[4][2] = 20;        //costs
+        towerData[4][3] = 150;      //hitPoints
+        towerData[4][4] = 0;        //missleImage
+        towerData[4][5] = 60;       //towerRange
+        towerData[4][6] = 10;       //towerAttackSpeed
+        towerData[4][7] = 18;       //missleDamage
+        towerData[4][8] = 15;       //missleSpeed
         towerData[4][9] = 25;       //missleRange
-        towerData[4][10] = 120;     //towerRange
-        towerData[4][11] = 10;      //towerAttackSpeed
 
+        /*
+         * Tower B2
+         */
         towerData[5][0] = 5;        //caseNumber
-        towerData[5][1] = 20;      //costs
-        towerData[5][2] = 100;      //hitPoints
-        towerData[5][3] = 100;      //range
-        towerData[5][4] = 1;        //previousCaseNumber
-        towerData[5][5] = 2;        //missleDamage
-        towerData[5][6] = 1;        //missleImage
-        towerData[5][7] = 20;       //missleSpeed
-        towerData[5][8] = 3;        //towerImage
-        towerData[5][9] = 20;       //missleRange
-        towerData[5][10] = 120;     //towerRange
-        towerData[5][11] = 10;      //towerAttackSpeed
-
+        towerData[5][1] = 1;       //previousCaseNumber
+        towerData[5][2] = 30;        //costs
+        towerData[5][3] = 100;      //hitPoints
+        towerData[5][4] = 1;        //missleImage
+        towerData[5][5] = 100;      //range
+        towerData[5][6] = 15;        //towerAttackSpeed
+        towerData[5][7] = 20;        //missleDamage
+        towerData[5][8] = 20;       //missleSpeed
+        towerData[5][9] = 25;       //missleRange
+        /*
+         * C2
+         */
         towerData[6][0] = 6;        //caseNumber
         towerData[6][1] = 20;      //costs
         towerData[6][2] = 100;      //hitPoints
@@ -124,6 +131,9 @@ public class TowerData {
         towerData[6][10] = 120;     //towerRange
         towerData[6][11] = 10;      //towerAttackSpeed
 
+        /*
+         * D2
+         */
         towerData[7][0] = 7;        //caseNumber
         towerData[7][1] = 20;      //costs
         towerData[7][2] = 100;      //hitPoints
@@ -137,19 +147,23 @@ public class TowerData {
         towerData[7][10] = 120;     //towerRange
         towerData[7][11] = 10;      //towerAttackSpeed
 
+        /*
+         * A3
+         */
         towerData[8][0] = 8;        //caseNumber
-        towerData[8][1] = 20;      //costs
-        towerData[8][2] = 100;      //hitPoints
-        towerData[8][3] = 100;      //range
-        towerData[8][4] = 4;        //previousCaseNumber
-        towerData[8][5] = 2;        //missleDamage
-        towerData[8][6] = 1;        //missleImage
-        towerData[8][7] = 20;       //missleSpeed
-        towerData[8][8] = 3;        //towerImage
-        towerData[8][9] = 20;       //missleRange
-        towerData[8][10] = 120;     //towerRange
-        towerData[8][11] = 10;      //towerAttackSpeed
+        towerData[8][1] = 4;       //previousCaseNumber
+        towerData[8][2] = 40;        //costs
+        towerData[8][3] = 150;      //hitPoints
+        towerData[8][4] = 0;        //missleImage
+        towerData[8][5] = 120;       //towerRange
+        towerData[8][6] = 10;       //towerAttackSpeed
+        towerData[8][7] = 40;       //missleDamage
+        towerData[8][8] = 15;       //missleSpeed
+        towerData[8][9] = 25;       //missleRange
 
+        /*
+         * B3
+         */
         towerData[9][0] = 9;        //caseNumber
         towerData[9][1] = 275;      //costs
         towerData[9][2] = 100;      //hitPoints
@@ -193,7 +207,7 @@ public class TowerData {
         towerData[12][1] = 275;      //costs
         towerData[12][2] = 100;      //hitPoints
         towerData[12][3] = 100;      //range
-        towerData[12][4] = 8;        //previousCaseNumber
+        towerData[12][4] = 10000; //8;        //previousCaseNumber
         towerData[12][5] = 2;        //missleDamage
         towerData[12][6] = 1;        //missleImage
         towerData[12][7] = 20;       //missleSpeed
@@ -206,7 +220,7 @@ public class TowerData {
         towerData[13][1] = 275;      //costs
         towerData[13][2] = 100;      //hitPoints
         towerData[13][3] = 100;      //range
-        towerData[13][4] = 9;        //previousCaseNumber
+        towerData[13][4] = 10000; //9;        //previousCaseNumber
         towerData[13][5] = 2;        //missleDamage
         towerData[13][6] = 1;        //missleImage
         towerData[13][7] = 20;       //missleSpeed
@@ -219,7 +233,7 @@ public class TowerData {
         towerData[14][1] = 275;      //costs
         towerData[14][2] = 100;      //hitPoints
         towerData[14][3] = 100;      //range
-        towerData[14][4] = 10;        //previousCaseNumber
+        towerData[14][4] = 10000;  //10;        //previousCaseNumber
         towerData[14][5] = 2;        //missleDamage
         towerData[14][6] = 1;        //missleImage
         towerData[14][7] = 20;       //missleSpeed
@@ -232,7 +246,7 @@ public class TowerData {
         towerData[15][1] = 275;      //costs
         towerData[15][2] = 100;      //hitPoints
         towerData[15][3] = 100;      //range
-        towerData[15][4] = 11;        //previousCaseNumber
+        towerData[15][4] = 10000; //11       //previousCaseNumber
         towerData[15][5] = 2;        //missleDamage
         towerData[15][6] = 1;        //missleImage
         towerData[15][7] = 20;       //missleSpeed
@@ -241,22 +255,22 @@ public class TowerData {
         towerData[15][10] = 120;     //towerRange
         towerData[15][11] = 10;      //towerAttackSpeed
 
-        towerImages[0] = "A1";
-        towerImages[1] = "B1";
-        towerImages[2] = "C1";
-        towerImages[3] = "D1";
-        towerImages[4] = "A2";
-        towerImages[5] = "B2";
-        towerImages[6] = "C2";
-        towerImages[7] = "D2";
-        towerImages[8] = "A3";
-        towerImages[9] = "B3";
-        towerImages[10] = "C3";
-        towerImages[11] = "D3";
-        towerImages[12] = "A4";
-        towerImages[13] = "B4";
-        towerImages[14] = "C4";
-        towerImages[15] = "D4";
+        towerImages[0] = "1-level1";
+        towerImages[1] = "2-level1-f1";
+        towerImages[2] = "3-level1-f1";
+        towerImages[3] = "4-level1-f1";
+        towerImages[4] = "1-level2";
+        towerImages[5] = "2-level2-f1";
+        towerImages[6] = "3-level2-f1";
+        towerImages[7] = "4-level2-f1";
+        towerImages[8] = "1-level3";
+        towerImages[9] = "2-level3-f1";
+        towerImages[10] = "3-level3-f1";
+        towerImages[11] = "4-level3-f1";
+        towerImages[12] = "";
+        towerImages[13] = "";
+        towerImages[14] = "";
+        towerImages[15] = "";
     }
 
 //    Volgende functie is nog niet af, het is een functie die we op dit moment
@@ -288,7 +302,6 @@ public class TowerData {
 //
 //        return new ArrayList<Integer>();
 //    }
-
     /**
      * Return the towerData. towerData contains the information of all towers.
      *
@@ -318,7 +331,7 @@ public class TowerData {
          * the list. The tower then is an upgradable of the current tower.
          */
         for (int i = 0; i < this.getTowerData().length; i++) {
-            if (this.getTowerData()[i][4] == caseNumber) {
+            if (this.getPreviousCaseNumber(i) == caseNumber) {
                 result.add(this.getTowerData()[i][0]);
                 System.out.println(this.getTowerData()[i][0]);
             }
@@ -348,6 +361,17 @@ public class TowerData {
     }
 
     /**
+     * Returns the previous caseNumber of the tower where the caseNumber of the tower
+     * equals the parameter caseNumber.
+     *
+     * @param caseNumber the caseNumber of the towertype
+     * @return the previous casenumber of a tower
+     */
+    public int getPreviousCaseNumber(int caseNumber) {
+        return towerData[caseNumber][1];
+    }
+
+    /**
      * Returns the costs of the tower where the caseNumber of the tower
      * equals the parameter caseNumber.
      *
@@ -355,7 +379,7 @@ public class TowerData {
      * @return the costs of a tower
      */
     public int getCosts(int caseNumber) {
-        return towerData[caseNumber][1];
+        return towerData[caseNumber][2];
     }
 
     /**
@@ -366,40 +390,7 @@ public class TowerData {
      * @return the hitpoints of a tower
      */
     public int getHitpoints(int caseNumber) {
-        return towerData[caseNumber][2];
-    }
-
-    /**
-     * Returns the range of the tower where the caseNumber of the tower
-     * equals the parameter caseNumber.
-     *
-     * @param caseNumber the caseNumber of the towertype
-     * @return the range of a tower
-     */
-    public int getRange(int caseNumber) {
         return towerData[caseNumber][3];
-    }
-
-    /**
-     * Returns the previous caseNumber of the tower where the caseNumber of the tower
-     * equals the parameter caseNumber.
-     *
-     * @param caseNumber the caseNumber of the towertype
-     * @return the previous casenumber of a tower
-     */
-    public int getPreviousCaseNumber(int caseNumber) {
-        return towerData[caseNumber][4];
-    }
-
-    /**
-     * Returns the missle damage of the tower where the caseNumber of the tower
-     * equals the parameter caseNumber.
-     *
-     * @param caseNumber the caseNumber of the towertype
-     * @return the missle damage of a tower
-     */
-    public int getMissleDamage(int caseNumber) {
-        return towerData[caseNumber][5];
     }
 
     /**
@@ -410,7 +401,40 @@ public class TowerData {
      * @return the image number of a missle
      */
     public int getMissleImage(int caseNumber) {
-        return towerData[caseNumber][6];
+        return towerData[caseNumber][4];
+    }
+
+    /**
+     * Returns the range of the tower where the caseNumber of the tower
+     * equals the parameter caseNumber.
+     *
+     * @param caseNumber the caseNumber of the towertype
+     * @return the range of a tower
+     */
+    public int getRange(int caseNumber) {
+        return towerData[caseNumber][5];
+    }
+
+    /**
+     * Returns the attack speed of the tower where the caseNumber of the tower
+     * equals the parameter caseNumber.
+     *
+     * @param caseNumber the caseNumber of the towertype
+     * @return the attack speed of the tower
+     */
+    //public int getAttackSpeed(int caseNumber) {
+     //   return towerData[caseNumber][6];
+    //}
+
+    /**
+     * Returns the missle damage of the tower where the caseNumber of the tower
+     * equals the parameter caseNumber.
+     *
+     * @param caseNumber the caseNumber of the towertype
+     * @return the missle damage of a tower
+     */
+    public int getMissleDamage(int caseNumber) {
+        return towerData[caseNumber][7];
     }
 
     /**
@@ -421,22 +445,20 @@ public class TowerData {
      * @return the missle speed of a missle
      */
     public int getMissleSpeed(int caseNumber) {
-        return towerData[caseNumber][7];
+        return towerData[caseNumber][8];
     }
 
+
     /**
-     * Returns the towerimage number where the caseNumber of the tower
+     * Returns the attack speed of the tower where the caseNumber of the tower
      * equals the parameter caseNumber.
      *
      * @param caseNumber the caseNumber of the towertype
-     * @return the towerimage number
+     * @return the attack speed of the tower
      */
-    public int getTowerImage(int caseNumber) {
-        return towerData[caseNumber][8];
-    }
     
     public int getTowerAttackSpeed(int caseNumber) {
-        return towerData[caseNumber][11];
+        return towerData[caseNumber][6];
     }
 
     /**
@@ -460,15 +482,4 @@ public class TowerData {
     public int getTowerRange(int caseNumber) {
         return towerData[caseNumber][10];
     }
-
-    /**
-     * Returns the attack speed of the tower where the caseNumber of the tower
-     * equals the parameter caseNumber.
-     *
-     * @param caseNumber the caseNumber of the towertype
-     * @return the attack speed of the tower
-     */
-    public int getAttackSpeed(int caseNumber) {
-		return towerData[caseNumber][11];
-	}
 }
