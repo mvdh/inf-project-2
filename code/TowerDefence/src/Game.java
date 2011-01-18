@@ -265,7 +265,7 @@ public class Game extends JFrame {
     }
 
     public void initHeartbeat() {
-        Timer t = new Timer(140, new ActionListener() {
+        Timer t = new Timer(40, new ActionListener() {
 
             public void actionPerformed(ActionEvent arg0) {
                 heartbeat();
@@ -464,10 +464,10 @@ public class Game extends JFrame {
             getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
             spriteList.add(u);
             gameStats.setWaveCounter(0);
-            gameStats.raiseWaveUnits();
             if(gameStats.getWaveUnits() == 0){
                 gameStats.updateGold(1, (gameStats.getWave() * 2) + gameStats.getWave());
             }
+            gameStats.raiseWaveUnits();
             if (gameStats.getWaveUnits() == 15) {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
@@ -475,7 +475,7 @@ public class Game extends JFrame {
             }
         }
         //checkPath(m.get(4, 14));
-//        System.out.println(System.currentTimeMillis() - testTime);
+        //System.out.println(System.currentTimeMillis() - testTime);
     }
 
     public void checkPath(Field f) {
