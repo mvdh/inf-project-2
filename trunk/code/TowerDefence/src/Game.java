@@ -642,27 +642,32 @@ public class Game extends JApplet
 			}
 			if (hasF && fields != null)
 			{
-				Field nearest = path.get(0);
+				Vector tempPath = u.getPath();
+				Field nearest = tempPath.get(0);
 				int j = 0;
-				for (int i = 1; i < path.size(); i++)
+				Point loc = u.getLocation();
+				for (int i = 1; i < tempPath.size(); i++)
 				{
-					if (u.distance(nearest.getLocation(), u.getLocation()) > u.distance(path.get(i).getLocation(), u.getLocation()))
+					loc.y -= 100;
+					if (u.distance(nearest.getLocation(), loc) > u.distance(tempPath.get(i).getLocation(), loc))
 					{
-						nearest = path.get(i);
+						nearest = tempPath.get(i);
 						j = i;
 					}
 				}
-				temp = findPath(u, nearest);
+				Unit tempUnit = new Unit(u.getSpeed(), u.getHitPoints());
+				tempUnit.setLocation(loc);
+				temp = findPath(tempUnit, nearest);
 				if (temp != null)
 				{
 					u.setPathCounter(1);
-					for (int i = j + 1; i < path.size(); i++)
+					for (int i = j + 1; i < tempPath.size(); i++)
 					{
 						temp.add(null);
-						temp.add(path.get(i));
+						temp.add(tempPath.get(i));
 					}
-					System.out.println(temp.print());
 					u.setPath(temp);
+					
 				}
 				else
 				{
