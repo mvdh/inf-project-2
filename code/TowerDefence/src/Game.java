@@ -145,7 +145,7 @@ public class Game extends JFrame
             path.add(m.get(4, i));
         }
 
-        
+
 //        Timer t = new Timer(2000, new ActionListener() {
 //        public void actionPerformed(ActionEvent arg0) {
 //        Unit a = new Unit(1.5, 16);
@@ -159,7 +159,7 @@ public class Game extends JFrame
 //        }
 //        });
 //        t.start();
-         
+
 
         initHeartbeat();
     }
@@ -587,12 +587,12 @@ public class Game extends JFrame
                 if (temp != null)
                 {
                     u.setPathCounter(1);
+                    for (int i = j + 1; i < path.size(); i++)
+                    {
+                        temp.add(path.get(i));
+                    }
+                    u.setPath(temp);
                 }
-                for (int i = j + 1; i < path.size(); i++)
-                {
-                    temp.add(path.get(i));
-                }
-                u.setPath(temp);
             }
             /*fields = findPath(u, m.get(4, 14));
             u.setPath(fields);
