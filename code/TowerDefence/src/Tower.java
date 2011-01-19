@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Tower extends Field
 {
-
+	private TowerData td;
 	private int counter;
 	private int caseNumber;
 	private int health;
@@ -49,13 +49,14 @@ public class Tower extends Field
 		this.setCounter(0);
 	}
 
-	public Tower(BufferedImage bg, int tower, int health)
+	public Tower(BufferedImage bg, int tower, int health, TowerData tdIn)
 	{
 		super(bg);
 		this.setCaseNumber(tower);
 		this.setCounter(0);
 		setMaxHP(health);
 		setHealth(health);
+		td = tdIn;
 	}
 
 	/**
@@ -96,29 +97,11 @@ public class Tower extends Field
 
 		int number = getCaseNumber();
 		BufferedImage img = null;
-		URL url = null;
 
-		TowerData td = new TowerData();
 		// If a CaseNumber is selected
-		url = getClass().getResource("images/tower" + td.getTowerImageName(number) + ".png");
+		img = td.getTowerImage(number);
 
-		if (url == null)
-		{
-			// Add a filled rectangle to the graphics
-			g.setColor(new Color(0, 255, 0));
-			g.fillRect(size.width / 4, size.height / 4, size.width / 2, size.height / 2);
-		}
-		else
-		{
-			// Add the selected image to the graphics
-			try
-			{
-				img = ImageIO.read(url);
-				g.drawImage(img, 1, 1, 40, 40, 0, 0, img.getWidth(null), img.getHeight(null), null);
-			}
-			catch (Exception e)
-			{}
-		}
+		g.drawImage(img, 1, 1, 40, 40, 0, 0, img.getWidth(null), img.getHeight(null), null);
 
 		if (showHealth)
 		{
