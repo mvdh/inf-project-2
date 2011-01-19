@@ -13,8 +13,6 @@ public class Field extends Component
 	private boolean flyable;
 	private boolean buildable;
 	private BufferedImage bf = null;
-	private double random;
-	private double random2;
 
 	// Voor de graphics
 	private boolean selected = false;
@@ -23,8 +21,6 @@ public class Field extends Component
 	public Field(BufferedImage bg)
 	{
 		setSize(40, 40);
-//		random = Math.random();
-//		random2 = Math.random();
 
 		bf = bg;
 
@@ -112,27 +108,7 @@ public class Field extends Component
 		// Get the size of the Field object
 		Dimension size = getSize();
 
-//		if (random < 0.5)
-//		{
-//			upSideDown((Graphics2D) g, size);
-//		}
-//
-//		if (random2 < 0.5)
-//		{
-//			mirrored((Graphics2D) g, size);
-//		}
-
 		g.drawImage(bf, 0, 0, size.width, size.height, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
-
-//		if (random < 0.5)
-//		{
-//			upSideDown((Graphics2D) g, size);
-//		}
-//
-//		if (random2 < 0.5)
-//		{
-//			mirrored((Graphics2D) g, size);
-//		}
 
 		if (getSelected())
 		{

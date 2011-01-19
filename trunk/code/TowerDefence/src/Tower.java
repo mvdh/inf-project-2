@@ -2,8 +2,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.net.URL;
-import javax.imageio.ImageIO;
 
 public class Tower extends Field
 {
@@ -92,8 +90,6 @@ public class Tower extends Field
 	{
 		// Execute the paint function as if it was a Field object
 		super.paint(g);
-
-		Dimension size = getSize();
 
 		int number = getCaseNumber();
 		BufferedImage img = null;
