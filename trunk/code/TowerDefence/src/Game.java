@@ -535,7 +535,7 @@ public class Game extends JFrame
                 gameStats.updateGold(1, (gameStats.getWave() * 3));
             }
             gameStats.raiseWaveUnits();
-            if (gameStats.getWaveUnits() == 1)
+            if (gameStats.getWaveUnits() == 15)
             {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
@@ -589,6 +589,7 @@ public class Game extends JFrame
                     u.setPathCounter(1);
                     for (int i = j + 1; i < path.size(); i++)
                     {
+                    	temp.add(null);
                         temp.add(path.get(i));
                     }
                     u.setPath(temp);
