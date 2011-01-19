@@ -270,7 +270,6 @@ public class TowerData {
         for (int i = 0; i < this.getTowerData().length; i++) {
             if (this.getPreviousCaseNumber(i) == caseNumber) {
                 result.add(this.getTowerData()[i][0]);
-                System.out.println(this.getTowerData()[i][0]);
             }
         }
 
