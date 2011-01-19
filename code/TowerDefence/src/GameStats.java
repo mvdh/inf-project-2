@@ -110,9 +110,9 @@ public class GameStats
 		URL img13 = getClass().getResource("images/unit-mario1-f1.png");
 		URL img14 = getClass().getResource("images/unit-mario1-f2.png");
 		URL img15 = getClass().getResource("images/unit-mario1-f3.png");
-		URL img16 = getClass().getResource("images/unit-mario1-f1.png");
-		URL img17 = getClass().getResource("images/unit-mario1-f2.png");
-		URL img18 = getClass().getResource("images/unit-mario1-f3.png");
+		URL img16 = getClass().getResource("images/unit-mario2-f1.png");
+		URL img17 = getClass().getResource("images/unit-mario2-f2.png");
+		URL img18 = getClass().getResource("images/unit-mario2-f3.png");
 		URL img19 = getClass().getResource("images/unit-mario3-f1.png");
 		URL img20 = getClass().getResource("images/unit-mario3-f2.png");
 		URL img21 = getClass().getResource("images/unit-mario3-f3.png");

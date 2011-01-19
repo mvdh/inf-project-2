@@ -103,7 +103,7 @@ public class UnitData
                 } else {
                     hitPoints = (waveNumber) * 200;
                 }
-                int image = waveNumber%3;
+                int image = (waveNumber % 3) * 3;
                 int reward = 0;
 
                 if((waveNumber % 3) == 0) {
