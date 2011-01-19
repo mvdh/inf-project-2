@@ -36,7 +36,7 @@ public class Brick extends Field
 	public void loadImage()
 	{
 		// Get the full url of the image (C:\Users\...\images\castle.png)
-		URL url = getClass().getResource("images/castle.png");
+		URL url = getClass().getResource("images/castle_gray.png");
 		try
 		{
 			// Load the image at location url
