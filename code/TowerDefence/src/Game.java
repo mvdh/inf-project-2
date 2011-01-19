@@ -571,7 +571,7 @@ public class Game extends JFrame
                     break;
                 }
             }
-            if (hasF)
+            if (hasF && fields != null)
             {
                 Field nearest = path.get(0);
                 int j = 0;
@@ -589,10 +589,14 @@ public class Game extends JFrame
                     u.setPathCounter(1);
                     for (int i = j + 1; i < path.size(); i++)
                     {
-                    	temp.add(null);
+                        temp.add(null);
                         temp.add(path.get(i));
                     }
                     u.setPath(temp);
+                } else
+                {
+                    u.setPathCounter(j + 1);
+                    u.setPath(path);
                 }
             }
             /*fields = findPath(u, m.get(4, 14));
