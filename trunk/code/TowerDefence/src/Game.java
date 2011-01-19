@@ -23,7 +23,6 @@ import javax.swing.Timer;
 
 public class Game extends JApplet
 {
-	protected BufferedImage[] towerImages;
 	
 	private Matrix m;
 	// private UnitData unitData;
@@ -40,13 +39,13 @@ public class Game extends JApplet
 	// Start values
 	private int castleHealth = 600;
 	// Field background image
-	private GameStats gameStats = new GameStats();
+	private GameStats gameStats = new GameStats(this);
 	private BufferedImage bf = null;
 	private BufferedImage background = null;
 	private BufferedImage statsBarImage = null;
 	private BufferedImage leftSideImage = null;
 	private Panel panel;
-	protected Font statsFont = new Font("Arial", Font.BOLD, 18);
+	private Font statsFont = new Font("Arial", Font.BOLD, 18);
 
 	public Game()
 	{
@@ -217,21 +216,6 @@ public class Game extends JApplet
 		URL statsBarURL = getClass().getResource("images/statsbar.png");
 		URL leftSideURL = getClass().getResource("images/leftside.png");
 
-		URL img1
-
-        towerImages[0] = "1-level1";
-        towerImages[1] = "2-level1-f1";
-        towerImages[2] = "3-level1-f1";
-        towerImages[3] = "4-level1-f1";
-        towerImages[4] = "1-level2";
-        towerImages[5] = "2-level2-f1";
-        towerImages[6] = "3-level2-f1";
-        towerImages[7] = "4-level2-f1";
-        towerImages[8] = "1-level3";
-        towerImages[9] = "2-level3-f1";
-        towerImages[10] = "3-level3-f1";
-        towerImages[11] = "4-level3-f1";
-		
 		try
 		{
 			bf = ImageIO.read(grassURL);
@@ -275,7 +259,7 @@ public class Game extends JApplet
 		if (f != null && f.isBuildable())
 		{
 			Point p = f.getLocation();
-			Tower t = new Tower(bf, type, gameStats.getTowerData().getHitpoints(type));
+			Tower t = new Tower(bf, type, gameStats.getTowerData().getHitpoints(type), gameStats.getTowerData());
 			t.setLocation(p);
 			t.addMouseListener(new GameMouseAdapter());
 			t.setWalkable(false);
@@ -343,7 +327,7 @@ public class Game extends JApplet
 		if (t != null)
 		{
 			Point p = t.getLocation();
-			Tower nT = new Tower(bf, newCase, gameStats.getTowerData().getHitpoints(newCase));
+			Tower nT = new Tower(bf, newCase, gameStats.getTowerData().getHitpoints(newCase), gameStats.getTowerData());
 			nT.setLocation(p);
 			nT.addMouseListener(new GameMouseAdapter());
 			nT.setWalkable(false);
