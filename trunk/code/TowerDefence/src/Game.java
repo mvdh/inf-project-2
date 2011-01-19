@@ -47,8 +47,9 @@ public class Game extends JApplet
     public Game()
     {
         init();
-        panel = new StartPanel(gameStats);
-        getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
+        gameStats.setStarted(true);
+//        panel = new StartPanel(gameStats);
+//        getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
         m = new Matrix();
 
         URL backgroundurl = getClass().getResource("images/background.png");
@@ -169,7 +170,7 @@ public class Game extends JApplet
         spriteList = new SpriteList();
         add(statsPanel);
         updateStats();
-        add(fieldPanel);
+        getLayeredPane().add(fieldPanel, JLayeredPane.PALETTE_LAYER);
 
         // System.out.println(m.toString());
         paintAll(getGraphics());
@@ -206,6 +207,8 @@ public class Game extends JApplet
         setSize(700, 700);
         setVisible(true);
         setLayout(null);
+        
+        getLayeredPane().add(new BackGround(), 1);
 
         JButton testButton = new JButton("ShowPath");
         testButton.setSize(150, 25);
@@ -519,7 +522,7 @@ public class Game extends JApplet
                             {
                                 Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()),
                                         (double) gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a);
-                                getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
+                                getLayeredPane().add(tempP, JLayeredPane.POPUP_LAYER);
                                 spriteList.add(tempP);
                                 // System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));
                                 break;
@@ -574,7 +577,7 @@ public class Game extends JApplet
                 Unit u = gameStats.getUnitData().getNewUnit(gameStats.getWave());
                 u.setNewDestination(u.getLocation());
                 u.setPath(path);
-                getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
+                getLayeredPane().add(u, JLayeredPane.POPUP_LAYER);
                 spriteList.add(u);
                 gameStats.setWaveCounter(0);
                 if (gameStats.getWaveUnits() == 0)
@@ -725,10 +728,10 @@ public class Game extends JApplet
                 f.paint(f.getGraphics());
                 if (controlPanel != null)
                 {
-                    remove(controlPanel);
+                    getLayeredPane().remove(controlPanel);
                 }
                 controlPanel = new ControlPanel(gameStats, f);
-                add(controlPanel);
+                getLayeredPane().add(controlPanel, JLayeredPane.POPUP_LAYER);
                 controlPanel.repaint();
 
                 // Checks if the Timer is running, if so, it has to stop
@@ -759,14 +762,14 @@ public class Game extends JApplet
                                     upgradeTower((Tower) f, type);
                                 }
                                 controlPanel.getController().setTakeAction(false);
-                                remove(controlPanel);
+                                getLayeredPane().remove(controlPanel);
                                 repaint();
                             } else if (!(f instanceof Tree))
                             {
                                 int type = controlPanel.getController().getType();
                                 FieldToTower(f, type);
                                 controlPanel.getController().setTakeAction(false);
-                                remove(controlPanel);
+                                getLayeredPane().remove(controlPanel);
                                 repaint();
                             }
                             actionTimer.stop();
@@ -783,9 +786,18 @@ public class Game extends JApplet
         }
     }
 
-    public void paint(Graphics g)
+    class BackGround extends JLabel
     {
-                    g.drawImage(background, 0, 0, 700, 700, null);
+    	public BackGround()
+    	{
+    		setSize(700, 700);
+    		setLocation(0, 0);
+    	}
+    	
+	    public void paint(Graphics g)
+	    {
+	    	g.drawImage(background, 0, 0, 700, 700, null);
+	    }
     }
 
     class StatsBar extends JPanel {
