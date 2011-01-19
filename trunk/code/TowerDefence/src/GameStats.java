@@ -20,6 +20,7 @@ public class GameStats
 	protected BufferedImage[] towerImages;
 	protected BufferedImage[] unitImages;
 	protected BufferedImage[] projectileImages;
+        protected BufferedImage[] coinsImages;
 
     public UnitData getUnitData()
     {
@@ -116,6 +117,11 @@ public class GameStats
 		URL img23 = getClass().getResource("images/projectile5-f2.png");
 		URL img24 = getClass().getResource("images/kogel.png");
 		URL img25 = getClass().getResource("spriteDefault.png");
+
+                URL img26 = getClass().getResource("images/coin-f1.png");
+                URL img27 = getClass().getResource("images/coin-f2.png");
+                URL img28 = getClass().getResource("images/coin-f2.png");
+                URL img29 = getClass().getResource("images/coin-f2.png");
 		
 		
 		towerImages = new BufferedImage[12];
@@ -284,8 +290,36 @@ public class GameStats
 		catch (Exception e) {}
 		
 		// Wait untill all images are loaded
-		try 
-        {
+		
+
+                coinsImages = new BufferedImage[4];
+                try
+		{
+			coinsImages[0] = ImageIO.read(img26);
+			tracker.addImage(coinsImages[0], 0);
+			System.out.println("");
+		}
+		catch (Exception e) {}
+		try
+		{
+			coinsImages[1] = ImageIO.read(img27);
+			tracker.addImage(coinsImages[1], 1);
+		}
+		catch (Exception e) {}
+		try
+		{
+			coinsImages[2] = ImageIO.read(img28);
+			tracker.addImage(coinsImages[2], 2);
+		}
+		catch (Exception e) {}
+		try
+		{
+			coinsImages[3] = ImageIO.read(img29);
+			tracker.addImage(coinsImages[3], 3);
+		}
+		catch (Exception e) {}
+
+        try {
             tracker.waitForAll();
         } 
         catch (InterruptedException ie) {}
