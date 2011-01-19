@@ -1,4 +1,5 @@
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -786,7 +787,7 @@ public class Game extends JApplet
         }
     }
 
-    class BackGround extends JLabel
+    class BackGround extends Component
     {
     	public BackGround()
     	{
