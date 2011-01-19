@@ -535,7 +535,7 @@ public class Game extends JFrame
                 gameStats.updateGold(1, (gameStats.getWave() * 3));
             }
             gameStats.raiseWaveUnits();
-            if (gameStats.getWaveUnits() == 15)
+            if (gameStats.getWaveUnits() == 1)
             {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
