@@ -39,7 +39,6 @@ public class Sprite extends Component
 
 	public void step()
 	{
-
 		// Hou hier rekening met een modifier voor vertragende torens.
 		Double dis = distance(this.getLocation(), d); // Wordt gebruikt om de te reizen afstand voor deze stap door te geven
 		if (dis > speed)
@@ -57,7 +56,7 @@ public class Sprite extends Component
 
 		// Om iets zekerder te zijn dat het object niet over het doel heen
 		// schiet is er een marge ingebouwd waarop ie 'snapped'
-		if (dis < standardDis && this instanceof Projectile || lastDis < dis && this instanceof Unit && !(d.x - c.x == 40))
+		if (dis < standardDis && this instanceof Projectile || lastDis < dis && this instanceof Unit)
 		{
 			newX = d.x;
 			newY = d.y;
@@ -94,9 +93,9 @@ public class Sprite extends Component
 
 	public double distance(Point p, Point q)
 	{ // Calculates distance between two points
-		double dx = p.x - q.x; // horizontal difference
-		double dy = p.y - q.y; // vertical difference
-		double dist = Math.sqrt(dx * dx + dy * dy); // distance using Pythagoras
+		double dx = Math.abs(p.x - q.x); // horizontal difference
+		double dy = Math.abs(p.y - q.y); // vertical difference
+		double dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)); // distance using Pythagoras
 		// theorem
 		return dist;
 	}
@@ -138,6 +137,7 @@ public class Sprite extends Component
 				trans.translate(-10, 0);
 			}
 		}
+		
 		trans.rotate(angle, getWidth() / 2, getHeight() / 2);
 		((Graphics2D) g).drawImage(bf, trans, null);
 		setVisible(true);

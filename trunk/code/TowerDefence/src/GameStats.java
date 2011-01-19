@@ -81,7 +81,7 @@ public class GameStats
     {
         started = true;
         points = 0;
-        gold = 20;
+        gold = 1000;
         waveCounter = -75;
         waveUnits = 0;
         wave = 0;
@@ -129,7 +129,6 @@ public class GameStats
 		{
 			towerImages[0] = ImageIO.read(img1);
 			tracker.addImage(towerImages[0], 0);
-			System.out.println("");
 		}
 		catch (Exception e) {}
 		try
@@ -289,15 +288,15 @@ public class GameStats
 		}
 		catch (Exception e) {}
 		
-		// Wait untill all images are loaded
+		/**
+		 * 
+		 */
 		
-
-                coinsImages = new BufferedImage[4];
-                try
+        coinsImages = new BufferedImage[4];
+        try
 		{
 			coinsImages[0] = ImageIO.read(img26);
 			tracker.addImage(coinsImages[0], 0);
-			System.out.println("");
 		}
 		catch (Exception e) {}
 		try
@@ -319,6 +318,7 @@ public class GameStats
 		}
 		catch (Exception e) {}
 
+		// Wait untill all images are loaded
         try {
             tracker.waitForAll();
         } 

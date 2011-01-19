@@ -603,7 +603,7 @@ public class Game extends JApplet
 					gameStats.updateGold(1, (gameStats.getWave() * 3));
 				}
 				gameStats.raiseWaveUnits();
-				if (gameStats.getWaveUnits() == 15)
+				if (gameStats.getWaveUnits() == 1)
 				{
 					gameStats.setWaveCounter(-100);
 					gameStats.setWaveUnits(0);
@@ -649,7 +649,7 @@ public class Game extends JApplet
 				int j = 0;
 				for (int i = 1; i < path.size(); i++)
 				{
-					if (u.distance(nearest.getLocation(), loc) > u.distance(path.get(i).getLocation(), loc))
+					if (u.distance(nearest.getLocation(), loc) >= u.distance(path.get(i).getLocation(), loc))
 					{
 						nearest = path.get(i);
 						j = i;
@@ -661,15 +661,13 @@ public class Game extends JApplet
 				temp = findPath(tempUnit, nearest);
 				if (temp != null)
 				{
-					u.setPathCounter(1);
 					for (int i = j + 1; i < path.size(); i++)
 					{
 						temp.add(null);
 						temp.add(path.get(i));
 					}
 					u.setPath(temp);
-					System.out.println(temp.print());
-					
+					u.setPathCounter(1);
 				}
 				else
 				{

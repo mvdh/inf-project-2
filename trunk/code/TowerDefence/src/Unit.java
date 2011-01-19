@@ -34,7 +34,6 @@ public class Unit extends Sprite
 		pathCounter = 0;
 		caseNumber = 0;
         this.reward = reward;
-		System.out.println(img);
 
 		bf = new BufferedImage[3];
 
