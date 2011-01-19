@@ -23,7 +23,8 @@ import javax.swing.Timer;
 
 public class Game extends JApplet
 {
-
+	protected BufferedImage[] towerImages;
+	
 	private Matrix m;
 	// private UnitData unitData;
 	private SpriteList spriteList;
@@ -45,44 +46,17 @@ public class Game extends JApplet
 	private BufferedImage statsBarImage = null;
 	private BufferedImage leftSideImage = null;
 	private Panel panel;
-	private Font statsFont = new Font("Arial", Font.BOLD, 18);
+	protected Font statsFont = new Font("Arial", Font.BOLD, 18);
 
 	public Game()
 	{
 		init();
+		loadImages();
+		
 		gameStats.setStarted(true);
 		// panel = new StartPanel(gameStats);
 		// getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
 		m = new Matrix();
-
-		URL backgroundurl = getClass().getResource("images/background.png");
-		URL url = getClass().getResource("images/grass.png");
-		URL statsBarURL = getClass().getResource("images/statsbar.png");
-		URL leftSideURL = getClass().getResource("images/leftside.png");
-
-		try
-		{
-			bf = ImageIO.read(url);
-		}
-		catch (Exception e) {}
-
-		try
-		{
-			background = ImageIO.read(backgroundurl);
-		}
-		catch (Exception e) {}
-
-		try
-		{
-			statsBarImage = ImageIO.read(statsBarURL);
-		}
-		catch (Exception e) {}
-
-		try
-		{
-			leftSideImage = ImageIO.read(leftSideURL);
-		}
-		catch (Exception e) {}
 
 		statsPanel.setLayout(new GridLayout(1, 3));
 		statsPanel.setSize(600, 40);
@@ -236,6 +210,53 @@ public class Game extends JApplet
 		// add(testButton);
 	}
 
+	public void loadImages()
+	{
+		URL backgroundURL = getClass().getResource("images/background.png");
+		URL grassURL = getClass().getResource("images/grass.png");
+		URL statsBarURL = getClass().getResource("images/statsbar.png");
+		URL leftSideURL = getClass().getResource("images/leftside.png");
+
+		URL img1
+
+        towerImages[0] = "1-level1";
+        towerImages[1] = "2-level1-f1";
+        towerImages[2] = "3-level1-f1";
+        towerImages[3] = "4-level1-f1";
+        towerImages[4] = "1-level2";
+        towerImages[5] = "2-level2-f1";
+        towerImages[6] = "3-level2-f1";
+        towerImages[7] = "4-level2-f1";
+        towerImages[8] = "1-level3";
+        towerImages[9] = "2-level3-f1";
+        towerImages[10] = "3-level3-f1";
+        towerImages[11] = "4-level3-f1";
+		
+		try
+		{
+			bf = ImageIO.read(grassURL);
+		}
+		catch (Exception e) {}
+
+		try
+		{
+			background = ImageIO.read(backgroundURL);
+		}
+		catch (Exception e) {}
+
+		try
+		{
+			statsBarImage = ImageIO.read(statsBarURL);
+		}
+		catch (Exception e) {}
+
+		try
+		{
+			leftSideImage = ImageIO.read(leftSideURL);
+		}
+		catch (Exception e) {}
+	}
+	
 	public void updateStats()
 	{
 		goldLbl.setText("    Gold: " + gameStats.getGold());
@@ -345,7 +366,7 @@ public class Game extends JApplet
 
 	public void initHeartbeat()
 	{
-		Timer t = new Timer(40, new ActionListener()
+		Timer t = new Timer(10, new ActionListener()
 		{
 
 			public void actionPerformed(ActionEvent arg0)

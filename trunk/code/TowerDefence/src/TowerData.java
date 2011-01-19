@@ -22,7 +22,7 @@ public class TowerData {
      * 11   towerAttackSpeed
      */
     final private int[][] towerData;
-    final private String[] towerImages;
+    final private int[] towerImages;
     //final ArrayList<Integer> sortedList;
 
     /**
@@ -30,7 +30,7 @@ public class TowerData {
      */
     public TowerData() {
         towerData = new int[12][12];
-        towerImages = new String[12];
+        towerImages = new int[12];
 
         /*
          * Tower A1
@@ -205,19 +205,6 @@ public class TowerData {
         towerData[11][9] = 20;       //missleRange
         towerData[11][10] = 120;     //towerRange
         towerData[11][11] = 10;      //towerAttackSpeed
-
-        towerImages[0] = "1-level1";
-        towerImages[1] = "2-level1-f1";
-        towerImages[2] = "3-level1-f1";
-        towerImages[3] = "4-level1-f1";
-        towerImages[4] = "1-level2";
-        towerImages[5] = "2-level2-f1";
-        towerImages[6] = "3-level2-f1";
-        towerImages[7] = "4-level2-f1";
-        towerImages[8] = "1-level3";
-        towerImages[9] = "2-level3-f1";
-        towerImages[10] = "3-level3-f1";
-        towerImages[11] = "4-level3-f1";
     }
 
 //    Volgende functie is nog niet af, het is een functie die we op dit moment
