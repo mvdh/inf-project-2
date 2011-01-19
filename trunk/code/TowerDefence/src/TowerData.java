@@ -1,4 +1,5 @@
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -23,12 +24,14 @@ public class TowerData {
      */
     final private int[][] towerData;
     final private int[] towerImages;
+    private GameStats stats;
     //final ArrayList<Integer> sortedList;
 
     /**
      * Constructor. Here is all the information of the towers added to towerData
      */
-    public TowerData() {
+    public TowerData(GameStats statsIn) {
+    	stats = statsIn;
         towerData = new int[12][12];
         towerImages = new int[12];
 
@@ -245,8 +248,8 @@ public class TowerData {
         return this.towerData;
     }
 
-    public String getTowerImageName(int caseNumber) {
-        return towerImages[caseNumber];
+    public BufferedImage getTowerImage(int caseNumber) {
+        return stats.towerImages[caseNumber];
     }
 
     /**

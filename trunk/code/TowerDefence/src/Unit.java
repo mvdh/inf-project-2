@@ -29,7 +29,7 @@ public class Unit extends Sprite
 	private int animationSpeed = 10;
 	private int number = 0;
 
-	public Unit(double speed, int hp, String img, int reward)
+	public Unit(double speed, int hp, int img, int reward, GameStats data)
 	{
 		super(speed);
 		setHitPoints(hp);
@@ -39,40 +39,16 @@ public class Unit extends Sprite
 		caseNumber = 0;
         this.reward = reward;
 
-		/**
-         *
-         */
-
 		bf = new BufferedImage[3];
 
-		URL url = getClass().getResource("images/" + img + "1.png");
-		try
-		{
-			bf[0] = ImageIO.read(url);
-		}
-		catch (Exception e)
-		{}
-
-		url = getClass().getResource("images/" + img + "2.png");
-		try
-		{
-			bf[1] = ImageIO.read(url);
-		}
-		catch (Exception e)
-		{}
-
-		url = getClass().getResource("images/" + img + "3.png");
-		try
-		{
-			bf[2] = ImageIO.read(url);
-		}
-		catch (Exception e)
-		{}
+		bf[0] = data.unitImages[img];
+		bf[1] = data.unitImages[img + 1];
+		bf[2] = data.unitImages[img + 2];
 
 		int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
 
 		setSize(size, size + 5);
-		setLocation(82 -(int) getWidth(), 270 - getHeight() / 2);
+		setLocation(82 - (int) getWidth(), 270 - getHeight() / 2);
 	}
 
 	public Unit(double speed, int hp)
