@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -73,10 +74,10 @@ public class Game extends JApplet
 		waveLbl.setFont(statsFont);
 		waveLbl.setForeground(Color.white);
 		
+		statsPanel.add(waveLbl);
 		statsPanel.add(goldLbl);
 		statsPanel.add(scoreLbl);
 		statsPanel.add(healthLbl);
-		statsPanel.add(waveLbl);
 
 		fieldPanel.setLayout(null);
 		fieldPanel.setSize(680, 360);
@@ -247,7 +248,8 @@ public class Game extends JApplet
 	
 	public void updateStats()
 	{
-		goldLbl.setText("    Gold: " + gameStats.getGold());
+		goldLbl.setText(gameStats.getGold() + "");
+		goldLbl.setIcon(new ImageIcon(gameStats.coinsImages[0]));
 		scoreLbl.setText("    Score: " + gameStats.getPoints());
 		healthLbl.setText("    Health: " + castleHealth);
 		waveLbl.setText("    Wave: " + (gameStats.getWave() + 1));
@@ -603,7 +605,7 @@ public class Game extends JApplet
 					gameStats.updateGold(1, (gameStats.getWave() * 3));
 				}
 				gameStats.raiseWaveUnits();
-				if (gameStats.getWaveUnits() == 1)
+				if (gameStats.getWaveUnits() == 15)
 				{
 					gameStats.setWaveCounter(-100);
 					gameStats.setWaveUnits(0);
