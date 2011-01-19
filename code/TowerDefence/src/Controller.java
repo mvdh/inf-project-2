@@ -107,7 +107,7 @@ public class Controller extends Container
 		 */
 		public CLabel(BufferedImage bfi)
 		{
-			setSize(60, 60);
+			setSize(40, 40);
 			bf = bfi;
 		}
 
@@ -117,7 +117,7 @@ public class Controller extends Container
 		 */
 		public CLabel(BufferedImage bfi, int type)
 		{
-			setSize(60, 60);
+			setSize(40, 40);
 			bf = bfi;
 			setType(type);
 		}
@@ -144,10 +144,10 @@ public class Controller extends Container
 		public void paint(Graphics g)
 		{
 			g.setColor(new Color(200, 200, 200));
-			g.fillRect(0, 0, 60, 60);
+			g.fillRect(0, 0, 40, 40);
 			if (bf != null)
 			{
-				g.drawImage(bf, 0, 0, 60, 60, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
+				g.drawImage(bf, 0, 0, 40, 40, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
 			}
 		}
 	}
@@ -177,7 +177,7 @@ public class Controller extends Container
 				}
 			}
 
-			g.fillRect(0, 0, 60, 60);
+			g.fillRect(0, 0, 40, 40);
 
 			if (((CLabel) me.getComponent()).getType() != -1)
 			{
@@ -222,7 +222,7 @@ public class Controller extends Container
 			float alpha = .5f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 			g.setColor(Color.blue);
-			g.fillRect(0, 0, 60, 60);
+			g.fillRect(0, 0, 40, 40);
 		}
 
 		public void mouseReleased(MouseEvent me)
@@ -233,7 +233,7 @@ public class Controller extends Container
 			float alpha = .5f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 			g.setColor(Color.red);
-			g.fillRect(0, 0, 60, 60);
+			g.fillRect(0, 0, 40, 40);
 		}
 	}
 }

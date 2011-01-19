@@ -14,13 +14,14 @@ public class ControlPanel extends JPanel {
 
     public ControlPanel(GameStats gameStats, Field field) {
         setGameStats(gameStats);
-        setLocation(0, 380);
-        setSize(600, 165);
+        setLocation(50, 500);
+        setSize(600, 150);
         setField(field);
         findType(field);
         setVisible(true);
         setLayout(null);
-        setBackground(Color.white);
+        //setBackground(null);
+        this.setOpaque(false);
     }
 
     /**
