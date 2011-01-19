@@ -169,7 +169,7 @@ public class Game extends JApplet
         }
 
         spriteList = new SpriteList();
-        add(statsPanel);
+        getLayeredPane().add(statsPanel, JLayeredPane.POPUP_LAYER);
         updateStats();
         getLayeredPane().add(fieldPanel, JLayeredPane.PALETTE_LAYER);
 
@@ -361,10 +361,8 @@ public class Game extends JApplet
         // PathNode queue with some of the funcionality
         Path path = new Path();
         Point start = puppet.getLocation();
-        start.x -= 50;
         start.x /= 40;// m.getPoint(puppet.getPath()[puppet.getPathCounter() -
         // 1]);
-        start.y -= 70;
         start.y /= 40;
         Point end = target.getLocation();
         end.x /= 40;
@@ -483,7 +481,7 @@ public class Game extends JApplet
                         cleanUp.add(u);
                         t.setHealth(t.getHealth() - gameStats.getUnitData().getDamage(u.getCaseNumber()));
                         t.setShow(true);
-                        t.paint(t.getGraphics());
+                        t.repaint();
 
                         if (t.getHealth() <= 0)
                         {
@@ -684,14 +682,14 @@ public class Game extends JApplet
             if (!hov.equals(selected))
             {
                 hov.setHovered(true);
-                hov.paint(hov.getGraphics());
+                hov.repaint();
             }
 
             if (hov instanceof Tower)
             {
                 Tower t = (Tower) hov;
                 t.setShow(true);
-                hov.paint(hov.getGraphics());
+                hov.repaint();
             }
         }
 
@@ -706,7 +704,7 @@ public class Game extends JApplet
                 Tower t = (Tower) hov;
                 t.setShow(false);
             }
-            hov.paint(hov.getGraphics());
+            hov.repaint();
         }
 
         // OnClick
@@ -717,7 +715,7 @@ public class Game extends JApplet
             if (selected != null)
             {
                 selected.setSelected(false);
-                selected.paint(selected.getGraphics());
+                selected.repaint();
             }
             // Remove the selected Field from the Matrix
             final Field f = (Field) me.getSource();
@@ -726,7 +724,7 @@ public class Game extends JApplet
             {
                 selected = f;
                 f.setSelected(true);
-                f.paint(f.getGraphics());
+                f.repaint();
                 if (controlPanel != null)
                 {
                     getLayeredPane().remove(controlPanel);
