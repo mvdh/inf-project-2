@@ -592,7 +592,7 @@ public class Game extends JFrame
                 {
                     temp.add(path.get(i));
                 }
-                u.setPath(fields);
+                u.setPath(temp);
             }
             /*fields = findPath(u, m.get(4, 14));
             u.setPath(fields);
