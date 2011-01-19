@@ -49,7 +49,7 @@ public class TowerController extends Controller
 		BufferedImage img = null;
 		Point[] locations =
 		{
-				new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85)
+				new Point(50, 25), new Point(110, 25), new Point(50, 85), new Point(110, 85)
 		};
 
 		URL url = getClass().getResource("images/boom.png");

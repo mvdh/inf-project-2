@@ -1,6 +1,7 @@
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -24,28 +25,41 @@ public class Controller extends Container
 	private int type = -1;
 	private GameStats gameStats;
 
-	private JPanel description = new JPanel(new GridLayout(5, 1));
+	private JPanel description = new JPanel(new GridLayout(3, 2));
 	private JLabel priceLbl = new JLabel();
 	private JLabel hitPointsLbl = new JLabel();
 	private JLabel rangeLbl = new JLabel();
 	private JLabel speedLbl = new JLabel();
 	private JLabel damageLbl = new JLabel();
+        private Font statsFont = new Font("Arial", Font.BOLD, 16);
 
 	public void init()
 	{
 		setLayout(null);
 		setSize(600, 165);
 
-		description.setLocation(165, 20);
-		description.setSize(415, 125);
+                priceLbl.setFont(statsFont);
+                priceLbl.setForeground(Color.white);
+                priceLbl.setLocation(205, 30);
+                hitPointsLbl.setFont(statsFont);
+                hitPointsLbl.setForeground(Color.white);
+                hitPointsLbl.setLocation(205, 30);
+                rangeLbl.setFont(statsFont);
+                rangeLbl.setForeground(Color.white);
+                speedLbl.setFont(statsFont);
+                speedLbl.setForeground(Color.white);
+                damageLbl.setFont(statsFont);
+                damageLbl.setForeground(Color.white);
 
-		description.add(priceLbl);
-		description.add(hitPointsLbl);
-		description.add(rangeLbl);
-		description.add(speedLbl);
-		description.add(damageLbl);
+		//this.setLocation(205, 30);
+		//this.setSize(290, 100);
+		this.add(damageLbl);
+                this.add(hitPointsLbl);
+                this.add(rangeLbl);
+		this.add(priceLbl);
+                this.add(speedLbl);
 
-		add(description);
+		//add(description);
 		paintAll(getGraphics());
 	}
 
@@ -97,7 +111,7 @@ public class Controller extends Container
 		this.gameStats = gameStats;
 	}
 
-	class CLabel extends JLabel
+	class CLabel extends JPanel
 	{
 		private BufferedImage bf = null;
 		private int type = -1;
@@ -107,7 +121,7 @@ public class Controller extends Container
 		 */
 		public CLabel(BufferedImage bfi)
 		{
-			setSize(40, 40);
+			setSize(50, 50);
 			bf = bfi;
 		}
 
@@ -117,7 +131,7 @@ public class Controller extends Container
 		 */
 		public CLabel(BufferedImage bfi, int type)
 		{
-			setSize(40, 40);
+			setSize(50, 50);
 			bf = bfi;
 			setType(type);
 		}
@@ -143,11 +157,20 @@ public class Controller extends Container
 
 		public void paint(Graphics g)
 		{
-			g.setColor(new Color(200, 200, 200));
-			g.fillRect(0, 0, 40, 40);
+                    	Graphics2D g2d = (Graphics2D) g;
+                        
+                        float alpha = .4f;
+                        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+                        g2d.setColor(new Color(67, 52, 34));
+                        g2d.fillRect(0, 0, 50, 50);
+
+
+                        alpha = 1f;
+                        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+
 			if (bf != null)
 			{
-				g.drawImage(bf, 0, 0, 40, 40, 0, 0, bf.getWidth(null), bf.getHeight(null), null);
+				g2d.drawImage(bf, 5, 5, 40, 40, null);
 			}
 		}
 	}
@@ -163,7 +186,7 @@ public class Controller extends Container
 		public void mouseEntered(MouseEvent me)
 		{
 			Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
-			float alpha = .5f;
+			float alpha = .4f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 			int currentType = ((CLabel) me.getComponent()).getType();
 
@@ -177,15 +200,15 @@ public class Controller extends Container
 				}
 			}
 
-			g.fillRect(0, 0, 40, 40);
+			g.fillRect(0, 0, 50, 50);
 
 			if (((CLabel) me.getComponent()).getType() != -1)
 			{
-				priceLbl.setText("  Price: " + getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType()));
-				hitPointsLbl.setText("  Hitpoints: " + getGameStats().getTowerData().getHitpoints(((CLabel) me.getComponent()).getType()));
-				rangeLbl.setText("  Range: " + getGameStats().getTowerData().getRange(((CLabel) me.getComponent()).getType()));
-				speedLbl.setText("  Attack speed: " + getGameStats().getTowerData().getTowerAttackSpeed(((CLabel) me.getComponent()).getType()));
-				damageLbl.setText("  Damage: " + getGameStats().getTowerData().getMissleDamage(((CLabel) me.getComponent()).getType()));
+				priceLbl.setText("Price: " + getGameStats().getTowerData().getCosts(((CLabel) me.getComponent()).getType()));
+				hitPointsLbl.setText("Hitpoints: " + getGameStats().getTowerData().getHitpoints(((CLabel) me.getComponent()).getType()));
+				rangeLbl.setText("Range: " + getGameStats().getTowerData().getRange(((CLabel) me.getComponent()).getType()));
+				speedLbl.setText("Speed: " + getGameStats().getTowerData().getTowerAttackSpeed(((CLabel) me.getComponent()).getType()));
+				damageLbl.setText("Damage: " + getGameStats().getTowerData().getMissleDamage(((CLabel) me.getComponent()).getType()));
 			}
 		}
 
@@ -197,7 +220,8 @@ public class Controller extends Container
 			speedLbl.setText("");
 			damageLbl.setText("");
 
-			paint(getGraphics());
+                        repaint();
+			//paint(getGraphics());
 		}
 
 		public void mousePressed(MouseEvent me)
@@ -222,7 +246,7 @@ public class Controller extends Container
 			float alpha = .5f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 			g.setColor(Color.blue);
-			g.fillRect(0, 0, 40, 40);
+			g.fillRect(0, 0, 50, 50);
 		}
 
 		public void mouseReleased(MouseEvent me)
@@ -233,7 +257,7 @@ public class Controller extends Container
 			float alpha = .5f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 			g.setColor(Color.red);
-			g.fillRect(0, 0, 40, 40);
+			g.fillRect(0, 0, 50, 50);
 		}
 	}
 }
