@@ -82,7 +82,7 @@ public class GameStats
 
     public GameStats(Game game)
     {
-        started = false;
+        started = true;
         points = 0;
         gold = 20;
         waveCounter = -75;
