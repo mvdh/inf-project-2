@@ -534,7 +534,7 @@ public class Game extends JApplet
 							if (u.distance(a, b) <= gameStats.getTowerData().getRange(t.getCaseNumber()))
 							{
 								Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()),
-										(double) gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a);
+										(double) gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a, gameStats);
 								getLayeredPane().add(tempP, JLayeredPane.POPUP_LAYER);
 								spriteList.add(tempP);
 								// System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));
