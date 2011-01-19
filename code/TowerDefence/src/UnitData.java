@@ -1,3 +1,7 @@
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -16,13 +20,16 @@ public class UnitData
 	 * 4 Speed
 	 */
 	final private int[][] unitData;
-	final private String[] unitImages;
+	final private String[] unitImages;	
+	private GameStats stats;
+
 
 	/**
 	 * Constructor. Here is all the information of the towers added to unitData
 	 */
-	public UnitData()
+	public UnitData(GameStats statsIn)
 	{
+		stats = statsIn;
 		unitData = new int[8][4];
 		unitImages = new String[7];
 
@@ -66,6 +73,7 @@ public class UnitData
 		unitData[7][2] = 100; // Damage
 		unitData[7][3] = 3; // Speed                unitData[7][]
 
+		/*
 		unitImages[0] = "unit-mario1-f";
 		unitImages[1] = "unit-mario2-f";
 		unitImages[2] = "unit-mario3-f";
@@ -73,7 +81,7 @@ public class UnitData
 		unitImages[4] = "B4";
 		unitImages[5] = "C1";
 		unitImages[6] = "D1";
-
+		 */
 	}
 
 	public int getReward(int caseNumber)
@@ -95,7 +103,7 @@ public class UnitData
                 } else {
                     hitPoints = (waveNumber) * 200;
                 }
-                String image = unitImages[waveNumber%3];
+                int image = waveNumber%3;
                 int reward = 0;
 
                 if((waveNumber % 3) == 0) {
@@ -106,7 +114,7 @@ public class UnitData
                     reward = (waveNumber + 1) / 3;
                 }
 
-                Unit res = new Unit(speed, hitPoints, image, reward);
+                Unit res = new Unit(speed, hitPoints, image, reward, stats);
 		res.setCaseNumber(waveNumber);
 		return res;
 	}
