@@ -1,4 +1,5 @@
 
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Game extends JFrame
+public class Game extends JApplet
 {
 
     private Matrix m;
@@ -25,7 +27,7 @@ public class Game extends JFrame
     private SpriteList spriteList;
     private ControlPanel controlPanel;
     private JPanel fieldPanel = new JPanel();
-    private JPanel statsPanel = new JPanel();
+    private StatsBar statsPanel = new StatsBar();
     private JLabel goldLbl = new JLabel();
     private JLabel pointsLbl = new JLabel();
     private JLabel healthLbl = new JLabel();
@@ -37,7 +39,10 @@ public class Game extends JFrame
     // Field background image
     private BufferedImage bf = null;
     private GameStats gameStats = new GameStats();
+    private BufferedImage background = null;
+    private BufferedImage statsBarImage = null;
     private Panel panel;
+
 
     public Game()
     {
@@ -46,17 +51,44 @@ public class Game extends JFrame
         getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
         m = new Matrix();
 
+        URL backgroundurl = getClass().getResource("images/background.png");
         URL url = getClass().getResource("images/grass.png");
+        URL statsBarURL = getClass().getResource("images/statsbar.png");
+
         try
         {
             bf = ImageIO.read(url);
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
+            
         }
 
+        try
+        {
+            background = ImageIO.read(backgroundurl);
+        }
+        catch (Exception e)
+        {
+            
+        }
+
+        try
+        {
+            statsBarImage = ImageIO.read(statsBarURL);
+        }
+        catch (Exception e)
+        {
+
+        }
+
+
+
         statsPanel.setLayout(new GridLayout(1, 3));
-        statsPanel.setSize(670, 20);
-        statsPanel.setLocation(10, 0);
+        statsPanel.setSize(600, 40);
+        statsPanel.setLocation(50, 50);
+        statsPanel.setOpaque(false);
+        statsPanel.paintComponents(statsPanel.getGraphics());
 
         statsPanel.add(goldLbl);
         statsPanel.add(pointsLbl);
@@ -64,7 +96,8 @@ public class Game extends JFrame
 
         fieldPanel.setLayout(null);
         fieldPanel.setSize(680, 360);
-        fieldPanel.setLocation(0, 20);
+        fieldPanel.setLocation(50, 90);
+        fieldPanel.setOpaque(false);
 
         Vector v;
         for (int i = 0; i < 9; i++)
@@ -169,7 +202,7 @@ public class Game extends JFrame
     // Properties of the JFrame
     public void init()
     {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 700);
         setVisible(true);
         setLayout(null);
@@ -190,7 +223,7 @@ public class Game extends JFrame
                 }
             }
         });
-        add(testButton);
+        //add(testButton);
     }
 
     public void updateStats()
@@ -324,8 +357,10 @@ public class Game extends JFrame
         // PathNode queue with some of the funcionality
         Path path = new Path();
         Point start = puppet.getLocation();
+        start.x -= 50;
         start.x /= 40;// m.getPoint(puppet.getPath()[puppet.getPathCounter() -
         // 1]);
+        start.y -= 70;
         start.y /= 40;
         Point end = target.getLocation();
         end.x /= 40;
@@ -431,7 +466,9 @@ public class Game extends JFrame
             for (Unit u : spriteList.getUnitList())
             {
                 a = u.getLocation();
+                a.x -= 50;
                 a.x /= 40;
+                a.y -= 70;
                 a.y /= 40;
                 if (m.get(a.y, a.x) instanceof Tower)
                 {
@@ -471,8 +508,8 @@ public class Game extends JFrame
                     {
                         // range check
                         a = t.getLocation();
-                        a.x += (t.getWidth() / 4);
-                        a.y += 60 - (t.getHeight() / 2);
+                        a.x += (t.getWidth() / 4) + 50;
+                        a.y += 130 - (t.getHeight() / 2);
                         for (Unit u : spriteList.getUnitList())
                         {
                             b = u.getLocation();
@@ -507,14 +544,16 @@ public class Game extends JFrame
                         // check if unit is on the field of destruction!
                         if (u.distance(a, b) <= pr.getRange())
                         {
+                            // points += unitData.getReward(u.getCaseNumber()) *
+                            // 5;
                             u.setHitPoints(u.getHitPoints() - pr.getDamage());
                             // System.out.println(u.getHitPoints());
                             if (u.getHitPoints() <= 0)
                             {
                                 // points += unitData.getReward(u.getCaseNumber()) *
                                 // 5;
-                                gameStats.updatePoints(1, gameStats.getUnitData().getReward(u.getCaseNumber()) * 5);
-                                gameStats.updateGold(1, gameStats.getUnitData().getReward(u.getCaseNumber()));
+                                gameStats.updatePoints(1, u.getReward() * 5);
+                                gameStats.updateGold(1, u.getReward());
                                 cleanUp.add(u);
                             }
                         }
@@ -545,9 +584,9 @@ public class Game extends JFrame
                 gameStats.raiseWaveUnits();
                 if (gameStats.getWaveUnits() == 15)
                 {
-                    gameStats.setWaveCounter(-75);
-                    gameStats.setWaveUnits(0);
-                    gameStats.raiseWave();
+                gameStats.setWaveCounter(-100);
+                gameStats.setWaveUnits(0);
+                gameStats.raiseWave();
                 }
             }
         }
@@ -741,6 +780,18 @@ public class Game extends JFrame
         public void mouseReleased(MouseEvent me)
         {
             // Do nothing
+        }
+    }
+
+    public void paint(Graphics g)
+    {
+                    g.drawImage(background, 0, 0, 700, 700, null);
+    }
+
+    class StatsBar extends JPanel {
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.drawImage(statsBarImage, 0, 0, 600, 40, null);
         }
     }
 }

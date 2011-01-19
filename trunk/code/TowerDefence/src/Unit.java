@@ -72,7 +72,7 @@ public class Unit extends Sprite
 		int size = Math.max(bf[0].getWidth(), bf[0].getHeight());
 
 		setSize(size, size + 5);
-		setLocation(-(int) getWidth(), 200 - getHeight() / 2);
+		setLocation(82 -(int) getWidth(), 270 - getHeight() / 2);
 	}
 
 	public Unit(double speed, int hp)
@@ -164,8 +164,8 @@ public class Unit extends Sprite
 		{
 			Point newEnd = getNextPath().getLocation();
 			// newEnd.x += 20;
-			newEnd.x += 20 - (this.getWidth() / 2);
-			newEnd.y += 40 - (this.getHeight() / 2);
+			newEnd.x += 70 - (this.getWidth() / 2);
+			newEnd.y += 110 - (this.getHeight() / 2);
 			// System.out.println(newEnd);
 			setNewDestination(newEnd);
 		}
@@ -272,8 +272,8 @@ public class Unit extends Sprite
 //					p.y += 40;
 //				}
 				p = getNextPath().getLocation();
-				p.x += 20 - (this.getWidth() / 2);
-				p.y += 40 - (this.getHeight() / 2);
+				p.x += 70 - (this.getWidth() / 2);
+				p.y += 110 - (this.getHeight() / 2);
 //				System.out.println(c + "  -  " + p);
 			}
 			else if (path != null)

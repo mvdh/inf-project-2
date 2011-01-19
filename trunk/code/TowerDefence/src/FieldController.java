@@ -21,7 +21,7 @@ public class FieldController extends Controller
 
 		Point[] locations =
 		{
-				new Point(20, 20), new Point(85, 20), new Point(20, 85), new Point(85, 85)
+				new Point(50, 25), new Point(85, 20), new Point(20, 85), new Point(85, 85)
 		};
 		int[] possibilities = new int[4];
 		int amountFound = 0;
