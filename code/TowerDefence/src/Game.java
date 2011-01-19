@@ -555,6 +555,7 @@ public class Game extends JFrame
         unit.setLocation(first);
 
         Vector fields = findPath(unit, m.get(4, 14));
+        Vector temp;
         if (fields != null)
         {
             path = fields;
@@ -582,14 +583,14 @@ public class Game extends JFrame
                         j = i;
                     }
                 }
-                fields = findPath(u, nearest);
-                if (fields != null)
+                temp = findPath(u, nearest);
+                if (temp != null)
                 {
                     u.setPathCounter(1);
                 }
                 for (int i = j + 1; i < path.size(); i++)
                 {
-                    fields.add(path.get(i));
+                    temp.add(path.get(i));
                 }
                 u.setPath(fields);
             }
