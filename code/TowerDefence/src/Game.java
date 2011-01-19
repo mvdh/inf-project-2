@@ -457,7 +457,7 @@ public class Game extends JFrame {
             spriteList.remove(s);
         }
         gameStats.raiseWaveCounter();
-        if (gameStats.getWaveCounter() >= 150) {
+        if (gameStats.getWaveCounter() >= 50) {
             Unit u = gameStats.getUnitData().getNewUnit(gameStats.getWave());
             u.setNewDestination(u.getLocation());
             u.setPath(path);
@@ -468,7 +468,7 @@ public class Game extends JFrame {
                 gameStats.updateGold(1, (gameStats.getWave() * 2) + gameStats.getWave());
             }
             gameStats.raiseWaveUnits();
-            if (gameStats.getWaveUnits() == 1) {
+            if (gameStats.getWaveUnits() == 15) {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
                 gameStats.raiseWave();
