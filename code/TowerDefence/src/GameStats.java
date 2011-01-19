@@ -81,7 +81,7 @@ public class GameStats
     {
         started = true;
         points = 0;
-        gold = 1000;
+        gold = 20;
         waveCounter = -75;
         waveUnits = 0;
         wave = 0;
@@ -118,12 +118,11 @@ public class GameStats
 		URL img24 = getClass().getResource("images/kogel.png");
 		URL img25 = getClass().getResource("spriteDefault.png");
 
-                URL img26 = getClass().getResource("images/coin-f1.png");
-                URL img27 = getClass().getResource("images/coin-f2.png");
-                URL img28 = getClass().getResource("images/coin-f2.png");
-                URL img29 = getClass().getResource("images/coin-f2.png");
-		
-		
+        URL img26 = getClass().getResource("images/coin-f1.png");
+        URL img27 = getClass().getResource("images/coin-f2.png");
+        URL img28 = getClass().getResource("images/coin-f2.png");
+        URL img29 = getClass().getResource("images/coin-f2.png");
+				
 		towerImages = new BufferedImage[12];
 		try
 		{
