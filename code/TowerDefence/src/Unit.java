@@ -23,7 +23,7 @@ public class Unit extends Sprite
 	private int pathCounter;
 	private double speed;
 	private int caseNumber;
-        private int reward;
+    private int reward;
 
 	private BufferedImage[] bf = null;
 	private int animationSpeed = 10;
@@ -37,7 +37,7 @@ public class Unit extends Sprite
 		aviation = false;
 		pathCounter = 0;
 		caseNumber = 0;
-                this.reward = reward;
+        this.reward = reward;
 
 		/**
          *

@@ -57,22 +57,24 @@ public class Sprite extends Component
 
 		// Om iets zekerder te zijn dat het object niet over het doel heen
 		// schiet is er een marge ingebouwd waarop ie 'snapped'
-		if (dis < standardDis && this instanceof Projectile || lastDis < dis && this instanceof Unit)
+		if (dis < standardDis && this instanceof Projectile || lastDis < dis && this instanceof Unit && !(d.x - c.x == 40))
 		{
 			newX = d.x;
 			newY = d.y;
+			lastDis = Math.pow(2, 32) - 1;
 		}
 
 		this.setLocation(newX, newY);
 		// this.repaint();
 
-		if ((newX == (int) d.getX()) && (newY == (int) d.getY()) && !(this instanceof Projectile))
+		if ((newX == d.x) && (newY == d.y) && !(this instanceof Projectile))
 		{
 			// d.end(); // Wat gebeurt er wanneer een beweging voltooid is
 			// this.finalize(); // Is opruimen na de beweging nodig?
 			// System.out.println("Beweging voltooid");
 			this.endMove();
 		}
+		
 		stepCounter++;
 		lastDis = dis;
 
@@ -87,9 +89,28 @@ public class Sprite extends Component
 	{
 		c = this.getLocation();
 		stepCounter = 0;
+		
+		if (c.equals(p) && !p.equals(new Point(-16, 190)))
+		{
+			if (angle == 0)
+			{
+				p.x += 40;
+			}
+			else if (angle == Math.PI / 2)
+			{
+				p.y -= 40;
+			}
+			else if (angle == Math.PI)
+			{
+				p.x -= 40;
+			}
+			else if (angle == -Math.PI / 2)
+			{
+				p.y += 40;
+			}
+		}
+		
 		d = p;
-		// System.out.println(c);
-		// System.out.println(d);
 	}
 
 	public double distance(Point p, Point q)

@@ -131,21 +131,21 @@ public class Game extends JFrame {
             path.add(m.get(4, i));
         }
 
-        /*
-         * Timer t = new Timer(2000, new ActionListener() {
-         * public void actionPerformed(ActionEvent arg0) {
-         * Unit a = new Unit(1.5, 16);
-         * // a.setSize(20, 20);
-         * // a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
-         * a.setNewDestination(a.getLocation());
-         * a.setPath(path);
-         * // a.setVisible(true);
-         * getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
-         * spriteList.add(a);
-         * }
-         * });
-         * t.start();
-         */
+        
+//        Timer t = new Timer(2000, new ActionListener() {
+//        public void actionPerformed(ActionEvent arg0) {
+//        Unit a = new Unit(1.5, 16);
+//         a.setSize(20, 20);
+//         a.setLocation(new Point(-(int) a.getSize().getWidth(), 190));
+//        a.setNewDestination(a.getLocation());
+//        a.setPath(path);
+//         a.setVisible(true);
+//        getLayeredPane().add(a, JLayeredPane.PALETTE_LAYER);
+//        spriteList.add(a);
+//        }
+//        });
+//        t.start();
+         
 
         initHeartbeat();
     }
@@ -457,7 +457,7 @@ public class Game extends JFrame {
             spriteList.remove(s);
         }
         gameStats.raiseWaveCounter();
-        if (gameStats.getWaveCounter() >= 50) {
+        if (gameStats.getWaveCounter() >= 150) {
             Unit u = gameStats.getUnitData().getNewUnit(gameStats.getWave());
             u.setNewDestination(u.getLocation());
             u.setPath(path);
@@ -468,7 +468,7 @@ public class Game extends JFrame {
                 gameStats.updateGold(1, (gameStats.getWave() * 2) + gameStats.getWave());
             }
             gameStats.raiseWaveUnits();
-            if (gameStats.getWaveUnits() == 15) {
+            if (gameStats.getWaveUnits() == 1) {
                 gameStats.setWaveCounter(-75);
                 gameStats.setWaveUnits(0);
                 gameStats.raiseWave();
