@@ -40,10 +40,8 @@ public class Controller extends Container
 
                 priceLbl.setFont(statsFont);
                 priceLbl.setForeground(Color.white);
-                priceLbl.setLocation(205, 30);
                 hitPointsLbl.setFont(statsFont);
                 hitPointsLbl.setForeground(Color.white);
-                hitPointsLbl.setLocation(205, 30);
                 rangeLbl.setFont(statsFont);
                 rangeLbl.setForeground(Color.white);
                 speedLbl.setFont(statsFont);
@@ -51,15 +49,16 @@ public class Controller extends Container
                 damageLbl.setFont(statsFont);
                 damageLbl.setForeground(Color.white);
 
-		//this.setLocation(205, 30);
-		//this.setSize(290, 100);
-		this.add(damageLbl);
-                this.add(hitPointsLbl);
-                this.add(rangeLbl);
-		this.add(priceLbl);
-                this.add(speedLbl);
+		description.setLocation(205, 30);
+                description.setOpaque(false);
+		description.setSize(290, 100);
+		description.add(damageLbl);
+                description.add(hitPointsLbl);
+                description.add(rangeLbl);
+		description.add(priceLbl);
+                description.add(speedLbl);
 
-		//add(description);
+		add(description);
 		paintAll(getGraphics());
 	}
 
@@ -180,7 +179,7 @@ public class Controller extends Container
 
 		public void mouseClicked(MouseEvent me)
 		{
-		// Do nothing
+                    repaint();
 		}
 
 		public void mouseEntered(MouseEvent me)
@@ -243,9 +242,9 @@ public class Controller extends Container
 			setType(((CLabel) me.getComponent()).getType());
 
 			Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
-			float alpha = .5f;
+			float alpha = .4f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-			g.setColor(Color.blue);
+			g.setColor(new Color(67, 52, 34));
 			g.fillRect(0, 0, 50, 50);
 		}
 
@@ -254,7 +253,7 @@ public class Controller extends Container
 			paint(getGraphics());
 
 			Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
-			float alpha = .5f;
+			float alpha = .4f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 			g.setColor(Color.red);
 			g.fillRect(0, 0, 50, 50);
