@@ -76,7 +76,7 @@ public class GameStats
         {
                 points = 0;
                 gold = 20;
-                waveCounter = 0;
+                waveCounter = -75;
                 waveUnits = 0;
                 wave = 0;
                 this.setTowerData(new TowerData());
