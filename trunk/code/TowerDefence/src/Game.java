@@ -33,6 +33,7 @@ public class Game extends JApplet
 	private JLabel goldLbl = new JLabel();
 	private JLabel scoreLbl = new JLabel();
 	private JLabel healthLbl = new JLabel();
+	private JLabel waveLbl = new JLabel();
 	private Field selected = null;
 	private Vector path;
 	private Timer actionTimer = null;
@@ -57,7 +58,7 @@ public class Game extends JApplet
 		// getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
 		m = new Matrix();
 
-		statsPanel.setLayout(new GridLayout(1, 3));
+		statsPanel.setLayout(new GridLayout(1, 4));
 		statsPanel.setSize(600, 40);
 		statsPanel.setLocation(50, 50);
 		statsPanel.setOpaque(false);
@@ -69,10 +70,13 @@ public class Game extends JApplet
 		scoreLbl.setForeground(Color.white);
 		healthLbl.setFont(statsFont);
 		healthLbl.setForeground(Color.white);
+		waveLbl.setFont(statsFont);
+		waveLbl.setForeground(Color.white);
 		
 		statsPanel.add(goldLbl);
 		statsPanel.add(scoreLbl);
 		statsPanel.add(healthLbl);
+		statsPanel.add(waveLbl);
 
 		fieldPanel.setLayout(null);
 		fieldPanel.setSize(680, 360);
@@ -246,6 +250,7 @@ public class Game extends JApplet
 		goldLbl.setText("    Gold: " + gameStats.getGold());
 		scoreLbl.setText("    Score: " + gameStats.getPoints());
 		healthLbl.setText("    Health: " + castleHealth);
+		waveLbl.setText("    Wave: " + (gameStats.getWave() + 1));
 	}
 
 	/**
@@ -350,7 +355,7 @@ public class Game extends JApplet
 
 	public void initHeartbeat()
 	{
-		Timer t = new Timer(10, new ActionListener()
+		Timer t = new Timer(40, new ActionListener()
 		{
 
 			public void actionPerformed(ActionEvent arg0)
@@ -656,6 +661,7 @@ public class Game extends JApplet
 						temp.add(null);
 						temp.add(path.get(i));
 					}
+					System.out.println(temp.print());
 					u.setPath(temp);
 				}
 				else
