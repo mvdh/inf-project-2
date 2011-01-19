@@ -72,7 +72,7 @@ public class Sprite extends Component
 			// d.end(); // Wat gebeurt er wanneer een beweging voltooid is
 			// this.finalize(); // Is opruimen na de beweging nodig?
 			// System.out.println("Beweging voltooid");
-			this.endMove();
+			endMove();
 		}
 		
 		stepCounter++;
@@ -89,27 +89,6 @@ public class Sprite extends Component
 	{
 		c = this.getLocation();
 		stepCounter = 0;
-		
-		if (c.equals(p) && !p.equals(new Point(-16, 190)))
-		{
-			if (angle == 0)
-			{
-				p.x += 40;
-			}
-			else if (angle == Math.PI / 2)
-			{
-				p.y -= 40;
-			}
-			else if (angle == Math.PI)
-			{
-				p.x -= 40;
-			}
-			else if (angle == -Math.PI / 2)
-			{
-				p.y += 40;
-			}
-		}
-		
 		d = p;
 	}
 

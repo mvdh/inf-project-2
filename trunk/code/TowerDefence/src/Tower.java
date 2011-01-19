@@ -87,7 +87,6 @@ public class Tower extends Field
 	/**
 	 * @param g
 	 */
-	@Override
 	public void paint(Graphics g)
 	{
 		// Execute the paint function as if it was a Field object
