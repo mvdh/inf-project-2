@@ -52,15 +52,7 @@ public class TowerController extends Controller
 				new Point(50, 25), new Point(110, 25), new Point(50, 85), new Point(110, 85)
 		};
 
-		URL url = getClass().getResource("images/boom.png");
-		try
-		{
-			img = ImageIO.read(url);
-		}
-		catch (Exception e)
-		{}
-
-		CLabel label = new CLabel(img, -1);
+		CLabel label = new CLabel(null, -1);
 		label.addMouseListener(new CMouseAdapter());
 		label.setLocation(locations[0]);
 		add(label);
@@ -72,14 +64,8 @@ public class TowerController extends Controller
 		{
 			for (int i = 1; i <= upgradables.size(); i++)
 			{
-				url = getClass().getResource("images/tower" + this.getGameStats().getTowerData().getTowerImageName(upgradables.get(i - 1)) + ".png");
-				try
-				{
-					img = ImageIO.read(url);
-				}
-				catch (Exception e)
-				{}
-
+				img = getGameStats().getTowerData().getTowerImage(upgradables.get(i - 1));
+				
 				label = new CLabel(img, upgradables.get(i - 1));
 				label.addMouseListener(new CMouseAdapter());
 				label.setLocation(locations[i]);

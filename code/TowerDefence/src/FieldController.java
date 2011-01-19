@@ -38,19 +38,12 @@ public class FieldController extends Controller
 		}
 
 		BufferedImage bf = null;
-		URL url = null;
 		CLabel lbl = null;
 
 		for (int i = 0; i < 4; i++)
 		{
-			url = getClass().getResource("images/tower" + data.getTowerImageName(possibilities[i]) + ".png");
-			try
-			{
-				bf = ImageIO.read(url);
-			}
-			catch (Exception e)
-			{}
-
+			bf = data.getTowerImage(possibilities[i]);
+			
 			lbl = new CLabel(bf, data.getCaseNumber(possibilities[i]));
 			lbl.setLocation(locations[i]);
 			lbl.addMouseListener(new CMouseAdapter());
