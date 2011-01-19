@@ -56,6 +56,7 @@ public class Vector
 				if (get(i) == null)
 				{
 					vector[i] = in;
+					empty--;
 					break;
 				}
 			}
@@ -330,7 +331,14 @@ public class Vector
 
 		for (int i = 0; i < size(); i++)
 		{
-			result += get(i).toString() + "\n";
+			if (get(i) != null)
+			{
+				result += get(i).toString() + "\n";
+			}
+			else
+			{
+				result += "null\n";
+			}
 		}
 
 		return result + ">";

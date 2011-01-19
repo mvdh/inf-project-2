@@ -252,48 +252,50 @@ public class Unit extends Sprite
 		c = this.getLocation();
 		if (c.equals(p))
 		{
-			System.out.println("hierzo");
+//			System.out.println("hierzo");
 			if (path != null && hasNextPath())
 			{
-				if (angle == 0)
-				{
-					p.x += 40;
-				}
-				else if (angle == Math.PI / 2)
-				{
-					p.y -= 40;
-				}
-				else if (angle == Math.PI)
-				{
-					p.x -= 40;
-				}
-				else if (angle == -Math.PI / 2)
-				{
-					p.y += 40;
-				}
-//				p = getNextPath().getLocation();
-//				p.x += 20 - (this.getWidth() / 2);
-//				p.y += 40 - (this.getHeight() / 2);
-				System.out.println(c + "  -  " + p);
+//				if (angle == 0)
+//				{
+//					p.x += 40;
+//				}
+//				else if (angle == Math.PI / 2)
+//				{
+//					p.y -= 40;
+//				}
+//				else if (angle == Math.PI)
+//				{
+//					p.x -= 40;
+//				}
+//				else if (angle == -Math.PI / 2)
+//				{
+//					p.y += 40;
+//				}
+				p = getNextPath().getLocation();
+				p.x += 20 - (this.getWidth() / 2);
+				p.y += 40 - (this.getHeight() / 2);
+//				System.out.println(c + "  -  " + p);
 			}
 			else if (path != null)
 			{
-				System.out.println(path.print());
+//				System.out.println(path.print());
 			}
 			else
 			{
-				System.out.println("path == null");
+//				System.out.println("path == null");
 			}
-			System.out.println("daarzo");
+//			System.out.println("daarzo");
 		}
 		else
 		{
-			System.out.println("iiets: ");
+//			System.out.println("iiets: ");
 		}
-		if (pathCounter > 0)
-		System.out.println(pathCounter + "  -  " + path.size());
+//		if (pathCounter > 0)
+//		{
+//			System.out.println(pathCounter + "  -  " + path.size());
+//		}
 		
-		System.out.println(c.equals(p));
+//		System.out.println(c.equals(p));
 		super.setNewDestination(p);
 	}
 
