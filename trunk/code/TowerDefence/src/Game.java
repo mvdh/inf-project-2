@@ -37,11 +37,13 @@ public class Game extends JFrame
     // Field background image
     private BufferedImage bf = null;
     private GameStats gameStats = new GameStats();
+    private Panel panel;
 
     public Game()
     {
         init();
-
+        panel = new StartPanel(gameStats);
+        getLayeredPane().add(panel, JLayeredPane.PALETTE_LAYER);
         m = new Matrix();
 
         URL url = getClass().getResource("images/grass.png");
@@ -415,131 +417,138 @@ public class Game extends JFrame
 
     public void heartbeat()
     {
-        long testTime = System.currentTimeMillis();
-        // step
-        spriteList.step();
-        // ophogen tower counters
-        Vector temp = m.getTowers();
-        ArrayList<Sprite> cleanUp = new ArrayList<Sprite>();
-        Tower t;
-        Point a;
-        Point b;
-        for (Unit u : spriteList.getUnitList())
+        if (gameStats.isStarted())
         {
-            a = u.getLocation();
-            a.x /= 40;
-            a.y /= 40;
-            if (m.get(a.y, a.x) instanceof Tower)
+            //long testTime = System.currentTimeMillis();
+            // step
+            spriteList.step();
+            // ophogen tower counters
+            Vector temp = m.getTowers();
+            ArrayList<Sprite> cleanUp = new ArrayList<Sprite>();
+            Tower t;
+            Point a;
+            Point b;
+            for (Unit u : spriteList.getUnitList())
             {
+                a = u.getLocation();
+                a.x /= 40;
+                a.y /= 40;
+                if (m.get(a.y, a.x) instanceof Tower)
+                {
 
-                t = (Tower) m.get(a.y, a.x);
-                if ((!t.isFlyable() && u.getAviation()) || (!t.isWalkable() && !u.getAviation()))
+                    t = (Tower) m.get(a.y, a.x);
+                    if ((!t.isFlyable() && u.getAviation()) || (!t.isWalkable() && !u.getAviation()))
+                    {
+                        cleanUp.add(u);
+                        t.setHealth(t.getHealth() - gameStats.getUnitData().getDamage(u.getCaseNumber()));
+                        t.setShow(true);
+                        t.paint(t.getGraphics());
+
+                        if (t.getHealth() <= 0)
+                        {
+                            TowerToField(t);
+                            repaint();
+                        }
+                    }
+                }
+                if (a.x == 14 && a.y == 4)
                 {
                     cleanUp.add(u);
-                    t.setHealth(t.getHealth() - gameStats.getUnitData().getDamage(u.getCaseNumber()));
-                    t.setShow(true);
-                    t.paint(t.getGraphics());
-
-                    if (t.getHealth() <= 0)
+                    castleHealth -= (u.getCaseNumber() + 1) * 2;
+                    if (castleHealth >= 0)
                     {
-                        TowerToField(t);
-                        repaint();
+                        endGame();
                     }
                 }
             }
-            if (a.x == 14 && a.y == 4)
+            for (int i = 0; i < temp.size(); i++)
             {
-                cleanUp.add(u);
-                castleHealth -= (u.getCaseNumber() + 1) * 2;
-            }
-        }
-        for (int i = 0; i < temp.size(); i++)
-        {
-            t = (Tower) temp.get(i);
-            t.count();
-            if (t != null)
-            {
-                if (t.getCounter() >= gameStats.getTowerData().getTowerAttackSpeed(t.getCaseNumber()))
+                t = (Tower) temp.get(i);
+                t.count();
+                if (t != null)
                 {
-                    // range check
-                    a = t.getLocation();
-                    a.x += (t.getWidth() / 4);
-                    a.y += 60 - (t.getHeight() / 2);
+                    if (t.getCounter() >= gameStats.getTowerData().getTowerAttackSpeed(t.getCaseNumber()))
+                    {
+                        // range check
+                        a = t.getLocation();
+                        a.x += (t.getWidth() / 4);
+                        a.y += 60 - (t.getHeight() / 2);
+                        for (Unit u : spriteList.getUnitList())
+                        {
+                            b = u.getLocation();
+                            b.x += (u.getWidth() / 2);
+                            b.y += (u.getHeight() / 2);
+                            if (u.distance(a, b) <= gameStats.getTowerData().getRange(t.getCaseNumber()))
+                            {
+                                Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()),
+                                        (double) gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a);
+                                getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
+                                spriteList.add(tempP);
+                                // System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));
+                                break;
+                            }
+                        }
+                        t.setCounter(0);
+                    }
+                }
+            }
+            // check missle hits
+            for (Projectile pr : spriteList.getProjectileList())
+            {
+                if (pr.getLocation().equals(pr.getEnd()))
+                {
                     for (Unit u : spriteList.getUnitList())
                     {
-                        b = u.getLocation();
-                        b.x += (u.getWidth() / 2);
-                        b.y += (u.getHeight() / 2);
-                        if (u.distance(a, b) <= gameStats.getTowerData().getRange(t.getCaseNumber()))
+                        a = u.getLocation();
+                        a.x += (u.getWidth() / 2);
+                        a.y += (u.getHeight() / 2);
+                        b = pr.getEnd();
+                        // System.out.println(pr.getDamage());
+                        // check if unit is on the field of destruction!
+                        if (u.distance(a, b) <= pr.getRange())
                         {
-                            Projectile tempP = new Projectile(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()), gameStats.getTowerData().getMissleImage(t.getCaseNumber()),
-                                    (double) gameStats.getTowerData().getMissleSpeed(t.getCaseNumber()), gameStats.getTowerData().getMissleRange(t.getCaseNumber()), b, a);
-                            getLayeredPane().add(tempP, JLayeredPane.PALETTE_LAYER);
-                            spriteList.add(tempP);
-                            // System.out.println(gameStats.getTowerData().getMissleDamage(t.getCaseNumber()));
-                            break;
+                            u.setHitPoints(u.getHitPoints() - pr.getDamage());
+                            // System.out.println(u.getHitPoints());
+                            if (u.getHitPoints() <= 0)
+                            {
+                                // points += unitData.getReward(u.getCaseNumber()) *
+                                // 5;
+                                gameStats.updatePoints(1, gameStats.getUnitData().getReward(u.getCaseNumber()) * 5);
+                                gameStats.updateGold(1, gameStats.getUnitData().getReward(u.getCaseNumber()));
+                                cleanUp.add(u);
+                            }
                         }
                     }
-                    t.setCounter(0);
+                    pr.endMove();
+                    cleanUp.add(pr);
                 }
             }
-        }
-        // check missle hits
-        for (Projectile pr : spriteList.getProjectileList())
-        {
-            if (pr.getLocation().equals(pr.getEnd()))
+            for (Sprite s : cleanUp)
             {
-                for (Unit u : spriteList.getUnitList())
+                s.setVisible(false);
+                remove(s);
+                spriteList.remove(s);
+            }
+            gameStats.raiseWaveCounter();
+            if (gameStats.getWaveCounter() >= 50)
+            {
+                Unit u = gameStats.getUnitData().getNewUnit(gameStats.getWave());
+                u.setNewDestination(u.getLocation());
+                u.setPath(path);
+                getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
+                spriteList.add(u);
+                gameStats.setWaveCounter(0);
+                if (gameStats.getWaveUnits() == 0)
                 {
-                    a = u.getLocation();
-                    a.x += (u.getWidth() / 2);
-                    a.y += (u.getHeight() / 2);
-                    b = pr.getEnd();
-                    // System.out.println(pr.getDamage());
-                    // check if unit is on the field of destruction!
-                    if (u.distance(a, b) <= pr.getRange())
-                    {
-                        u.setHitPoints(u.getHitPoints() - pr.getDamage());
-                        // System.out.println(u.getHitPoints());
-                        if (u.getHitPoints() <= 0)
-                        {
-                            // points += unitData.getReward(u.getCaseNumber()) *
-                            // 5;
-                            gameStats.updatePoints(1, gameStats.getUnitData().getReward(u.getCaseNumber()) * 5);
-                            gameStats.updateGold(1, gameStats.getUnitData().getReward(u.getCaseNumber()));
-                            cleanUp.add(u);
-                        }
-                    }
+                    gameStats.updateGold(1, (gameStats.getWave() * 3));
                 }
-                pr.endMove();
-                cleanUp.add(pr);
-            }
-        }
-        for (Sprite s : cleanUp)
-        {
-            s.setVisible(false);
-            remove(s);
-            spriteList.remove(s);
-        }
-        gameStats.raiseWaveCounter();
-        if (gameStats.getWaveCounter() >= 50)
-        {
-            Unit u = gameStats.getUnitData().getNewUnit(gameStats.getWave());
-            u.setNewDestination(u.getLocation());
-            u.setPath(path);
-            getLayeredPane().add(u, JLayeredPane.PALETTE_LAYER);
-            spriteList.add(u);
-            gameStats.setWaveCounter(0);
-            if (gameStats.getWaveUnits() == 0)
-            {
-                gameStats.updateGold(1, (gameStats.getWave() * 3));
-            }
-            gameStats.raiseWaveUnits();
-            if (gameStats.getWaveUnits() == 15)
-            {
-                gameStats.setWaveCounter(-75);
-                gameStats.setWaveUnits(0);
-                gameStats.raiseWave();
+                gameStats.raiseWaveUnits();
+                if (gameStats.getWaveUnits() == 15)
+                {
+                    gameStats.setWaveCounter(-75);
+                    gameStats.setWaveUnits(0);
+                    gameStats.raiseWave();
+                }
             }
         }
         //checkPath(m.get(4, 14));
@@ -606,6 +615,10 @@ public class Game extends JFrame
             u.setPathCounter(1);
             }*/
         }
+    }
+
+    public void endGame()
+    {
     }
 
     public static void main(String[] args)
