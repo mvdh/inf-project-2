@@ -25,12 +25,13 @@ public class Controller extends Container
 	private int type = -1;
 	private GameStats gameStats;
 
-	private JPanel description = new JPanel(new GridLayout(3, 2));
+	private JPanel description = new JPanel(new GridLayout(3, 3));
 	private JLabel priceLbl = new JLabel();
 	private JLabel hitPointsLbl = new JLabel();
 	private JLabel rangeLbl = new JLabel();
 	private JLabel speedLbl = new JLabel();
 	private JLabel damageLbl = new JLabel();
+        private JLabel explanationLbl = new JLabel();
         private Font statsFont = new Font("Arial", Font.BOLD, 16);
 
 	public void init()
@@ -48,6 +49,8 @@ public class Controller extends Container
                 speedLbl.setForeground(Color.white);
                 damageLbl.setFont(statsFont);
                 damageLbl.setForeground(Color.white);
+                explanationLbl.setFont(statsFont);
+                explanationLbl.setForeground(Color.white);
 
 		description.setLocation(205, 30);
                 description.setOpaque(false);
@@ -179,7 +182,7 @@ public class Controller extends Container
 
 		public void mouseClicked(MouseEvent me)
 		{
-                    repaint();
+                    //repaint();
 		}
 
 		public void mouseEntered(MouseEvent me)
@@ -208,17 +211,24 @@ public class Controller extends Container
 				rangeLbl.setText("Range: " + getGameStats().getTowerData().getRange(((CLabel) me.getComponent()).getType()));
 				speedLbl.setText("Speed: " + getGameStats().getTowerData().getTowerAttackSpeed(((CLabel) me.getComponent()).getType()));
 				damageLbl.setText("Damage: " + getGameStats().getTowerData().getMissleDamage(((CLabel) me.getComponent()).getType()));
-			}
+			} else if (((CLabel) me.getComponent()).getType() == -1){
+                                damageLbl.setText("Sell");
+                        }
 		}
 
 		public void mouseExited(MouseEvent me)
 		{
+                    if (((CLabel) me.getComponent()).getType() != -1)
+                    {
 			priceLbl.setText("");
 			hitPointsLbl.setText("");
 			rangeLbl.setText("");
 			speedLbl.setText("");
 			damageLbl.setText("");
-
+                    } else if (((CLabel) me.getComponent()).getType() == -1){
+                        damageLbl.setText("");
+                    }
+			
                         repaint();
 			//paint(getGraphics());
 		}
@@ -250,8 +260,6 @@ public class Controller extends Container
 
 		public void mouseReleased(MouseEvent me)
 		{
-			paint(getGraphics());
-
 			Graphics2D g = (Graphics2D) me.getComponent().getGraphics();
 			float alpha = .4f;
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
