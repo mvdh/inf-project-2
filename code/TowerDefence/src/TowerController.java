@@ -44,13 +44,13 @@ public class TowerController extends Controller
 	public void init()
 	{
 		super.init();
-		BufferedImage img = null;
+		BufferedImage img = this.getGameStats().coinsImages[0];
 		Point[] locations =
 		{
 				new Point(50, 25), new Point(110, 25), new Point(50, 85), new Point(110, 85)
 		};
 
-		CLabel label = new CLabel(null, -1);
+		CLabel label = new CLabel(img, -1);
 		label.addMouseListener(new CMouseAdapter());
 		label.setLocation(locations[0]);
 		add(label);
