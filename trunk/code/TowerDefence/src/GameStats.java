@@ -24,6 +24,7 @@ public class GameStats
     private UnitData unitData;
 	protected BufferedImage[] towerImages;
 	protected BufferedImage[] unitImages;
+	protected BufferedImage[] projectileImages;
 
     public UnitData getUnitData()
     {
@@ -106,7 +107,6 @@ public class GameStats
 		URL img11 = getClass().getResource("images/tower3-level3-f1.png");
 		URL img12 = getClass().getResource("images/tower4-level3-f1.png");
 		
-
 		URL img13 = getClass().getResource("images/unit-mario1-f1.png");
 		URL img14 = getClass().getResource("images/unit-mario1-f2.png");
 		URL img15 = getClass().getResource("images/unit-mario1-f3.png");
@@ -116,6 +116,12 @@ public class GameStats
 		URL img19 = getClass().getResource("images/unit-mario3-f1.png");
 		URL img20 = getClass().getResource("images/unit-mario3-f2.png");
 		URL img21 = getClass().getResource("images/unit-mario3-f3.png");
+		
+		URL img22 = getClass().getResource("images/kannonskogel.png");
+		URL img23 = getClass().getResource("images/projectile5-f2.png");
+		URL img24 = getClass().getResource("images/kogel.png");
+		URL img25 = getClass().getResource("spriteDefault.png");
+		
 		
 		towerImages = new BufferedImage[12];
 		try
@@ -192,6 +198,10 @@ public class GameStats
 		}
 		catch (Exception e) {}
 
+		/**
+		 * 
+		 */
+		
 		unitImages = new BufferedImage[9];
 		try
 		{
@@ -248,16 +258,42 @@ public class GameStats
 		}
 		catch (Exception e) {}
 	
+		/**
+		 * 
+		 */
+		
+		projectileImages = new BufferedImage[4];
+		try
+		{
+			projectileImages[0] = ImageIO.read(img22);
+			tracker.addImage(projectileImages[0], 0);
+		}
+		catch (Exception e) {}
+		try
+		{
+			projectileImages[1] = ImageIO.read(img23);
+			tracker.addImage(projectileImages[1], 1);
+		}
+		catch (Exception e) {}
+		try
+		{
+			projectileImages[2] = ImageIO.read(img24);
+			tracker.addImage(projectileImages[2], 2);
+		}
+		catch (Exception e) {}
+		try
+		{
+			projectileImages[3] = ImageIO.read(img25);
+			tracker.addImage(projectileImages[3], 3);
+		}
+		catch (Exception e) {}
+		
+		// Wait untill all images are loaded
 		try 
         {
             tracker.waitForAll();
-            System.out.println("Gelukt:D");
         } 
-        catch (InterruptedException ie) {
-        	
-        	System.out.println("SUKKEL, het is mislukt");
-        }
-		
+        catch (InterruptedException ie) {}
     }
 
     public int getGold()

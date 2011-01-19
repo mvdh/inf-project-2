@@ -18,46 +18,17 @@ public class Projectile extends Sprite
 
 	private BufferedImage bf;
 
-	public Projectile(int d, int img, double speed, int range, Point destination, Point start)
+	public Projectile(int d, int img, double speed, int range, Point destination, Point start, GameStats data)
 	{
 		super(speed);
 		damage = d;
 		this.range = range;
 		this.d = destination;
 		this.c = start;
-		URL url = null;
 		angle = Math.atan2(destination.getY() - c.getY(), destination.getX() - c.getX());
 		standardDis = Math.min(distance(start, destination), speed);
 
-		switch (img)
-		{
-			case 0:
-			{
-				url = getClass().getResource("images/kannonskogel.png");
-				break;
-			}
-			case 1:
-			{
-				url = getClass().getResource("images/projectile5-f2.png");
-				break;
-			}
-			case 2:
-			{
-				url = getClass().getResource("images/kogel.png");
-				break;
-			}
-			default:
-			{
-				url = getClass().getResource("spriteDefault.png");
-				break;
-			}
-		}
-		try
-		{
-			bf = ImageIO.read(url);
-		}
-		catch (Exception e)
-		{}
+		bf = data.projectileImages[img];
 		setImage(bf);
 
 		int size = Math.max(bf.getHeight(), bf.getWidth());
