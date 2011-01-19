@@ -1,4 +1,3 @@
-import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -8,7 +7,6 @@ import javax.swing.JPanel;
 public class ControlPanel extends JPanel {
 
     private Field field;
-    private int points;
     private GameStats gameStats;
     private Controller controller = null;
 

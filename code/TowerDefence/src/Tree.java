@@ -1,12 +1,7 @@
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.net.URL;
-import javax.imageio.ImageIO;
 
 public class Tree extends Field
 {
-	private BufferedImage img = null;
 
 	public Tree(BufferedImage bg)
 	{
