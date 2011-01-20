@@ -1,7 +1,6 @@
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /*
  * To change this template, choose Tools | Templates
@@ -10,30 +9,25 @@ import javax.swing.JButton;
 /**
  * @author Slayer
  */
-public class StartPanel extends Panel implements ActionListener
+public class StartPanel extends Panel
 {
 
-	private JButton start;
+    private JLabel image;
+    private ImageIcon startImage;
 
-	public StartPanel(GameStats gameStats)
-	{
-		super(gameStats);
-		start = new JButton("Start Game!");
-		start.setFont(super.getFont());
-		start.setForeground(Color.black);
-		start.setBackground(Color.white);
-		start.setBounds(210, 240, 180, 20);
-		start.addActionListener(this);
-		this.add(start);
-	}
 
-	public void actionPerformed(ActionEvent e)
-	{
-		if (e.getSource().equals(start))
-		{
-			getGameStats().game.updateStats();
-			getGameStats().setStarted(true);
-			setVisible(false);
-		}
-	}
+    public StartPanel(GameStats gameStats)
+    {
+        super(gameStats);
+        URL url = getClass().getResource("images/screen_start.png");
+        try
+        {
+            startImage = new ImageIcon(url);
+        } catch (Exception e)
+        {
+        }
+        image = new JLabel(startImage);
+        image.setBounds(0, 0, 600, 600);
+        add(image);
+    }
 }
