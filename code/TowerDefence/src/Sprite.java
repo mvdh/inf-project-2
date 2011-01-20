@@ -49,6 +49,7 @@ public class Sprite extends Component
 		if (!(this instanceof Projectile))
 		{
 			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
+                        System.out.println(angle);
 		}
 
 		int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * dis * stepCounter));
