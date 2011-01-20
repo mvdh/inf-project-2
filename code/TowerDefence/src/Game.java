@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Game extends JFrame
+public class Game extends JApplet
 {
 
 	private Matrix m;
@@ -39,7 +39,7 @@ public class Game extends JFrame
 	private Vector path;
 	private Timer actionTimer = null;
 	// Start values
-	private int castleHealth = 1;
+	private int castleHealth = 750;
 	// Field background image
 	private GameStats gameStats;
 	private BufferedImage bf = null;
@@ -560,7 +560,7 @@ public class Game extends JFrame
 					gameStats.updateGold(1, (gameStats.getWave() * 3));
 				}
 				gameStats.raiseWaveUnits();
-				if (gameStats.getWaveUnits() == 1)
+				if (gameStats.getWaveUnits() == 15)
 				{
 					gameStats.setWaveCounter(-100);
 					gameStats.setWaveUnits(0);
@@ -673,7 +673,7 @@ public class Game extends JFrame
 			spriteList.remove(s);
 		}
 		gameStats.reset();
-		castleHealth = 600;
+		castleHealth = 750;
 		getLayeredPane().remove(leftSide);
 		getLayeredPane().remove(statsPanel);
 		getLayeredPane().add(panel, JLayeredPane.POPUP_LAYER);

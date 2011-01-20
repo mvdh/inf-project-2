@@ -39,7 +39,7 @@ public class EndPanel extends Panel implements ActionListener
         score.setForeground(Color.white);
         wave.setForeground(Color.white);
 
-        score.setBounds(232, 398, 160, 20);
+        score.setBounds(222, 298, 160, 20);
         wave.setBounds(178, 259, 160, 20);
 
         add(score);
