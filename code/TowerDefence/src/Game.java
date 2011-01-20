@@ -628,7 +628,7 @@ public class Game extends JApplet
 						temp.add(path.get(i));
 					}
 					u.setPath(temp);
-					u.setPathCounter(1);
+					u.setPathCounter(2);
 				}
 				else
 				{
@@ -793,6 +793,7 @@ public class Game extends JApplet
 						}
 					}
 				});
+				actionTimer.setCoalesce(true);
 				actionTimer.start();
 			}
 		}
