@@ -39,17 +39,25 @@ public class Sprite extends Component
 
 	public void step()
 	{
+		if (!(this instanceof Projectile))
+		{
+			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
+		}
+
+		while (!(this instanceof Projectile) && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0))
+		{
+			Point loc = ((Unit) this).getPath().get(((Unit) this).getPathCounter() - 2).getLocation();
+			loc.x += 70 - (this.getWidth() / 2);
+			loc.y += 110 - (this.getHeight() / 2);
+			d = loc;
+			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX());
+		}
+
 		// Hou hier rekening met een modifier voor vertragende torens.
 		Double dis = distance(this.getLocation(), d); // Wordt gebruikt om de te reizen afstand voor deze stap door te geven
 		if (dis > speed)
 		{ // Op deze manier wordt 'overshoot' beperkt
 			dis = speed; // en kan de marge hopelijk kleiner
-		}
-
-		if (!(this instanceof Projectile))
-		{
-			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
-                        System.out.println(angle);
 		}
 
 		int newX = (int) Math.floor(c.getX() + (Math.cos(angle) * dis * stepCounter));
@@ -63,8 +71,9 @@ public class Sprite extends Component
 			newY = d.y;
 			lastDis = Math.pow(2, 32) - 1;
 		}
-
+		
 		this.setLocation(newX, newY);
+		
 		// this.repaint();
 
 		if ((newX == d.x) && (newY == d.y) && !(this instanceof Projectile))
