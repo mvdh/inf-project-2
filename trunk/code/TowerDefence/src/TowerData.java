@@ -43,7 +43,7 @@ public class TowerData {
         towerData[0][2] = 6;        //costs
         towerData[0][3] = 100;      //hitPoints
         towerData[0][4] = 0;        //missleImage
-        towerData[0][5] = 60;       //towerRange
+        towerData[0][5] = 80;       //towerRange
         towerData[0][6] = 20;       //towerAttackSpeed
         towerData[0][7] = 22;       //missleDamage
         towerData[0][8] = 10;       //missleSpeed
@@ -57,8 +57,8 @@ public class TowerData {
         towerData[1][2] = 16;       //costs
         towerData[1][3] = 125;      //hitPoints
         towerData[1][4] = 1;        //missleImage
-        towerData[1][5] = 60;       //range
-        towerData[1][6] = 30;       //towerAttackSpeed
+        towerData[1][5] = 80;       //range
+        towerData[1][6] = 25;       //towerAttackSpeed
         towerData[1][7] = 30;       //missleDamage
         towerData[1][8] = 20;       //missleSpeed
         towerData[1][9] = 25;       //missleRange
@@ -71,7 +71,7 @@ public class TowerData {
         towerData[2][2] = 30;       //costs
         towerData[2][3] = 150;      //hitPoints
         towerData[2][4] = 1;        //missleImage
-        towerData[2][5] = 100;      //towerRange
+        towerData[2][5] = 120;      //towerRange
         towerData[2][6] = 20;       //towerAttackSpeed
         towerData[2][7] = 70;        //missleDamage
         towerData[2][8] = 20;       //missleSpeed
@@ -87,7 +87,7 @@ public class TowerData {
         towerData[3][4] = 0;        //missleImage
         towerData[3][5] = 80;      //towerRange
         towerData[3][6] = 20;       //towerAttackSpeed
-        towerData[3][7] = 130;        //missleDamage
+        towerData[3][7] = 120;        //missleDamage
         towerData[3][8] = 20;       //missleSpeed
         towerData[3][9] = 30;       //missleRange
 
@@ -99,7 +99,7 @@ public class TowerData {
         towerData[4][2] = 20;        //costs
         towerData[4][3] = 200;      //hitPoints
         towerData[4][4] = 0;        //missleImage
-        towerData[4][5] = 60;       //towerRange
+        towerData[4][5] = 80;       //towerRange
         towerData[4][6] = 20;       //towerAttackSpeed
         towerData[4][7] = 36;       //missleDamage
         towerData[4][8] = 20;       //missleSpeed
@@ -113,11 +113,11 @@ public class TowerData {
         towerData[5][2] = 50;        //costs
         towerData[5][3] = 250;      //hitPoints
         towerData[5][4] = 1;        //missleImage
-        towerData[5][5] = 100;      //range
+        towerData[5][5] = 80;      //range
         towerData[5][6] = 24;        //towerAttackSpeed
         towerData[5][7] = 50;        //missleDamage
         towerData[5][8] = 20;       //missleSpeed
-        towerData[5][9] = 25;       //missleRange
+        towerData[5][9] = 30;       //missleRange
 
         /*
          * Tower C2
@@ -127,11 +127,11 @@ public class TowerData {
         towerData[6][2] = 75;       //costs
         towerData[6][3] = 300;      //hitPoints
         towerData[6][4] = 1;        //missleImage
-        towerData[6][5] = 60;      //towerRange
+        towerData[6][5] = 80;      //towerRange
         towerData[6][6] = 16;       //towerAttackSpeed
         towerData[6][7] = 70;        //missleDamage
         towerData[6][8] = 10;       //missleSpeed
-        towerData[6][9] = 20;       //missleRange
+        towerData[6][9] = 30;       //missleRange
 
         /*
          * Tower D2
@@ -153,43 +153,43 @@ public class TowerData {
          */
         towerData[8][0] = 8;        //caseNumber
         towerData[8][1] = 4;       //previousCaseNumber
-        towerData[8][2] = 40;        //costs
+        towerData[8][2] = 50;        //costs
         towerData[8][3] = 400;      //hitPoints
         towerData[8][4] = 0;        //missleImage
         towerData[8][5] = 80;       //towerRange
         towerData[8][6] = 30;       //towerAttackSpeed
         towerData[8][7] = 40;       //missleDamage
         towerData[8][8] = 15;       //missleSpeed
-        towerData[8][9] = 25;       //missleRange
+        towerData[8][9] = 30;       //missleRange
 
         /*
          * Tower B3
          */
         towerData[9][0] = 9;        //caseNumber
         towerData[9][1] = 5;       //previousCaseNumber
-        towerData[9][2] = 30;        //costs
+        towerData[9][2] = 80;        //costs
         towerData[9][3] = 450;      //hitPoints
         towerData[9][4] = 1;        //missleImage
-        towerData[9][5] = 60;      //range
+        towerData[9][5] = 80;      //range
         towerData[9][6] = 13;        //towerAttackSpeed
-        towerData[9][7] = 40;        //missleDamage
-        towerData[9][8] = 20;       //missleSpeed
-        towerData[9][9] = 25;       //missleRange
+        towerData[9][7] = 100;        //missleDamage
+        towerData[9][8] = 15;       //missleSpeed
+        towerData[9][9] = 30;       //missleRange
 
         /*
          * Tower C3
          */
 
-        towerData[10][0] = 10;        //caseNumber
-        towerData[10][1] = 6;       //previousCaseNumber
-        towerData[10][2] = 275;       //costs
+        towerData[10][0] = 10;       //caseNumber
+        towerData[10][1] = 6;        //previousCaseNumber
+        towerData[10][2] = 175;      //costs
         towerData[10][3] = 500;      //hitPoints
         towerData[10][4] = 1;        //missleImage
-        towerData[10][5] = 60;      //towerRange
+        towerData[10][5] = 120;      //towerRange
         towerData[10][6] = 16;       //towerAttackSpeed
-        towerData[10][7] = 200;        //missleDamage
+        towerData[10][7] = 200;      //missleDamage
         towerData[10][8] = 10;       //missleSpeed
-        towerData[10][9] = 20;       //missleRange
+        towerData[10][9] = 30;       //missleRange
 
         /*
          * Tower D3
@@ -197,45 +197,16 @@ public class TowerData {
 
         towerData[11][0] = 11;        //caseNumber
         towerData[11][1] = 7;       //previousCaseNumber
-        towerData[11][2] = 275;       //costs
+        towerData[11][2] = 250;       //costs
         towerData[11][3] = 550;      //hitPoints
         towerData[11][4] = 0;        //missleImage
-        towerData[11][5] = 60;      //towerRange
+        towerData[11][5] = 80;      //towerRange
         towerData[11][6] = 16;       //towerAttackSpeed
         towerData[11][7] = 200;        //missleDamage
         towerData[11][8] = 10;       //missleSpeed
-        towerData[11][9] = 20;       //missleRange
+        towerData[11][9] = 30;       //missleRange
     }
 
-//    Volgende functie is nog niet af, het is een functie die we op dit moment
-//    niet nodig hebben.
-//    public ArrayList<Integer> sortTowersByPreviousCaseNumber() {
-//        ArrayList<Integer> list = new ArrayList<Integer>();
-//        int[][] tTD = this.getTowerData();
-//        //lijst met de volgorde van previouscasenumber en dan op casenumber
-//
-//        list.add(this.getTowerData()[0][4]);
-//
-//        for (int i = 1; i < this.getTowerData().length; i++) {
-//            for (int j = 0; j < list.size(); j++) { // voor elke arraylistitem
-//                if (this.getPreviousCaseNumber(i) > list.get(j)) {
-//                    continue;
-//                } else if (this.getPreviousCaseNumber(i) < list.get(j)) {
-//                    list.add(i, j);
-//                    break;
-//                } else {
-//                    int k = j;
-//                    while (list.get(k) == this.getTowerData()[i][4]) {
-//                        if()
-//                        k++;
-//                    }
-//                }
-//
-//            }
-//        }
-//
-//        return new ArrayList<Integer>();
-//    }
     /**
      * Return the towerData. towerData contains the information of all towers.
      *
