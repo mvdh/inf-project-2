@@ -1,30 +1,35 @@
 
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Slayer
  */
-public abstract class Panel extends JPanel{
+public abstract class Panel extends JPanel
+{
 
-    private GameStats gameStats;
-    
-    public Panel(GameStats gameStats){
-        setLocation(40,40);
-        setSize(600, 360);
-        setVisible(true);
-        setLayout(null);
-        setBackground(Color.black);
-        setGameStats(gameStats);
-    }
+        private GameStats gameStats;
 
-    public GameStats getGameStats(){
-        return gameStats;
-    }
+        public Panel(GameStats gameStats)
+        {
+                this.setFont(new Font("Arial", Font.BOLD, 16));
+                setLocation(50, 50);
+                setSize(600, 400);
+                setVisible(true);
+                setLayout(null);
+                setBackground(Color.black);
+                setGameStats(gameStats);
+        }
 
-    public void setGameStats(GameStats gameStats){
-        this.gameStats = gameStats;
-    }
+        public GameStats getGameStats()
+        {
+                return gameStats;
+        }
 
+        public void setGameStats(GameStats gameStats)
+        {
+                this.gameStats = gameStats;
+        }
 }
