@@ -71,7 +71,6 @@ public class Sprite extends Component
 		
 		while (this instanceof Unit && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1 && distance(getLocation(), d) < 80 && n < 50)
 		{
-			System.out.println(d + "  -  " + getLocation());
 			x = ((Unit) this).getPathCounter() + 1 - n;
 			
 			if (x >= 0)
@@ -82,7 +81,6 @@ public class Sprite extends Component
 				loc.y += 110 - (this.getHeight() / 2);
 				d = loc;
 				angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX());
-				System.out.println(d + "  -  " + x);
 				n++;
 			}
 		}
