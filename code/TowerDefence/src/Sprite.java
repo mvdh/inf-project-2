@@ -65,7 +65,7 @@ public class Sprite extends Component
 			setLocation(pos);
 		}
 		
-		while (this instanceof Unit && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1 && distance(getLocation(), d) < 80)
+		while (this instanceof Unit && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1 && distance(getLocation(), d) < 80 && n < 50)
 		{
 			System.out.println(d + "  -  " + getLocation());
 			x = ((Unit) this).getPathCounter() + 1 - n;
