@@ -180,8 +180,7 @@ public class Game extends JApplet
 		{
 			bf = ImageIO.read(grassURL);
 		}
-		catch (Exception e)
-		{}
+		catch (Exception e) {}
 
 		try
 		{
@@ -236,8 +235,9 @@ public class Game extends JApplet
 				this.gameStats.updateGold(-1, this.gameStats.getTowerData().getCosts(type));
 			}
 			fieldPanel.remove(f);
+			f = null;
 			fieldPanel.add(t);
-			checkPath(f);
+			checkPath(t);
 		}
 	}
 
@@ -275,6 +275,7 @@ public class Game extends JApplet
 				// check which tower there also where
 			}
 			fieldPanel.remove(t);
+			t = null;
 			fieldPanel.add(f);
 			checkPath(f);
 		}
@@ -296,6 +297,7 @@ public class Game extends JApplet
 				this.gameStats.updateGold(-1, this.gameStats.getTowerData().getCosts(newCase));
 			}
 			fieldPanel.remove(t);
+			t = null;
 			fieldPanel.add(nT);
 			checkPath(nT);
 		}
@@ -446,7 +448,13 @@ public class Game extends JApplet
 					if ((!t.isFlyable() && u.getAviation()) || (!t.isWalkable() && !u.getAviation()))
 					{
 						cleanUp.add(u);
-						t.setHealth(t.getHealth() - gameStats.getUnitData().getDamage(u.getCaseNumber()));
+						if (path.contains(t))
+						{
+							t.setHealth(0);
+						}
+						{
+							t.setHealth(t.getHealth() - gameStats.getUnitData().getDamage());
+						}
 						t.setShow(true);
 						t.repaint();
 						if (t.getHealth() <= 0)
