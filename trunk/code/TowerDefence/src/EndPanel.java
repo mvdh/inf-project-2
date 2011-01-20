@@ -44,7 +44,7 @@ public class EndPanel extends Panel implements ActionListener
                 description.add(score);
                 description.add(wave);
 
-                restart = new JButton("Try again");
+                restart = new JButton("Try again?");
                 restart.setFont(super.getFont());
                 restart.setForeground(Color.black);
                 restart.setBackground(Color.white);
