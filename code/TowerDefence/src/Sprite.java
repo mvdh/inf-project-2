@@ -49,11 +49,6 @@ public class Sprite extends Component
 		{
 			System.out.println(d);
 			int x = ((Unit) this).getPathCounter() + 1 - n;
-			if (x <= 0)
-			{
-				x = 1;
-				n = -1;
-			}
 			
 			Point loc = ((Unit) this).getPath().get(x).getLocation();
 			((Unit) this).setPathCounter(x);
