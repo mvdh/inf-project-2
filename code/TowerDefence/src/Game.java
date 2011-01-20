@@ -83,7 +83,6 @@ public class Game extends JApplet
 		spriteList = new SpriteList();
 		getLayeredPane().add(statsPanel, JLayeredPane.POPUP_LAYER);
 		getLayeredPane().add(leftSide, JLayeredPane.POPUP_LAYER);
-		updateStats();
 		getLayeredPane().add(fieldPanel, JLayeredPane.PALETTE_LAYER);
 
 		// System.out.println(m.toString());
