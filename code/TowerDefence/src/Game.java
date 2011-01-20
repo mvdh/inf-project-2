@@ -180,7 +180,8 @@ public class Game extends JApplet
 		{
 			bf = ImageIO.read(grassURL);
 		}
-		catch (Exception e) {}
+		catch (Exception e) 
+		{}
 
 		try
 		{
