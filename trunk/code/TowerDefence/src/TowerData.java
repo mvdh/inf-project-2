@@ -54,12 +54,12 @@ public class TowerData {
          */
         towerData[1][0] = 1;        //caseNumber
         towerData[1][1] = -1;       //previousCaseNumber
-        towerData[1][2] = 16;        //costs
+        towerData[1][2] = 16;       //costs
         towerData[1][3] = 125;      //hitPoints
         towerData[1][4] = 1;        //missleImage
-        towerData[1][5] = 60;      //range
-        towerData[1][6] = 30;        //towerAttackSpeed
-        towerData[1][7] = 30;        //missleDamage
+        towerData[1][5] = 60;       //range
+        towerData[1][6] = 30;       //towerAttackSpeed
+        towerData[1][7] = 30;       //missleDamage
         towerData[1][8] = 20;       //missleSpeed
         towerData[1][9] = 25;       //missleRange
 
@@ -111,7 +111,7 @@ public class TowerData {
         towerData[5][0] = 5;        //caseNumber
         towerData[5][1] = 1;       //previousCaseNumber
         towerData[5][2] = 50;        //costs
-        towerData[5][3] = 100;      //hitPoints
+        towerData[5][3] = 250;      //hitPoints
         towerData[5][4] = 1;        //missleImage
         towerData[5][5] = 100;      //range
         towerData[5][6] = 24;        //towerAttackSpeed
@@ -125,7 +125,7 @@ public class TowerData {
         towerData[6][0] = 6;        //caseNumber
         towerData[6][1] = 2;       //previousCaseNumber
         towerData[6][2] = 75;       //costs
-        towerData[6][3] = 150;      //hitPoints
+        towerData[6][3] = 300;      //hitPoints
         towerData[6][4] = 1;        //missleImage
         towerData[6][5] = 60;      //towerRange
         towerData[6][6] = 16;       //towerAttackSpeed
@@ -136,18 +136,17 @@ public class TowerData {
         /*
          * Tower D2
          */
+
         towerData[7][0] = 7;        //caseNumber
-        towerData[7][1] = 175;      //costs
-        towerData[7][2] = 100;      //hitPoints
-        towerData[7][3] = 100;      //range
-        towerData[7][4] = 3;        //previousCaseNumber
-        towerData[7][5] = 2;        //missleDamage
-        towerData[7][6] = 0;        //missleImage
-        towerData[7][7] = 20;       //missleSpeed
-        towerData[7][8] = 2;        //towerImage
-        towerData[7][9] = 20;       //missleRange
-        towerData[7][10] = 120;     //towerRange
-        towerData[7][11] = 10;      //towerAttackSpeed
+        towerData[7][1] = 3;       //previousCaseNumber
+        towerData[7][2] = 150;        //costs
+        towerData[7][3] = 350;      //hitPoints
+        towerData[7][4] = 0;        //missleImage
+        towerData[7][5] = 80;      //towerRange
+        towerData[7][6] = 20;       //towerAttackSpeed
+        towerData[7][7] = 200;        //missleDamage
+        towerData[7][8] = 10;       //missleSpeed
+        towerData[7][9] = 30;       //missleRange
 
         /*
          * Tower A3
@@ -155,7 +154,7 @@ public class TowerData {
         towerData[8][0] = 8;        //caseNumber
         towerData[8][1] = 4;       //previousCaseNumber
         towerData[8][2] = 40;        //costs
-        towerData[8][3] = 150;      //hitPoints
+        towerData[8][3] = 400;      //hitPoints
         towerData[8][4] = 0;        //missleImage
         towerData[8][5] = 80;       //towerRange
         towerData[8][6] = 30;       //towerAttackSpeed
@@ -167,9 +166,9 @@ public class TowerData {
          * Tower B3
          */
         towerData[9][0] = 9;        //caseNumber
-        towerData[9][1] = 60;       //previousCaseNumber
+        towerData[9][1] = 5;       //previousCaseNumber
         towerData[9][2] = 30;        //costs
-        towerData[9][3] = 100;      //hitPoints
+        towerData[9][3] = 450;      //hitPoints
         towerData[9][4] = 1;        //missleImage
         towerData[9][5] = 60;      //range
         towerData[9][6] = 13;        //towerAttackSpeed
@@ -180,34 +179,32 @@ public class TowerData {
         /*
          * Tower C3
          */
+
         towerData[10][0] = 10;        //caseNumber
-        towerData[10][1] = 275;      //costs
-        towerData[10][2] = 100;      //hitPoints
-        towerData[10][3] = 100;      //range
-        towerData[10][4] = 6;        //previousCaseNumber
-        towerData[10][5] = 2;        //missleDamage
-        towerData[10][6] = 1;        //missleImage
-        towerData[10][7] = 20;       //missleSpeed
-        towerData[10][8] = 2;        //towerImage
+        towerData[10][1] = 6;       //previousCaseNumber
+        towerData[10][2] = 275;       //costs
+        towerData[10][3] = 500;      //hitPoints
+        towerData[10][4] = 1;        //missleImage
+        towerData[10][5] = 60;      //towerRange
+        towerData[10][6] = 16;       //towerAttackSpeed
+        towerData[10][7] = 200;        //missleDamage
+        towerData[10][8] = 10;       //missleSpeed
         towerData[10][9] = 20;       //missleRange
-        towerData[10][10] = 120;     //towerRange
-        towerData[10][11] = 10;      //towerAttackSpeed
 
         /*
          * Tower D3
          */
+
         towerData[11][0] = 11;        //caseNumber
-        towerData[11][1] = 300;      //costs
-        towerData[11][2] = 100;      //hitPoints
-        towerData[11][3] = 100;      //range
-        towerData[11][4] = 7;        //previousCaseNumber
-        towerData[11][5] = 2;        //missleDamage
-        towerData[11][6] = 1;        //missleImage
-        towerData[11][7] = 20;       //missleSpeed
-        towerData[11][8] = 3;        //towerImage
+        towerData[11][1] = 7;       //previousCaseNumber
+        towerData[11][2] = 275;       //costs
+        towerData[11][3] = 550;      //hitPoints
+        towerData[11][4] = 0;        //missleImage
+        towerData[11][5] = 60;      //towerRange
+        towerData[11][6] = 16;       //towerAttackSpeed
+        towerData[11][7] = 200;        //missleDamage
+        towerData[11][8] = 10;       //missleSpeed
         towerData[11][9] = 20;       //missleRange
-        towerData[11][10] = 120;     //towerRange
-        towerData[11][11] = 10;      //towerAttackSpeed
     }
 
 //    Volgende functie is nog niet af, het is een functie die we op dit moment
