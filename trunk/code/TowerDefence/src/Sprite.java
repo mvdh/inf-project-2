@@ -47,7 +47,25 @@ public class Sprite extends Component
 		int n = 0;
 		int x = 0;
 		Point loc;
-		while (!(this instanceof Projectile) && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1)
+		
+		int posX = (getLocation().x - 14) % 40;
+		int posY = (getLocation().y - 12) % 40;
+		Point pos = new Point(getLocation());
+		if (this instanceof Unit && posX != 0)
+		{
+			pos.setLocation(new Point(Math.round(getLocation().x / 40) * 40 + 14, pos.getLocation().y));
+		}
+		if (this instanceof Unit && posY != 0)
+		{
+			pos.setLocation(new Point(pos.getLocation().x, Math.round(getLocation().y / 40) * 40 + 12));
+		}
+		
+		if ((angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && !pos.equals(getLocation()))
+		{
+			setLocation(pos);
+		}
+		
+		while (this instanceof Unit && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1 && distance(getLocation(), d) < 80)
 		{
 			System.out.println(d + "  -  " + getLocation());
 			x = ((Unit) this).getPathCounter() + 1 - n;
