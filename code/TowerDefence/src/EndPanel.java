@@ -1,11 +1,10 @@
 
 import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
+import java.awt.Font;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /*
  * To change this template, choose Tools | Templates
@@ -18,48 +17,44 @@ import javax.swing.JPanel;
 public class EndPanel extends Panel implements ActionListener
 {
 
-        private JButton restart;
-        private JPanel description;
-        private JLabel score;
-        private JLabel wave;
+    private JLabel score;
+    private JLabel wave;
 
-        public EndPanel(GameStats gameStats)
+    private JLabel image;
+    private ImageIcon endImage;
+
+    private Font statsFont = new Font("Arial", Font.BOLD, 18);
+
+
+    public EndPanel(GameStats gameStats)
+    {
+        super(gameStats);
+
+        score = new JLabel("" + (super.getGameStats().getPoints()));
+        wave = new JLabel("" + (super.getGameStats().getWave() + 1));
+
+        score.setFont(statsFont);
+        wave.setFont(statsFont);
+
+        score.setForeground(Color.white);
+        wave.setForeground(Color.white);
+
+        score.setBounds(232, 398, 160, 20);
+        wave.setBounds(178, 259, 160, 20);
+
+        add(score);
+        add(wave);
+        
+        URL url = getClass().getResource("images/screen_end.png");
+        try
         {
-                super(gameStats);
-
-                description = new JPanel(new GridLayout(2, 1));
-
-                score = new JLabel("Score: " + super.getGameStats().getPoints());
-                wave = new JLabel("Survived untill wave: " + (super.getGameStats().getWave() + 1));
-
-                score.setFont(super.getFont());
-                score.setForeground(Color.white);
-                wave.setFont(super.getFont());
-                wave.setForeground(Color.white);
-
-                description.setBackground(Color.black);
-                description.setLocation(200, 180);
-                description.setSize(200, 40);
-
-                description.add(score);
-                description.add(wave);
-
-                restart = new JButton("Try again?");
-                restart.setFont(super.getFont());
-                restart.setForeground(Color.black);
-                restart.setBackground(Color.white);
-                restart.setBounds(240, 240, 120, 20);
-
-                add(restart);
-                add(description);
+            endImage = new ImageIcon(url);
+        } catch (Exception e)
+        {
         }
 
-        public void actionPerformed(ActionEvent e)
-        {
-                if (e.getSource().equals(restart))
-                {
-                        super.getGameStats().setStarted(true);
-                        setVisible(false);
-                }
-        }
+        image = new JLabel(endImage);
+        image.setBounds(0, 0, 600, 600);
+        add(image);
+    }
 }

@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Game extends JApplet
+public class Game extends JFrame
 {
 
 	private Matrix m;
@@ -39,7 +39,7 @@ public class Game extends JApplet
 	private Vector path;
 	private Timer actionTimer = null;
 	// Start values
-	private int castleHealth = 1000;
+	private int castleHealth = 1;
 	// Field background image
 	private GameStats gameStats;
 	private BufferedImage bf = null;
@@ -218,7 +218,7 @@ public class Game extends JApplet
 
 	/**
 	 * Changes the Object type from Field to Tower
-	 * 
+	 *
 	 * @param f
 	 *            Field
 	 */
@@ -249,7 +249,7 @@ public class Game extends JApplet
 
 	/**
 	 * Changes the Object type from Tower to Field
-	 * 
+	 *
 	 * @param t
 	 *            Field
 	 */
@@ -672,10 +672,13 @@ public class Game extends JApplet
 			remove(s);
 			spriteList.remove(s);
 		}
-		gameStats = new GameStats(this);
+		gameStats.reset();
 		castleHealth = 600;
 		getLayeredPane().remove(leftSide);
+		getLayeredPane().remove(statsPanel);
 		getLayeredPane().add(panel, JLayeredPane.POPUP_LAYER);
+		getLayeredPane().add(leftSide, JLayeredPane.POPUP_LAYER);
+		getLayeredPane().add(statsPanel, JLayeredPane.POPUP_LAYER);
 	}
 
 	public static void main(String[] args)
