@@ -610,13 +610,16 @@ public class Game extends JApplet
 				int j = 0;
 				for (int i = 1; i < path.size(); i++)
 				{
-					if (u.distance(nearest.getLocation(), loc) >= u.distance(path.get(i).getLocation(), loc))
+					if (Math.ceil(u.distance(nearest.getLocation(), loc) / 40) >= Math.ceil(u.distance(path.get(i).getLocation(), loc) / 40))
 					{
 						nearest = path.get(i);
 						j = i;
 					}
 				}
-				temp = findPath(u, nearest);
+				Unit testUnit = new Unit(u.getSpeed(), u.getHitPoints());
+				loc.x -= 50;
+				testUnit.setLocation(loc);
+				temp = findPath(testUnit, nearest);
 				if (temp != null)
 				{
 					for (int i = j + 1; i < path.size(); i++)
