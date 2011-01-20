@@ -45,19 +45,24 @@ public class Sprite extends Component
 		}
 
 		int n = 0;
-		while (!(this instanceof Projectile) && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && n < 50)
+		int x = 0;
+		Point loc;
+		while (!(this instanceof Projectile) && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1)
 		{
-			System.out.println(d);
-			int x = ((Unit) this).getPathCounter() + 1 - n;
+			System.out.println(d + "  -  " + getLocation());
+			x = ((Unit) this).getPathCounter() + 1 - n;
 			
-			Point loc = ((Unit) this).getPath().get(x).getLocation();
-			((Unit) this).setPathCounter(x);
-			loc.x += 70 - (this.getWidth() / 2);
-			loc.y += 110 - (this.getHeight() / 2);
-			d = loc;
-			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX());
-			System.out.println(d);
-			n++;
+			if (x >= 0)
+			{
+				loc = ((Unit) this).getPath().get(x).getLocation();
+				((Unit) this).setPathCounter(x);
+				loc.x += 70 - (this.getWidth() / 2);
+				loc.y += 110 - (this.getHeight() / 2);
+				d = loc;
+				angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX());
+				System.out.println(d + "  -  " + x);
+				n++;
+			}
 		}
 
 		// Hou hier rekening met een modifier voor vertragende torens.
