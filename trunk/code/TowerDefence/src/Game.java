@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -233,11 +231,7 @@ public class Game extends JApplet
 			t.setWalkable(false);
 			m.remove(f);
 			boolean added = m.add(t, p.x / 40, p.y / 40);
-			if (!added)
-			{
-				JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
-			}
-			else
+			if (added)
 			{
 				this.gameStats.updateGold(-1, this.gameStats.getTowerData().getCosts(type));
 			}
@@ -263,12 +257,7 @@ public class Game extends JApplet
 			f.addMouseListener(new GameMouseAdapter());
 			m.remove(t);
 			boolean added = m.add(f, p.x / 40, p.y / 40);
-			if (!added)
-			{
-				JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
-			}
 
-			fieldPanel.remove(t);
 			if (added)
 			{
 
@@ -285,6 +274,7 @@ public class Game extends JApplet
 				gameStats.updateGold(1, (int) totalCosts);
 				// check which tower there also where
 			}
+			fieldPanel.remove(t);
 			fieldPanel.add(f);
 			checkPath(f);
 		}
@@ -301,11 +291,7 @@ public class Game extends JApplet
 			nT.setWalkable(false);
 			m.remove(t);
 			boolean added = m.add(nT, p.x / 40, p.y / 40);
-			if (!added)
-			{
-				JOptionPane.showMessageDialog(new JFrame(), "The selected index wasn't empty. Something went wrong!");
-			}
-			else
+			if (added)
 			{
 				this.gameStats.updateGold(-1, this.gameStats.getTowerData().getCosts(newCase));
 			}
@@ -545,6 +531,7 @@ public class Game extends JApplet
 				s.setVisible(false);
 				remove(s);
 				spriteList.remove(s);
+				s = null;
 			}
 			gameStats.raiseWaveCounter();
 			if (gameStats.getWaveCounter() >= 50)
@@ -590,9 +577,13 @@ public class Game extends JApplet
 		{
 			path = fields;
 		}
+		boolean hasF;
+		Field nearest;
+		Point loc;
+		Unit testUnit;
 		for (Unit u : spriteList.getUnitList())
 		{
-			boolean hasF = false;
+			hasF = false;
 			for (int i = u.getPathCounter(); i < u.getPath().size(); i++)
 			{
 				if (f.equals(u.getPath().get(i)))
@@ -603,8 +594,8 @@ public class Game extends JApplet
 			}
 			if (hasF && fields != null)
 			{
-				Field nearest = path.get(0);
-				Point loc = u.getLocation();
+				nearest = path.get(0);
+				loc = u.getLocation();
 				loc.y -= 100;
 
 				int j = 0;
@@ -616,7 +607,7 @@ public class Game extends JApplet
 						j = i;
 					}
 				}
-				Unit testUnit = new Unit(u.getSpeed(), u.getHitPoints());
+				testUnit = new Unit(u.getSpeed(), u.getHitPoints());
 				loc.x -= 50;
 				testUnit.setLocation(loc);
 				temp = findPath(testUnit, nearest);
@@ -671,6 +662,7 @@ public class Game extends JApplet
 			s.setVisible(false);
 			remove(s);
 			spriteList.remove(s);
+			s = null;
 		}
 		gameStats.reset();
 		castleHealth = 750;
