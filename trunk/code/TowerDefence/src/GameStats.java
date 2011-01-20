@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
  */
 public class GameStats
 {
-
+		protected Game game;
         private boolean started;
         private TowerData towerData;
         private int points;
@@ -78,11 +78,12 @@ public class GameStats
                 wave++;
         }
 
-        public GameStats(Game game)
+        public GameStats(Game gameIn)
         {
+        	game = gameIn;
                 started = false;
                 points = 0;
-                gold = 20;
+                gold = 1000;
                 waveCounter = -75;
                 waveUnits = 0;
                 wave = 0;
