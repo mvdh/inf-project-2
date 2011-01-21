@@ -127,7 +127,7 @@ public class TowerData {
         towerData[6][2] = 75;       //costs
         towerData[6][3] = 300;      //hitPoints
         towerData[6][4] = 1;        //missleImage
-        towerData[6][5] = 80;      //towerRange
+        towerData[6][5] = 120;      //towerRange
         towerData[6][6] = 16;       //towerAttackSpeed
         towerData[6][7] = 70;        //missleDamage
         towerData[6][8] = 10;       //missleSpeed
