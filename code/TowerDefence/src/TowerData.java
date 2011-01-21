@@ -87,7 +87,7 @@ public class TowerData {
         towerData[3][4] = 0;        //missleImage
         towerData[3][5] = 80;      //towerRange
         towerData[3][6] = 20;       //towerAttackSpeed
-        towerData[3][7] = 120;        //missleDamage
+        towerData[3][7] = 100;        //missleDamage
         towerData[3][8] = 20;       //missleSpeed
         towerData[3][9] = 30;       //missleRange
 
@@ -144,7 +144,7 @@ public class TowerData {
         towerData[7][4] = 0;        //missleImage
         towerData[7][5] = 80;      //towerRange
         towerData[7][6] = 20;       //towerAttackSpeed
-        towerData[7][7] = 200;        //missleDamage
+        towerData[7][7] = 150;        //missleDamage
         towerData[7][8] = 10;       //missleSpeed
         towerData[7][9] = 30;       //missleRange
 
@@ -202,7 +202,7 @@ public class TowerData {
         towerData[11][4] = 0;        //missleImage
         towerData[11][5] = 80;      //towerRange
         towerData[11][6] = 16;       //towerAttackSpeed
-        towerData[11][7] = 350;        //missleDamage
+        towerData[11][7] = 250;        //missleDamage
         towerData[11][8] = 10;       //missleSpeed
         towerData[11][9] = 30;       //missleRange
     }
