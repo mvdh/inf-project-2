@@ -47,7 +47,7 @@ public class Sprite extends Component
 		int n = 0;
 		int x = 0;
 		Point loc;
-		
+
 		int posX = (getLocation().x - 14) % 40;
 		int posY = (getLocation().y - 12) % 40;
 		Point pos = new Point(getLocation());
@@ -57,31 +57,36 @@ public class Sprite extends Component
 			{
 				pos.setLocation(new Point(Math.round(getLocation().x / 40) * 40 + 14, pos.getLocation().y));
 			}
-		
+
 			if (posY != 0)
 			{
 				pos.setLocation(new Point(pos.getLocation().x, Math.round(getLocation().y / 40) * 40 + 12));
 			}
 		}
-		
-		if ((angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && !pos.equals(getLocation()))
+
+		if ((angle != Math.PI && Math.abs(angle) != Math.PI / 2 && angle != 0) && !pos.equals(getLocation()))
 		{
 			setLocation(pos);
 		}
-		
-		while (this instanceof Unit && (angle != Math.PI && Math.abs(angle) != Math.PI /2 && angle != 0) && x < ((Unit) this).getPathCounter() + 1 && distance(getLocation(), d) < 80 && n < 50)
+
+		if (this instanceof Unit && (angle != Math.PI && Math.abs(angle) != Math.PI / 2 && angle != 0))
 		{
-			x = ((Unit) this).getPathCounter() + 1 - n;
-			
-			if (x >= 0)
+
+			loc = ((Unit) this).getPath().get(0).getLocation();
+			((Unit) this).setPathCounter(0);
+			loc.x += 70 - (this.getWidth() / 2);
+			loc.y += 150 - (this.getHeight() / 2);
+			d = loc;
+			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX());
+
+			if (c.equals(d))
 			{
-				loc = ((Unit) this).getPath().get(x).getLocation();
-				((Unit) this).setPathCounter(x);
+				loc = ((Unit) this).getPath().get(1).getLocation();
+				((Unit) this).setPathCounter(1);
 				loc.x += 70 - (this.getWidth() / 2);
-				loc.y += 110 - (this.getHeight() / 2);
+				loc.y += 150 - (this.getHeight() / 2);
 				d = loc;
 				angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX());
-				n++;
 			}
 		}
 
@@ -103,9 +108,9 @@ public class Sprite extends Component
 			newY = d.y;
 			lastDis = Math.pow(2, 32) - 1;
 		}
-		
+
 		this.setLocation(newX, newY);
-		
+
 		// this.repaint();
 
 		if ((newX == d.x) && (newY == d.y) && !(this instanceof Projectile))
@@ -115,10 +120,9 @@ public class Sprite extends Component
 			// System.out.println("Beweging voltooid");
 			endMove();
 		}
-		
+
 		stepCounter++;
 		lastDis = dis;
-
 	}
 
 	public void endMove()
@@ -189,16 +193,16 @@ public class Sprite extends Component
 			{
 				trans.translate(0, -7);
 			}
-			
+
 			((Graphics2D) g).scale(1, -1);
 			((Graphics2D) g).translate(0, -(getHeight() - 8));
 		}
-		
+
 		trans.rotate(angle, getWidth() / 2, getHeight() / 2);
 		((Graphics2D) g).drawImage(bf, trans, null);
 
 		if (angle == Math.PI)
-		{			
+		{
 			((Graphics2D) g).scale(1, -1);
 			((Graphics2D) g).translate(0, -(getHeight() - 8));
 		}
