@@ -18,6 +18,7 @@ public class GameStats
     private int waveCounter;
     private int waveUnits;
     private int wave;
+    private int castleHealth;
     private UnitData unitData;
     protected BufferedImage[] towerImages;
     protected BufferedImage[] unitImages;
@@ -88,6 +89,7 @@ public class GameStats
         waveCounter = -100;
         waveUnits = 0;
         wave = 0;
+        castleHealth = 750;
         setTowerData(new TowerData(this));
         unitData = new UnitData(this);
 
@@ -424,5 +426,22 @@ public class GameStats
         waveCounter = -100;
         waveUnits = 0;
         wave = 0;
+        castleHealth = 750;
+    }
+
+    public int getCastleHealth()
+    {
+        return castleHealth;
+    }
+
+    public void updateCastleHealth(int x, int amount)
+    {
+        if (x == -1)
+        {
+            castleHealth -= amount;
+        } else
+        {
+            castleHealth += amount;
+        }
     }
 }
