@@ -261,7 +261,7 @@ public class Game extends JApplet
 	 * @param t
 	 *            Field
 	 */
-	public void TowerToField(Field t)
+	public void TowerToField(Field t, boolean sold)
 	{
 		if (t != null)
 		{
@@ -284,8 +284,11 @@ public class Game extends JApplet
 					lastCaseNumber = gameStats.getTowerData().getPreviousCaseNumber(lastCaseNumber);
 				}
 
-				totalCosts = (totalCosts / 10) * 7;
-				gameStats.updateGold(1, (int) totalCosts);
+                                if(sold){
+                                    totalCosts = (totalCosts / 10) * 7;
+                                    gameStats.updateGold(1, (int) totalCosts);
+                                }
+				
 				// check which tower there also where
 			}
 			fieldPanel.remove(t);
@@ -473,7 +476,7 @@ public class Game extends JApplet
 						t.repaint();
 						if (t.getHealth() <= 0)
 						{
-							TowerToField(t);
+							TowerToField(t, false);
 							repaint();
 						}
 					}
@@ -677,7 +680,7 @@ public class Game extends JApplet
 		Vector v = m.getTowers();
 		for (int i = 0; i < v.size(); i++)
 		{
-			TowerToField(v.get(i));
+			TowerToField(v.get(i), false);
 		}
 		for (Sprite s : cleanup)
 		{
@@ -787,7 +790,7 @@ public class Game extends JApplet
 								int type = controlPanel.getController().getType();
 								if (type == -1)
 								{
-									TowerToField(f);
+									TowerToField(f, true);
 								}
 								else
 								{
