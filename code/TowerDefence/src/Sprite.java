@@ -44,8 +44,6 @@ public class Sprite extends Component
 			angle = Math.atan2(d.getY() - c.getY(), d.getX() - c.getX()); // Berekent de hoek waaronder gereisd wordt in radialen
 		}
 
-		int n = 0;
-		int x = 0;
 		Point loc;
 
 		int posX = (getLocation().x - 14) % 40;
