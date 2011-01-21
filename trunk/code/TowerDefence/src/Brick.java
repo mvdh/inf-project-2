@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.MediaTracker;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
@@ -37,12 +38,21 @@ public class Brick extends Field
 	{
 		// Get the full url of the image (C:\Users\...\images\castle.png)
 		URL url = getClass().getResource("images/castle_grey.png");
+		MediaTracker tracker = new MediaTracker(this);
 		try
 		{
 			// Load the image at location url
 			img = ImageIO.read(url);
+			tracker.addImage(img, 0);
 		}
 		catch (Exception e)
 		{}
+		
+		try
+        {
+            tracker.waitForAll();
+        } 
+		catch (InterruptedException ie)
+        {}
 	}
 }
