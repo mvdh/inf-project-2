@@ -68,7 +68,7 @@ public class TowerData {
          */
         towerData[2][0] = 2;        //caseNumber
         towerData[2][1] = -1;       //previousCaseNumber
-        towerData[2][2] = 30;       //costs
+        towerData[2][2] = 40;       //costs
         towerData[2][3] = 150;      //hitPoints
         towerData[2][4] = 1;        //missleImage
         towerData[2][5] = 120;      //towerRange
@@ -82,7 +82,7 @@ public class TowerData {
          */
         towerData[3][0] = 3;        //caseNumber
         towerData[3][1] = -1;       //previousCaseNumber
-        towerData[3][2] = 50;        //costs
+        towerData[3][2] = 70;        //costs
         towerData[3][3] = 200;      //hitPoints
         towerData[3][4] = 0;        //missleImage
         towerData[3][5] = 80;      //towerRange
