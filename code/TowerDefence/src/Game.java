@@ -3,6 +3,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.MediaTracker;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -174,10 +175,13 @@ public class Game extends JApplet
 		URL grassURL = getClass().getResource("images/grass.png");
 		URL statsBarURL = getClass().getResource("images/statsbar.png");
 		URL leftSideURL = getClass().getResource("images/leftside.png");
+		
+		MediaTracker tracker = new MediaTracker(this);
 
 		try
 		{
 			bf = ImageIO.read(grassURL);
+			tracker.addImage(bf, 0);
 		}
 		catch (Exception e) 
 		{}
@@ -185,6 +189,7 @@ public class Game extends JApplet
 		try
 		{
 			background = ImageIO.read(backgroundURL);
+			tracker.addImage(background, 1);
 		}
 		catch (Exception e)
 		{}
@@ -192,6 +197,7 @@ public class Game extends JApplet
 		try
 		{
 			statsBarImage = ImageIO.read(statsBarURL);
+			tracker.addImage(statsBarImage, 2);
 		}
 		catch (Exception e)
 		{}
@@ -199,9 +205,17 @@ public class Game extends JApplet
 		try
 		{
 			leftSideImage = ImageIO.read(leftSideURL);
+			tracker.addImage(leftSideImage, 3);
 		}
 		catch (Exception e)
 		{}
+		
+		try
+        {
+            tracker.waitForAll();
+        } 
+		catch (InterruptedException ie)
+        {}
 	}
 
 	public void updateStats()
