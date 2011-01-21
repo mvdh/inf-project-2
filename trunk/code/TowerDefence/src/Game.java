@@ -37,7 +37,6 @@ public class Game extends JApplet
 	private Vector path;
 	private Timer actionTimer = null;
 	// Start values
-	private int castleHealth = 750;
 	// Field background image
 	private GameStats gameStats;
 	private BufferedImage bf = null;
@@ -210,7 +209,7 @@ public class Game extends JApplet
 		goldLbl.setText(gameStats.getGold() + "");
 		goldLbl.setIcon(new ImageIcon(gameStats.coinsImages[0]));
 		scoreLbl.setText("    Score: " + gameStats.getPoints());
-		healthLbl.setText("    Health: " + castleHealth);
+		healthLbl.setText("    Health: " + gameStats.getCastleHealth());
 		waveLbl.setText("    Wave: " + (gameStats.getWave() + 1));
 	}
 
@@ -468,7 +467,11 @@ public class Game extends JApplet
 				if (a.x == 14 && a.y == 4)
 				{
 					cleanUp.add(u);
+<<<<<<< .mine
+					gameStats.updateCastleHealth(1, ((u.getCaseNumber() + 1) * 2));
+=======
 					castleHealth -= 50;
+>>>>>>> .r358
 				}
 			}
 			for (int i = 0; i < temp.size(); i++)
@@ -564,7 +567,7 @@ public class Game extends JApplet
 				}
 			}
 		}
-		if (castleHealth <= 0)
+		if (gameStats.getCastleHealth() <= 0)
 		{
 			endGame();
 		}
@@ -674,7 +677,6 @@ public class Game extends JApplet
 			s = null;
 		}
 		gameStats.reset();
-		castleHealth = 750;
 		getLayeredPane().remove(leftSide);
 		getLayeredPane().remove(statsPanel);
 		getLayeredPane().add(panel, JLayeredPane.POPUP_LAYER);
