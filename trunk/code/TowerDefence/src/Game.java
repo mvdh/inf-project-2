@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -175,47 +181,139 @@ public class Game extends JApplet
 		URL grassURL = getClass().getResource("images/grass.png");
 		URL statsBarURL = getClass().getResource("images/statsbar.png");
 		URL leftSideURL = getClass().getResource("images/leftside.png");
-		
+
 		MediaTracker tracker = new MediaTracker(this);
 
-		try
-		{
-			bf = ImageIO.read(grassURL);
-			tracker.addImage(bf, 0);
-		}
-		catch (Exception e) 
-		{}
+		bf = loadImage(grassURL, tracker, 0);
+		background = loadImage(backgroundURL, tracker, 1);
+		statsBarImage = loadImage(statsBarURL, tracker, 2);
+		leftSideImage = loadImage(leftSideURL, tracker, 3);
 
 		try
 		{
-			background = ImageIO.read(backgroundURL);
-			tracker.addImage(background, 1);
+			tracker.waitForAll();
 		}
-		catch (Exception e)
+		catch (InterruptedException ie)
 		{}
-
+	}
+	
+	public BufferedImage loadImage(URL url, MediaTracker tracker, int number)
+	{
+		BufferedImage result = null;
 		try
 		{
-			statsBarImage = ImageIO.read(statsBarURL);
-			tracker.addImage(statsBarImage, 2);
+			result = ImageIO.read(url);
+			tracker.addImage(result, number);
 		}
-		catch (Exception e)
-		{}
-
-		try
+		catch (IllegalArgumentException e)
 		{
-			leftSideImage = ImageIO.read(leftSideURL);
-			tracker.addImage(leftSideImage, 3);
+			if (e.getMessage().startsWith("LUT"))
+			{
+				try
+				{
+					result = ImageIO.read(fixLUTproblem(url.openStream()));
+					tracker.addImage(result, number);
+				}
+				catch (IOException e1)
+				{}
+			}
+			else
+			{
+				throw e;
+			}
 		}
-		catch (Exception e)
+		catch (IOException e)
 		{}
 		
+		return result;
+	}
+
+	public final static byte[] PNG_SIGNATURE =
+	{
+			(byte) 137, 'P', 'N', 'G', '\r', '\n', 26, '\n'
+	};
+
+	public static InputStream fixLUTproblem(InputStream original) throws IOException
+	{
+		final ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
+		final DataOutputStream dos = new DataOutputStream(baos);
 		try
-        {
-            tracker.waitForAll();
-        } 
-		catch (InterruptedException ie)
-        {}
+		{
+			DataInputStream dis = new DataInputStream(original);
+			for (int i = 0; i < 8; i++)
+			{
+				final byte b = dis.readByte();
+				if (b != PNG_SIGNATURE[i])
+					throw new IllegalArgumentException("Not a PNG image");
+				dos.write(b);
+			}
+			String name = "";
+			final byte[] nameData = new byte[4];
+			int bitDepth = -1;
+			int colorType = -1;
+			while (!name.equals("IEND"))
+			{
+				final int length = dis.readInt();
+				dis.readFully(nameData);
+				name = new String(nameData);
+				if (name.equals("IHDR"))
+				{
+					final byte[] headerData = new byte[length + 4]; // Including CRC int
+					dis.readFully(headerData);
+					dos.writeInt(length);
+					dos.write(nameData);
+					dos.write(headerData);
+					bitDepth = headerData[8];
+					colorType = headerData[9];
+				}
+				else if (name.equals("PLTE") && colorType == 3 && bitDepth == 8 && length < 32 * 3)
+				{
+					final byte[] newPLTEChunk = new byte[32 * 3];
+					dis.readFully(newPLTEChunk, 0, length);
+					dis.readInt(); // CRC
+					dos.writeInt(newPLTEChunk.length);
+					dos.write(nameData);
+					dos.write(newPLTEChunk);
+					dos.writeInt(crc32(nameData, newPLTEChunk));
+				}
+				else
+				{
+					dos.writeInt(length);
+					dos.write(nameData);
+					for (int n = length + 4; n > 0; n--)
+					{ // Including CRC int
+						dos.write(dis.read());
+					}
+				}
+			}
+		}
+		finally
+		{
+			original.close();
+		}
+		return new ByteArrayInputStream(baos.toByteArray());
+	}
+
+	private static int crc32(byte[]... buffers)
+	{
+		int crc = 0xffffffff;
+		int p;
+		for (byte[] buffer : buffers)
+		{
+			for (byte b : buffer)
+			{
+				p = (crc ^ b) & 0xff;
+				for (int k = 0; k < 8; k++)
+				{
+					if ((p & 1) == 0)
+						p >>>= 1;
+					else
+						p = 0xedb88320 ^ (p >>> 1);
+				}
+				crc = p ^ (crc >>> 8);
+			}
+		}
+		return ~crc;
 	}
 
 	public void updateStats()
@@ -229,7 +327,7 @@ public class Game extends JApplet
 
 	/**
 	 * Changes the Object type from Field to Tower
-	 *
+	 * 
 	 * @param f
 	 *            Field
 	 */
@@ -257,7 +355,7 @@ public class Game extends JApplet
 
 	/**
 	 * Changes the Object type from Tower to Field
-	 *
+	 * 
 	 * @param t
 	 *            Field
 	 */
