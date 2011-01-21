@@ -667,7 +667,12 @@ public class Game extends JApplet
 				gameStats.setWaveCounter(0);
 				if (gameStats.getWaveUnits() == 0)
 				{
-					gameStats.updateGold(1, (gameStats.getWave() * 3));
+					int updateGold = gameStats.getWave() * 3;
+					if (updateGold > 24)
+					{
+						updateGold = 24;
+					}
+					gameStats.updateGold(1, updateGold);
 				}
 				gameStats.raiseWaveUnits();
 				if (gameStats.getWaveUnits() == 15)
