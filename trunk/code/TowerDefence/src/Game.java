@@ -481,7 +481,7 @@ public class Game extends JApplet
 				if (a.x == 14 && a.y == 4)
 				{
 					cleanUp.add(u);
-					gameStats.updateCastleHealth(1, ((u.getCaseNumber() + 1) * 2));
+					gameStats.updateCastleHealth(-1, ((u.getCaseNumber() + 1) * 2));
 				}
 			}
 			for (int i = 0; i < temp.size(); i++)
